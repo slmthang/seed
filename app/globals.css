@@ -25,3 +25,20 @@ body {
     text-wrap: balance;
   }
 }
+
+
+/* Skeleton Loader Animation */
+
+.skeletonAnimation {
+  animation: skeletonLoaderAnimation 3s linear infinite alternate;
+}
+
+@keyframes skeletonLoaderAnimation {
+  0% {
+    background-color: 	hsl(0, 0%, 25%);
+  }
+
+  100% {
+    background-color: 	hsl(0, 0%, 60%);
+  }
+}

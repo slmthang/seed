@@ -1,15 +1,12 @@
 
-export default function Page() {
+export default function Loading() {
     return (
         <div className="w-full h-full bg-darkest">
             <main className="w-full h-full">
                 <section className="w-screen min-h-56 pt-20">
                     <div className="w-full flex flex-col justify-center items-center bg-darkest">
                         <div className="w-11/12 h-28 bg-darker rounded-xl skeletonAnimation">
-                            <h1>Budget Plan</h1>
-                        </div>
-                        <div className="w-11/12 h-10 bg-darker rounded-xl skeletonAnimation mt-5 mb-5">
-
+                            <h1>Savings</h1>
                         </div>
                     </div>
                 </section>
@@ -42,5 +39,4 @@ export default function Page() {
             </main>
         </div>
     )
-
 }

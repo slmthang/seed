@@ -1,5 +1,5 @@
 
-export default function Page() {
+export default function Loading() {
     return (
         <div className="w-full h-full bg-darkest">
             <main className="w-full h-full">
@@ -42,5 +42,4 @@ export default function Page() {
             </main>
         </div>
     )
-
 }
