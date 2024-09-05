@@ -3,7 +3,7 @@ export default function Page() {
     return (
         <div className="w-full h-full bg-darkest">
             <main className="w-full h-full">
-                <section className={"main-cont" + " w-full min-h-[calc(100vh-2.5rem)] flex flex-col items-center bg-darkest pt-20"}>
+                <section className={"main-cont" + " w-full h-full flex flex-col items-center bg-darkest pt-5 pb-20"}>
                     <div className="w-11/12 h-48 bg-darker mb-12 rounded-xl skeletonAnimation">
 
                     </div>
