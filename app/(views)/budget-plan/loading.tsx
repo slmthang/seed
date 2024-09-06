@@ -2,8 +2,8 @@
 export default function Loading() {
     return (
         <div className="w-full h-full bg-darkest">
-            <main className="w-full h-full">
-                <section className="w-screen min-h-56 pt-20">
+            <main className="w-full min-h-full">
+                <section className="w-screen min-h-56 pt-5">
                     <div className="w-full flex flex-col justify-center items-center bg-darkest">
                         <div className="w-11/12 h-28 bg-darker rounded-xl skeletonAnimation">
                             <h1>Budget Plan</h1>
@@ -13,7 +13,7 @@ export default function Loading() {
                         </div>
                     </div>
                 </section>
-                <section className={"w-full min-h-[calc(100vh-2.5rem)] h-[calc(100vh-2.5rem)] flex flex-col items-center bg-dark"}>
+                <section className={"w-full min-h-[calc(100vh-14rem)] flex flex-col items-center bg-dark pb-20"}>
                     <div className="w-screen h-16 flex bg-darker">
                         <div className="w-[50%] h-16 bg-darker ">
                         
@@ -42,4 +42,5 @@ export default function Loading() {
             </main>
         </div>
     )
+
 }

@@ -1,25 +1,17 @@
 
+import { TrackerWidget, BudgetPlannerWidget, SavingsWidget, SubscriptionsWidget } from "@/app/ui/views/home/widgets"
+
 export default function Page() {
     return (
-        <div className="w-full h-full bg-darkest">
-            <main className="w-full h-full">
-                <section className={"main-cont" + " w-full h-full flex flex-col items-center bg-darkest pt-5 pb-20"}>
-                    <div className="w-11/12 h-48 bg-darker mb-12 rounded-xl skeletonAnimation">
-
-                    </div>
-                    <div className="w-11/12 h-48 bg-darker mb-12 rounded-xl skeletonAnimation">
-
-                    </div>
+        <div className="bg-darkest">
+            <main>
+                <section className={"main-cont" + " w-screen h-full flex flex-col items-center bg-darkest pt-5 pb-20"}>
+                    <TrackerWidget /> {/* Tracker Widget */}
+                    <BudgetPlannerWidget /> {/* Budget Plan Widget */}
                     <div className="w-11/12 h-40 gap-x-10 flex justify-center">
-                        <div className="w-[50%] h-40 bg-darker rounded-xl skeletonAnimation">
-
-                        </div>
-                        <div className="w-[50%] h-40 bg-darker rounded-xl skeletonAnimation">
-
-                        </div>
+                        <SavingsWidget />  {/* Savings Widget */}
+                        <SubscriptionsWidget />  {/* Subscription Widget */}
                     </div>
-                    
-
                 </section>
             </main>
         </div>

@@ -1,8 +1,8 @@
 
 export default function Page() {
     return (
-        <div className="w-full h-full bg-darkest">
-            <main className="w-full min-h-full">
+        <div className="bg-darkest">
+            <main>
                 <section className="w-screen min-h-56 pt-5">
                     <div className="w-full flex flex-col justify-center items-center bg-darkest">
                         <div className="w-11/12 h-28 bg-darker rounded-xl skeletonAnimation">
