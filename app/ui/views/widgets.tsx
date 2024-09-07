@@ -20,7 +20,7 @@ type SmallWidgetData = {
 
 type WidgetsData = {
     widgetType : WidgetsTypes;
-    LargeWidgetData : LargeWidgetData;
+    // LargeWidgetData : LargeWidgetData;
 }
 
 
@@ -211,7 +211,7 @@ function RowWidget (
 
     let newArr = arr.map(e => {
         return (
-            <div className="w-[90%] h-20 rounded-xl mt-6 flex justify-between items-center">
+            <div key={e} className="w-[90%] h-20 rounded-xl mt-6 flex justify-between items-center">
                 <div className="w-[70%] h-full flex justify-between items-center">
                     <div className="w-[5rem] h-[90%] flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-14 fill-lightest">
@@ -247,8 +247,8 @@ export function BudgetPlan() {
 
     return (
         <Widgets data={{
-            widgetType : 'budget-plan', 
-            LargeWidgetData: {widgetType: 'budgetPlanner', income: '2000', expense: '2000', balance: '2000'}
+            widgetType : 'budget-plan'
+            // LargeWidgetData: {widgetType: 'budgetPlanner', income: '2000', expense: '2000', balance: '2000'}
         }} >
             <nav className="w-full h-[5rem]">
                 <button className="w-[50%] h-full bg-dark">
@@ -263,23 +263,23 @@ export function BudgetPlan() {
     )
 }
 
-export function Subscriptions() {
+// export function Subscriptions() {
 
-    return (
-        <Widgets widgetType="subscriptions" />
-    )
-}
+//     return (
+//         <Widgets widgetType="subscriptions" />
+//     )
+// }
 
-export function Tracker() {
+// export function Tracker() {
 
-    return (
-        <Widgets widgetType="tracker" />
-    )
-}
+//     return (
+//         <Widgets widgetType="tracker" />
+//     )
+// }
 
-export function Savings() {
+// export function Savings() {
 
-    return (
-        <Widgets widgetType="savings" />
-    )
-}
+//     return (
+//         <Widgets widgetType="savings" />
+//     )
+// }

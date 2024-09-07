@@ -1,9 +1,10 @@
 
-import { Subscriptions } from "@/app/ui/views/widgets"
+
+import { BudgetPlan } from "@/app/ui/views/widgets"
 
 export default function Page() {
     return (
-        <Subscriptions />
+        <BudgetPlan />
     )
 
 }
