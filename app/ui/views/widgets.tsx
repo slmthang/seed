@@ -57,7 +57,7 @@ export function DateSelectorWidget(
 
     const updatedData = data?.map(e => {
         return (
-            <li className="w-[4.5rem] h-7 rounded-2xl flex items-center justify-center bg-darkest text-xs">
+            <li key={e} className="w-[4.5rem] h-7 rounded-2xl flex items-center justify-center bg-darkest text-xs">
                 <p className="text-xs font-thin">{e}</p>
             </li>
         )
