@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { LargeWidgetSkeleton, OverviewCardSkeleton, SmallWidgetSkeleton } from "./ui/views/skeletons";
+import { LargeWidgetSkeleton, OverviewCardSkeleton, SmallWidgetSkeleton } from "./ui/components/skeletons";
 
 export default function Home() {
   return (

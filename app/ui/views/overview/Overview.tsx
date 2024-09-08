@@ -5,29 +5,12 @@
 import Link from "next/link";
 
 // modules (local)
-import { OptionsSelector, durations, SingleAmountCard, TripleAmountCard } from "../components";
+import OptionsSelector from "../../components/OptionsSelector";
+import SingleAmountCard from "../../components/SingleAmountCard";
+import TripleAmountCard from "../../components/TripleAmountCard";
 
 // data (local)
-type LargeWidgetTypes = 'tracker-home' | 'budgetPlanner-home';
-type SmallWidgetTypes = 'savings-home' | 'subscriptions-home';
-
-type LargeWidgetData = {
-    widgetType : LargeWidgetTypes;
-    income : string;
-    expense : string;
-    balance : string;
-}
-
-type SmallWidgetData = {
-    widgetType : SmallWidgetTypes;
-    balance : string;
-}
-
-const data3 = [
-    ['Income', '2000'],
-    ['Expense', '2000'],
-    ['Balance', '2000']
-]
+import { SmallWidgetTypes, LargeWidgetTypes, SmallWidgetData, LargeWidgetData, durations, data3 } from "../../components/definitions";
 
 function SmallWidget(
     {data, children} : {data: SmallWidgetData, children?: React.ReactNode}

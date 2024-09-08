@@ -5,13 +5,14 @@
 import { useState } from "react";
 import clsx from 'clsx';
 
-// local
-import { AppLayout, Item, OptionsSelector } from "../components";
+// modules (local)
+import AppLayout from "../../components/AppLayout";
+import Item from "../../components/Item";
+import OptionsSelector from "../../components/OptionsSelector";
 
 // chart
 import React, { PureComponent } from 'react';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
-
 
 const chartTypes = ['Bar Chart', 'Pie Chart']
 

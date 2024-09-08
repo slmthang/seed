@@ -3,10 +3,13 @@
 
 // modules
 import { useState } from "react";
-import clsx from 'clsx';
 
 // local
-import { AppLayout, Item, OptionsSelector, TabBar } from "../components";
+// import { AppLayout, Item, OptionsSelector, TabBar } from "../../components/AppLayout";
+import AppLayout from "../../components/AppLayout";
+import Item from "../../components/Item";
+import OptionsSelector from "../../components/OptionsSelector";
+import TabBarOptions from "../../components/TabBarOptions";
 
 // chart
 import React, { PureComponent } from 'react';
@@ -61,7 +64,7 @@ export default function Subscriptions() {
             pageType : 'subscriptions'
             // LargeWidgetData: {widgetType: 'budgetPlanner', income: '2000', expense: '2000', balance: '2000'}
         }} >
-            <TabBar isDefault={isDefault} setIsDefault={setIsDefault} names={['Items', 'Stats']}/>
+            <TabBarOptions isDefault={isDefault} setIsDefault={setIsDefault} names={['Items', 'Stats']}/>
             <div className="w-[90%] flex flex-col items-center pt-6">
                 {isDefault ? 
                     <Item /> : (

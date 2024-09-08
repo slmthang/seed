@@ -1,5 +1,5 @@
 
-import { OverviewCardSkeleton } from "@/app/ui/views/skeletons"
+import { OverviewCardSkeleton } from "@/app/ui/components/skeletons"
 
 export default function Loading() {
     return (

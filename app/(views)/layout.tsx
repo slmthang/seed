@@ -1,6 +1,7 @@
 
  
- import { MenuBar, NavBar } from '@/app/ui/components';
+ import MenuBar from "../ui/components/MenuBar";
+ import NavBar from "../ui/components/NavBar";
  
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
