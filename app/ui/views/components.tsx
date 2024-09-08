@@ -118,7 +118,7 @@ export function SingleAmountCard(
                 ): null}
 
                 <div>
-                    <p className={clsx("text-lg font-black", {'text-4xl' : type===1})}>
+                    <p className={clsx("text-lg font-black", {'text-3xl' : type===1})}>
                         ${data[1]}
                     </p>
                 </div>
