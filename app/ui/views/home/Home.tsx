@@ -5,7 +5,7 @@
 import Link from "next/link";
 
 // modules (local)
-import { OptionsSelector, durations, SingleAmountCard, TripleAmountCard } from "../widgets";
+import { OptionsSelector, durations, SingleAmountCard, TripleAmountCard } from "../components";
 
 // data (local)
 type LargeWidgetTypes = 'tracker-home' | 'budgetPlanner-home';

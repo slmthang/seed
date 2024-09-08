@@ -6,16 +6,11 @@ import { useState } from "react";
 import clsx from "clsx";
 
 
-type PageTypes = 'budget-plan' | 'subscriptions' | 'tracker' | 'savings';
-
-type AppLayoutData = {
-    pageType : PageTypes;
-    // LargeWidgetData : LargeWidgetData;
-}
-
+// data
 export const durations = ['day', 'week', 'month', 'year'];
 
 
+// components
 export function OptionsSelector(
     {data, colors = ['bg-dark']} : {data: string[], colors?: string[]}
 ) {
@@ -46,21 +41,52 @@ export function OptionsSelector(
     )
 }
 
-
-function AmountCard(
-    {name, amount} : {name: string, amount: string}
+export function Item (
+    {data, children} : {data?: any, children?: React.ReactNode}
 ) {
+
+    let arr = [1, 2, 3, 4];
+
+    let newArr = arr.map(e => {
+        return (
+            <div key={e} className="w-[90%] h-[4.5rem] rounded-xl flex justify-between items-cente mb-6">
+                <div className="w-[70%] h-full flex justify-between items-center">
+                    <div className="w-[5rem] h-[90%] flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-10 fill-lightest">
+                            <path d="M11.584 2.376a.75.75 0 0 1 .832 0l9 6a.75.75 0 1 1-.832 1.248L12 3.901 3.416 9.624a.75.75 0 0 1-.832-1.248l9-6Z" />
+                            <path fillRule="evenodd" d="M20.25 10.332v9.918H21a.75.75 0 0 1 0 1.5H3a.75.75 0 0 1 0-1.5h.75v-9.918a.75.75 0 0 1 .634-.74A49.109 49.109 0 0 1 12 9c2.59 0 5.134.202 7.616.592a.75.75 0 0 1 .634.74Zm-7.5 2.418a.75.75 0 0 0-1.5 0v6.75a.75.75 0 0 0 1.5 0v-6.75Zm3-.75a.75.75 0 0 1 .75.75v6.75a.75.75 0 0 1-1.5 0v-6.75a.75.75 0 0 1 .75-.75ZM9 12.75a.75.75 0 0 0-1.5 0v6.75a.75.75 0 0 0 1.5 0v-6.75Z" clipRule="evenodd" />
+                            <path d="M12 7.875a1.125 1.125 0 1 0 0-2.25 1.125 1.125 0 0 0 0 2.25Z" />
+                        </svg>
+                    </div>
+                    <div className="w-[11rem] h-[90%] rounded-xl flex flex-col justify-center pl-2">
+                        <p className="text-base">Netflix Inc.</p>
+                        <p className="text-xs font-thin">05/23/2025</p>
+                    </div>
+                </div>
+                <div className="w-[25%] h-full flex justify-between items-center">
+                    <div className="w-full h-[90%] rounded-xl flex flex-col justify-center pl-2">
+                        <p>$24.99</p>
+                    </div>
+                </div>
+            </div>
+        )
+    })
+
     return (
-        <div className="w-24 h-[80%]  flex flex-col items-center justify-center">
-            <div className="mb-2">
-                <p>{name}</p>
-            </div>
-            <div>
-                <p>${amount}</p>
-            </div>
+        <div className="w-full flex flex-col justify-center items-center mt-4">
+            {newArr}
         </div>
     )
+
 }
+
+// TripleAmountCard
+
+const data3 = [
+    ['Income', '2000'],
+    ['Expense', '2000'],
+    ['Balance', '2000']
+]
 
 export function TripleAmountCard(
     {data} : {data: string[][]}
@@ -92,7 +118,7 @@ export function SingleAmountCard(
                 ): null}
 
                 <div>
-                    <p className={clsx("text-lg font-black", {'text-3xl' : type===1})}>
+                    <p className={clsx("text-lg font-black", {'text-4xl' : type===1})}>
                         ${data[1]}
                     </p>
                 </div>
@@ -100,12 +126,6 @@ export function SingleAmountCard(
         </div>
     )
 }
-
-const data3 = [
-    ['Income', '2000'],
-    ['Expense', '2000'],
-    ['Balance', '2000']
-]
 
 function OverviewCard(
     {pageType} : {pageType: PageTypes}
@@ -169,6 +189,17 @@ export function TabBar(
     )
 }
 
+
+// AppLayout
+
+type PageTypes = 'budget-plan' | 'subscriptions' | 'tracker' | 'savings';
+type AppLayoutData = {
+    pageType : PageTypes;
+    // LargeWidgetData : LargeWidgetData;
+}
+
+
+
 export function AppLayout(
     {data, children} : {data: AppLayoutData, children: React.ReactNode}
 ) {
@@ -183,41 +214,3 @@ export function AppLayout(
 
 }
 
-export function Item (
-    {data, children} : {data?: any, children?: React.ReactNode}
-) {
-
-    let arr = [1, 2, 3, 4];
-
-    let newArr = arr.map(e => {
-        return (
-            <div key={e} className="w-[90%] h-[4.5rem] rounded-xl flex justify-between items-cente mb-6">
-                <div className="w-[70%] h-full flex justify-between items-center">
-                    <div className="w-[5rem] h-[90%] flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-10 fill-lightest">
-                            <path d="M11.584 2.376a.75.75 0 0 1 .832 0l9 6a.75.75 0 1 1-.832 1.248L12 3.901 3.416 9.624a.75.75 0 0 1-.832-1.248l9-6Z" />
-                            <path fillRule="evenodd" d="M20.25 10.332v9.918H21a.75.75 0 0 1 0 1.5H3a.75.75 0 0 1 0-1.5h.75v-9.918a.75.75 0 0 1 .634-.74A49.109 49.109 0 0 1 12 9c2.59 0 5.134.202 7.616.592a.75.75 0 0 1 .634.74Zm-7.5 2.418a.75.75 0 0 0-1.5 0v6.75a.75.75 0 0 0 1.5 0v-6.75Zm3-.75a.75.75 0 0 1 .75.75v6.75a.75.75 0 0 1-1.5 0v-6.75a.75.75 0 0 1 .75-.75ZM9 12.75a.75.75 0 0 0-1.5 0v6.75a.75.75 0 0 0 1.5 0v-6.75Z" clipRule="evenodd" />
-                            <path d="M12 7.875a1.125 1.125 0 1 0 0-2.25 1.125 1.125 0 0 0 0 2.25Z" />
-                        </svg>
-                    </div>
-                    <div className="w-[11rem] h-[90%] rounded-xl flex flex-col justify-center pl-2">
-                        <p className="text-base">Netflix Inc.</p>
-                        <p className="text-xs font-thin">05/23/2025</p>
-                    </div>
-                </div>
-                <div className="w-[25%] h-full flex justify-between items-center">
-                    <div className="w-full h-[90%] rounded-xl flex flex-col justify-center pl-2">
-                        <p>$24.99</p>
-                    </div>
-                </div>
-            </div>
-        )
-    })
-
-    return (
-        <div className="w-full flex flex-col justify-center items-center mt-4">
-            {newArr}
-        </div>
-    )
-
-}

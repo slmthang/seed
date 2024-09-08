@@ -6,7 +6,7 @@ import { useState } from "react";
 import clsx from 'clsx';
 
 // local
-import { AppLayout, Item, OptionsSelector } from "../widgets";
+import { AppLayout, Item, OptionsSelector } from "../components";
 
 // chart
 import React, { PureComponent } from 'react';
