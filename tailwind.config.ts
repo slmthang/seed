@@ -15,9 +15,13 @@ const config: Config = {
       },
 
       colors: {
-        'dark': '#272B31',
-        'darker': '#22262a',
-        'darkest': '#111315',
+        'dark': '#2e2e2e',
+        'darker': '#222226',
+        'darkest': '#0a0a0a',
+        // 'light-dark': '#2e2e2e',
+        // 'dark': '#272727',
+        // 'darker': '#1e1e1e',
+        // 'darkest': '#000000',
         'light': '#A4A4A4',
         'lighter': '#D2D2D2',
         'lightest': '#fff'

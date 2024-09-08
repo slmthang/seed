@@ -29,16 +29,30 @@ body {
 
 /* Skeleton Loader Animation */
 
-.skeletonAnimation {
-  animation: skeletonLoaderAnimation 3s linear infinite alternate;
+.skeletonAnimationA {
+  animation: skeletonLoaderAnimationA 3s linear infinite alternate;
 }
 
-@keyframes skeletonLoaderAnimation {
+@keyframes skeletonLoaderAnimationA {
   0% {
-    background-color: 	hsl(0, 0%, 25%);
+    background-color: 	hsl(0, 0%, 15%);
   }
 
   100% {
-    background-color: 	hsl(0, 0%, 60%);
+    background-color: 	hsl(0, 0%, 50%);
+  }
+}
+
+.skeletonAnimationB {
+  animation: skeletonLoaderAnimationB 3s linear infinite alternate;
+}
+
+@keyframes skeletonLoaderAnimationB {
+  0% {
+    background-color: 	hsl(0, 0%, 55%);
+  }
+
+  100% {
+    background-color: 	hsl(0, 0%, 95%);
   }
 }

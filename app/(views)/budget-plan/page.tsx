@@ -1,6 +1,6 @@
 
 
-import { BudgetPlan } from "@/app/ui/views/widgets"
+import BudgetPlan from "@/app/ui/views/budget-plan/BudgetPlan"
 
 export default function Page() {
     return (

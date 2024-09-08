@@ -1,9 +1,9 @@
 
 
-import { BudgetPlan } from "@/app/ui/views/widgets"
+import Tracker from "@/app/ui/views/tracker/Tracker"
 
 export default function Page() {
     return (
-        <BudgetPlan />
+        <Tracker />
     )
 }
