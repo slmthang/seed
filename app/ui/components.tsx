@@ -113,7 +113,7 @@ export function NavBar() {
 
     const optionsToShow = NavBarOptionsData.map( (e, i) => {
         return (
-            <NavBarOption route={ e.path} selected={selected === i} onClick={ () => setSelected(i)}>
+            <NavBarOption key={String(e.path) + String(i)} route={ e.path} selected={selected === i} onClick={ () => setSelected(i)}>
                 { e.icon}
             </NavBarOption>
         )
