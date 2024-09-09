@@ -7,9 +7,10 @@ import { useState } from "react";
 // local
 // import { AppLayout, Item, OptionsSelector, TabBar } from "../../components/AppLayout";
 import AppLayout from "../../components/AppLayout";
-import Item from "../../components/Item";
+import Items from "../../components/Items";
 import OptionsSelector from "../../components/OptionsSelector";
 import TabBarOptions from "../../components/TabBarOptions";
+import { budgetPlanData } from "@/app/lib/placeholder-data";
 
 // chart
 import React, { PureComponent } from 'react';
@@ -61,13 +62,13 @@ export default function Subscriptions() {
 
     return (
         <AppLayout data={{
-            pageType : 'subscriptions'
-            // LargeWidgetData: {widgetType: 'budgetPlanner', income: '2000', expense: '2000', balance: '2000'}
+            pageType : 'subscriptions',
+            overViewData: budgetPlanData.overViewData
         }} >
             <TabBarOptions isDefault={isDefault} setIsDefault={setIsDefault} names={['Items', 'Stats']}/>
             <div className="w-[90%] flex flex-col items-center pt-6">
                 {isDefault ? 
-                    <Item /> : (
+                    <Items data={budgetPlanData.expenses}/> : (
                         <>
                             <OptionsSelector data={chartTypes} />
                             <BarChart />

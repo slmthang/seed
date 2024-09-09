@@ -1,12 +1,12 @@
 
 // modules (local)
-import { PageTypes, data3, durations } from "./definitions";
+import { PageTypes, data3, durations, overViewDataType } from "./definitions";
 import OptionsSelector from "./OptionsSelector";
 import TripleAmountCard from "./TripleAmountCard";
 import SingleAmountCard from "./SingleAmountCard";
 
 export default function OverviewCard(
-    {pageType} : {pageType: PageTypes}
+    {pageType, data} : {pageType: PageTypes, data: overViewDataType}
 ) {
     return (
         <section className="w-screen min-h-24 flex flex-col items-center justify-center mt-2 mb-4">
@@ -18,15 +18,15 @@ export default function OverviewCard(
                             {
                                 pageType === 'budget-plan' ||
                                 pageType === 'tracker' ?
-                                <TripleAmountCard data={data3} /> :
-                                <SingleAmountCard data={['Balance', '2102']}  type={1} />
+                                <TripleAmountCard data={data} /> :
+                                <SingleAmountCard data={data.balance}  />
                             }
                             
                         </div>
                     </div>
                 </div>
             </div>
-            {pageType === 'tracker' ? <OptionsSelector data={durations}/> : null}
+            {pageType === 'tracker' || pageType == 'savings' ? <OptionsSelector data={durations}/> : null}
             
         </section>
     )

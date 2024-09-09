@@ -7,13 +7,14 @@ import clsx from 'clsx';
 
 // local
 import AppLayout from "../../components/AppLayout";
-import Item from "../../components/Item";
+import Items from "../../components/Items";
 import OptionsSelector from "../../components/OptionsSelector";
 
 // chart
 import React, { PureComponent } from 'react';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 
+import { budgetPlanData } from "@/app/lib/placeholder-data";
 
 const chartTypes = ['Bar Chart', 'Pie Chart']
 
@@ -59,8 +60,8 @@ export default function Tracker() {
 
     return (
         <AppLayout data={{
-            pageType : 'tracker'
-            // LargeWidgetData: {widgetType: 'budgetPlanner', income: '2000', expense: '2000', balance: '2000'}
+            pageType : 'tracker',
+            overViewData: budgetPlanData.overViewData
         }} >
             <nav className="w-[16.5rem] h-[2.25rem] flex items-center justify-around rounded-2xl bg-darkest">
 
@@ -92,7 +93,7 @@ export default function Tracker() {
             </nav>
                 <div className="w-[90%] flex flex-col items-center pt-6">
                     {isDefault ? 
-                        <Item /> : (
+                        <Items data={budgetPlanData.expenses}/> : (
                             <>
                                 <OptionsSelector data={chartTypes} colors={['bg-dark']}/>
                                 <BarChart />

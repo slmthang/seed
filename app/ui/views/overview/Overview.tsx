@@ -11,6 +11,7 @@ import TripleAmountCard from "../../components/TripleAmountCard";
 
 // data (local)
 import { SmallWidgetTypes, LargeWidgetTypes, SmallWidgetData, LargeWidgetData, durations, data3 } from "../../components/definitions";
+import { budgetPlanData } from "@/app/lib/placeholder-data";
 
 function SmallWidget(
     {data, children} : {data: SmallWidgetData, children?: React.ReactNode}
@@ -30,7 +31,10 @@ function SmallWidget(
                 </div>
             </div>
             <div className="w-full h-24 flex flex-col items-center justify-center rounded-b-xl">
-                <SingleAmountCard data={['', '1500']}/> 
+                <SingleAmountCard data={{
+                            name: 'Income',
+                            amount: data.balance ? data.balance : '0.00'
+                        }}/> 
             </div>
         </div>
     )
@@ -56,7 +60,20 @@ function LargeWidget(
             {data.widgetType === 'tracker-home' ? <OptionsSelector data={durations}/> : null}
             <div className="w-full h-32 rounded-b-xl flex items-center justify-around">
             <div className="w-[90%] h-full flex items-center justify-around">
-                <TripleAmountCard data={data3}/>
+                <TripleAmountCard data={{
+                        income: {
+                            name: 'Income',
+                            amount: data.income ? data.income : '0.00'
+                        },
+                        expense: {
+                            name: 'Expense',
+                            amount: data.expense ? data.expense : '0.00'
+                        },
+                        balance: {
+                            name: 'Income',
+                            amount: data.balance ? data.balance : '0.00'
+                        },
+                    }}/>
             </div>
         </div>
         </div>
@@ -64,7 +81,7 @@ function LargeWidget(
 }
 
 
-export default function Home() {
+export default function OverView() {
     return (
         <section className={"main-cont" + " w-screen h-full flex flex-col items-center pt-5 pb-20"}>
             <LargeWidget data={{widgetType: 'budgetPlanner-home', income: '1000', expense: '2000', balance: '2000'}}/>

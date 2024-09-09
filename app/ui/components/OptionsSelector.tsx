@@ -1,11 +1,11 @@
 
 
 // modules (remote)
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import clsx from "clsx";
 
 export default function OptionsSelector(
-    {data, colors = ['bg-dark']} : {data: string[], colors?: string[]}
+    {data, setFunction, colors = ['bg-dark'], addStyles=''} : {data: string[], setFunction? : Dispatch<SetStateAction<string>>, colors?: string[], addStyles? : string}
 ) {
 
     const [isSelected, setIsSelected] = useState(data[0]);
@@ -18,7 +18,10 @@ export default function OptionsSelector(
                     [colors[0]] : e === isSelected
                 }
             )}
-                onClick={() => setIsSelected(e)}
+                onClick={() => {
+                    setIsSelected(e);
+                    setFunction? setFunction(e) : null;
+                }}
             >
                 <p className="text-xs font-extralight">{e}</p>
             </li>
@@ -26,7 +29,7 @@ export default function OptionsSelector(
     })
 
     return (
-        <div className="flex items-center justify-center w-[80%] h-10 mt-2">
+        <div className={"flex items-center justify-center w-[80%] h-10 mt-2" + ' ' + addStyles}>
                 <ul className="flex w-full items-center gap-x-4 items-center justify-center">
                     {updatedData}
                 </ul>

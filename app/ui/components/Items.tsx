@@ -1,14 +1,25 @@
 
+// data
+import { budgetPlanExpenseListType, subscriptionsExpenseListType, trackerIncomeListType, trackerExpenseListType, savingsExpenseListType } from "./definitions"
 
-export default function Item (
-    {data, children} : {data?: any, children?: React.ReactNode}
+
+export default function Items (
+    {data , children} : {data: budgetPlanExpenseListType | subscriptionsExpenseListType | trackerExpenseListType | trackerIncomeListType | savingsExpenseListType, children?: React.ReactNode}
 ) {
+    let newArr = data.map((e, i) => {
 
-    let arr = [1, 2, 3, 4];
+        let itemName;
 
-    let newArr = arr.map(e => {
+        if ('goal' in e) {
+            itemName = e.goal;
+        } else if ('type' in e) {
+            itemName = e.type
+        } else {
+            itemName = e.name
+        }
+
         return (
-            <div key={e} className="w-[90%] h-[4.5rem] rounded-xl flex justify-between items-cente mb-6">
+            <div key={itemName + e.amount + i + ''} className="w-[90%] h-[4.5rem] rounded-xl flex justify-between items-cente mb-6">
                 <div className="w-[70%] h-full flex justify-between items-center">
                     <div className="w-[5rem] h-[90%] flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-10 fill-lightest">
@@ -18,13 +29,13 @@ export default function Item (
                         </svg>
                     </div>
                     <div className="w-[11rem] h-[90%] rounded-xl flex flex-col justify-center pl-2">
-                        <p className="text-base">Netflix Inc.</p>
-                        <p className="text-xs font-thin">05/23/2025</p>
+                        <p className="text-base">{itemName}</p>
+                        {/* <p className="text-xs font-thin">{e.date}</p> */}
                     </div>
                 </div>
                 <div className="w-[25%] h-full flex justify-between items-center">
                     <div className="w-full h-[90%] rounded-xl flex flex-col justify-center pl-2">
-                        <p>$24.99</p>
+                        <p>{e.amount}</p>
                     </div>
                 </div>
             </div>

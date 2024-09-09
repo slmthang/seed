@@ -1,14 +1,17 @@
 
 // modules (local)
+import { overViewDataType } from "./definitions";
 import SingleAmountCard from "./SingleAmountCard"
 
 export default function TripleAmountCard(
-    {data} : {data: string[][]}
+    {data} : {data: overViewDataType}
 ) {
 
-    const updatedData = data.map(e => {
-        return (
-            <SingleAmountCard key={String(e)} data={e}/>
+    const updatedData: any[] = [];
+    
+    Object.entries(data).forEach((e, i) => {
+        updatedData.push(
+            <SingleAmountCard key={'' + e[0] + e[1].name + i} data={e[1]} />
         )
     })
     

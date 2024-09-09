@@ -7,13 +7,13 @@ import clsx from 'clsx';
 
 // modules (local)
 import AppLayout from "../../components/AppLayout";
-import Item from "../../components/Item";
+import Items from "../../components/Items";
 import OptionsSelector from "../../components/OptionsSelector";
 
 // chart
 import React, { PureComponent } from 'react';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
-
+import { budgetPlanData } from "@/app/lib/placeholder-data";
 
 const chartTypes = ['Bar Chart', 'Pie Chart']
 
@@ -60,8 +60,14 @@ export default function Savings() {
 
     return (
         <AppLayout data={{
-            pageType : 'savings'
-            // LargeWidgetData: {widgetType: 'budgetPlanner', income: '2000', expense: '2000', balance: '2000'}
+            pageType : 'savings',
+            income : [
+                {
+                name: 'KFC',
+                amount: '30.00',
+                category: 'food'
+                }
+            ]
         }} >
             <nav className="w-[16.5rem] h-[2.25rem] flex items-center justify-around rounded-2xl bg-darkest">
 
@@ -93,12 +99,8 @@ export default function Savings() {
             </nav>
                 <div className="w-[90%] flex flex-col items-center pt-6">
                     {isDefault ? 
-                        <Item /> : (
-                            <>
-                                <OptionsSelector data={chartTypes} />
-                                <BarChart />
-                            </>
-                    )}
+                        <Items data={data.expenses}/> : <DisplayChart />
+                    }
                 </div>
         </AppLayout>
     )
