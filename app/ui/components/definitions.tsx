@@ -16,7 +16,7 @@ export type PageTypes = 'budget-plan' | 'subscriptions' | 'tracker' | 'savings';
 
 export type AppLayoutDataType = {
     pageType : PageTypes;
-    income: string;
+    income?: string;
     expense?: string;
     balance?: string;
 }

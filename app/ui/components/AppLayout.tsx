@@ -20,7 +20,7 @@ export default function AppLayout(
                             amount: data.expense ? data.expense : '0.00'
                         },
                         balance: {
-                            name: 'Income',
+                            name: 'Balance',
                             amount: data.balance ? data.balance : '0.00'
                         },
                     }}
