@@ -10,19 +10,28 @@ import AppLayout from "../../components/AppLayout";
 import Items from "../../components/Items";
 import OptionsSelector from "../../components/OptionsSelector";
 
+import { trackerExpenseListType, trackerIncomeListType } from "../../components/definitions";
+import User from "@/app/lib/User";
+import { calculateMoney } from "@/app/lib/utils";
+import DisplayChart from "../../components/DisplayChart";
 
-
-
-
-export default function Tracker() {
+export default function Tracker(
+    {incomeList, expenseList} : {incomeList: trackerIncomeListType , expenseList: trackerExpenseListType}
+) {
 
     // expense page is isDefault = true
     const [isDefault, setIsDefault] = useState<Boolean>(true);
 
+    let income = User.getTotalIncome(incomeList);
+    let expense = User.getTotalExpense(expenseList);
+    let balance = calculateMoney(income, expense, 'subtract');
+
     return (
         <AppLayout data={{
             pageType : 'tracker',
-            overViewData: budgetPlanData.overViewData
+            income: income,
+            expense: expense,
+            balance: balance
         }} >
             <nav className="w-[16.5rem] h-[2.25rem] flex items-center justify-around rounded-2xl bg-darkest">
 
@@ -54,12 +63,8 @@ export default function Tracker() {
             </nav>
                 <div className="w-[90%] flex flex-col items-center pt-6">
                     {isDefault ? 
-                        <Items data={budgetPlanData.expenses}/> : (
-                            <>
-                                <OptionsSelector data={chartTypes} colors={['bg-dark']}/>
-                                <BarChart />
-                            </>
-                    )}
+                        <Items data={expenseList}/> : <DisplayChart />
+                    }
                 </div>
         </AppLayout>
     )

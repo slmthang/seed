@@ -15,7 +15,7 @@ export default function SingleAmountCard(
                 ): null}
 
                 <div>
-                    <p className={clsx("font-black", {'text-3xl' : type===1, 'text-lg' : type!==1})}>
+                    <p className={clsx("font-black", {'text-2xl' : type===1, 'text-sm' : type!==1})}>
                         ${data.amount}
                     </p>
                 </div>

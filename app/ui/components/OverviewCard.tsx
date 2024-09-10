@@ -19,7 +19,7 @@ export default function OverviewCard(
                                 pageType === 'budget-plan' ||
                                 pageType === 'tracker' ?
                                 <TripleAmountCard data={data} /> :
-                                <SingleAmountCard data={data.balance}  />
+                                <SingleAmountCard data={data.balance} type={1}/>
                             }
                             
                         </div>
