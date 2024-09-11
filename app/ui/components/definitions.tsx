@@ -25,14 +25,14 @@ export type AppLayoutDataType = {
 export type LargeWidgetTypes = 'tracker-home' | 'budgetPlanner-home';
 export type SmallWidgetTypes = 'savings-home' | 'subscriptions-home';
 
-export type LargeWidgetData = {
+export type LargeWidgetDataType = {
     widgetType : LargeWidgetTypes;
     income : string;
     expense : string;
     balance : string;
 }
 
-export type SmallWidgetData = {
+export type SmallWidgetDataType = {
     widgetType : SmallWidgetTypes;
     balance : string;
 }

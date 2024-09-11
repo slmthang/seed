@@ -3,11 +3,14 @@
 
 // modules (remote)
 import { usePathname } from 'next/navigation'
+import path from 'path';
 
 export default function MenuBar() {
 
     let pathName = usePathname();
     pathName = pathName.slice(1, pathName.length);
+
+    pathName = pathName.length >= 1 ? pathName: 'home';
 
     return (
         <nav className="z-10 flex justify-center items-center w-screen h-12 sticky top-px bg-darkest">

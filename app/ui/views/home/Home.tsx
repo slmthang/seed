@@ -10,12 +10,21 @@ import SingleAmountCard from "../../components/SingleAmountCard";
 import TripleAmountCard from "../../components/TripleAmountCard";
 
 // data (local)
-import { SmallWidgetTypes, LargeWidgetTypes, SmallWidgetData, LargeWidgetData, durations, data3 } from "../../components/definitions";
+import { SmallWidgetDataType, LargeWidgetDataType, durations } from "../../components/definitions";
 import { budgetPlanData } from "@/app/lib/placeholder-data";
 
 function SmallWidget(
-    {data, children} : {data: SmallWidgetData, children?: React.ReactNode}
+    {data, children} : {data: SmallWidgetDataType, children?: React.ReactNode}
 ) {
+
+    let path;
+
+    if (data.widgetType === 'savings-home') {
+        path = 'savings';
+    } else {
+        path = 'subscriptions';
+    }
+
     return (
         <div className="w-[50%] min-h-40 bg-darker rounded-xl">
             <div className="w-full h-10 flex items-center justify-between rounded-t-xl">
@@ -23,7 +32,7 @@ function SmallWidget(
                     <p className="text-lighter text-xs ml-3">{data.widgetType === 'savings-home' ? 'Savings' : 'Subscriptions'}</p>
                 </div>
                 <div>
-                    <Link href='/home'>
+                    <Link href={path}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-5 fill-lighter mr-3">
                             <path fillRule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clipRule="evenodd" />
                         </svg>
@@ -41,8 +50,17 @@ function SmallWidget(
 }
 
 function LargeWidget(
-    {data, children} : {data: LargeWidgetData, children?: React.ReactNode}
+    {data, children} : {data: LargeWidgetDataType, children?: React.ReactNode}
 ) {
+
+    let path;
+
+    if (data.widgetType === 'tracker-home') {
+        path = 'tracker';
+    } else {
+        path = 'budget-plan';
+    }
+
     return (
         <div className="w-[90%] min-h-44 bg-darker mb-12 rounded-xl flex flex-col items-center">
             <div className="w-full h-10 flex items-center justify-between rounded-t-xl">
@@ -50,7 +68,7 @@ function LargeWidget(
                     <p className="text-lighter text-xs ml-3">{data.widgetType === 'tracker-home' ? 'Tracker' : 'Budget Planner'}</p>
                 </div>
                 <div>
-                    <Link href='/home'>
+                    <Link href={path}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-5 fill-lighter mr-3">
                             <path fillRule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clipRule="evenodd" />
                         </svg>
@@ -81,7 +99,7 @@ function LargeWidget(
 }
 
 
-export default function OverView() {
+export default function Home() {
     return (
         <section className={"main-cont" + " w-screen h-full flex flex-col items-center pt-5 pb-20"}>
             <LargeWidget data={{widgetType: 'budgetPlanner-home', income: '1000', expense: '2000', balance: '2000'}}/>
