@@ -31,7 +31,7 @@ export default function Subscriptions(
             <TabBarOptions isDefault={isDefault} setIsDefault={setIsDefault} names={['Items', 'Stats']}/>
             <div className="w-[90%] flex flex-col items-center pt-6">
                 {isDefault ? 
-                    <Items data={data}/> : <DisplayChart />
+                    <Items data={data} pageType="subscriptions"/> : <DisplayChart />
                 }
             </div>
         </AppLayout>

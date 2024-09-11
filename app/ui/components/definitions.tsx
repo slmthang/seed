@@ -71,6 +71,7 @@ export type subscriptionsExpenseListType = {
 export type trackerIncomeListType = {
     type: string, 
     amount: string,
+    category: string,
     recurring: {
         isTrue: Boolean,
         frequency: 'daily' | 'weekly' | 'monthly' | 'yearly',
@@ -86,9 +87,9 @@ export type trackerExpenseListType = {
 }[];
 
 export type savingsExpenseListType = {
-    goal: string, 
-    amount: string, 
-    memo: string,
+    name: string, 
+    amount: string,
+    category: string,
     recurring: {
         isTrue: Boolean,
         frequency: 'daily' | 'weekly' | 'monthly' | 'yearly',

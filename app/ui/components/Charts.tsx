@@ -29,12 +29,10 @@ const data02 = [
 
 export function Pie_Chart() {
     return (
-        <ResponsiveContainer width={300} height={200}>
             <PieChart width={300} height={200}>
                 <Pie data={data01} dataKey="value" cx="50%" cy="50%" outerRadius={45} fill="#3f8f29" />
                 <Pie data={data02} dataKey="value" cx="50%" cy="50%" innerRadius={50} outerRadius={70} fill="#de1a24" label />
             </PieChart>
-        </ResponsiveContainer>
     )
 }
 
@@ -86,10 +84,8 @@ const data = [
 
 export function Bar_Chart({children} : {children?: React.ReactNode}) {
     return (
-        <ResponsiveContainer width={200} height={150}>
-            <BarChart width={50} height={50} data={data}>
+            <BarChart width={250} height={150} data={data}>
                 <Bar dataKey="uv" fill="#8884d8" />
             </BarChart>
-        </ResponsiveContainer>
     )
 }

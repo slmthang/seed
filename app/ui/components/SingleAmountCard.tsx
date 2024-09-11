@@ -10,12 +10,12 @@ export default function SingleAmountCard(
             <div className="w-full h-[90%]  flex flex-col items-center justify-center">
                 {type===0 ? (
                     <div className="mb-2">
-                        <p className="text-xs">{data.name}</p>
+                        <p className="text-xs font-extralight">{data.name}</p>
                     </div>
                 ): null}
 
                 <div>
-                    <p className={clsx("font-black", {'text-2xl' : type===1, 'text-sm' : type!==1})}>
+                    <p className={clsx({'text-2xl' : type===1, 'text-sm' : type!==1})}>
                         ${data.amount}
                     </p>
                 </div>
