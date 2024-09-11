@@ -4,17 +4,15 @@
 // modules
 import { useState } from "react";
 import clsx from 'clsx';
+import { useContext } from "react";
 
 // modules (local)
 import AppLayout from "../../components/AppLayout";
 import Items from "../../components/Items";
-import OptionsSelector from "../../components/OptionsSelector";
 import { budgetPlanIncomeType, budgetPlanExpenseListType } from "../../components/definitions";
+// import { UserContext } from "@/app/lib/context";
 
 import DisplayChart from "../../components/DisplayChart";
-
-// data
-import { budgetPlanIncomeData, budgetPlanExpenseListData } from "@/app/lib/placeholder-data";
 
 
 export default function BudgetPlan(
@@ -23,6 +21,8 @@ export default function BudgetPlan(
 
     // expense page is isDefault = true
     const [isDefault, setIsDefault] = useState<Boolean>(true);
+
+    // const user = useContext(UserContext);
 
     return (
         <AppLayout data={{
@@ -58,6 +58,7 @@ export default function BudgetPlan(
                 </button>
             </nav>
                 <div className="w-[90%] flex flex-col items-center pt-6">
+                    {/* <h1>user</h1> */}
                     {isDefault ? 
                         <Items data={data.expenses}/> : <DisplayChart />
                     }

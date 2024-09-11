@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import clsx from "clsx"
 import { usePathname } from 'next/navigation'
+import path from "path"
 
 
 function NavBarOption(
@@ -77,9 +78,13 @@ export default function NavBar() {
         }
     ]
 
-    let pathName = usePathname();
+    const pathName = usePathname();
 
     const [selected, setSelected] = useState<string>(pathName);
+
+    useEffect(() => {
+        setSelected(pathName)
+    }, [pathName])
 
     const optionsToShow = NavBarOptionsData.map( (e, i) => {
         return (

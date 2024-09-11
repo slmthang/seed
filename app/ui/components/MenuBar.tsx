@@ -2,8 +2,7 @@
 'use client'
 
 // modules (remote)
-import { usePathname } from 'next/navigation'
-import path from 'path';
+import { usePathname } from 'next/navigation';
 
 export default function MenuBar() {
 
