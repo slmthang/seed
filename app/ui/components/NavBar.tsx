@@ -3,7 +3,7 @@
 'use client'
 
 // modules (remote)
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import clsx from "clsx"
 import { usePathname } from 'next/navigation'
@@ -77,7 +77,7 @@ export default function NavBar() {
         }
     ]
 
-    const pathName = usePathname();
+    let pathName = usePathname();
 
     const [selected, setSelected] = useState<string>(pathName);
 

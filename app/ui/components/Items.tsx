@@ -25,7 +25,7 @@ export default function Items (
         }
 
         if (pageType === 'subscriptions' && 'recurring' in e && e.recurring.isTrue) {
-            recurringElement = <p className="text-xs font-thin italic" >{'( recurring )'}</p>;
+            recurringElement = <p className="text-xs font-thin" >&#10227;</p>;
         }
 
         return (
