@@ -59,7 +59,7 @@ export default function Savings() {
             </nav>
                 <div className="w-[90%] flex flex-col items-center pt-6">
                     {isDefault ? 
-                        <Items data={AppData.savings.expenseList}/> : <DisplayChart />
+                        <Items data={AppData.savings.expenseList}/> : <DisplayChart pageType="savings"/>
                     }
                 </div>
         </AppLayout>

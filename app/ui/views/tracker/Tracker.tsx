@@ -58,7 +58,7 @@ export default function Tracker() {
             </nav>
                 <div className="w-[90%] flex flex-col items-center pt-6">
                     {isDefault ? 
-                        <Items data={AppData.tracker.itemsList} pageType="tracker"/> : <DisplayChart />
+                        <Items data={AppData.tracker.itemsList} pageType="tracker"/> : <DisplayChart pageType="tracker" />
                     }
                 </div>
         </AppLayout>
