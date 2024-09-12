@@ -17,6 +17,7 @@ export type PageTypes = 'budget-plan' | 'subscriptions' | 'tracker' | 'savings';
 export type AppLayoutDataType = {
     pageType : PageTypes;
     income?: string;
+    budget?: string;
     expense?: string;
     balance?: string;
 }
@@ -39,7 +40,8 @@ export type SmallWidgetDataType = {
 }
 
 export type overViewDataType = {
-    income: {name: string, amount: string}, 
+    budget? : {name: string, amount: string}, 
+    income?: {name: string, amount: string}, 
     expense: {name: string, amount: string}, 
     balance: {name: string, amount: string}
 }
@@ -78,3 +80,30 @@ export type savingsExpenseListType = {
     category: string,
     date: string
 }[];
+
+
+export type AppDataType = {
+    userId: number,
+    budgetPlan: {
+        budget: string,
+        expense: string,
+        balance: string,
+        expenseList: budgetPlanExpenseListType
+    },
+    subscriptions: {
+        expense: string,
+        expenseList: subscriptionsExpenseListType
+    },
+    tracker: {
+        income: string,
+        expense: string,
+        balance: string,
+        expenseList: trackerItemsListType,
+        incomeList: trackerItemsListType,
+        itemsList: trackerItemsListType
+    },
+    savings: {
+        expense: string,
+        expenseList: savingsExpenseListType
+    },
+}

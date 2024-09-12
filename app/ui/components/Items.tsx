@@ -41,7 +41,7 @@ export default function Items (
                         <div className="absolute text-lg font-light left-0">
                             <p>{itemName}</p>
                         </div>
-                        <div className={clsx("absolute text-lg font-light right-0 text-red-500", {'text-green-500':  isIncome})}>
+                        <div className={clsx("absolute text-lg font-light right-0", {'text-green-500':  isIncome}, {'text-red-500': !isIncome})}>
                             <p>{moneySign}{e.amount}</p>
                         </div>
                     </div>

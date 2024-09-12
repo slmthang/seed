@@ -8,34 +8,25 @@ import clsx from 'clsx';
 // local
 import AppLayout from "../../components/AppLayout";
 import Items from "../../components/Items";
-import OptionsSelector from "../../components/OptionsSelector";
 
 import { trackerItemsListType } from "../../components/definitions";
-import User from "@/app/lib/User";
-import { calculateMoney } from "@/app/lib/utils";
 import DisplayChart from "../../components/DisplayChart";
+import { AppDataContext } from "@/app/lib/contexts";
+import { useContext } from "react";
 
-export default function Tracker(
-    {itemsList} : {itemsList: trackerItemsListType}
-) {
+export default function Tracker() {
 
     // expense page is isDefault = true
     const [isDefault, setIsDefault] = useState<Boolean>(true);
 
-    let incomeList = itemsList.filter(e => !e.isExpense);
-    let expenseList = itemsList.filter(e => e.isExpense);
-
-    let expense = User.getTotalExpense(expenseList);
-    let income = User.getTotalIncome(incomeList)
-
-    let balance = calculateMoney(income, expense, 'subtract');
+    const [AppData, AppDataFunction]= useContext(AppDataContext);
 
     return (
         <AppLayout data={{
             pageType : 'tracker',
-            income: income,
-            expense: expense,
-            balance: balance
+            budget: AppData.tracker.income,
+            expense: AppData.tracker.expense,
+            balance: AppData.tracker.balance
         }} >
             <nav className="w-[16.5rem] h-[2.25rem] flex items-center justify-around rounded-2xl bg-darkest">
 
@@ -67,7 +58,7 @@ export default function Tracker(
             </nav>
                 <div className="w-[90%] flex flex-col items-center pt-6">
                     {isDefault ? 
-                        <Items data={itemsList} pageType="tracker"/> : <DisplayChart />
+                        <Items data={AppData.tracker.itemsList} pageType="tracker"/> : <DisplayChart />
                     }
                 </div>
         </AppLayout>

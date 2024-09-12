@@ -12,8 +12,8 @@ export default function AppLayout(
                 <OverviewCard pageType={data.pageType} 
                     data={{
                         income: {
-                            name: 'Income',
-                            amount: data.income ? data.income : '0.00'
+                            name: data.budget ? 'Budget' : 'Income',
+                            amount: data.budget ? data.budget : data.income || '0.00'
                         },
                         expense: {
                             name: 'Expense',

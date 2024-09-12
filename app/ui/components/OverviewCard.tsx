@@ -26,7 +26,7 @@ export default function OverviewCard(
                     </div>
                 </div>
             </div>
-            {pageType === 'tracker' || pageType == 'savings' ? <OptionsSelector data={durations}/> : null}
+            {pageType === 'tracker' || pageType == 'savings' ? <OptionsSelector data={durations } /> : null}
             
         </section>
     )

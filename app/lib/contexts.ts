@@ -1,4 +1,5 @@
 
-import { useContext, createContext } from "react";
+import { createContext } from "react";
+import { AppDataType } from "../ui/components/definitions";
 
-export const curPathContext = createContext<[string, React.Dispatch<React.SetStateAction<string>>]>([null!, () => null!]);
+export const AppDataContext = createContext<[AppDataType, React.Dispatch<React.SetStateAction<boolean>>]>([null!, () => null!]);

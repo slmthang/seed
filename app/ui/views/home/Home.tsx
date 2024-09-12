@@ -11,7 +11,9 @@ import TripleAmountCard from "../../components/TripleAmountCard";
 
 // data (local)
 import { SmallWidgetDataType, LargeWidgetDataType, durations } from "../../components/definitions";
-import { budgetPlanData } from "@/app/lib/placeholder-data";
+
+import { AppDataContext } from "@/app/lib/contexts";
+import { useContext } from "react";
 
 function SmallWidget(
     {data, children} : {data: SmallWidgetDataType, children?: React.ReactNode}
@@ -26,6 +28,7 @@ function SmallWidget(
     }
 
     return (
+        
         <div className="w-[50%] min-h-40 bg-darker rounded-xl">
             <div className="w-full h-10 flex items-center justify-between rounded-t-xl">
                 <div>
@@ -65,7 +68,7 @@ function LargeWidget(
         <div className="w-[90%] min-h-44 bg-darker mb-12 rounded-xl flex flex-col items-center">
             <div className="w-full h-10 flex items-center justify-between rounded-t-xl">
                 <div>
-                    <p className="text-lighter text-xs ml-3">{data.widgetType === 'tracker-home' ? 'Tracker' : 'Budget Planner'}</p>
+                    <p className="text-lighter text-xs ml-3">{data.widgetType === 'tracker-home' ? 'Tracker' : 'Budget Plan'}</p>
                 </div>
                 <div>
                     <Link href={path}>
@@ -99,16 +102,21 @@ function LargeWidget(
 }
 
 
-export default function Home() {
-    return (
-        <section className={"main-cont" + " w-screen h-full flex flex-col items-center pt-5 pb-20"}>
-            <LargeWidget data={{widgetType: 'budgetPlanner-home', budget: '1000', expense: '2000', balance: '-200'}}/>
-            <LargeWidget data={{widgetType: 'tracker-home', income: '2000', expense: '2000', balance: '2000'}}/>
 
-            <div className="w-[90%] h-40 gap-x-10 flex justify-center">
-                <SmallWidget data={{widgetType: 'subscriptions-home', expense: '2000'}}/>
-                <SmallWidget data={{widgetType: 'savings-home', expense: '2000'}}/>
-            </div>
-        </section>
+
+export default function Home() {
+
+    const [AppData, AppDataFunction]= useContext(AppDataContext);
+
+    return (
+            <section className={"main-cont" + " w-screen h-full flex flex-col items-center pt-5 pb-20"}>
+                <LargeWidget data={{widgetType: 'budgetPlanner-home', budget: AppData.budgetPlan.budget, expense: AppData.budgetPlan.expense, balance: AppData.budgetPlan.balance}}/>
+                <LargeWidget data={{widgetType: 'tracker-home', income: AppData.tracker.income, expense: AppData.tracker.expense, balance: AppData.tracker.balance}}/>
+
+                <div className="w-[90%] h-40 gap-x-10 flex justify-center">
+                    <SmallWidget data={{widgetType: 'subscriptions-home', expense: AppData.subscriptions.expense}}/>
+                    <SmallWidget data={{widgetType: 'savings-home', expense: AppData.savings.expense}}/>
+                </div>
+            </section>
     )
 }
