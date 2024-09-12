@@ -1,9 +1,9 @@
 
-import { budgetPlanIncomeType, budgetPlanExpenseListType, subscriptionsExpenseListType, trackerIncomeListType, trackerExpenseListType, savingsExpenseListType } from "../ui/components/definitions"
+import { budgetPlanIncomeType, budgetPlanExpenseListType, subscriptionsExpenseListType, trackerItemsListType, savingsExpenseListType } from "../ui/components/definitions"
 
 
 
-export let budgetPlanIncomeData : budgetPlanIncomeType = '2000';
+export let budgetPlanIncomeData : budgetPlanIncomeType = '100.00';
 export const budgetPlanExpenseListData : budgetPlanExpenseListType = [
     {
         name: 'Grocery',
@@ -37,152 +37,111 @@ export const subscriptionsExpenseListData : subscriptionsExpenseListType = [
         name: 'Netflix',
         amount: '15.00',
         category: 'TV',
-        isActive: true,
-        recurring: {
-            isTrue: true,
-            frequency: 'monthly'
-        },
-        date: '11/02/2024'
+        paymentDay: '5'
     },
     {
         name: 'Amazon',
         amount: '100.00',
         category: 'General',
-        isActive: true,
-        recurring: {
-            isTrue: true,
-            frequency: 'monthly'
-        },
-        date: '11/02/2024'
+        paymentDay: '9'
     },
     {
         name: 'Disney',
         amount: '40.00',
         category: 'TV',
-        isActive: true,
-        recurring: {
-            isTrue: true,
-            frequency: 'monthly'
-        },
-        date: '11/02/2024'
+        paymentDay: '20'
     },
     {
         name: 'Spotify',
         amount: '100.00',
         category: 'Music',
-        isActive: true,
-        recurring: {
-            isTrue: true,
-            frequency: 'monthly'
-        },
-        date: '11/02/2024'
+        paymentDay: '12'
     }
 ]
 
-export const trackerIncomeListData : trackerIncomeListType = [
+export const trackerItemsListData : trackerItemsListType = [
     {
-        type: 'Occupation',
+        name: 'Occupation',
         amount: '3000.00',
+        isExpense: false,
         category: 'income',
-        recurring: {
-            isTrue: true,
-            frequency: 'monthly'
-        },
         date: '12/01/2024'
     },
     {
-        type: 'Door Dash',
+        name: 'Door Dash',
         amount: '400.00',
+        isExpense: false,
         category: 'income',
-        recurring: {
-            isTrue: true,
-            frequency: 'monthly'
-        },
         date: '12/01/2024'
-    }
-]
-
-export const trackerExpenseListData : trackerExpenseListType = [
+    },
     {
         name: 'Concert',
         amount: '300.00',
         category: 'Fun',
+        isExpense: true,
         date: '08/01/2024'
     },
     {
         name: 'Gas',
         amount: '30.00',
         category: 'Utility',
+        isExpense: true,
         date: '09/11/2024'
     },
     {
         name: 'Grocery',
         amount: '300.00',
         category: 'Food',
+        isExpense: true,
         date: '10/01/2024'
     },
     {
         name: 'Lottery Ticket',
         amount: '30.00',
         category: 'Fun',
+        isExpense: true,
         date: '11/01/2024'
     },
     {
         name: 'CC Payment',
         amount: '1200.00',
         category: 'Debt',
+        isExpense: true,
         date: '11/05/2024'
     }
 ]
+
 
 export const savingsExpenseListData : savingsExpenseListType = [
     {
         name: 'Contribution #1',
         amount: '30.00',
         category: 'Tuition',
-        recurring: {
-            isTrue: true,
-            frequency: 'monthly'
-        },
         date: '12/01/2024'
     },
     {
         name: 'Contribution #2',
         amount: '100.00',
         category: 'Tuition',
-        recurring: {
-            isTrue: true,
-            frequency: 'monthly'
-        },
         date: '12/01/2024'
     },
     {
         name: 'Contribution #3',
         amount: '250.00',
         category: 'Tuition',
-        recurring: {
-            isTrue: true,
-            frequency: 'monthly'
-        },
         date: '12/01/2024'
     },
     {
         name: 'Contribution #4',
         amount: '300.00',
         category: 'Tuition',
-        recurring: {
-            isTrue: true,
-            frequency: 'monthly'
-        },
         date: '12/01/2024'
     }
     
 ]
 
 
-
-
 export const budgetPlanData = {
     income: budgetPlanIncomeData,
-    expenses: budgetPlanExpenseListData
+    expenseList: budgetPlanExpenseListData
 }

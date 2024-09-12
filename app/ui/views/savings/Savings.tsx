@@ -27,7 +27,7 @@ export default function Savings(
     return (
         <AppLayout data={{
             pageType: 'savings',
-            balance: User.getTotalExpense(data)
+            expense: User.getTotalExpense(data)
         }} >
             <nav className="w-[16.5rem] h-[2.25rem] flex items-center justify-around rounded-2xl bg-darkest">
 

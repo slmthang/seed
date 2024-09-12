@@ -41,9 +41,9 @@ function SmallWidget(
             </div>
             <div className="w-full h-24 flex flex-col items-center justify-center rounded-b-xl">
                 <SingleAmountCard data={{
-                            name: 'Income',
-                            amount: data.balance ? data.balance : '0.00'
-                        }}/> 
+                            name: 'Expense',
+                            amount: data.expense ? data.expense : '0.00'
+                        }} type={1}/> 
             </div>
         </div>
     )
@@ -80,15 +80,15 @@ function LargeWidget(
             <div className="w-[90%] h-full flex items-center justify-around">
                 <TripleAmountCard data={{
                         income: {
-                            name: 'Income',
-                            amount: data.income ? data.income : '0.00'
+                            name: 'budget' in data ? 'Budget' : 'Income',
+                            amount: data.income ? data.income : data.budget ? data.budget : '0.00'
                         },
                         expense: {
                             name: 'Expense',
                             amount: data.expense ? data.expense : '0.00'
                         },
                         balance: {
-                            name: 'Income',
+                            name: 'Balance',
                             amount: data.balance ? data.balance : '0.00'
                         },
                     }}/>
@@ -102,12 +102,12 @@ function LargeWidget(
 export default function Home() {
     return (
         <section className={"main-cont" + " w-screen h-full flex flex-col items-center pt-5 pb-20"}>
-            <LargeWidget data={{widgetType: 'budgetPlanner-home', income: '1000', expense: '2000', balance: '2000'}}/>
+            <LargeWidget data={{widgetType: 'budgetPlanner-home', budget: '1000', expense: '2000', balance: '-200'}}/>
             <LargeWidget data={{widgetType: 'tracker-home', income: '2000', expense: '2000', balance: '2000'}}/>
 
             <div className="w-[90%] h-40 gap-x-10 flex justify-center">
-                <SmallWidget data={{widgetType: 'savings-home', balance: '2000'}}/>
-                <SmallWidget data={{widgetType: 'subscriptions-home', balance: '2000'}}/>
+                <SmallWidget data={{widgetType: 'subscriptions-home', expense: '2000'}}/>
+                <SmallWidget data={{widgetType: 'savings-home', expense: '2000'}}/>
             </div>
         </section>
     )

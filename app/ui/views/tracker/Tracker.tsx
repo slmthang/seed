@@ -10,20 +10,24 @@ import AppLayout from "../../components/AppLayout";
 import Items from "../../components/Items";
 import OptionsSelector from "../../components/OptionsSelector";
 
-import { trackerExpenseListType, trackerIncomeListType } from "../../components/definitions";
+import { trackerItemsListType } from "../../components/definitions";
 import User from "@/app/lib/User";
 import { calculateMoney } from "@/app/lib/utils";
 import DisplayChart from "../../components/DisplayChart";
 
 export default function Tracker(
-    {incomeList, expenseList} : {incomeList: trackerIncomeListType , expenseList: trackerExpenseListType}
+    {itemsList} : {itemsList: trackerItemsListType}
 ) {
 
     // expense page is isDefault = true
     const [isDefault, setIsDefault] = useState<Boolean>(true);
 
-    let income = User.getTotalIncome(incomeList);
+    let incomeList = itemsList.filter(e => !e.isExpense);
+    let expenseList = itemsList.filter(e => e.isExpense);
+
     let expense = User.getTotalExpense(expenseList);
+    let income = User.getTotalIncome(incomeList)
+
     let balance = calculateMoney(income, expense, 'subtract');
 
     return (
@@ -63,7 +67,7 @@ export default function Tracker(
             </nav>
                 <div className="w-[90%] flex flex-col items-center pt-6">
                     {isDefault ? 
-                        <Items data={expenseList}/> : <DisplayChart />
+                        <Items data={itemsList} pageType="tracker"/> : <DisplayChart />
                     }
                 </div>
         </AppLayout>

@@ -1,6 +1,6 @@
 
 
-import { budgetPlanIncomeType, budgetPlanExpenseListType, subscriptionsExpenseListType, trackerIncomeListType, trackerExpenseListType, savingsExpenseListType } from "../ui/components/definitions"
+import { budgetPlanIncomeType, budgetPlanExpenseListType, subscriptionsExpenseListType, trackerItemsListType, savingsExpenseListType } from "../ui/components/definitions"
 
 import { calculateTotal } from "./utils";
 
@@ -9,8 +9,7 @@ export default class User {
     _budgetPlanIncome: budgetPlanIncomeType;
     _budgetPlanExpenseList: budgetPlanExpenseListType ;
     _subscriptionsExpenseList: subscriptionsExpenseListType ;
-    _trackerIncomeList: trackerIncomeListType ;
-    _trackerExpenseList: trackerExpenseListType ;
+    _trackerItemsList: trackerItemsListType ;
     _savingsExpenseList: savingsExpenseListType;
 
     /*** DATA ***/
@@ -18,15 +17,13 @@ export default class User {
         budgetPlanIncome: budgetPlanIncomeType,
         budgetPlanExpenseList: budgetPlanExpenseListType,
         subscriptionsExpenseList: subscriptionsExpenseListType,
-        trackerIncomeList: trackerIncomeListType,
-        trackerExpenseList: trackerExpenseListType,
+        trackerItemsList: trackerItemsListType,
         savingsExpenseList: savingsExpenseListType
     ) {
         this._budgetPlanIncome = budgetPlanIncome;
         this._budgetPlanExpenseList = budgetPlanExpenseList;
         this._subscriptionsExpenseList = subscriptionsExpenseList;
-        this._trackerIncomeList = trackerIncomeList;
-        this._trackerExpenseList = trackerExpenseList;
+        this._trackerItemsList = trackerItemsList;
         this._savingsExpenseList = savingsExpenseList;
     }
 
@@ -57,20 +54,12 @@ export default class User {
     }
 
     /*** Tracker ***/
-    get trackerIncomeList(): trackerIncomeListType {
-        return this._trackerIncomeList;
+    get trackerIncomeList(): trackerItemsListType {
+        return this._trackerItemsList;
     }
 
-    set trackerIncomeList(incomeList: trackerIncomeListType) {
-        this._trackerIncomeList = incomeList;
-    }
-
-    get trackerExpenseList(): trackerExpenseListType {
-        return this._trackerExpenseList;
-    }
-
-    set trackerExpenseList(expenseList: trackerExpenseListType) {
-        this._trackerExpenseList = expenseList;
+    set trackerIncomeList(incomeList: trackerItemsListType) {
+        this._trackerItemsList = incomeList;
     }
 
     /*** Savings ***/
@@ -84,7 +73,7 @@ export default class User {
 
     /*** Static Methods ***/
     static getTotalExpense(
-        expenses : budgetPlanExpenseListType | subscriptionsExpenseListType | trackerExpenseListType | savingsExpenseListType
+        expenses : budgetPlanExpenseListType | subscriptionsExpenseListType | trackerItemsListType | savingsExpenseListType
     ) : string {
 
 
@@ -92,7 +81,7 @@ export default class User {
     }
 
     static getTotalIncome(
-        expenses: trackerIncomeListType
+        expenses: trackerItemsListType
     ) : string {
 
         return calculateTotal(expenses);

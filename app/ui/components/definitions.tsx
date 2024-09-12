@@ -27,14 +27,15 @@ export type SmallWidgetTypes = 'savings-home' | 'subscriptions-home';
 
 export type LargeWidgetDataType = {
     widgetType : LargeWidgetTypes;
-    income : string;
+    budget? : string,
+    income? : string;
     expense : string;
     balance : string;
 }
 
 export type SmallWidgetDataType = {
     widgetType : SmallWidgetTypes;
-    balance : string;
+    expense : string;
 }
 
 export type overViewDataType = {
@@ -45,7 +46,7 @@ export type overViewDataType = {
 
 export type budgetPlanData = {
     income: budgetPlanIncomeType;
-    expenses: budgetPlanExpenseListType
+    expenseList: budgetPlanExpenseListType
 }
 
 export type budgetPlanIncomeType = string;
@@ -60,39 +61,20 @@ export type subscriptionsExpenseListType = {
     name: string, 
     amount: string, 
     category: string,
-    isActive: Boolean,
-    recurring: {
-        isTrue: Boolean,
-        frequency: 'daily' | 'weekly' | 'monthly' | 'yearly',
-    },
-    date: string
+    paymentDay: string
 }[];
 
-export type trackerIncomeListType = {
-    type: string, 
+export type trackerItemsListType = {
+    name: string, 
     amount: string,
+    isExpense: Boolean,
     category: string,
-    recurring: {
-        isTrue: Boolean,
-        frequency: 'daily' | 'weekly' | 'monthly' | 'yearly',
-    },
     date: string
 }[]
-
-export type trackerExpenseListType = {
-    name: string, 
-    amount: string, 
-    category: string,
-    date: string
-}[];
 
 export type savingsExpenseListType = {
     name: string, 
     amount: string,
     category: string,
-    recurring: {
-        isTrue: Boolean,
-        frequency: 'daily' | 'weekly' | 'monthly' | 'yearly',
-    },
     date: string
 }[];

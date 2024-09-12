@@ -1,7 +1,7 @@
 
 import { 
     budgetPlanExpenseListType, subscriptionsExpenseListType, 
-    trackerIncomeListType, trackerExpenseListType, savingsExpenseListType 
+    trackerItemsListType, savingsExpenseListType 
 } from "../ui/components/definitions"
 
 
@@ -37,7 +37,8 @@ export function calculateMoney(x: string, y: string, method: 'add' | 'subtract')
     return newDollar + '.' + newCents
 }
 
-export function calculateTotal(expenses: budgetPlanExpenseListType | subscriptionsExpenseListType | trackerExpenseListType | savingsExpenseListType | trackerIncomeListType): string {
+export function calculateTotal(expenses: budgetPlanExpenseListType | subscriptionsExpenseListType | trackerItemsListType 
+    | savingsExpenseListType): string {
     return expenses.reduce((accumulator, e) => calculateMoney(accumulator, e.amount, 'add'), '0.00')
 }
 

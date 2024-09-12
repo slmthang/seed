@@ -26,7 +26,7 @@ export default function Subscriptions(
     return (
         <AppLayout data={{
             pageType : 'subscriptions',
-            balance: User.getTotalExpense(data)
+            expense: User.getTotalExpense(data)
         }} >
             <TabBarOptions isDefault={isDefault} setIsDefault={setIsDefault} names={['Items', 'Stats']}/>
             <div className="w-[90%] flex flex-col items-center pt-6">
