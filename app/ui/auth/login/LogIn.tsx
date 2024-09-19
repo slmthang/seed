@@ -14,7 +14,7 @@ export default function LoginPage() {
             <div className='flex flex-col items-center justify-center'>
                 <Image src={AppIcon} width={40} height={40} alt='App Icon' className='pb-4'/>
                 <p className='text-center font-bold text-lighter'>Sign in to Wallet Vaults</p>
-                <p className='text-center text-sm font-extralight text-lighter'>Welcome back! Log in using email and password below.</p>
+                <p className='text-center text-xs font-extralight text-lighter'>Welcome back, Log In below.</p>
             </div>
             <div className="relative">
                 <input type="email" id="email" name='email' className=" block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />

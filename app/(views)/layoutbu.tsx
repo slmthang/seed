@@ -7,8 +7,6 @@ import SideNavBar from "../ui/components/SideNavBar";
 
 import NavBar from "@/app/ui/components/NavBar";
 import MenuBar from "@/app/ui/components/MenuBar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSquare } from "@fortawesome/free-solid-svg-icons"
 
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -28,7 +26,7 @@ export default function Layout({
 
     const [changed, isChanged] = useState(false);
 
-    const [isSideNavActive, setIsSideNavActive] = useState(true);
+    const [isSideNavActive, setIsSideNavActive] = useState(false);
 
     function toggleSideNav() {
         setIsSideNavActive(prevState => !prevState);
@@ -82,46 +80,16 @@ export default function Layout({
     ]
 
     return (
-        <AppDataContext.Provider value={[
-            {
-                userId: 123,
-                budgetPlan: {
-                    budget: budgetPlan_budget,
-                    expense: budgetPlan_expense,
-                    balance: budgetPlan_balance,
-                    expenseList: budgetPlanExpenseListData
-                },
-                subscriptions: {
-                    expense: subscriptions_expense,
-                    expenseList: subscriptionsExpenseListData
-                },
-                tracker: {
-                    income: tracker_income,
-                    expense: tracker_expense,
-                    balance: tracker_balance,
-                    expenseList: tracker_expenseList,
-                    incomeList: tracker_incomeList,
-                    itemsList: trackerItemsListData
-                },
-                savings: {
-                    expense: savings_expense,
-                    expenseList: savingsExpenseListData
-                }
-    
-            }, isChanged
-        ]}>
-        <body className={' bg-darkest relative flex'}>
-            {isSideNavActive && <SideNavBar toggle={toggleSideNav}/>}
-            <main className={"overflow-hidden relative h-screen w-screen pt-[3rem] py-[4rem] " + (isSideNavActive && 'ml-[60%]')}>
-                
-                <MenuBar toggle={toggleSideNav}/>
-                
-                {children}
-
-                <NavBar />
-
-            </main>
-        </body>
-        </AppDataContext.Provider>
+        <div className="w-screen min-h-screen flex ">
+            <AppDataContext.Provider value={appData}>
+                    {isSideNavActive ? <SideNavBar toggle={toggleSideNav} /> : null}
+                    
+                    <div className={(isSideNavActive ? 'ml-[60%]' : '') + " flex w-screen min-h-screen flex-col items-center justify-center"}>
+                        <MenuBar toggle={toggleSideNav}/>
+                            {children}
+                        <NavBar />
+                    </div>
+            </AppDataContext.Provider>
+        </div>
     )
 }

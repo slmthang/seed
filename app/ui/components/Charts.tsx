@@ -6,12 +6,19 @@ import React, { PureComponent } from 'react';
 import { PieChart, Pie, BarChart, Bar, ResponsiveContainer, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line} from 'recharts';
 
 
-const data1 = [
+let data1 = [
   { name: 'Group A', value: 400 },
   { name: 'Group B', value: 300 },
   { name: 'Group C', value: 300 },
   { name: 'Group D', value: 200 },
 ];
+
+let data2 = [
+  { name: 'food', value: Number('30.00') },
+  { name: 'utilities', value: Number('1110.00') },
+  { name: 'insurance', value: Number('300.00') },
+  { name: 'debt', value: Number('100.00') }
+]
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -29,11 +36,12 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 };
 
 
-export function Pie_Chart({children} : {children?: React.ReactNode}) {
+export function Pie_Chart({pieData, children} : {pieData?: any, children?: React.ReactNode}) {
+
     return (
       <PieChart width={280} height={240}>
       <Pie
-        data={data1}
+        data={data2}
         cx="50%"
         cy="50%"
         labelLine={false}
@@ -42,7 +50,7 @@ export function Pie_Chart({children} : {children?: React.ReactNode}) {
         fill="#8884d8"
         dataKey="value"
       >
-        {data1.map((entry, index) => (
+        {data2.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>

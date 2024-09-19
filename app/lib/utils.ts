@@ -42,6 +42,10 @@ export function calculateTotal(expenses: budgetPlanExpenseListType | subscriptio
     return expenses.reduce((accumulator, e) => calculateMoney(accumulator, e.amount, 'add'), '0.00')
 }
 
+export function calculateTotalGeneric(expenses: string[]): string {
+    return expenses.reduce((accumulator, e) => calculateMoney(accumulator, e, 'add'), '0.00')
+}
+
 
 export function validateMoneyInput(x:string) : string {
 
@@ -50,4 +54,11 @@ export function validateMoneyInput(x:string) : string {
     }
 
     return x;
+}
+
+export function splitMoney(x:string) : string[] {
+
+    const [dollars, cents] = x.split('.');
+
+    return [dollars, cents];
 }

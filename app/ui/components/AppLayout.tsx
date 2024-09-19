@@ -8,7 +8,7 @@ export default function AppLayout(
     {data, children} : {data: AppLayoutDataType, children: React.ReactNode}
 ) {
     return (
-        <div className="bg-darkest">
+        <div className="flex items-center justify-center flex-col">
                 <OverviewCard pageType={data.pageType} 
                     data={{
                         income: {

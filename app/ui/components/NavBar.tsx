@@ -95,7 +95,7 @@ export default function NavBar() {
     })
 
     return (
-        <nav className="z-10 flex justify-between items-center fixed bottom-px w-screen h-16 px-5 backdrop-blur-[2px]">
+        <nav className="z-10 flex justify-between items-center absolute bottom-[0px] w-screen h-16 px-5 bg-darkest">
             {optionsToShow}
         </nav>
     )

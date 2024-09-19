@@ -13,22 +13,22 @@ export const budgetPlanExpenseListData : budgetPlanExpenseListType = [
     {
         name: 'Gas',
         amount: '100.00',
-        category: 'Utility'
+        category: 'utilities'
     },
     {
         name: 'Auto Insurance',
         amount: '300.00',
-        category: 'Insurance'
+        category: 'insurance'
     },
     {
         name: 'Student Loan',
         amount: '100.00',
-        category: 'Debt'
+        category: 'debt'
     },
     {
         name: 'Rent',
         amount: '1000.00',
-        category: 'Utility'
+        category: 'utilities'
     },
 ]
 

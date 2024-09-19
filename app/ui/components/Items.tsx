@@ -3,6 +3,8 @@
 import clsx from "clsx";
 import { budgetPlanExpenseListType, subscriptionsExpenseListType, trackerItemsListType, savingsExpenseListType, PageTypes } from "./definitions"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSquare } from "@fortawesome/free-solid-svg-icons"
 
 export default function Items (
     {data , pageType, children} : {data: budgetPlanExpenseListType | subscriptionsExpenseListType | trackerItemsListType | savingsExpenseListType, pageType?: PageTypes,children?: React.ReactNode}
@@ -14,7 +16,7 @@ export default function Items (
 
         let dateElement;
         let paymentDay;
-        let moneySign = '';
+        let moneySign = '-';
         let isIncome = false;
         
         if (pageType !== 'budget-plan' && 'subscriptions' && 'date' in e) {
@@ -22,7 +24,7 @@ export default function Items (
         }
 
         if (pageType === 'subscriptions' && 'paymentDay' in e) {
-            paymentDay = <p className="text-xs font-thin italic" >{e.paymentDay} of month</p>
+            paymentDay = <p className="text-xs font-thin italic" >Due: day {e.paymentDay}</p>
         }
 
         if (pageType === 'tracker' && 'isExpense' in e) {
@@ -39,9 +41,10 @@ export default function Items (
                 <div className="w-full h-full flex flex-col">
                     <div className="w-full h-[65%] flex items-end relative">
                         <div className="absolute text-lg font-light left-0">
-                            <p>{itemName}</p>
+                            <FontAwesomeIcon icon={faSquare} className={clsx("fa-fw fa-2xs text-green-500 mr-1", {'text-green-500':  isIncome}, {'text-red-500': !isIncome})}/>
+                            <p className="inline text-base">{itemName}</p>
                         </div>
-                        <div className={clsx("absolute text-lg font-light right-0", {'text-green-500':  isIncome}, {'text-red-500': !isIncome})}>
+                        <div className={clsx("absolute text-lg font-light right-0")}>
                             <p>{moneySign}{e.amount}</p>
                         </div>
                     </div>
@@ -61,7 +64,13 @@ export default function Items (
     })
 
     return (
-        <div className="w-full flex flex-col justify-center items-center mt-4 rounded-xl divide-y divide-dark border border-dark">
+        <div className="w-full flex flex-col justify-center items-center mt-2 rounded-xl divide-y divide-dark border border-dark">
+            <div className="w-[95%] h-[3rem] flex justify-between items-center p-2">
+                <div className="w-full h-full flex items-end justify-between relative">
+                    <p>Name</p>
+                    <p>Amount</p>
+                </div>
+            </div>
             {newArr}
         </div>
     )

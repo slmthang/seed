@@ -1,33 +1,40 @@
 
 // modules (local)
 import { PageTypes, data3, durations, overViewDataType } from "./definitions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import OptionsSelector from "./OptionsSelector";
 import TripleAmountCard from "./TripleAmountCard";
 import SingleAmountCard from "./SingleAmountCard";
+import { faSquare } from "@fortawesome/free-solid-svg-icons";
 
 export default function OverviewCard(
     {pageType, data} : {pageType: PageTypes, data: overViewDataType}
 ) {
     return (
-        <section className="w-screen min-h-24 flex flex-col items-center justify-center mt-2 mb-4">
-            <div className={"w-full flex flex-col justify-center items-center p-2" + (pageType === 'tracker' ? ' mb-2' : '')}>
-                <div className="w-11/12 min-h-28 bg-darker rounded-2xl">
-                    <div className="w-full h-32 flex items-center justify-around">
-                        <div className="w-[90%] h-full flex items-start justify-around pt-2 ">
-
-                            {
-                                pageType === 'budget-plan' ||
-                                pageType === 'tracker' ?
-                                <TripleAmountCard data={data} pageType={pageType} /> :
-                                <SingleAmountCard data={data.expense} type={1}/>
-                            }
-                            
-                        </div>
-                    </div>
+        <div className="w-screen h-40 min-h-24 flex flex-col items-center justify-center my-6 rounded-xl bg-red-600">
+            {/* <div className="w-[95%] h-[95%] bg-blue-500 rounded-xl flex items-center justify-center">
+                <div id="income" className="w-[8rem] h-[5rem] bg-purple-600 rounded-xl text-center flex flex-col justify-center">
+                    <p> 
+                        <FontAwesomeIcon icon={faSquare} className="fa-fw fa-2xs text-green-500 mr-1"/>
+                        Income
+                    </p>
+                    <p className="text-xl mt-1">$4000.<span className="text-base">00</span></p>
                 </div>
-            </div>
-            {pageType === 'tracker' || pageType == 'savings' ? <OptionsSelector data={durations } /> : null}
-            
-        </section>
+                <div id="income" className="w-[8rem] h-[5rem] bg-purple-600 rounded-xl text-center flex flex-col justify-center">
+                    <p> 
+                        <FontAwesomeIcon icon={faSquare} className="fa-fw fa-2xs text-green-500 mr-1"/>
+                        Income
+                    </p>
+                    <p className="text-2xl mt-1">$4000.<span className="text-base">00</span></p>
+                </div>
+                <div id="income" className="w-[8rem] h-[5rem] bg-purple-600 rounded-xl text-center flex flex-col justify-center">
+                    <p> 
+                        <FontAwesomeIcon icon={faSquare} className="fa-fw fa-2xs text-green-500 mr-1"/>
+                        Income
+                    </p>
+                    <p className="text-xl mt-1">$4000.<span className="text-base">00</span></p>
+                </div>
+            </div> */}
+        </div>
     )
 }
