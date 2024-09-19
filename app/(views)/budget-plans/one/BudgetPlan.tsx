@@ -36,16 +36,18 @@ export default function BudgetPlan(
     let pieData = calculatePieData(budgetPlanData.budgetPlan.expenseList);
 
     return (
-        <div className=" w-screen h-dvh min-h-dvh overflow-y-scroll z-20 absolute top-[0px]">
-            <div className="w-screen h-[5rem] backdrop-blur-md flex items-center justify-center">
-                <div className="w-[90%] h-full flex items-center justify-center relative">
-                    <p>Budget Plan A</p>
-                    <div onClick={() => setSelectedPlan(prevState => !prevState)}>
+        <div className=" w-screen h-dvh h-dvh overflow-y-scroll z-20 fixed top-[0px] ">
+            <div className="w-screen h-[10rem] pb-[5rem] backdrop-blur-md flex items-center justify-center">
+                <div className="w-[90%] h-[5rem] flex items-center justify-center relative">
+                    <div className="h-full flex items-center justify-center">
+                        <p>Budget Plan A</p>
+                    </div>
+                    <div className="bg-green-500 h-full flex items-center justify-center" onClick={() => setSelectedPlan(prevState => !prevState)}>
                         <CloseButtonIcon tailwindClass="absolute right-[0px] stroke-2"/>
                     </div>
                 </div>
             </div>
-            <div className="w-screen min-h-[100%] bg-darker relative mt-[5rem] flex flex-col justify-center items-center border-t-[1px] border-dark">
+            <div className="w-screen min-h-[100%] bg-darker relative  flex flex-col justify-center items-center border-t-[1px] border-dark">
                 <TrioOverView pageType="budget-plan" B={budgetPlanData.budgetPlan.balance} I={budgetPlanData.budgetPlan.budget} E={budgetPlanData.budgetPlan.expense}/>
                 
                 <div className="w-[90%] min-h-fit bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center">

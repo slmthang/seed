@@ -23,8 +23,8 @@ export default function BudgetPlanCard(
                 
                 <div className="flex h-full items-center gap-x-2">
                     <p className="font-thin mr-1">{cardName}</p>
-                    {isDefault && <CheckedIcon tailwindClass="size-4"/>}
-                    {isShared && <SharedIcon tailwindClass="size-3"/>}
+                    {isDefault && <CheckedIcon tailwindClass="size-[1rem]"/>}
+                    {isShared && <SharedIcon tailwindClass="size-[1rem]"/>}
                 </div>
                 <div onClick={() => setSelectedPlan(prevState => !prevState)}>
                     <ChevronRightIcon tailwindClass="size-6 stroke-[0.5]" />

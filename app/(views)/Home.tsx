@@ -29,7 +29,7 @@ export default function Home() {
     return (
         <div className=" w-screen h-dvh min-h-dvh overflow-y-scroll pt-[5rem]">
             
-            <AddButtonIcon tailwindClass="size-12 fill-lighter stroke-lighter fixed bottom-[4.25rem] right-[1rem] z-10"/>
+            <AddButtonIcon tailwindClass="size-11 fill-light stroke-light fixed bottom-[4.25rem] right-[1rem] z-10"/>
 
             <div className="w-screen min-h-full bg-darker border-t-[1px] border-dark mt-[8rem] pt-[9.5rem] pb-[8rem] relative flex flex-col justify-center items-center py-[2rem] gap-y-6">
                 <TrioWidget cardName="Tracker" pathName="/tracker" optionsSelctor={true} tailwindClass="absolute top-[-8rem]" B={AppData.tracker.balance} I={AppData.tracker.income} E={AppData.tracker.expense}/>
