@@ -2,8 +2,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSquare } from "@fortawesome/free-solid-svg-icons"
 
-import TrioOverView from '@/app/ui/components/TrioOverview'
-import SingleOverview from "../ui/components/SingleOverview"
+import TrioOverView from '@/app/components/TrioOverview'
+import SingleOverview from "../../components/SingleOverview"
 
 export default function Page() {
 

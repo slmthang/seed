@@ -3,10 +3,10 @@
 
 'use client'
 
-import SideNavBar from "../ui/components/SideNavBar";
+import SideNavBar from "../components/SideNavBar";
 
-import NavBar from "@/app/ui/components/NavBar";
-import MenuBar from "@/app/ui/components/MenuBar";
+import NavBar from "@/app/components/NavBar";
+import MenuBar from "@/app/components/MenuBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSquare } from "@fortawesome/free-solid-svg-icons"
 
@@ -17,7 +17,7 @@ import { AppDataContext } from "@/app/lib/contexts";
 import { calculateMoney, calculateTotal } from "@/app/lib/utils";
 
 import { budgetPlanData, budgetPlanExpenseListData, savingsExpenseListData, subscriptionsExpenseListData, trackerItemsListData } from "@/app/lib/placeholder-data";
-import { trackerItemsListType } from "../ui/components/definitions";
+import { trackerItemsListType } from "../components/definitions";
 
 export default function Layout({
     children,
@@ -112,7 +112,7 @@ export default function Layout({
         ]}>
         <>
             {isSideNavActive && <SideNavBar toggle={toggleSideNav}/>}
-            <main className={"overflow-hidden relative h-dvh w-screen pt-[3rem] py-[4rem] " + (isSideNavActive && 'ml-[60%]')}>
+            <main className={"overflow-hidden relative h-dvh w-screen pt-[3rem] pb-[4rem] " + (isSideNavActive && 'ml-[60%]')}>
                 
                 <MenuBar toggle={toggleSideNav}/>
                 

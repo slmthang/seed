@@ -29,7 +29,7 @@ export default function OptionsSelector(
     })
 
     return (
-        <div className={"flex items-center justify-center w-[80%]  mb-[1rem]" + ' ' + addStyles}>
+        <div className={"flex items-center justify-center w-[80%] h-[2rem] my-[1rem]" + ' ' + addStyles}>
                 <ul className="flex w-full items-center gap-x-4 items-center justify-center">
                     {updatedData}
                 </ul>

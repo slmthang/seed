@@ -6,7 +6,7 @@ export default function Tabs(
 ) {
     return (
         
-        <nav className="w-[16.5rem] h-[2.4rem] flex items-center justify-around rounded-2xl bg-darkest mt-4">
+        <nav className="w-[16.5rem] h-[2.4rem] flex items-center justify-around rounded-2xl border-[1px] border-dark mt-4">
 
         <button className={ clsx(
 

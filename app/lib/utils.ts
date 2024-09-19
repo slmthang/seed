@@ -2,7 +2,7 @@
 import { 
     budgetPlanExpenseListType, subscriptionsExpenseListType, 
     trackerItemsListType, savingsExpenseListType 
-} from "../ui/components/definitions"
+} from "../components/definitions"
 
 
 export function calculateMoney(x: string, y: string, method: 'add' | 'subtract') : string {

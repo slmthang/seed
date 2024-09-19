@@ -1,5 +1,5 @@
 
-import { LargeWidgetSkeleton, SmallWidgetSkeleton } from "@/app/ui/components/skeletons"
+import { LargeWidgetSkeleton, SmallWidgetSkeleton } from "@/app/components/skeletons"
 
 export default function Loading() {
     return (

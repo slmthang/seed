@@ -1,6 +1,6 @@
 
 
-import BudgetPlan from "@/app/ui/views/budget-plan/BudgetPlan"
+import BudgetPlan from "./BudgetPlan"
 
 
 

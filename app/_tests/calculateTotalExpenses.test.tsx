@@ -1,7 +1,7 @@
 
 
 
-import { budgetPlanIncomeType, budgetPlanExpenseListType, subscriptionsExpenseListType, trackerIncomeListType, trackerExpenseListType, savingsExpenseListType } from "../ui/components/definitions"
+import { budgetPlanIncomeType, budgetPlanExpenseListType, subscriptionsExpenseListType, trackerIncomeListType, trackerExpenseListType, savingsExpenseListType } from "../components/definitions"
 
 import { expect, test, describe } from 'vitest';
 

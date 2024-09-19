@@ -1,5 +1,5 @@
 
-import Home from '../ui/views/home/Home'
+import Home from './Home'
 
 export default function Page() {
   return (

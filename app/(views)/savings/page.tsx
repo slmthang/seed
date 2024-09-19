@@ -1,6 +1,6 @@
 
 
-import Savings from "@/app/ui/views/savings/Savings"
+import Savings from "./Savings"
 
 export default function Page() {
     return (
