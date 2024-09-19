@@ -28,7 +28,7 @@ export default function Layout({
 
     const [changed, isChanged] = useState(false);
 
-    const [isSideNavActive, setIsSideNavActive] = useState(true);
+    const [isSideNavActive, setIsSideNavActive] = useState(false);
 
     function toggleSideNav() {
         setIsSideNavActive(prevState => !prevState);

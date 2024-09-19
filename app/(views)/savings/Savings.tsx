@@ -33,7 +33,7 @@ export default function Savings() {
     return (
         <div className=" w-screen h-dvh min-h-dvh overflow-y-scroll pt-[5rem]">
             
-            <AddButtonIcon tailwindClass="size-11 fill-light stroke-light fixed bottom-[4.25rem] right-[1rem] z-10"/>
+            <AddButtonIcon tailwindClass=" !size-11 fill-light stroke-light fixed bottom-[4.25rem] right-[1rem] z-10"/>
 
             <div className="w-screen min-h-[100%] bg-darker relative mt-[3.5rem] pt-[3.5rem] pb-[8rem] flex flex-col justify-center items-center border-t-[1px] border-dark">
                 <SingleOverview pageType="savings" B={AppData.savings.expense}/>
