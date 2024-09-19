@@ -23,6 +23,8 @@ import { AppDataContext } from "@/app/lib/contexts";
 import SingleOverview from "../../components/SingleOverview";
 import TrioOverView from '@/app/components/TrioOverview'
 import Tabs from "../../components/Tabs";
+import BudgetPlanCard from '@/app/components/BudgetPlanCard';
+import BudgetPlanX from "./one/BudgetPlan";
 
 export default function BudgetPlan() {
 
@@ -32,23 +34,17 @@ export default function BudgetPlan() {
 
     let pieData = calculatePieData(AppData.budgetPlan.expenseList);
 
+    const [selectedPlan, setSelectedPlan] = useState<Boolean>(false);
+
     return (
-        <div className=" w-screen h-dvh min-h-dvh overflow-y-scroll pt-[5rem]">
+        <div className=" w-screen h-dvh min-h-dvh overflow-y-scroll pt-[3rem] relative">
+
+            { selectedPlan &&  <BudgetPlanX budgetPlanData={AppData} setSelectedPlan={setSelectedPlan}/> }
             
-            <div className="w-screen min-h-[100%] bg-darker relative mt-[5rem] pt-[6rem] pb-[6rem] flex flex-col justify-center items-center border-t-[1px] border-dark">
-                <TrioOverView pageType="budget-plan" B={AppData.budgetPlan.balance} I={AppData.budgetPlan.budget} E={AppData.budgetPlan.expense}/>
-                
-                <div className="w-[90%] min-h-fit bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center">
-                    <Tabs tabOptions={['Expenses', 'Stats']} isDefaultTab={isDefaultTab} setIsDefaultTab={setIsDefaultTab}/>
-                    <div className="w-[100%] flex flex-col items-center pt-6">
-                        {isDefaultTab ? 
-                            <Items pageType="budget-plan" data={AppData.budgetPlan.expenseList}/> : 
-                            <DisplayChart pageType="budget-plan" pieData={pieData}/>
-                        }
-                    </div>
-                </div>
-                    
-                
+            <div className="w-screen min-h-[100%] border-t-[1px] border-dark gap-y-[1rem] relative pt-[1rem] pb-[6rem] flex flex-col  items-center border-t-[1px] border-dark">
+                <BudgetPlanCard setSelectedPlan={setSelectedPlan} cardName="Budget Plan A" isDefault={true} isShared={true} pathName="/budget-plans/one" B={AppData.tracker.balance} I={AppData.tracker.income} E={AppData.tracker.expense}/>
+                <BudgetPlanCard setSelectedPlan={setSelectedPlan}  cardName="Budget Plan B" pathName="/budget-plans/one" B={AppData.tracker.balance} I={AppData.tracker.income} E={AppData.tracker.expense}/>
+                <BudgetPlanCard setSelectedPlan={setSelectedPlan}  cardName="Budget Plan C" pathName="/budget-plans/one" isShared={true} B={AppData.tracker.balance} I={AppData.tracker.income} E={AppData.tracker.expense}/>
             </div>
             
         </div>
@@ -94,9 +90,9 @@ export default function BudgetPlan() {
                 // </div>
 
                 
-                {/* <Tabs tabOptions={['Expenses', 'Stats']} isDefaultTab={isDefaultTab} setIsDefaultTab={setIsDefaultTab}/>
-                    <div className="w-[90%] flex flex-col items-center pt-6">
-                        {isDefaultTab ? 
-                            <Items data={AppData.budgetPlan.expenseList}/> : <DisplayChart pageType="budget-plan" pieData={pieData}/>
-                        }
-                    </div> */}
+                // {/* <Tabs tabOptions={['Expenses', 'Stats']} isDefaultTab={isDefaultTab} setIsDefaultTab={setIsDefaultTab}/>
+                //     <div className="w-[90%] flex flex-col items-center pt-6">
+                //         {isDefaultTab ? 
+                //             <Items data={AppData.budgetPlan.expenseList}/> : <DisplayChart pageType="budget-plan" pieData={pieData}/>
+                //         }
+                //     </div> */}

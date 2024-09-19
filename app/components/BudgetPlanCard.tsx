@@ -3,14 +3,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleRight, faSquare } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link";
-import { ChevronRightIcon } from "./Icons";
+import { CheckedIcon, ChevronRightIcon, SharedIcon } from "./Icons";
 import OptionsSelector from "./OptionsSelector";
 
 import { splitMoney } from "@/app/lib/utils"
 import clsx from "clsx";
 
-export default function BIEOverview(
-    {cardName, pathName, optionsSelctor=false, tailwindClass='', B, I, E} : {cardName: string, pathName: string, optionsSelctor?: Boolean, tailwindClass?: string, B: any, I: any, E: any}
+export default function BudgetPlanCard(
+    {setSelectedPlan, cardName, pathName, isDefault = false, isShared = false, tailwindClass='', B, I, E} : {setSelectedPlan: React.Dispatch<React.SetStateAction<Boolean>>, cardName: string, pathName: string, isDefault?: Boolean, isShared?: Boolean, tailwindClass?: string, B: any, I: any, E: any}
 ) {
 
     const [Bdollars, Bcents] = splitMoney(B);
@@ -20,14 +20,17 @@ export default function BIEOverview(
     return (
         <div className={"w-[90%] min-h-[12rem] bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center " + tailwindClass}>
             <div className="w-full min-h-[2rem] px-4 py-2 flex items-center justify-between">
-                <p className="font-thin">{cardName}</p>
-                <Link href={pathName}>
+                
+                <div className="flex h-full items-center gap-x-2">
+                    <p className="font-thin mr-1">{cardName}</p>
+                    {isDefault && <CheckedIcon tailwindClass="size-4"/>}
+                    {isShared && <SharedIcon tailwindClass="size-3"/>}
+                </div>
+                <div onClick={() => setSelectedPlan(prevState => !prevState)}>
                     <ChevronRightIcon tailwindClass="size-6 stroke-[0.5]" />
-                </Link>
+                </div>
                 
             </div>
-
-            { optionsSelctor && <OptionsSelector data={['day', 'week', 'month', 'year']}/> }
 
             <div className="w-full h-[3rem] flex px-4 ">
                 <div className="w-[50%] h-[100%] flex items-center"> 

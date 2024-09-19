@@ -32,8 +32,8 @@ export default function Home() {
             <AddButtonIcon tailwindClass="size-12 fill-lighter stroke-lighter fixed bottom-[4.25rem] right-[1rem] z-10"/>
 
             <div className="w-screen min-h-full bg-darker border-t-[1px] border-dark mt-[8rem] pt-[9.5rem] pb-[8rem] relative flex flex-col justify-center items-center py-[2rem] gap-y-6">
-                <TrioWidget pageType="tracker" B={AppData.tracker.balance} I={AppData.tracker.income} E={AppData.tracker.expense}/>
-                <TrioWidget pageType="budget-plan" B={AppData.budgetPlan.balance} I={AppData.budgetPlan.budget} E={AppData.budgetPlan.expense}/>
+                <TrioWidget cardName="Tracker" pathName="/tracker" optionsSelctor={true} tailwindClass="absolute top-[-8rem]" B={AppData.tracker.balance} I={AppData.tracker.income} E={AppData.tracker.expense}/>
+                <TrioWidget cardName="Budget Plan A" pathName="/budget-plans/one" B={AppData.budgetPlan.balance} I={AppData.budgetPlan.budget} E={AppData.budgetPlan.expense}/>
                 <SingleWidget pageType="subscriptions" B={AppData.subscriptions.expense}/>
                 <SingleWidget pageType="savings" B={AppData.savings.expense}/>
             </div>

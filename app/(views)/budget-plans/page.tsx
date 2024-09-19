@@ -1,6 +1,6 @@
 
 
-import BudgetPlan from "./BudgetPlan"
+import BudgetPlan from "./BudgetPlans"
 
 
 

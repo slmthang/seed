@@ -44,7 +44,7 @@ export default function NavBar() {
             )
         },
         {
-            path: '/budget-plan',
+            path: '/budget-plans',
             icon: (
                 <BudgetPlanIcon />
             )
