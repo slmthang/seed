@@ -19,6 +19,7 @@ import { useContext } from "react";
 import { calculatePieData } from "@/app/lib/utils";
 
 import OptionsSelector from "../../components/OptionsSelector";
+import { AddButtonIcon } from "../../components/Icons";
 
 export default function Tracker() {
 
@@ -30,9 +31,11 @@ export default function Tracker() {
     let pieData = calculatePieData(AppData.tracker.itemsList);
 
     return (
-        <div className=" w-screen h-[calc(100vh-7rem)] min-h-[calc(100vh-7rem)] overflow-y-scroll pt-[2rem]">
+        <div  className=" w-screen h-dvh min-h-dvh overflow-y-scroll pt-[5rem]">
             
-            <div className="w-screen min-h-[100%] bg-darker relative mt-[5rem] pt-[5rem] pb-[4rem] flex flex-col justify-center items-center border-t-[1px] border-dark">
+            <AddButtonIcon tailwindClass="size-12 fill-lighter stroke-lighter fixed bottom-[4.25rem] right-[1rem] z-10"/>
+
+            <div className="w-screen min-h-[100%] bg-darker relative mt-[5rem] pt-[5rem] pb-[8rem] flex flex-col justify-center items-center border-t-[1px] border-dark">
                 <TrioOverView pageType="tracker" B={AppData.tracker.balance} I={AppData.tracker.income} E={AppData.tracker.expense}/>
                 
                 <OptionsSelector data={['day', 'week', 'month', 'year']}/>

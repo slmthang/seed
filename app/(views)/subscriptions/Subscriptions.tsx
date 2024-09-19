@@ -21,6 +21,7 @@ import { faSquare } from "@fortawesome/free-solid-svg-icons"
 
 import Tabs from "../../components/Tabs";
 import { calculatePieData } from "@/app/lib/utils";
+import { AddButtonIcon } from "../../components/Icons";
 
 export default function Subscriptions() {
 
@@ -32,9 +33,11 @@ export default function Subscriptions() {
     let pieData = calculatePieData(AppData.subscriptions.expenseList);
 
     return (
-        <div className=" w-screen h-[calc(100vh-7rem)] min-h-[calc(100vh-7rem)] overflow-y-scroll pt-[2rem]">
+        <div className=" w-screen h-dvh min-h-dvh overflow-y-scroll pt-[5rem]">
             
-            <div className="w-screen min-h-[100%] bg-darker relative mt-[3.5rem] pt-[4.5rem] pb-[4rem] flex flex-col justify-center items-center border-t-[1px] border-dark">
+            <AddButtonIcon tailwindClass="size-12 fill-lighter stroke-lighter fixed bottom-[4.25rem] right-[1rem] z-10"/>
+
+            <div className="w-screen min-h-[100%] bg-darker relative mt-[3.5rem] pt-[4.5rem] pb-[8rem] flex flex-col justify-center items-center border-t-[1px] border-dark">
                 <SingleOverview pageType="subscriptions" B={AppData.subscriptions.expense}/>
                 
                 <div className="w-[90%] min-h-fit bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center ">

@@ -33,9 +33,9 @@ export default function BudgetPlan() {
     let pieData = calculatePieData(AppData.budgetPlan.expenseList);
 
     return (
-        <div className=" w-screen h-[calc(100vh-7rem)] min-h-[calc(100vh-7rem)] overflow-y-scroll pt-[2rem]">
+        <div className=" w-screen h-dvh min-h-dvh overflow-y-scroll pt-[5rem]">
             
-            <div className="w-screen min-h-[100%] bg-darker relative mt-[5rem] pt-[6rem] pb-[4rem] flex flex-col justify-center items-center border-t-[1px] border-dark">
+            <div className="w-screen min-h-[100%] bg-darker relative mt-[5rem] pt-[6rem] pb-[6rem] flex flex-col justify-center items-center border-t-[1px] border-dark">
                 <TrioOverView pageType="budget-plan" B={AppData.budgetPlan.balance} I={AppData.budgetPlan.budget} E={AppData.budgetPlan.expense}/>
                 
                 <div className="w-[90%] min-h-fit bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center">
