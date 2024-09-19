@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSquare } from "@fortawesome/free-solid-svg-icons"
 
 export default function Items (
-    {data , pageType, children} : {data: budgetPlanExpenseListType | subscriptionsExpenseListType | trackerItemsListType | savingsExpenseListType, pageType?: PageTypes,children?: React.ReactNode}
+    {data , pageType, children} : {data: budgetPlanExpenseListType | subscriptionsExpenseListType | trackerItemsListType | savingsExpenseListType, pageType: PageTypes,children?: React.ReactNode}
 ) {
     let newArr = data.map((e, i) => {
 
@@ -41,7 +41,7 @@ export default function Items (
                 <div className="w-full h-full flex flex-col">
                     <div className="w-full h-[65%] flex items-end relative">
                         <div className="absolute text-lg font-light left-0">
-                            <FontAwesomeIcon icon={faSquare} className={clsx("fa-fw fa-2xs text-green-500 mr-1", {'text-green-500':  isIncome}, {'text-red-500': !isIncome})}/>
+                            <FontAwesomeIcon icon={faSquare} className={clsx("fa-fw fa-2xs mr-1 ", {'text-green-500':  isIncome}, {'text-red-500': !isIncome})}/>
                             <p className="inline text-base">{itemName}</p>
                         </div>
                         <div className={clsx("absolute text-lg font-light right-0")}>
@@ -64,7 +64,7 @@ export default function Items (
     })
 
     return (
-        <div className="w-full flex flex-col justify-center items-center mt-2 rounded-xl divide-y divide-dark border border-dark">
+        <div className="w-full flex flex-col justify-center items-center mt-2 divide-y divide-dark">
             <div className="w-[95%] h-[3rem] flex justify-between items-center p-2">
                 <div className="w-full h-full flex items-end justify-between relative">
                     <p>Name</p>

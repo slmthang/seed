@@ -23,7 +23,10 @@ export default function RootLayout({
 
   return (
       <html lang="en">
-        {children}
+        
+        <body className={' bg-darkest relative flex'}>
+          {children}
+        </body>
       </html>
   );
 }

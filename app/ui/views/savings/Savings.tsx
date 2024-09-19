@@ -16,6 +16,10 @@ import { AppDataContext } from "@/app/lib/contexts";
 import { useContext } from "react";
 import SingleOverview from "../../components/SingleOverview";
 import Tabs from "../../components/Tabs";
+
+import { calculatePieData } from "@/app/lib/utils";
+
+import OptionsSelector from "../../components/OptionsSelector";
 export default function Savings() {
 
     // expense page is isDefault = true
@@ -23,56 +27,29 @@ export default function Savings() {
 
     const [AppData, AppDataFunction]= useContext(AppDataContext);
 
+    let pieData = calculatePieData(AppData.savings.expenseList);
 
     return (
-        // <AppLayout data={{
-        //     pageType: 'savings',
-        //     expense: AppData.savings.expense
-        // }} >
-        //     <nav className="w-[16.5rem] h-[2.25rem] flex items-center justify-around rounded-2xl bg-darkest">
+        <div className=" w-screen h-[calc(100vh-7rem)] min-h-[calc(100vh-7rem)] overflow-y-scroll pt-[2rem]">
+            
+            <div className="w-screen min-h-[100%] bg-darker relative mt-[3rem] pt-[4rem] pb-[4rem] flex flex-col justify-center items-center">
+                <SingleOverview pageType="savings" B={AppData.savings.expense}/>
 
-        //         <button className={ clsx(
-
-        //             "w-[8rem] h-[2rem] rounded-2xl",
-        //             {
-        //                 'bg-dark': isDefault
-        //             }
-        //         )} 
+                <OptionsSelector data={['day', 'week', 'month', 'year']}/>
                 
-        //         onClick={() => setIsDefault(true)}
-        //         >
-        //             <p>Expenses</p>
-        //         </button>
-
-        //         <button className={ clsx(
-
-        //             "w-[8rem] h-[2rem] rounded-2xl",
-        //             {
-        //                 'bg-dark': !isDefault
-        //             }
-        //         )} 
-                
-        //         onClick={() => setIsDefault(false)}
-        //         >
-        //             <p>Stats</p>
-        //         </button>
-        //     </nav>
-        //         <div className="w-[90%] flex flex-col items-center pt-6">
-        //             {isDefault ? 
-        //                 <Items data={AppData.savings.expenseList}/> : <DisplayChart pageType="savings"/>
-        //             }
-        //         </div>
-        // </AppLayout>
-        <div className="h-[calc(100vh-7rem)] min-h-[calc(100vh-7rem)] w-screen overflow-y-scroll flex flex-col items-center gap-y-4">
-            <SingleOverview  pageType="savings" B={AppData.savings.expense} />
-            <div className="w-screen rounded-t-2xl flex flex-col items-center bg-darker pb-[4rem]">
-                <Tabs tabOptions={['Items', 'Stats']} isDefaultTab={isDefaultTab} setIsDefaultTab={setIsDefaultTab}/>
-                <div className="w-[90%] flex flex-col items-center pt-6">
-                    {isDefaultTab ? 
-                        <Items data={AppData.savings.expenseList} pageType="savings"/> : <DisplayChart pageType="savings"/>
-                    }
+                <div className="w-[90%] min-h-fit bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center">
+                    <Tabs tabOptions={['Expenses', 'Stats']} isDefaultTab={isDefaultTab} setIsDefaultTab={setIsDefaultTab}/>
+                    <div className="w-[100%] flex flex-col items-center pt-6">
+                        {isDefaultTab ? 
+                            <Items pageType="savings" data={AppData.savings.expenseList}/> : 
+                            <DisplayChart pageType="savings" pieData={pieData}/>
+                        }
+                    </div>
                 </div>
+                    
+                
             </div>
+            
         </div>
     )
 }

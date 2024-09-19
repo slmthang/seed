@@ -20,7 +20,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSquare } from "@fortawesome/free-solid-svg-icons"
 
 import Tabs from "../../components/Tabs";
-
+import { calculatePieData } from "@/app/lib/utils";
 
 export default function Subscriptions() {
 
@@ -29,28 +29,27 @@ export default function Subscriptions() {
 
     const [AppData, AppDataFunction]= useContext(AppDataContext);
 
+    let pieData = calculatePieData(AppData.subscriptions.expenseList);
+
     return (
-        // <AppLayout data={{
-        //     pageType : 'subscriptions',
-        //     expense: AppData.subscriptions.expense
-        // }} >
-        //     <TabBarOptions isDefault={isDefault} setIsDefault={setIsDefault} names={['Items', 'Stats']}/>
-        //     <div className="w-[90%] flex flex-col items-center pt-6">
-        //         {isDefault ? 
-        //             <Items data={AppData.subscriptions.expenseList} pageType="subscriptions"/> : <DisplayChart />
-        //         }
-        //     </div>
-        // </AppLayout>
-        <div className="h-[calc(100vh-7rem)] min-h-[calc(100vh-7rem)] w-screen overflow-y-scroll flex flex-col items-center gap-y-4">
-            <SingleOverview  pageType="subscriptions" B={AppData.subscriptions.expense} />
-            <div className="w-screen rounded-t-2xl flex flex-col items-center bg-darker pb-[4rem]">
-                <Tabs tabOptions={['Items', 'Stats']} isDefaultTab={isDefaultTab} setIsDefaultTab={setIsDefaultTab}/>
-                <div className="w-[90%] flex flex-col items-center pt-6">
-                    {isDefaultTab ? 
-                        <Items data={AppData.subscriptions.expenseList} pageType="subscriptions"/> : <DisplayChart pageType="subscriptions"/>
-                    }
+        <div className=" w-screen h-[calc(100vh-7rem)] min-h-[calc(100vh-7rem)] overflow-y-scroll pt-[2rem]">
+            
+            <div className="w-screen min-h-[100%] bg-darker relative mt-[3rem] pt-[4rem] pb-[4rem] flex flex-col justify-center items-center">
+                <SingleOverview pageType="subscriptions" B={AppData.subscriptions.expense}/>
+                
+                <div className="w-[90%] min-h-fit bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center">
+                    <Tabs tabOptions={['Expenses', 'Stats']} isDefaultTab={isDefaultTab} setIsDefaultTab={setIsDefaultTab}/>
+                    <div className="w-[100%] flex flex-col items-center pt-6">
+                        {isDefaultTab ? 
+                            <Items pageType="subscriptions" data={AppData.subscriptions.expenseList}/> : 
+                            <DisplayChart pageType="subscriptions" pieData={pieData}/>
+                        }
+                    </div>
                 </div>
+                    
+                
             </div>
+            
         </div>
     )
 }

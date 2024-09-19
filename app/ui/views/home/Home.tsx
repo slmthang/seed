@@ -14,6 +14,10 @@ import { SmallWidgetDataType, LargeWidgetDataType, durations } from "../../compo
 
 import { AppDataContext } from "@/app/lib/contexts";
 import { useContext } from "react";
+import TrioOverView from '@/app/ui/components/TrioOverview';
+import SingleOverview from "../../components/SingleOverview";
+import SingleWidget from "../../components/SingleWidget";
+import TrioWidget from '@/app/ui/components/TrioWidget';
 
 function SmallWidget(
     {data, children} : {data: SmallWidgetDataType, children?: React.ReactNode}
@@ -109,14 +113,20 @@ export default function Home() {
     const [AppData, AppDataFunction]= useContext(AppDataContext);
 
     return (
-            <section className={"main-cont" + " w-screen h-full flex flex-col items-center pt-5 pb-20"}>
-                <LargeWidget data={{widgetType: 'budgetPlanner-home', budget: AppData.budgetPlan.budget, expense: AppData.budgetPlan.expense, balance: AppData.budgetPlan.balance}}/>
-                <LargeWidget data={{widgetType: 'tracker-home', income: AppData.tracker.income, expense: AppData.tracker.expense, balance: AppData.tracker.balance}}/>
-
-                <div className="w-[90%] h-40 gap-x-10 flex justify-center">
-                    <SmallWidget data={{widgetType: 'subscriptions-home', expense: AppData.subscriptions.expense}}/>
-                    <SmallWidget data={{widgetType: 'savings-home', expense: AppData.savings.expense}}/>
-                </div>
-            </section>
+        <div className=" w-screen h-[calc(100vh-7rem)] min-h-[calc(100vh-7rem)] overflow-y-scroll">
+            
+        <div className="w-screen min-h-[100%] bg-darker relative flex flex-col justify-center items-center">
+            <TrioWidget pageType="budget-plan" B={AppData.budgetPlan.balance} I={AppData.budgetPlan.budget} E={AppData.budgetPlan.expense}/>
+            <TrioWidget pageType="tracker" B={AppData.tracker.balance} I={AppData.tracker.income} E={AppData.tracker.expense}/>
+            <SingleWidget pageType="subscriptions" B={AppData.subscriptions.expense}/>
+            <SingleWidget pageType="savings" B={AppData.savings.expense}/>
+            {/* <div className="w-[90%] min-h-fit bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center">
+                
+            </div> */}
+                
+            
+        </div>
+        
+        </div>
     )
 }

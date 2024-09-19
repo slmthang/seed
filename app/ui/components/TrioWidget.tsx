@@ -14,7 +14,7 @@ export default function BIEOverview(
     const [Edollars, Ecents] = splitMoney(E);
 
     return (
-        <div className="w-[90%] h-[10rem] bg-darker absolute top-[-5rem] rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center">
+        <div className="w-[90%] h-[10rem] bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center">
             <div className="w-full h-[3rem] flex px-6 ">
                 <div className="w-[50%] h-[100%] flex items-center"> 
                     <FontAwesomeIcon icon={faSquare} className="fa-fw fa-2xs text-green-500 mr-1"/>

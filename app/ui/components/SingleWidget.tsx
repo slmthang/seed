@@ -11,7 +11,7 @@ export default function SingleOverview(
     const [Bdollars, Bcents] = splitMoney(B);
 
     return (
-        <div className="w-[90%] h-[6rem] bg-darker absolute top-[-3rem] rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center">
+        <div className="w-[90%] h-[6rem] bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center">
             <div className="w-full h-[6rem] px-6 ">
                 <div className="w-[100%] h-[40%] flex items-center"> 
                     <FontAwesomeIcon icon={faSquare} className={clsx("fa-fw fa-2xs mr-1", {'text-red-500': pageType === 'subscriptions'}, {'text-green-500': pageType === 'savings'})}/>

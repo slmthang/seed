@@ -110,7 +110,7 @@ export default function Layout({
     
             }, isChanged
         ]}>
-        <body className={' bg-darkest relative flex'}>
+        <>
             {isSideNavActive && <SideNavBar toggle={toggleSideNav}/>}
             <main className={"overflow-hidden relative h-screen w-screen pt-[3rem] py-[4rem] " + (isSideNavActive && 'ml-[60%]')}>
                 
@@ -121,7 +121,7 @@ export default function Layout({
                 <NavBar />
 
             </main>
-        </body>
+        </>
         </AppDataContext.Provider>
     )
 }

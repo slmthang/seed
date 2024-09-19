@@ -62,3 +62,32 @@ export function splitMoney(x:string) : string[] {
 
     return [dollars, cents];
 }
+
+export function calculatePieData( dataList: budgetPlanExpenseListType) : {x: string; y:number}[]  {
+    let categories = ['housing', 'trasportation', 'food', 'utilities', 'insurance', 'personal', 'debt', 'savings', 'others', 'income']
+
+    let costByCategory : any = {
+        'housing': [],
+        'trasportation': [],
+        'food': [],
+        'utilities': [],
+        'insurance': [],
+        'personal': [],
+        'debt': [],
+        'savings': [],
+        'others': [],
+        'income': []
+    };
+
+    console.log(dataList)
+
+    dataList.map((e) => {
+        costByCategory[e.category].push(e.amount);
+    })
+
+    let arr : {x: string; y:number}[] = Object.entries(costByCategory).map((e) => {
+        return {x: e[0], y: +calculateTotalGeneric(e[1] as string[])};
+    })
+
+    return arr.filter(e => e.y > 0);
+}

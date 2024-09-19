@@ -14,7 +14,7 @@ export default function MenuBar(
     pathName = pathName.length >= 1 ? pathName: 'home';
 
     return (
-        <nav className="z-10 flex justify-center items-center w-screen h-12 absolute top-[0px] bg-darkest">
+        <nav className="z-10 flex justify-center items-center w-screen h-12 absolute top-[0px] backdrop-blur-sm">
             {/* Profile/Menu */}
             <div className="w-6 absolute left-px ml-5" onClick={toggle}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-7">
