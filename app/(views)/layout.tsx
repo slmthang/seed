@@ -112,7 +112,7 @@ export default function Layout({
         ]}>
         <>
             {isSideNavActive && <SideNavBar toggle={toggleSideNav}/>}
-            <main className={"overflow-hidden relative h-dvh w-dvw " + (isSideNavActive && 'ml-[60%]')}>
+            <main className={"overflow-hidden relative w-screen h-screen" + (isSideNavActive && 'ml-[60%]')}>
                 
                 <MenuBar toggle={toggleSideNav}/>
                 
