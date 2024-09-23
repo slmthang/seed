@@ -56,3 +56,32 @@ body {
     background-color: 	hsl(0, 0%, 95%);
   }
 }
+
+
+/* fade in and out */
+
+.card-fade-in {
+  animation: fade-in 5s;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+  }
+}
+
+.card-fade-out {
+  animation: fade-out 5s;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 100;
+  }
+  to {
+    opacity: 0;
+  }
+}

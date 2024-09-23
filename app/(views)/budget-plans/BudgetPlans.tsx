@@ -42,9 +42,9 @@ export default function BudgetPlan() {
             { selectedPlan &&  <BudgetPlanX budgetPlanData={AppData} setSelectedPlan={setSelectedPlan}/> }
             
             <div className="w-screen min-h-[100%] border-t-[1px] border-dark gap-y-[1rem] relative pt-[1rem] pb-[6rem] flex flex-col  items-center border-t-[1px] border-dark">
-                <BudgetPlanCard setSelectedPlan={setSelectedPlan} cardName="Budget Plan A" isDefault={true} isShared={true} pathName="/budget-plans/one" B={AppData.tracker.balance} I={AppData.tracker.income} E={AppData.tracker.expense}/>
-                <BudgetPlanCard setSelectedPlan={setSelectedPlan}  cardName="Budget Plan B" pathName="/budget-plans/one" B={AppData.tracker.balance} I={AppData.tracker.income} E={AppData.tracker.expense}/>
-                <BudgetPlanCard setSelectedPlan={setSelectedPlan}  cardName="Budget Plan C" pathName="/budget-plans/one" isShared={true} B={AppData.tracker.balance} I={AppData.tracker.income} E={AppData.tracker.expense}/>
+                <BudgetPlanCard setSelectedPlan={setSelectedPlan} cardName="Weekly Budget Plan" isDefault={true} isShared={true} pathName="/budget-plans/one" Balance={AppData.tracker.balance} Budget={AppData.tracker.income} Expense={AppData.tracker.expense}/>
+                <BudgetPlanCard setSelectedPlan={setSelectedPlan}  cardName="Roadtrip Budget Plan" pathName="/budget-plans/one" Balance={AppData.tracker.balance} Budget={AppData.tracker.income} Expense={AppData.tracker.expense}/>
+                <BudgetPlanCard setSelectedPlan={setSelectedPlan}  cardName="Monthly Budget Plan" pathName="/budget-plans/one" isShared={true} Balance={AppData.tracker.balance} Budget={AppData.tracker.income} Expense={AppData.tracker.expense}/>
             </div>
             
         </div>

@@ -12,7 +12,7 @@ export default function SideNavBar(
 ) {
 
     return (
-        <div className="z-20 w-screen h-screen flex fixed transition duration-700 ease-in-out">
+        <div className="z-20 w-screen h-screen flex fixed ">
             <div className="w-[50%] h-full bg-darkest flex flex-col pl-6 gap-y-4">
                 <div className="pt-6 mb-6">
                     <ProfileIcon tailwindClass=' !size-11'/>

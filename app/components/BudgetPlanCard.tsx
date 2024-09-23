@@ -10,12 +10,12 @@ import { splitMoney } from "@/app/lib/utils"
 import clsx from "clsx";
 
 export default function BudgetPlanCard(
-    {setSelectedPlan, cardName, pathName, isDefault = false, isShared = false, tailwindClass='', B, I, E} : {setSelectedPlan: React.Dispatch<React.SetStateAction<Boolean>>, cardName: string, pathName: string, isDefault?: Boolean, isShared?: Boolean, tailwindClass?: string, B: any, I: any, E: any}
+    {setSelectedPlan, cardName, pathName, isDefault = false, isShared = false, tailwindClass='', Budget, Expense, Balance} : {setSelectedPlan: React.Dispatch<React.SetStateAction<Boolean>>, cardName: string, pathName: string, isDefault?: Boolean, isShared?: Boolean, tailwindClass?: string, Budget: any, Expense: any, Balance: any }
 ) {
 
-    const [Bdollars, Bcents] = splitMoney(B);
-    const [Idollars, Icents] = splitMoney(I);
-    const [Edollars, Ecents] = splitMoney(E);
+    const [BudgetDollars, BudgetCents] = splitMoney(Budget);
+    const [ExpenseDollars, ExpenseCents] = splitMoney(Expense);
+    const [BalanceDollars, BalanceCents] = splitMoney(Balance);
 
     return (
         <div className={"w-[90%] min-h-[12rem] bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center " + tailwindClass}>
@@ -36,11 +36,11 @@ export default function BudgetPlanCard(
                 <div className="w-[50%] h-[100%] flex items-center"> 
                     <FontAwesomeIcon icon={faSquare} className="fa-fw fa-2xs text-green-500 mr-1"/>
                     <p className="inline text-base font-light">
-                        {cardName === 'Tracker' ? 'Income' : 'Budget'}
+                        Budget
                     </p>
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
-                    <p className="text-xl mt-1">${Idollars}.<span className="text-xs">{Icents}</span></p>
+                    <p className="text-xl mt-1">${BudgetDollars}.<span className="text-xs">{BudgetCents}</span></p>
                 </div>
             </div>
             <div className="w-full h-[3rem] flex px-4 ">
@@ -51,7 +51,7 @@ export default function BudgetPlanCard(
                     </p>
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
-                    <p className="text-xl mt-1">${Edollars}.<span className="text-xs">{Ecents}</span></p>
+                    <p className="text-xl mt-1">${ExpenseDollars}.<span className="text-xs">{ExpenseCents}</span></p>
                 </div>
             </div>
             <div className="w-full h-[3rem] flex px-4 ">
@@ -62,7 +62,7 @@ export default function BudgetPlanCard(
                     </p>
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
-                    <p className="text-xl mt-1">${Bdollars}.<span className="text-xs">{Bcents}</span></p>
+                    <p className="text-xl mt-1">${BalanceDollars}.<span className="text-xs">{BalanceCents}</span></p>
                 </div>
             </div>
         </div>
