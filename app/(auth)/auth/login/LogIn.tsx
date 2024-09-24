@@ -9,7 +9,7 @@ import Link from 'next/link'
 
 export default function LoginPage() {
   return (
-    <div className='w-dvw min-h-dvh bg-darkest flex items-center justify-center p-y-20'>
+    <div className='w-screen h-dvh bg-darkest flex items-center justify-center p-y-20'>
         <form className='w-[90%] min-h-[26rem] bg-darker rounded-xl flex flex-col gap-y-6 p-6'>
             <div className='flex flex-col items-center justify-center'>
                 <Image src={AppIcon} width={40} height={40} alt='App Icon' className='pb-4'/>
