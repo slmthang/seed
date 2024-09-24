@@ -1,6 +1,6 @@
 
 // modules (local)
-import { AppLayoutDataType } from "./definitions";
+import { AppLayoutDataType } from "../lib/definitions";
 import OverviewCard from "./OverviewCard";
 
 

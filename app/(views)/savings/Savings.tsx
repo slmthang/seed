@@ -9,7 +9,7 @@ import clsx from 'clsx';
 import AppLayout from "../../components/AppLayout";
 import Items from "../../components/Items";
 import DisplayChart from "../../components/DisplayChart";
-import { savingsExpenseListType } from "../../components/definitions";
+import { savingsExpenseListType } from "../../lib/definitions";
 
 import { calculateTotal } from "@/app/lib/utils";
 import { AppDataContext } from "@/app/lib/contexts";

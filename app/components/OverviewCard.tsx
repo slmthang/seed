@@ -1,6 +1,6 @@
 
 // modules (local)
-import { PageTypes, data3, durations, overViewDataType } from "./definitions";
+import { PageTypes, data3, durations, overViewDataType } from "../lib/definitions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import OptionsSelector from "./OptionsSelector";
 import TripleAmountCard from "./TripleAmountCard";

@@ -1,32 +1,47 @@
 
+'use client'
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSquare } from "@fortawesome/free-solid-svg-icons"
 
 import TrioOverView from '@/app/components/TrioOverview'
 import SingleOverview from "../../components/SingleOverview"
 
+import { useEffect, useState } from "react"
+
+import { createClient } from "@/app/lib/supabase/client"
+
 export default function Page() {
 
+    const supabase = createClient();
+    const [mysession, setMySession] = useState<any>()
+
+    let userInfo;
+
+    useEffect (() => {
+
+        async function getUserInfo() {
+
+            try {
+                userInfo = await supabase.auth.getSession()
+
+            } catch (e) {
+                console.error(e);
+            }
+        };
+        
+        getUserInfo();
+
+    }, [])
+    
+    const handleSession = ()=>{
+        console.log("userInfo :" , userInfo)
+    }
+    
     return (
         <>
-        {/* <TrioOverView />
-        <SingleOverview /> */}
-        <div className="h-[calc(100vh-7rem)] min-h-[calc(100vh-7rem)]  w-screen  bg-darkest flex flex-col justify-center items-center">
-            <div className="w-screen flex flex-col justify-center items-center min-h-[20rem] bg-darker mt-[5rem] pb-12 relative pt-[5rem]">
-
-                <div className="w-[90%] h-[6rem] bg-green-400 absolute top-[-3rem]">
-
-                </div>
-
-                <div className="w-screen min-h-[10rem] bg-blue-400 flex items-center justify-center">
-                    <div className="w-[90%] h-screen bg-dark">
-
-                    </div>
-                </div>
-            </div>
-        </div>
+            <button onClick={handleSession}>Show session info at console</button>
         </>
-        
     )
 }
 

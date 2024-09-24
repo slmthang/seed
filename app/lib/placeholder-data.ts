@@ -1,5 +1,5 @@
 
-import { budgetPlanIncomeType, budgetPlanExpenseListType, subscriptionsExpenseListType, trackerItemsListType, savingsExpenseListType } from "../components/definitions"
+import { budgetPlanIncomeType, budgetPlanExpenseListType, subscriptionsExpenseListType, trackerItemsListType, savingsExpenseListType } from "./definitions"
 
 
 

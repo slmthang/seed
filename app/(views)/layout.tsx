@@ -17,7 +17,7 @@ import { AppDataContext } from "@/app/lib/contexts";
 import { calculateMoney, calculateTotal } from "@/app/lib/utils";
 
 import { budgetPlanData, budgetPlanExpenseListData, savingsExpenseListData, subscriptionsExpenseListData, trackerItemsListData } from "@/app/lib/placeholder-data";
-import { trackerItemsListType } from "../components/definitions";
+import { trackerItemsListType } from "../lib/definitions";
 
 export default function Layout({
     children,

@@ -9,7 +9,7 @@ import { useState } from "react";
 import AppLayout from "../../components/AppLayout";
 import Items from "../../components/Items";
 import TabBarOptions from "../../components/TabBarOptions";
-import { subscriptionsExpenseListType } from "../../components/definitions";
+import { subscriptionsExpenseListType } from "../../lib/definitions";
 import DisplayChart from "../../components/DisplayChart";
 import { calculateTotal } from "@/app/lib/utils";
 

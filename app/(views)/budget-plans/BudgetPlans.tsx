@@ -15,7 +15,7 @@ import { faSquare } from "@fortawesome/free-solid-svg-icons";
 // modules (local)
 import AppLayout from "../../components/AppLayout";
 import Items from "../../components/Items";
-import { budgetPlanIncomeType, budgetPlanExpenseListType } from "../../components/definitions";
+import { budgetPlanIncomeType, budgetPlanExpenseListType } from "../../lib/definitions";
 
 import DisplayChart from "../../components/DisplayChart";
 import { calculateMoney, calculatePieData, calculateTotalGeneric } from "@/app/lib/utils";

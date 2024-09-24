@@ -1,7 +1,7 @@
 
 
 
-import { budgetPlanIncomeType, budgetPlanExpenseListType, subscriptionsExpenseListType, trackerIncomeListType, trackerExpenseListType, savingsExpenseListType } from "../components/definitions"
+import { budgetPlanIncomeType, budgetPlanExpenseListType, subscriptionsExpenseListType, trackerIncomeListType, trackerExpenseListType, savingsExpenseListType } from "../lib/definitions"
 
 import { expect, test, describe } from 'vitest';
 

@@ -1,7 +1,7 @@
 
 // data
 import clsx from "clsx";
-import { budgetPlanExpenseListType, subscriptionsExpenseListType, trackerItemsListType, savingsExpenseListType, PageTypes } from "./definitions"
+import { budgetPlanExpenseListType, subscriptionsExpenseListType, trackerItemsListType, savingsExpenseListType, PageTypes } from "../lib/definitions"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSquare } from "@fortawesome/free-solid-svg-icons"

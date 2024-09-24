@@ -10,7 +10,7 @@ import SingleAmountCard from "../components/SingleAmountCard";
 import TripleAmountCard from "../components/TripleAmountCard";
 
 // data (local)
-import { SmallWidgetDataType, LargeWidgetDataType, durations } from "../components/definitions";
+import { SmallWidgetDataType, LargeWidgetDataType, durations } from "../lib/definitions";
 
 import { AppDataContext } from "@/app/lib/contexts";
 import { useContext } from "react";

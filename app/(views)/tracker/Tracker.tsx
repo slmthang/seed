@@ -12,7 +12,7 @@ import Items from "../../components/Items";
 import TrioOverView from '@/app/components/TrioOverview'
 import Tabs from "../../components/Tabs";
 
-import { trackerItemsListType } from "../../components/definitions";
+import { trackerItemsListType } from "../../lib/definitions";
 import DisplayChart from "../../components/DisplayChart";
 import { AppDataContext } from "@/app/lib/contexts";
 import { useContext } from "react";

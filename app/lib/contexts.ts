@@ -1,5 +1,5 @@
 
 import { createContext } from "react";
-import { AppDataType } from "../components/definitions";
+import { AppDataType } from "./definitions";
 
 export const AppDataContext = createContext<[AppDataType, React.Dispatch<React.SetStateAction<boolean>>]>([null!, () => null!]);

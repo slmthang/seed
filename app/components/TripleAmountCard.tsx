@@ -1,6 +1,6 @@
 
 // modules (local)
-import { overViewDataType } from "./definitions";
+import { overViewDataType } from "../lib/definitions";
 import SingleAmountCard from "./SingleAmountCard"
 
 export default function TripleAmountCard(
