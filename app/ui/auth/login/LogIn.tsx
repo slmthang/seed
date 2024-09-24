@@ -39,7 +39,6 @@ export default function LoginPage() {
                 <Image src={GoogleIcon} width={30} height={30} alt='Google Icon'/>
                 <p className='text-center ml-4'>Continue with Google</p>
             </div>
-            {/* <button formAction={signup}>Sign up</button> */}
         </form>
     </div>
     

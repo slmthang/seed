@@ -11,7 +11,7 @@ import TripleAmountCard from "../../components/TripleAmountCard";
 
 // data (local)
 import { SmallWidgetDataType, LargeWidgetDataType, durations } from "../../components/definitions";
-
+import AppLayout from "../../components/AppLayout";
 import { AppDataContext } from "@/app/lib/contexts";
 import { useContext } from "react";
 
@@ -109,6 +109,13 @@ export default function Home() {
     const [AppData, AppDataFunction]= useContext(AppDataContext);
 
     return (
+
+        <AppLayout data={{
+            pageType : 'budget-plan',
+            budget: AppData.budgetPlan.budget,
+            expense: AppData.budgetPlan.expense,
+            balance: AppData.budgetPlan.balance
+        }} >
             <section className={"main-cont" + " w-screen h-full flex flex-col items-center pt-5 pb-20"}>
                 <LargeWidget data={{widgetType: 'budgetPlanner-home', budget: AppData.budgetPlan.budget, expense: AppData.budgetPlan.expense, balance: AppData.budgetPlan.balance}}/>
                 <LargeWidget data={{widgetType: 'tracker-home', income: AppData.tracker.income, expense: AppData.tracker.expense, balance: AppData.tracker.balance}}/>
@@ -118,5 +125,7 @@ export default function Home() {
                     <SmallWidget data={{widgetType: 'savings-home', expense: AppData.savings.expense}}/>
                 </div>
             </section>
+        </AppLayout>
+            
     )
 }
