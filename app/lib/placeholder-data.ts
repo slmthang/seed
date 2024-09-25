@@ -1,5 +1,5 @@
 
-import { budgetPlanIncomeType, budgetPlanExpenseListType, subscriptionsExpenseListType, trackerItemsListType, savingsExpenseListType } from "../ui/components/definitions"
+import { budgetPlanIncomeType, budgetPlanExpenseListType, subscriptionsExpenseListType, trackerItemsListType, savingsExpenseListType } from "./definitions"
 
 
 
@@ -13,22 +13,22 @@ export const budgetPlanExpenseListData : budgetPlanExpenseListType = [
     {
         name: 'Gas',
         amount: '100.00',
-        category: 'Utility'
+        category: 'utilities'
     },
     {
         name: 'Auto Insurance',
         amount: '300.00',
-        category: 'Insurance'
+        category: 'insurance'
     },
     {
         name: 'Student Loan',
         amount: '100.00',
-        category: 'Debt'
+        category: 'debt'
     },
     {
         name: 'Rent',
         amount: '1000.00',
-        category: 'Utility'
+        category: 'utilities'
     },
 ]
 
@@ -36,25 +36,25 @@ export const subscriptionsExpenseListData : subscriptionsExpenseListType = [
     {
         name: 'Netflix',
         amount: '15.00',
-        category: 'TV',
+        category: 'personal',
         paymentDay: '5'
     },
     {
         name: 'Amazon',
         amount: '100.00',
-        category: 'General',
+        category: 'utilities',
         paymentDay: '9'
     },
     {
         name: 'Disney',
         amount: '40.00',
-        category: 'TV',
+        category: 'debt',
         paymentDay: '20'
     },
     {
         name: 'Spotify',
         amount: '100.00',
-        category: 'Music',
+        category: 'personal',
         paymentDay: '12'
     }
 ]
@@ -77,35 +77,35 @@ export const trackerItemsListData : trackerItemsListType = [
     {
         name: 'Concert',
         amount: '300.00',
-        category: 'Fun',
+        category: 'personal',
         isExpense: true,
         date: '08/01/2024'
     },
     {
         name: 'Gas',
         amount: '30.00',
-        category: 'Utility',
+        category: 'utilities',
         isExpense: true,
         date: '09/11/2024'
     },
     {
         name: 'Grocery',
         amount: '300.00',
-        category: 'Food',
+        category: 'food',
         isExpense: true,
         date: '10/01/2024'
     },
     {
         name: 'Lottery Ticket',
         amount: '30.00',
-        category: 'Fun',
+        category: 'personal',
         isExpense: true,
         date: '11/01/2024'
     },
     {
         name: 'CC Payment',
         amount: '1200.00',
-        category: 'Debt',
+        category: 'others',
         isExpense: true,
         date: '11/05/2024'
     }
@@ -116,25 +116,25 @@ export const savingsExpenseListData : savingsExpenseListType = [
     {
         name: 'Contribution #1',
         amount: '30.00',
-        category: 'Tuition',
+        category: 'debt',
         date: '12/01/2024'
     },
     {
         name: 'Contribution #2',
         amount: '100.00',
-        category: 'Tuition',
+        category: 'debt',
         date: '12/01/2024'
     },
     {
         name: 'Contribution #3',
         amount: '250.00',
-        category: 'Tuition',
+        category: 'debt',
         date: '12/01/2024'
     },
     {
         name: 'Contribution #4',
         amount: '300.00',
-        category: 'Tuition',
+        category: 'debt',
         date: '12/01/2024'
     }
     

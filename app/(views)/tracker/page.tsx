@@ -1,6 +1,6 @@
 
 
-import Tracker from "@/app/ui/views/tracker/Tracker";
+import Tracker from "./Tracker";
 
 export default function Page() {
     return (

@@ -1,6 +1,6 @@
 
 
-import { budgetPlanIncomeType, budgetPlanExpenseListType, subscriptionsExpenseListType, trackerItemsListType, savingsExpenseListType } from "../ui/components/definitions"
+import { budgetPlanIncomeType, budgetPlanExpenseListType, subscriptionsExpenseListType, trackerItemsListType, savingsExpenseListType } from "./definitions"
 
 import { calculateTotal } from "./utils";
 

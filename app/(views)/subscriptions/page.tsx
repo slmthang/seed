@@ -1,6 +1,6 @@
 
 
-import Subscriptions from "@/app/ui/views/subscriptions/Subscriptions"
+import Subscriptions from "./Subscriptions"
 
 export default function Page() {
     return (

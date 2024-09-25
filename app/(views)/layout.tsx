@@ -3,8 +3,12 @@
 
 'use client'
 
-import NavBar from "@/app/ui/components/NavBar";
-import MenuBar from "@/app/ui/components/MenuBar";
+import SideNavBar from "../components/SideNavBar";
+
+import NavBar from "@/app/components/NavBar";
+import MenuBar from "@/app/components/MenuBar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSquare } from "@fortawesome/free-solid-svg-icons"
 
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -13,7 +17,7 @@ import { AppDataContext } from "@/app/lib/contexts";
 import { calculateMoney, calculateTotal } from "@/app/lib/utils";
 
 import { budgetPlanData, budgetPlanExpenseListData, savingsExpenseListData, subscriptionsExpenseListData, trackerItemsListData } from "@/app/lib/placeholder-data";
-import { trackerItemsListType } from "../ui/components/definitions";
+import { trackerItemsListType } from "../lib/definitions";
 
 export default function Layout({
     children,
@@ -23,6 +27,12 @@ export default function Layout({
 
 
     const [changed, isChanged] = useState(false);
+
+    const [isSideNavActive, setIsSideNavActive] = useState(false);
+
+    function toggleSideNav() {
+        setIsSideNavActive(prevState => !prevState);
+    }
 
     // budget data
     let budgetPlan_budget = '2000.00';
@@ -41,6 +51,35 @@ export default function Layout({
 
     // subscriptions data
     let savings_expense = calculateTotal(savingsExpenseListData);
+
+    let appData = [
+        {
+            userId: 123,
+            budgetPlan: {
+                budget: budgetPlan_budget,
+                expense: budgetPlan_expense,
+                balance: budgetPlan_balance,
+                expenseList: budgetPlanExpenseListData
+            },
+            subscriptions: {
+                expense: subscriptions_expense,
+                expenseList: subscriptionsExpenseListData
+            },
+            tracker: {
+                income: tracker_income,
+                expense: tracker_expense,
+                balance: tracker_balance,
+                expenseList: tracker_expenseList,
+                incomeList: tracker_incomeList,
+                itemsList: trackerItemsListData
+            },
+            savings: {
+                expense: savings_expense,
+                expenseList: savingsExpenseListData
+            }
+
+        }, isChanged
+    ]
 
     return (
         <AppDataContext.Provider value={[
@@ -68,14 +107,21 @@ export default function Layout({
                     expense: savings_expense,
                     expenseList: savingsExpenseListData
                 }
-
+    
             }, isChanged
         ]}>
-          <main className="flex w-screen flex-col items-center justify-center min-h-dvh">
-            <MenuBar />
+        <>
+            {isSideNavActive && <SideNavBar toggle={toggleSideNav}/>}
+            <main className={"overflow-hidden relative w-screen h-dvh " + (isSideNavActive && 'ml-[60%]')}>
+                
+                <MenuBar toggle={toggleSideNav}/>
+                
                 {children}
-            <NavBar />
-          </main>
+
+                <NavBar />
+
+            </main>
+        </>
         </AppDataContext.Provider>
     )
 }

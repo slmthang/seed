@@ -1,6 +1,6 @@
 
 
-import SignUp from '@/app/ui/auth/signup/Signup'
+import SignUp from './Signup'
 
 export default function Page() {
 
