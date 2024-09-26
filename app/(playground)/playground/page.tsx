@@ -9,39 +9,12 @@ import SingleOverview from "../../components/SingleOverview"
 
 import { useEffect, useState } from "react"
 
-import { createClient } from "@/app/lib/supabase/client"
-
 export default function Page() {
 
-    const supabase = createClient();
-    const [mysession, setMySession] = useState<any>()
-
-    let userInfo;
-
-    useEffect (() => {
-
-        async function getUserInfo() {
-
-            try {
-                userInfo = await supabase.auth.getSession()
-
-            } catch (e) {
-                console.error(e);
-            }
-        };
-        
-        getUserInfo();
-
-    }, [])
-    
-    const handleSession = ()=>{
-        console.log("userInfo :" , userInfo)
-    }
-    
     return (
-        <>
-            <button onClick={handleSession}>Show session info at console</button>
-        </>
+        <div>
+            <h1>hello</h1>
+        </div>
     )
 }
 
