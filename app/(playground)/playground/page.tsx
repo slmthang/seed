@@ -1,18 +1,14 @@
 
 'use client'
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSquare } from "@fortawesome/free-solid-svg-icons"
 
-import TrioOverView from '@/app/components/TrioOverview'
-import SingleOverview from "../../components/SingleOverview"
-
-import { useEffect, useState } from "react"
+import ConfigureAmplifyClientSide from "@/app/amplify-cognito-config"
 
 export default function Page() {
 
     return (
         <div>
+            <ConfigureAmplifyClientSide />
             <h1>hello</h1>
         </div>
     )
