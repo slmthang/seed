@@ -1,7 +1,4 @@
 
-
-import { login, signup } from '../../../lib/supabase/actions'
-
 import LoginPage from './LogIn'
 
 
