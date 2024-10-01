@@ -6,22 +6,22 @@ import { useState } from "react";
 
 // local
 // import { AppLayout, Item, OptionsSelector, TabBar } from "../../components/AppLayout";
-import AppLayout from "../../components/AppLayout";
-import Items from "../../components/Items";
-import TabBarOptions from "../../components/TabBarOptions";
+import AppLayout from "../../ui-components/AppLayout";
+import Items from "../../ui-components/Items";
+import TabBarOptions from "../../ui-components/TabBarOptions";
 import { subscriptionsExpenseListType } from "../../lib/definitions";
-import DisplayChart from "../../components/DisplayChart";
+import DisplayChart from "../../ui-components/DisplayChart";
 import { calculateTotal } from "@/app/lib/utils";
 
 import { AppDataContext } from "@/app/lib/contexts";
 import { useContext } from "react";
-import SingleOverview from "../../components/SingleOverview";
+import SingleOverview from "../../ui-components/SingleOverview";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSquare } from "@fortawesome/free-solid-svg-icons"
 
-import Tabs from "../../components/Tabs";
+import Tabs from "../../ui-components/Tabs";
 import { calculatePieData } from "@/app/lib/utils";
-import { AddButtonIcon } from "../../components/Icons";
+import { AddButtonIcon } from "../../ui-components/Icons";
 
 export default function Subscriptions() {
 

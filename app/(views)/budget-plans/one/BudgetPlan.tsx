@@ -8,22 +8,22 @@ import { useContext } from "react";
 
 import { VictoryPie } from "victory";
 
-import OverviewCard from "@/app/components/OverviewCard";
+import OverviewCard from "@/app/ui-components/OverviewCard";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquare } from "@fortawesome/free-solid-svg-icons";
 // modules (local)
-import AppLayout from "@/app/components/AppLayout";
-import Items from "@/app/components/Items";
+import AppLayout from "@/app/ui-components/AppLayout";
+import Items from "@/app/ui-components/Items";
 import { budgetPlanIncomeType, budgetPlanExpenseListType, budgetPlanData } from "@/app/lib/definitions";
 
-import DisplayChart from "@/app/components/DisplayChart";
+import DisplayChart from "@/app/ui-components/DisplayChart";
 import { calculateMoney, calculatePieData, calculateTotalGeneric } from "@/app/lib/utils";
 import { AppDataContext } from "@/app/lib/contexts";
-import SingleOverview from "@/app/components/SingleOverview";
-import TrioOverView from '@/app/components/TrioOverview'
-import Tabs from "@/app/components/Tabs";
-import { CloseButtonIcon } from "@/app/components/Icons";
+import SingleOverview from "@/app/ui-components/SingleOverview";
+import TrioOverView from '@/app/ui-components/TrioOverview'
+import Tabs from "@/app/ui-components/Tabs";
+import { CloseButtonIcon } from "@/app/ui-components/Icons";
 
 export default function BudgetPlan(
     {budgetPlanData, setSelectedPlan} : {budgetPlanData: any, setSelectedPlan: React.Dispatch<React.SetStateAction<Boolean>>}

@@ -6,21 +6,21 @@ import { useState } from "react";
 import clsx from 'clsx';
 
 // modules (local)
-import AppLayout from "../../components/AppLayout";
-import Items from "../../components/Items";
-import DisplayChart from "../../components/DisplayChart";
+import AppLayout from "../../ui-components/AppLayout";
+import Items from "../../ui-components/Items";
+import DisplayChart from "../../ui-components/DisplayChart";
 import { savingsExpenseListType } from "../../lib/definitions";
 
 import { calculateTotal } from "@/app/lib/utils";
 import { AppDataContext } from "@/app/lib/contexts";
 import { useContext } from "react";
-import SingleOverview from "../../components/SingleOverview";
-import Tabs from "../../components/Tabs";
+import SingleOverview from "../../ui-components/SingleOverview";
+import Tabs from "../../ui-components/Tabs";
 
 import { calculatePieData } from "@/app/lib/utils";
-import { AddButtonIcon } from "../../components/Icons";
+import { AddButtonIcon } from "../../ui-components/Icons";
 
-import OptionsSelector from "../../components/OptionsSelector";
+import OptionsSelector from "../../ui-components/OptionsSelector";
 export default function Savings() {
 
     // expense page is isDefault = true

@@ -8,22 +8,22 @@ import { useContext } from "react";
 
 import { VictoryPie } from "victory";
 
-import OverviewCard from "../../components/OverviewCard";
+import OverviewCard from "../../ui-components/OverviewCard";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquare } from "@fortawesome/free-solid-svg-icons";
 // modules (local)
-import AppLayout from "../../components/AppLayout";
-import Items from "../../components/Items";
+import AppLayout from "../../ui-components/AppLayout";
+import Items from "../../ui-components/Items";
 import { budgetPlanIncomeType, budgetPlanExpenseListType } from "../../lib/definitions";
 
-import DisplayChart from "../../components/DisplayChart";
+import DisplayChart from "../../ui-components/DisplayChart";
 import { calculateMoney, calculatePieData, calculateTotalGeneric } from "@/app/lib/utils";
 import { AppDataContext } from "@/app/lib/contexts";
-import SingleOverview from "../../components/SingleOverview";
-import TrioOverView from '@/app/components/TrioOverview'
-import Tabs from "../../components/Tabs";
-import BudgetPlanCard from '@/app/components/BudgetPlanCard';
+import SingleOverview from "../../ui-components/SingleOverview";
+import TrioOverView from '@/app/ui-components/TrioOverview'
+import Tabs from "../../ui-components/Tabs";
+import BudgetPlanCard from '@/app/ui-components/BudgetPlanCard';
 import BudgetPlanX from "./one/BudgetPlan";
 
 export default function BudgetPlan() {

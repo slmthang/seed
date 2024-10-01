@@ -5,20 +5,20 @@
 import Link from "next/link";
 
 // modules (local)
-import OptionsSelector from "../components/OptionsSelector";
-import SingleAmountCard from "../components/SingleAmountCard";
-import TripleAmountCard from "../components/TripleAmountCard";
+import OptionsSelector from "../ui-components/OptionsSelector";
+import SingleAmountCard from "../ui-components/SingleAmountCard";
+import TripleAmountCard from "../ui-components/TripleAmountCard";
 
 // data (local)
 import { SmallWidgetDataType, LargeWidgetDataType, durations } from "../lib/definitions";
 
 import { AppDataContext } from "@/app/lib/contexts";
 import { useContext } from "react";
-import TrioOverView from '@/app/components/TrioOverview';
-import SingleOverview from "../components/SingleOverview";
-import SingleWidget from "../components/SingleWidget";
-import TrioWidget from '@/app/components/TrioWidget';
-import { AddButtonIcon } from "../components/Icons";
+import TrioOverView from '@/app/ui-components/TrioOverview';
+import SingleOverview from "../ui-components/SingleOverview";
+import SingleWidget from "../ui-components/SingleWidget";
+import TrioWidget from '@/app/ui-components/TrioWidget';
+import { AddButtonIcon } from "../ui-components/Icons";
 
 
 

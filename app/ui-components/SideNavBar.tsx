@@ -1,15 +1,18 @@
 
 'use client'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear, faQuestion, faRightFromBracket, faUser } from "@fortawesome/free-solid-svg-icons";
-import { useState } from 'react';
+import { useClerk } from '@clerk/nextjs'
+
 
 import { ProfileIcon, PersonIcon, HelpIcon, SettingIcon, LogoutIcon } from './Icons';
+
+
 
 export default function SideNavBar(
     {toggle} : {toggle: () => void}
 ) {
+
+    const { signOut } = useClerk();
 
     return (
         <div className="z-20 w-screen h-screen flex fixed ">
@@ -24,19 +27,19 @@ export default function SideNavBar(
                 <ul className=" gap-y-4 flex flex-col">
                     <li className="text-lg h-[3rem] flex items-center">
                         <PersonIcon />
-                        <p className="ml-6 h-[1.5rem] ">Profile</p>
+                        <button className="ml-6 h-[1.5rem] ">Profile</button>
                     </li>
                     <li className="text-lg h-[3rem] flex items-center">
                         <HelpIcon />
-                        <p className="ml-6 h-[1.5rem] ">Help</p>
+                        <button className="ml-6 h-[1.5rem] ">Help</button>
                     </li>
                     <li className="text-lg h-[3rem] flex items-center ">
                         <SettingIcon />
-                        <p className="ml-6 h-[1.5rem] ">Setting</p>
+                        <button className="ml-6 h-[1.5rem] ">Setting</button>
                     </li>
                     <li className="text-lg h-[3rem] flex items-center">
                         <LogoutIcon />
-                        <p className="ml-6 h-[1.5rem] ">Logout</p>
+                        <button onClick={() => signOut({redirectUrl: '/'})} className="ml-6 h-[1.5rem] ">Logout</button>
                     </li>
                 </ul>
             </div>

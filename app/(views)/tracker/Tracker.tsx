@@ -6,20 +6,20 @@ import { useState } from "react";
 import clsx from 'clsx';
 
 // local
-import AppLayout from "../../components/AppLayout";
-import Items from "../../components/Items";
+import AppLayout from "../../ui-components/AppLayout";
+import Items from "../../ui-components/Items";
 
-import TrioOverView from '@/app/components/TrioOverview'
-import Tabs from "../../components/Tabs";
+import TrioOverView from '@/app/ui-components/TrioOverview'
+import Tabs from "../../ui-components/Tabs";
 
 import { trackerItemsListType } from "../../lib/definitions";
-import DisplayChart from "../../components/DisplayChart";
+import DisplayChart from "../../ui-components/DisplayChart";
 import { AppDataContext } from "@/app/lib/contexts";
 import { useContext } from "react";
 import { calculatePieData } from "@/app/lib/utils";
 
-import OptionsSelector from "../../components/OptionsSelector";
-import { AddButtonIcon } from "../../components/Icons";
+import OptionsSelector from "../../ui-components/OptionsSelector";
+import { AddButtonIcon } from "../../ui-components/Icons";
 
 export default function Tracker() {
 

@@ -1,4 +1,12 @@
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs';
 
+import { dark } from '@clerk/themes'
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -23,11 +31,18 @@ export default function RootLayout({
 
   return (
       <html lang="en">
-        
-        <body className={' bg-darkest relative flex'}>
+        <body className={'w-screen h-dvh bg-darkest relative flex items-center justify-center'}>
+          
+        <ClerkProvider
+          appearance={{
+            baseTheme: dark
+          }}
+        >
           {children}
+        </ClerkProvider>
         </body>
       </html>
+    
   );
 }
 

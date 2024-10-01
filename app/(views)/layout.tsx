@@ -3,10 +3,10 @@
 
 'use client'
 
-import SideNavBar from "../components/SideNavBar";
+import SideNavBar from "../ui-components/SideNavBar";
 
-import NavBar from "@/app/components/NavBar";
-import MenuBar from "@/app/components/MenuBar";
+import NavBar from "@/app/ui-components/NavBar";
+import MenuBar from "@/app/ui-components/MenuBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSquare } from "@fortawesome/free-solid-svg-icons"
 
