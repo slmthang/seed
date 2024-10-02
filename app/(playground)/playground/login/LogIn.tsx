@@ -29,11 +29,6 @@ export default function LoginPage() {
                 <p className='text-lighter text-center'>Don&apos;t have an ccount? <Link href='/auth/signup'><span className='text-lightest text-lime-700'>Sign Up</span></Link></p>
             </div>
 
-            <div className="relative flex py-5 items-center">
-                <div className="flex-grow border-t border-light"></div>
-                <span className="flex-shrink mx-4">Or</span>
-                <div className="flex-grow border-t border-light"></div>
-            </div>
             <div className='w-full bg-dark text-sm px-2.5 py-[15px] rounded-lg flex items-center justify-center'>
                 <Image src={GoogleIcon} width={30} height={30} alt='Google Icon'/>
                 <p className='text-center ml-4'>Continue with Google</p>
