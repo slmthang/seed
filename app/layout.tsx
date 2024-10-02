@@ -1,12 +1,8 @@
 import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton
+  ClerkProvider
 } from '@clerk/nextjs';
 
-import { dark } from '@clerk/themes'
+import { neobrutalism } from '@clerk/themes'
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -35,7 +31,7 @@ export default function RootLayout({
           
         <ClerkProvider
           appearance={{
-            baseTheme: dark
+            baseTheme: neobrutalism
           }}
         >
           {children}

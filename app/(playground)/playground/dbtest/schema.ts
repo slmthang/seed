@@ -24,7 +24,8 @@ export const budgetPlansTable = pgTable('budget_plans', {
     .$onUpdate(() => new Date()),
 });
 
-export const budgetPlanExpenses = pgTable('budget_plan_expenses', {
+export const budgetPlanExpensesTable  = pgTable('budget_plan_expenses', {
+  id: bigserial('id', {mode: 'number'}).primaryKey(),
   budgetPlanID: bigserial('budget_plan_id', {mode: 'number'})
     .notNull()
     .references(() => budgetPlansTable.id, { onDelete: 'cascade' }),
@@ -40,5 +41,5 @@ export type SelectUser = typeof usersTable.$inferSelect;
 export type InsertBudgetPlan = typeof budgetPlansTable.$inferInsert;
 export type SelectBudgetPlan = typeof budgetPlansTable.$inferSelect;
 
-export type InsertBudgetPlanExpense = typeof budgetPlanExpenses.$inferInsert;
-export type SelectBudgetPlanExpense = typeof budgetPlanExpenses.$inferSelect;
+export type InsertBudgetPlanExpense = typeof budgetPlanExpensesTable.$inferInsert;
+export type SelectBudgetPlanExpense = typeof budgetPlanExpensesTable.$inferSelect;

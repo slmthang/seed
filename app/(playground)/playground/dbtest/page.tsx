@@ -1,23 +1,25 @@
 
 
-import {db} from './db'
+import {getBudgetExpensesByBudgetPlanId, getBudgetPlansByUserId, getUserById} from './db'
 
 export default async function Page() {
-  async function create(formData: FormData) {
-    "use server";
-    const pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-      ssl: true
-    });
-    const client = await pool.connect();
-    await client.query("CREATE TABLE IF NOT EXISTS comments (comment TEXT)");
-    const comment = formData.get("comment");
-    await client.query("INSERT INTO comments (comment) VALUES ($1)", [comment]);
-  }
+  
+  let user = await getUserById(36);
+
+  let budgetPlans = await getBudgetPlansByUserId(36);
+
+  let budgetExpenses1 = await getBudgetExpensesByBudgetPlanId(budgetPlans[0].id);
+
+  console.log(budgetPlans[0].id)
+  console.log(budgetExpenses1)
+
   return (
-    <form action={create}>
-      <input type="text" placeholder="write a comment" name="comment" />
-      <button type="submit">Submit</button>
-    </form>
+    <div className='w-screen h-[40rem] rounded-xl bg-dark'>
+      <h1>Name: {user[0].firstName + ' ' + user[0].lastName}</h1>
+      <h2>ID: {user[0].id}</h2>
+      <h2>Email: {user[0].email}</h2>
+      <h2>Joined: {String(user[0].joined)}</h2>
+    </div>
+    
   );
 }
