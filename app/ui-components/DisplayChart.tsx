@@ -36,6 +36,6 @@ export default function DisplayChart(
             {chartType === 'Bar Chart' && <VictoryBar /> }
             {chartType === 'Line Chart' && <VictoryLine /> }
         </>
-    )
+    ) 
             
 }
