@@ -1,34 +1,32 @@
 
 'use client'
-import { useEffect } from "react"
-
+import { useEffect, useState , useContext} from "react"
+import { AppDataContext } from "@/app/lib/contexts";
+import { AppDataType } from "../lib/definitions";
 
 export default function Home() {
 
-    useEffect(() => {
-        async function fetchUser() {
-            fetch('http://localhost:3000/app/api/user', {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify({ keyword: 'menaiala' }),
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log(data);
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
+    const AppData : AppDataType= useContext(AppDataContext);
+    const user = AppData.user;
 
-        fetchUser();
-    })
-
+    function formatDate(date: Date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+    
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+    
+        return [year, month, day].join('-');
+    }
     return (
         <div className=" w-screen h-dvh min-h-dvh overflow-y-scroll pt-[5rem]">
-            <h1>hello</h1>
+            <h1>Name: {user.firstName + ' ' + user.lastName}</h1>
+            <h1>Email: {user.email}</h1>
+            <h1>Joined: {formatDate(user.joined)}</h1>
         </div>
     )
 }

@@ -83,27 +83,33 @@ export type savingsExpenseListType = {
 
 
 export type AppDataType = {
-    userId: number,
-    budgetPlan: {
-        budget: string,
-        expense: string,
-        balance: string,
-        expenseList: budgetPlanExpenseListType
-    },
-    subscriptions: {
-        expense: string,
-        expenseList: subscriptionsExpenseListType
-    },
-    tracker: {
-        income: string,
-        expense: string,
-        balance: string,
-        expenseList: trackerItemsListType,
-        incomeList: trackerItemsListType,
-        itemsList: trackerItemsListType
-    },
-    savings: {
-        expense: string,
-        expenseList: savingsExpenseListType
-    },
+    user: {
+        id: string,
+        firstName: string,
+        lastName: string,
+        email: string,
+        joined: Date
+    }
+    // budgetPlan: {
+    //     budget: string,
+    //     expense: string,
+    //     balance: string,
+    //     expenseList: budgetPlanExpenseListType
+    // },
+    // subscriptions: {
+    //     expense: string,
+    //     expenseList: subscriptionsExpenseListType
+    // },
+    // tracker: {
+    //     income: string,
+    //     expense: string,
+    //     balance: string,
+    //     expenseList: trackerItemsListType,
+    //     incomeList: trackerItemsListType,
+    //     itemsList: trackerItemsListType
+    // },
+    // savings: {
+    //     expense: string,
+    //     expenseList: savingsExpenseListType
+    // },
 }

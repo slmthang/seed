@@ -5,7 +5,7 @@
 import { useState } from "react";
 
 import OptionsSelector from "./OptionsSelector";
-import { Pie_Chart, Bar_Chart, Line_Chart } from "./Charts";
+// import { Pie_Chart, Bar_Chart, Line_Chart } from "./Charts";
 import { PageTypes } from "../lib/definitions";
 
 import { VictoryPie, VictoryBar, VictoryLine, LineSegment } from "victory";

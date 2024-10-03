@@ -29,7 +29,7 @@ export default function SignInPage() {
 
         <div className='w-[90%] h-[3rem] rounded-lg mt-4 flex items-center justify-center'>
           <p className='font-thin text-sm'>
-            Don't have an account? 
+            Don&apos;t have an account? 
             <Link href='/sign-up'>
               <span className='font-normal ml-2'>Sign up</span>
             </Link>

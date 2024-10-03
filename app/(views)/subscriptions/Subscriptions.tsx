@@ -28,13 +28,13 @@ export default function Subscriptions() {
     // expense page is isDefault = true
     const [isDefaultTab, setIsDefaultTab] = useState<Boolean>(true);
 
-    const [AppData, AppDataFunction]= useContext(AppDataContext);
+    // const [AppData, AppDataFunction]= useContext(AppDataContext);
 
-    let pieData = calculatePieData(AppData.subscriptions.expenseList);
+    // let pieData = calculatePieData(AppData.subscriptions.expenseList);
 
     return (
         <div className=" w-screen h-dvh min-h-dvh overflow-y-scroll pt-[5rem]">
-            
+{/*             
             <AddButtonIcon tailwindClass=" !size-11 fill-light stroke-light fixed bottom-[4.25rem] right-[1rem] z-10"/>
 
             <div className="w-screen min-h-[100%] bg-darker relative mt-[3.5rem] pt-[4.5rem] pb-[8rem] flex flex-col justify-center items-center border-t-[1px] border-dark">
@@ -51,7 +51,8 @@ export default function Subscriptions() {
                 </div>
                     
                 
-            </div>
+            </div> */}
+            <h1>TEMP</h1>
             
         </div>
     )

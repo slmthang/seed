@@ -30,22 +30,21 @@ export default function BudgetPlan() {
 
     const [isDefaultTab, setIsDefaultTab] = useState<Boolean>(true);
 
-    const [AppData, AppDataFunction]= useContext(AppDataContext);
-
-    let pieData = calculatePieData(AppData.budgetPlan.expenseList);
+    // let pieData = calculatePieData(AppData.budgetPlan.expenseList);
 
     const [selectedPlan, setSelectedPlan] = useState<Boolean>(false);
 
     return (
         <div className=" w-screen h-dvh min-h-dvh overflow-y-scroll pt-[3rem] relative">
 
-            { selectedPlan &&  <BudgetPlanX budgetPlanData={AppData} setSelectedPlan={setSelectedPlan}/> }
+            {/* { selectedPlan &&  <BudgetPlanX budgetPlanData={AppData} setSelectedPlan={setSelectedPlan}/> }
             
             <div className="w-screen min-h-[100%] border-t-[1px] border-dark gap-y-[1rem] relative pt-[1rem] pb-[6rem] flex flex-col  items-center border-t-[1px] border-dark">
                 <BudgetPlanCard setSelectedPlan={setSelectedPlan} cardName="Weekly Budget Plan" isDefault={true} isShared={true} pathName="/budget-plans/one" Balance={AppData.tracker.balance} Budget={AppData.tracker.income} Expense={AppData.tracker.expense}/>
                 <BudgetPlanCard setSelectedPlan={setSelectedPlan}  cardName="Roadtrip Budget Plan" pathName="/budget-plans/one" Balance={AppData.tracker.balance} Budget={AppData.tracker.income} Expense={AppData.tracker.expense}/>
                 <BudgetPlanCard setSelectedPlan={setSelectedPlan}  cardName="Monthly Budget Plan" pathName="/budget-plans/one" isShared={true} Balance={AppData.tracker.balance} Budget={AppData.tracker.income} Expense={AppData.tracker.expense}/>
-            </div>
+            </div> */}
+            <h1>BudgetPlans</h1>
             
         </div>
 

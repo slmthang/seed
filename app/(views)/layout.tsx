@@ -17,7 +17,7 @@ import { AppDataContext } from "@/app/lib/contexts";
 import { calculateMoney, calculateTotal } from "@/app/lib/utils";
 
 import { budgetPlanData, budgetPlanExpenseListData, savingsExpenseListData, subscriptionsExpenseListData, trackerItemsListData } from "@/app/lib/placeholder-data";
-import { trackerItemsListType } from "../lib/definitions";
+import { AppDataType, trackerItemsListType } from "../lib/definitions";
 
 export default function Layout({
     children,
@@ -52,64 +52,50 @@ export default function Layout({
     // subscriptions data
     let savings_expense = calculateTotal(savingsExpenseListData);
 
-    let appData = [
-        {
-            userId: 123,
-            budgetPlan: {
-                budget: budgetPlan_budget,
-                expense: budgetPlan_expense,
-                balance: budgetPlan_balance,
-                expenseList: budgetPlanExpenseListData
-            },
-            subscriptions: {
-                expense: subscriptions_expense,
-                expenseList: subscriptionsExpenseListData
-            },
-            tracker: {
-                income: tracker_income,
-                expense: tracker_expense,
-                balance: tracker_balance,
-                expenseList: tracker_expenseList,
-                incomeList: tracker_incomeList,
-                itemsList: trackerItemsListData
-            },
-            savings: {
-                expense: savings_expense,
-                expenseList: savingsExpenseListData
-            }
+    const [user, setUser] = useState<{
+        id: string,
+        firstName: string,
+        lastName: string,
+        email: string,
+        joined: Date
+    }>({
+        id: 'userId',
+        firstName: 'firstName',
+        lastName: 'lastName',
+        email: 'email',
+        joined: new Date()
+    })
 
-        }, isChanged
-    ]
+    useEffect(() => {
+        async function fetchUser() {
+            const data = await fetch('http://localhost:3000/api/get-user', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                },
+                body: JSON.stringify({ userId: 'user_2mtuzi1JScwwZhmVufD25F5njp7' }),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    
+                    return data[0];
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+            setUser(data);
+        }
+
+        fetchUser();
+    }, [])
+
+    let appData : AppDataType = {user};
+
+    
 
     return (
-        <AppDataContext.Provider value={[
-            {
-                userId: 123,
-                budgetPlan: {
-                    budget: budgetPlan_budget,
-                    expense: budgetPlan_expense,
-                    balance: budgetPlan_balance,
-                    expenseList: budgetPlanExpenseListData
-                },
-                subscriptions: {
-                    expense: subscriptions_expense,
-                    expenseList: subscriptionsExpenseListData
-                },
-                tracker: {
-                    income: tracker_income,
-                    expense: tracker_expense,
-                    balance: tracker_balance,
-                    expenseList: tracker_expenseList,
-                    incomeList: tracker_incomeList,
-                    itemsList: trackerItemsListData
-                },
-                savings: {
-                    expense: savings_expense,
-                    expenseList: savingsExpenseListData
-                }
-    
-            }, isChanged
-        ]}>
+        <AppDataContext.Provider value={appData}>
         <>
             {isSideNavActive && <SideNavBar toggle={toggleSideNav}/>}
             <main className={"overflow-hidden relative w-screen h-dvh " + (isSideNavActive && 'ml-[60%]')}>
