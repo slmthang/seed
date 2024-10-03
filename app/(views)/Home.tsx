@@ -1,5 +1,5 @@
 
-// 'use client'
+'use client'
 
 // modules (remote)
 import Link from "next/link";
@@ -22,56 +22,58 @@ import TrioWidget from '@/app/ui-components/TrioWidget';
 import { AddButtonIcon } from "../ui-components/Icons";
 import { setUserIdCookie } from "../lib/cookie";
 import { createUser, getUserById, userExist} from "../(playground)/playground/dbtest/db";
+import { useEffect } from "react";
 
-import { currentUser } from "@clerk/nextjs/server";
+// import { currentUser } from "@clerk/nextjs/server";
+import { useUser } from "@clerk/nextjs";
+import { getBudgetPlansByUserId } from "../(playground)/playground/dbtest/db";
 
 export default async function Home() {
 
     // const [AppData, AppDataFunction]= useContext(AppDataContext);
 
-    const loggedUser = await currentUser();
-
-    try {
-
-        if (loggedUser &&
-            loggedUser.id &&
-            loggedUser.firstName &&
-            loggedUser.lastName &&
-            loggedUser.primaryEmailAddress
-        ) {
+    const {user} = await useUser();
     
-            if (!(await userExist(loggedUser.id))) {
-                const added = await createUser(
-                    {
-                        id: loggedUser.id,
-                        firstName: loggedUser.firstName,
-                        lastName: loggedUser!.lastName,
-                        email: loggedUser.primaryEmailAddress.emailAddress
-                    }
-                )
-            }
-        }
-        
 
-    } catch (err) {
-        console.log("My Erro ", err)
-        // throw Error('Failed to add a new user.')
+    useEffect(() => {
+
+        (async () => {
+            const budgetPlans = await getBudgetPlansByUserId(user!.id);
+
+            if (user &&
+                user.id &&
+                user.firstName &&
+                user.lastName &&
+                user.primaryEmailAddress
+            ) {
         
-    }
+                if (!(await userExist(user.id))) {
+                    const added = await createUser(
+                        {
+                            id: user.id,
+                            firstName: user.firstName,
+                            lastName: user!.lastName,
+                            email: user.primaryEmailAddress.emailAddress
+                        }
+                    )
+                }
+            }
+        })()
+        
+    }, [])
     
 
     return (
         <div className=" w-screen h-dvh min-h-dvh overflow-y-scroll pt-[5rem]">
-            
-            {/* <AddButtonIcon tailwindClass=" !size-11 fill-light stroke-light fixed bottom-[4.25rem] right-[1rem] z-10"/>
+            <h1>{user?.fullName}</h1>
+            <AddButtonIcon tailwindClass=" !size-11 fill-light stroke-light fixed bottom-[4.25rem] right-[1rem] z-10"/>
 
             <div className="w-screen min-h-full bg-darker border-t-[1px] border-dark mt-[8rem] pt-[9.5rem] pb-[8rem] relative flex flex-col justify-center items-center py-[2rem] gap-y-6">
-                <TrioWidget cardName="Tracker" pathName="/tracker" optionsSelctor={true} tailwindClass="absolute top-[-8rem]" B={AppData.tracker.balance} I={AppData.tracker.income} E={AppData.tracker.expense}/>
-                <TrioWidget cardName="Budget Plan A" pathName="/budget-plans/one" B={AppData.budgetPlan.balance} I={AppData.budgetPlan.budget} E={AppData.budgetPlan.expense}/>
+                {/* <TrioWidget cardName={budgetPlans[0].budgetPlanName} pathName="/tracker" optionsSelctor={true} tailwindClass="absolute top-[-8rem]" B={budgetPlans[0].balance} I={budgetPlans[0].budget} E={budgetPlans[0].expense}/> */}
+                {/* <TrioWidget cardName="Budget Plan A" pathName="/budget-plans/one" B={AppData.budgetPlan.balance} I={AppData.budgetPlan.budget} E={AppData.budgetPlan.expense}/>
                 <SingleWidget pageType="subscriptions" B={AppData.subscriptions.expense}/>
-                <SingleWidget pageType="savings" B={AppData.savings.expense}/>
-            </div> */}
-            <h1>Home</h1>
+                <SingleWidget pageType="savings" B={AppData.savings.expense}/> */}
+            </div>
         
         </div>
     )

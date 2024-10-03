@@ -1,4 +1,6 @@
 
+'use server'
+
 import { drizzle } from "drizzle-orm/neon-http";
 import { neon } from "@neondatabase/serverless";
 import { config } from "dotenv";
@@ -61,7 +63,7 @@ export async function createUser(data: InsertUser) : Promise<Boolean> {
 export async function getBudgetPlansByUserId(id: SelectUser['id']): Promise<
   Array<{
     id: number;
-    userId: number;
+    userId: string;
     budgetPlanName: string;
     budget: string;
     expense: string;
