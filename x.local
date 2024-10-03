@@ -1,0 +1,14 @@
+
+# CLERK
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_Y3JlYXRpdmUtbW9uc3Rlci02LmNsZXJrLmFjY291bnRzLmRldiQ
+CLERK_SECRET_KEY=sk_test_l0fTCU5Gn1X3QwsNuunEK0Po1D1ljtochtbTPZv34X
+
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/
+NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
+
+# NEONDB
+DATABASE_URL='postgresql://pockeepdb_owner:YohVde0nRjX3@ep-late-lab-a5s4vhpk.us-east-2.aws.neon.tech/pockeepdb?sslmode=require'
+
+API_URL=http://localhost:3000

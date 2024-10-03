@@ -68,7 +68,7 @@ export default function Layout({
 
     useEffect(() => {
         async function fetchUser() {
-            const data = await fetch('http://localhost:3000/api/get-user', {
+            const data = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/get-user', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
@@ -91,6 +91,8 @@ export default function Layout({
     }, [])
 
     let appData : AppDataType = {user};
+
+    console.log(appData)
 
     
 
