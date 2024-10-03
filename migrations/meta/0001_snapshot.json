@@ -1,6 +1,6 @@
 {
-  "id": "0a171435-dece-4b3d-8ece-b03ffd1a5721",
-  "prevId": "9524ba36-8688-4cf0-9316-6ec13222c3c6",
+  "id": "eed594fd-3537-4a54-a6a4-289917d42c25",
+  "prevId": "a51afff7-7e98-48df-a228-a2d9c9fcddf3",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -75,12 +75,6 @@
           "primaryKey": true,
           "notNull": true
         },
-        "user_id": {
-          "name": "user_id",
-          "type": "bigserial",
-          "primaryKey": false,
-          "notNull": true
-        },
         "budget_plan_name": {
           "name": "budget_plan_name",
           "type": "varchar(120)",
@@ -120,21 +114,7 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {
-        "budget_plans_user_id_users_id_fk": {
-          "name": "budget_plans_user_id_users_id_fk",
-          "tableFrom": "budget_plans",
-          "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
@@ -144,7 +124,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "bigserial",
+          "type": "varchar(200)",
           "primaryKey": true,
           "notNull": true
         },

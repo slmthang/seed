@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS "budget_plan_expenses" (
+	"id" bigserial PRIMARY KEY NOT NULL,
 	"budget_plan_id" bigserial NOT NULL,
 	"item" varchar(120) NOT NULL,
 	"category" varchar(120) NOT NULL,
@@ -8,7 +9,7 @@ CREATE TABLE IF NOT EXISTS "budget_plan_expenses" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "budget_plans" (
 	"id" bigserial PRIMARY KEY NOT NULL,
-	"user_id" bigserial NOT NULL,
+	"user_id" varchar(200) NOT NULL,
 	"budget_plan_name" varchar(120) NOT NULL,
 	"budget" varchar(30) NOT NULL,
 	"expense" varchar(30) NOT NULL,
@@ -18,7 +19,7 @@ CREATE TABLE IF NOT EXISTS "budget_plans" (
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "users" (
-	"id" bigserial PRIMARY KEY NOT NULL,
+	"id" varchar(200) PRIMARY KEY NOT NULL,
 	"first_name" varchar(120) NOT NULL,
 	"last_name" varchar(120) NOT NULL,
 	"email" varchar(120) NOT NULL,

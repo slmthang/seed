@@ -2,7 +2,7 @@
 import { bigserial, varchar, integer, pgTable, serial, text, time, timestamp } from 'drizzle-orm/pg-core';
 
 export const usersTable = pgTable('users', {
-  id: bigserial('id', {mode: 'number'}).primaryKey(),
+  id: varchar('id', { length: 200 }).primaryKey(),
   firstName: varchar('first_name', { length: 120 }).notNull(),
   lastName: varchar('last_name', { length: 120 }).notNull(),
   email: varchar('email', { length: 120 }).notNull().unique(),
@@ -11,7 +11,7 @@ export const usersTable = pgTable('users', {
 
 export const budgetPlansTable = pgTable('budget_plans', {
   id: bigserial('id', {mode: 'number'}).primaryKey(),
-  userId: bigserial('user_id', {mode: 'number'})
+  userId: varchar('user_id', { length: 200 })
     .notNull()
     .references(() => usersTable.id, { onDelete: 'cascade' }),
   budgetPlanName: varchar('budget_plan_name', { length: 120 }).notNull(),

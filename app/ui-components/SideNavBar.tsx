@@ -1,18 +1,18 @@
 
 'use client'
 
-import { useClerk } from '@clerk/nextjs'
-
-
+import { useClerk, useUser } from '@clerk/nextjs';
 import { ProfileIcon, PersonIcon, HelpIcon, SettingIcon, LogoutIcon } from './Icons';
-
 
 
 export default function SideNavBar(
     {toggle} : {toggle: () => void}
 ) {
 
+    // signout button
     const { signOut } = useClerk();
+
+    const { isSignedIn, user, isLoaded } = useUser()
 
     return (
         <div className="z-20 w-screen h-screen flex fixed ">
@@ -20,8 +20,8 @@ export default function SideNavBar(
                 <div className="pt-6 mb-6">
                     <ProfileIcon tailwindClass=' !size-11'/>
                     <div>
-                        <p className="text-base">Solomon & May</p>
-                        <p className="text-base font-extralight">#50854</p>
+                        <p className="text-base">{user?.fullName}</p>
+                        <p className="text-base font-extralight">{user?.primaryEmailAddress?.emailAddress}</p>
                     </div>
                 </div>
                 <ul className=" gap-y-4 flex flex-col">

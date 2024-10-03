@@ -3,7 +3,7 @@ import { drizzle } from "drizzle-orm/neon-http";
 import { neon } from "@neondatabase/serverless";
 import { config } from "dotenv";
 
-import { SelectUser , usersTable, budgetPlansTable, budgetPlanExpensesTable, SelectBudgetPlan } from './schema';
+import { SelectUser , InsertUser, usersTable, budgetPlansTable, budgetPlanExpensesTable, SelectBudgetPlan } from './schema';
 import { asc, between, count, eq, getTableColumns, sql } from 'drizzle-orm';
 
 config({ path: ".env" }); // or .env.local
@@ -14,7 +14,7 @@ export const db = drizzle(neon_sql);
 // get user id
 export async function getUserById(id: SelectUser['id']): Promise<
   Array<{
-    id: number;
+    id: string;
     firstName: string;
     lastName: string;
     email: string;
@@ -24,6 +24,37 @@ export async function getUserById(id: SelectUser['id']): Promise<
   
   return db.select().from(usersTable).where(eq(usersTable.id, id)).limit(1);
 }
+
+// check user exists
+export async function userExist(id: SelectUser['id']) : Promise<Boolean> {
+
+  const users = await getUserById(id);
+
+  if (users.length === 1) {
+    return true;
+  }
+
+  return false;
+}
+
+// create user
+export async function createUser(data: InsertUser) : Promise<Boolean> {
+
+  try {
+    
+    await db.insert(usersTable).values(data);
+
+  } catch (err) {
+    console.log('Something went wrong with creating user.')
+    console.log(err);
+
+    return false;
+  }
+
+  return true;
+  
+}
+
 
 
 // get budget plans by user id

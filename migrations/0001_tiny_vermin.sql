@@ -1,1 +1,0 @@
-ALTER TABLE "budget_plan_expenses" ADD COLUMN "id" bigserial PRIMARY KEY NOT NULL;
