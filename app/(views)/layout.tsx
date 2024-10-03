@@ -10,6 +10,8 @@ import MenuBar from "@/app/ui-components/MenuBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSquare } from "@fortawesome/free-solid-svg-icons"
 
+import { useClerk, useUser } from '@clerk/nextjs';
+
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -52,7 +54,10 @@ export default function Layout({
     // subscriptions data
     let savings_expense = calculateTotal(savingsExpenseListData);
 
-    const [user, setUser] = useState<{
+    // const id = user?.id;
+
+    const { isSignedIn, user, isLoaded } = useUser()
+    const [curUser, setCurUser] = useState<{
         id: string,
         firstName: string,
         lastName: string,
@@ -66,33 +71,66 @@ export default function Layout({
         joined: new Date()
     })
 
-    useEffect(() => {
-        async function fetchUser() {
+
+    useEffect(()=>{
+        async function addUser() {
+            
             const data = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/get-user', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
                 },
-                body: JSON.stringify({ userId: 'user_2mtuzi1JScwwZhmVufD25F5njp7' }),
+                body: JSON.stringify({ userId: user!.id }),
             })
                 .then((response) => response.json())
                 .then((data) => {
                     
-                    return data[0];
+                    return data;
                 })
                 .catch((error) => {
                     console.error(error);
                 });
 
-            setUser(data);
+            if (data.length <= 0) {
+                const added = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/get-user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id: user?.id,
+                        firstName: user?.firstName,
+                        lastName: user?.lastName,
+                        email: user?.primaryEmailAddress,
+                        joined: user?.createdAt
+                    }),
+                })
+            }
         }
 
-        fetchUser();
-    }, [])
+        if(isLoaded && isSignedIn) {
+            addUser();
 
-    let appData : AppDataType = {user};
+            setCurUser({
+                id: user.id!,
+                firstName: user.firstName!,
+                lastName: user.lastName!,
+                email: user.primaryEmailAddress?.emailAddress!,
+                joined: user.createdAt!
 
-    console.log(appData)
+            })
+
+        }
+    },[isLoaded, isSignedIn])
+
+    // useEffect(() => {
+        
+        
+    // }, [])
+
+    let appData : AppDataType = {user: {
+        ...curUser
+    }};
 
     
 
