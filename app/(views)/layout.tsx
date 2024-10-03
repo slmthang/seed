@@ -75,7 +75,7 @@ export default function Layout({
     useEffect(()=>{
         async function addUser() {
             
-            const data = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/get-user', {
+            const existStatus = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/user-exist', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
@@ -85,14 +85,21 @@ export default function Layout({
                 .then((response) => response.json())
                 .then((data) => {
                     
-                    return data;
+                    return data.exist;
                 })
                 .catch((error) => {
                     console.error(error);
                 });
 
-            if (data.length <= 0) {
-                const added = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/get-user', {
+            if (existStatus === false) {
+
+                // console.log({
+                //     id: user?.id,
+                //     firstName: user?.firstName,
+                //     lastName: user?.lastName,
+                //     email: user?.primaryEmailAddress
+                // })
+                const added = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/add-user', {
                     method: 'POST',
                     headers: {
                         'Content-type': 'application/json',
@@ -101,8 +108,7 @@ export default function Layout({
                         id: user?.id,
                         firstName: user?.firstName,
                         lastName: user?.lastName,
-                        email: user?.primaryEmailAddress,
-                        joined: user?.createdAt
+                        email: user?.primaryEmailAddress?.emailAddress
                     }),
                 })
             }
