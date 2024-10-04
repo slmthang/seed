@@ -27,37 +27,14 @@ export default function Layout({
     children: React.ReactNode;
 }>) {
 
-
-    const [changed, isChanged] = useState(false);
-
     const [isSideNavActive, setIsSideNavActive] = useState(false);
 
     function toggleSideNav() {
         setIsSideNavActive(prevState => !prevState);
     }
 
-    // budget data
-    let budgetPlan_budget = '2000.00';
-    let budgetPlan_expense = calculateTotal(budgetPlanExpenseListData);
-    let budgetPlan_balance = calculateMoney(budgetPlan_budget, budgetPlan_expense, 'subtract');
-
-    // subscriptions data
-    let subscriptions_expense = calculateTotal(subscriptionsExpenseListData)
-    
-    // tracker data
-    let tracker_incomeList: trackerItemsListType = trackerItemsListData.filter(e => !e.isExpense);
-    let tracker_expenseList: trackerItemsListType = trackerItemsListData.filter(e => e.isExpense);
-    let tracker_income = calculateTotal(tracker_incomeList);
-    let tracker_expense = calculateTotal(tracker_expenseList);
-    let tracker_balance = calculateMoney(tracker_income, tracker_expense, 'subtract');
-
-    // subscriptions data
-    let savings_expense = calculateTotal(savingsExpenseListData);
-
-    // const id = user?.id;
-
-    const { isSignedIn, user, isLoaded } = useUser()
-    const [curUser, setCurUser] = useState<{
+    const { isSignedIn, user : ClerkUser, isLoaded } = useUser()
+    const [user, setUser] = useState<{
         id: string,
         firstName: string,
         lastName: string,
@@ -73,14 +50,14 @@ export default function Layout({
 
 
     useEffect(()=>{
-        async function addUser() {
+        async function addNewUser() {
             
             const existStatus = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/user-exist', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
                 },
-                body: JSON.stringify({ userId: user!.id }),
+                body: JSON.stringify({ userId: ClerkUser!.id }),
             })
                 .then((response) => response.json())
                 .then((data) => {
@@ -92,37 +69,30 @@ export default function Layout({
                 });
 
             if (existStatus === false) {
-
-                // console.log({
-                //     id: user?.id,
-                //     firstName: user?.firstName,
-                //     lastName: user?.lastName,
-                //     email: user?.primaryEmailAddress
-                // })
                 const added = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/add-user', {
                     method: 'POST',
                     headers: {
                         'Content-type': 'application/json',
                     },
                     body: JSON.stringify({
-                        id: user?.id,
-                        firstName: user?.firstName,
-                        lastName: user?.lastName,
-                        email: user?.primaryEmailAddress?.emailAddress
+                        id: ClerkUser?.id,
+                        firstName: ClerkUser?.firstName,
+                        lastName: ClerkUser?.lastName,
+                        email: ClerkUser?.primaryEmailAddress?.emailAddress
                     }),
                 })
             }
         }
 
         if(isLoaded && isSignedIn) {
-            addUser();
+            addNewUser();
 
-            setCurUser({
-                id: user.id!,
-                firstName: user.firstName!,
-                lastName: user.lastName!,
-                email: user.primaryEmailAddress?.emailAddress!,
-                joined: user.createdAt!
+            setUser({
+                id: ClerkUser.id!,
+                firstName: ClerkUser.firstName!,
+                lastName: ClerkUser.lastName!,
+                email: ClerkUser.primaryEmailAddress?.emailAddress!,
+                joined: ClerkUser.createdAt!
 
             })
 
@@ -135,7 +105,7 @@ export default function Layout({
     // }, [])
 
     let appData : AppDataType = {user: {
-        ...curUser
+        ...user
     }};
 
     
