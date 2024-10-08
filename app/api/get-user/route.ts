@@ -1,5 +1,5 @@
 
-import { getUserById } from "@/app/(playground)/playground/dbtest/db";
+import { getUserById } from "@/app/db/db";
 
 export async function POST(request: Request) {
     const res = await request.json()

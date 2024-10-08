@@ -1,6 +1,6 @@
 
-import {  createUser } from "@/app/(playground)/playground/dbtest/db";
-import { InsertUser } from "@/app/(playground)/playground/dbtest/schema";
+import {  createUser } from "@/app/db/db";
+import { InsertUser } from "@/app/db/schema/budgetPlanExpenses";
 
 export async function POST(request: Request) {
     const res : InsertUser = await request.json()

@@ -34,7 +34,8 @@ function NavBarOption(
 
 
 
-export default function NavBar() {
+export default function NavBar(
+) {
 
     const  NavBarOptionsData = [
         {
@@ -86,7 +87,7 @@ export default function NavBar() {
     })
 
     return (
-        <nav className="z-10 flex justify-between items-center absolute bottom-[0px] w-screen h-16 px-5 backdrop-blur-md ">
+        <nav className={"z-10 flex justify-between items-center absolute bottom-[0px] left-[0px] w-screen h-16 px-5 backdrop-blur-md  " }>
             {optionsToShow}
         </nav>
     )

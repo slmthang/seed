@@ -1,129 +1,49 @@
 
-// import { useContext, useState } from "react";
 
-'use client'
 
-import SideNavBar from "../ui-components/SideNavBar";
 
-import NavBar from "@/app/ui-components/NavBar";
-import MenuBar from "@/app/ui-components/MenuBar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSquare } from "@fortawesome/free-solid-svg-icons"
+import { userExistById, createUser } from "@/app/db/db";
+import { AppDataType } from "@/app/lib/definitions";
+import { currentUser } from '@clerk/nextjs/server'
+import { SignOutButton } from '@clerk/nextjs'
+import ViewLayOutHelper from "../ui-components/ViewLayOutHelper";
 
-import { useClerk, useUser } from '@clerk/nextjs';
 
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
-import { AppDataContext } from "@/app/lib/contexts";
-import { calculateMoney, calculateTotal } from "@/app/lib/utils";
-
-import { budgetPlanData, budgetPlanExpenseListData, savingsExpenseListData, subscriptionsExpenseListData, trackerItemsListData } from "@/app/lib/placeholder-data";
-import { AppDataType, trackerItemsListType } from "../lib/definitions";
-
-export default function Layout({
+export default async function Layout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
 
-    const [isSideNavActive, setIsSideNavActive] = useState(false);
+    const user = await currentUser();
 
-    function toggleSideNav() {
-        setIsSideNavActive(prevState => !prevState);
-    }
+    if (user?.primaryEmailAddress?.verification?.status === 'verified') {
+        // check if the user already exits
+        const checkUserExist = await userExistById(user?.id as string);
 
-    const { isSignedIn, user : ClerkUser, isLoaded } = useUser()
-    const [user, setUser] = useState<{
-        id: string,
-        firstName: string,
-        lastName: string,
-        email: string,
-        joined: Date
-    }>({
-        id: 'userId',
-        firstName: 'firstName',
-        lastName: 'lastName',
-        email: 'email',
-        joined: new Date()
-    })
-
-
-    useEffect(()=>{
-        async function addNewUser() {
+        // if it is new user add to database
+        if ( !checkUserExist ) {
             
-            const existStatus = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/user-exist', {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify({ userId: ClerkUser!.id }),
+            const createUserStatus = await createUser({
+                id: user?.id as string,
+                firstName: user?.firstName as string,
+                lastName: user?.lastName as string,
+                email: user?.primaryEmailAddress?.emailAddress as string
             })
-                .then((response) => response.json())
-                .then((data) => {
-                    
-                    return data.exist;
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
 
-            if (existStatus === false) {
-                const added = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/add-user', {
-                    method: 'POST',
-                    headers: {
-                        'Content-type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        id: ClerkUser?.id,
-                        firstName: ClerkUser?.firstName,
-                        lastName: ClerkUser?.lastName,
-                        email: ClerkUser?.primaryEmailAddress?.emailAddress
-                    }),
-                })
+            if (createUserStatus) {
+                throw Error('user creation failed.')
             }
         }
-
-        if(isLoaded && isSignedIn) {
-            addNewUser();
-
-            setUser({
-                id: ClerkUser.id!,
-                firstName: ClerkUser.firstName!,
-                lastName: ClerkUser.lastName!,
-                email: ClerkUser.primaryEmailAddress?.emailAddress!,
-                joined: ClerkUser.createdAt!
-
-            })
-
-        }
-    },[isLoaded, isSignedIn])
-
-    // useEffect(() => {
-        
-        
-    // }, [])
-
-    let appData : AppDataType = {user: {
-        ...user
-    }};
-
-    
+    }
 
     return (
-        <AppDataContext.Provider value={appData}>
+
         <>
-            {isSideNavActive && <SideNavBar toggle={toggleSideNav}/>}
-            <main className={"overflow-hidden relative w-screen h-dvh " + (isSideNavActive && 'ml-[60%]')}>
-                
-                <MenuBar toggle={toggleSideNav}/>
-                
-                {children}
-
-                <NavBar />
-
-            </main>
+            <ViewLayOutHelper children={children}/>
         </>
-        </AppDataContext.Provider>
+
+        
     )
 }

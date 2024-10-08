@@ -3,10 +3,10 @@
 
 import { useClerk, useUser } from '@clerk/nextjs';
 import { ProfileIcon, PersonIcon, HelpIcon, SettingIcon, LogoutIcon } from './Icons';
-
+import { Dispatch, SetStateAction } from 'react';
 
 export default function SideNavBar(
-    {toggle} : {toggle: () => void}
+    {sideNavToggle} : {sideNavToggle: Dispatch<SetStateAction<Boolean>>}
 ) {
 
     // signout button
@@ -16,7 +16,7 @@ export default function SideNavBar(
 
     return (
         <div className="z-20 w-screen h-screen flex fixed ">
-            <div className="w-[50%] h-full bg-darkest flex flex-col pl-6 gap-y-4">
+            <div className="w-[60%] h-full bg-darkest flex flex-col pl-6 gap-y-4">
                 <div className="pt-6 mb-6">
                     <ProfileIcon tailwindClass=' !size-11'/>
                     <div>
@@ -43,7 +43,7 @@ export default function SideNavBar(
                     </li>
                 </ul>
             </div>
-            <div className='w-[50%] ' onClick={toggle}>
+            <div className='w-[40%] ' onClick={() => sideNavToggle(prev => !prev)}>
 
             </div>
         </div>

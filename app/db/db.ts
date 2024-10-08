@@ -1,12 +1,13 @@
 
 import { drizzle } from "drizzle-orm/neon-http";
 import { neon } from "@neondatabase/serverless";
-import { config } from "dotenv";
+// import { config } from "dotenv";
 
-import { SelectUser , InsertUser, usersTable, budgetPlansTable, budgetPlanExpensesTable, SelectBudgetPlan } from './schema';
+// DB STUFF
 import { asc, between, count, eq, getTableColumns, sql } from 'drizzle-orm';
-
-config({ path: ".env" }); // or .env.local
+import { SelectUser, InsertUser, usersTable } from '@/app/db/schema/users';
+import { SelectBudgetPlan, InsertBudgetPlan, budgetPlansTable } from "./schema/budgetPlans";
+import { SelectBudgetPlanExpense, InsertBudgetPlanExpense, budgetPlanExpensesTable } from './schema/budgetPlanExpenses';
 
 const neon_sql = neon(process.env.DATABASE_URL!);
 export const db = drizzle(neon_sql);
@@ -26,7 +27,7 @@ export async function getUserById(id: SelectUser['id']): Promise<
 }
 
 // check user exists
-export async function userExist(id: SelectUser['id']) : Promise<Boolean> {
+export async function userExistById(id: SelectUser['id']) : Promise<Boolean> {
 
   const users = await getUserById(id);
 
@@ -45,8 +46,7 @@ export async function createUser(data: InsertUser) : Promise<Boolean> {
     await db.insert(usersTable).values(data);
 
   } catch (err) {
-    console.log('Something went wrong with creating user.')
-    console.log(err);
+    console.error('Something went wrong with creating user.')
 
     return false;
   }
@@ -54,6 +54,8 @@ export async function createUser(data: InsertUser) : Promise<Boolean> {
   return true;
   
 }
+
+
 
 
 
