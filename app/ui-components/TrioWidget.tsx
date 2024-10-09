@@ -1,4 +1,5 @@
 
+'use client'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleRight, faSquare } from "@fortawesome/free-solid-svg-icons"
@@ -9,16 +10,16 @@ import OptionsSelector from "./OptionsSelector";
 import { splitMoney } from "@/app/lib/utils"
 import clsx from "clsx";
 
-export default function BIEOverview(
-    {cardName, pathName, optionsSelctor=false, tailwindClass='', B, I, E} : {cardName: string, pathName: string, optionsSelctor?: Boolean, tailwindClass?: string, B: any, I: any, E: any}
+export default function TrioWidget(
+    {cardName, pathName, optionsSelctor=false, income, expense, balance} : {cardName: string, pathName: string, optionsSelctor?: Boolean, income: string, expense: string, balance: string}
 ) {
 
-    const [Bdollars, Bcents] = splitMoney(B);
-    const [Idollars, Icents] = splitMoney(I);
-    const [Edollars, Ecents] = splitMoney(E);
+    const [incomeDollars, incomeCents] = splitMoney(income);
+    const [expenseDollars, expenseCents] = splitMoney(expense);
+    const [balanceDollars, balanceCents] = splitMoney(balance);
 
     return (
-        <div className={"w-[90%] min-h-[12rem] bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center " + tailwindClass}>
+        <div className={"w-[90%] min-h-[12rem] bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center "}>
             <div className="w-full min-h-[2rem] px-4 py-2 flex items-center justify-between">
                 <p className="font-thin">{cardName}</p>
                 <Link href={pathName}>
@@ -37,7 +38,7 @@ export default function BIEOverview(
                     </p>
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
-                    <p className="text-xl mt-1">${Idollars}.<span className="text-xs">{Icents}</span></p>
+                    <p className="text-xl mt-1">${incomeDollars}.<span className="text-xs">{incomeCents}</span></p>
                 </div>
             </div>
             <div className="w-full h-[3rem] flex px-4 ">
@@ -48,7 +49,7 @@ export default function BIEOverview(
                     </p>
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
-                    <p className="text-xl mt-1">${Edollars}.<span className="text-xs">{Ecents}</span></p>
+                    <p className="text-xl mt-1">${expenseDollars}.<span className="text-xs">{expenseCents}</span></p>
                 </div>
             </div>
             <div className="w-full h-[3rem] flex px-4 ">
@@ -59,7 +60,7 @@ export default function BIEOverview(
                     </p>
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
-                    <p className="text-xl mt-1">${Bdollars}.<span className="text-xs">{Bcents}</span></p>
+                    <p className="text-xl mt-1">${balanceDollars}.<span className="text-xs">{balanceCents}</span></p>
                 </div>
             </div>
         </div>

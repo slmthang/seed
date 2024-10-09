@@ -1,7 +1,5 @@
 
 
-
-
 import { userExistById, createUser } from "@/app/db/db";
 import { AppDataType } from "@/app/lib/definitions";
 import { currentUser } from '@clerk/nextjs/server'

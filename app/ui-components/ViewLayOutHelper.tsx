@@ -20,7 +20,6 @@ export default function ViewLayOutHelper(
                     
                 <MenuBar sideNavToggle={setSideNav} />
                 
-                {/* {sideNav ? <SideNavBar sideNavToggle={setSideNav}/> : children} */}
                 {children}
                 
                 <NavBar />
