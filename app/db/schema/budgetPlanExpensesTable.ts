@@ -1,6 +1,6 @@
 
 import { bigserial, varchar, pgTable, timestamp } from 'drizzle-orm/pg-core';
-import { budgetPlansTable } from './budgetPlans';
+import { budgetPlansTable } from './budgetPlansTable';
 
 
 export const budgetPlanExpensesTable  = pgTable('budget_plan_expenses', {

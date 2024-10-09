@@ -171,7 +171,7 @@ export function AddButtonIcon(
     tailwindClass = 'size-6 stroke-1 ' + tailwindClass;
 
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={tailwindClass}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={tailwindClass}>
             <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clipRule="evenodd" />
         </svg>
 
@@ -213,9 +213,23 @@ export function CloseButtonIcon(
     tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
     
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={tailwindClass}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className={tailwindClass}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
         </svg>
+
+    )
+}
+
+export function BackButtonIcon(
+    {tailwindClass = ''} : {tailwindClass?: string}
+) {
+    tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
+
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className={tailwindClass}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+        </svg>
+
 
     )
 }
@@ -243,6 +257,19 @@ export function AppIcon(
 ) {
     return (
         <Image src={AppIconImage} alt='app icon' width={+width} height={+height}/>
+    )
+}
+
+export function MeatBallIcon(
+    {tailwindClass = ''} : {tailwindClass?: string}
+) {
+
+    tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
+    
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={tailwindClass}>
+            <path fill="currentColor" d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0-4 0m0-6a2 2 0 1 0 4 0a2 2 0 0 0-4 0m0 12a2 2 0 1 0 4 0a2 2 0 0 0-4 0"></path>
+        </svg>
     )
 }
 

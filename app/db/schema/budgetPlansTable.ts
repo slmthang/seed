@@ -1,7 +1,7 @@
 
 
 import { bigserial, varchar, pgTable, timestamp } from 'drizzle-orm/pg-core';
-import { usersTable } from './users';
+import { usersTable } from './usersTable';
 
 export const budgetPlansTable = pgTable('budget_plans', {
   id: bigserial('id', {mode: 'number'}).primaryKey(),
@@ -13,9 +13,9 @@ export const budgetPlansTable = pgTable('budget_plans', {
   expense: varchar('expense', { length: 30 }).notNull(),
   balance: varchar('balance', { length: 30 }).notNull(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
-  updatedAt: timestamp('updated_at')
-    .notNull()
-    .$onUpdate(() => new Date()),
+  // updatedAt: timestamp('updated_at')
+  //   .notNull()
+  //   .$onUpdate(() => new Date()),
 });
 
 export type InsertBudgetPlan = typeof budgetPlansTable.$inferInsert;

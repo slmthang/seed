@@ -5,9 +5,9 @@ import { neon } from "@neondatabase/serverless";
 
 // DB STUFF
 import { asc, between, count, eq, getTableColumns, sql } from 'drizzle-orm';
-import { SelectUser, InsertUser, usersTable } from '@/app/db/schema/users';
-import { SelectBudgetPlan, InsertBudgetPlan, budgetPlansTable } from "./schema/budgetPlans";
-import { SelectBudgetPlanExpense, InsertBudgetPlanExpense, budgetPlanExpensesTable } from './schema/budgetPlanExpenses';
+import { SelectUser, InsertUser, usersTable } from '@/app/db/schema/usersTable';
+import { SelectBudgetPlan, InsertBudgetPlan, budgetPlansTable } from "./schema/budgetPlansTable";
+import { SelectBudgetPlanExpense, InsertBudgetPlanExpense, budgetPlanExpensesTable } from './schema/budgetPlanExpensesTable';
 
 const neon_sql = neon(process.env.DATABASE_URL!);
 export const db = drizzle(neon_sql);
@@ -69,11 +69,40 @@ export async function getBudgetPlansByUserId(id: SelectUser['id']): Promise<
     expense: string;
     balance: string;
     createdAt: Date;
-    updatedAt: Date;
   }>
 > {
   
   return db.select().from(budgetPlansTable).where(eq(budgetPlansTable.userId, id));
+}
+
+// get budget plan by its id
+export async function getBudgetPlanById(id: SelectBudgetPlan['id']): Promise<
+  Array<{
+    id: number;
+    userId: string;
+    budgetPlanName: string;
+    budget: string;
+    expense: string;
+    balance: string;
+    createdAt: Date;
+  }>
+> {
+  
+  return db.select().from(budgetPlansTable).where(eq(budgetPlansTable.id, id));
+}
+
+// create budget plan
+export async function createBudgetPlan(budgetPlan: InsertBudgetPlan): Promise<string> {
+
+  try {
+    
+    const insertedId = await db.insert(budgetPlansTable).values(budgetPlan).returning({insertedId: budgetPlansTable.id}).then(data => data[0]);
+
+    return insertedId.insertedId + '';
+
+  } catch (err) {
+    return "Failed to create Budget Plan";
+  }
 }
 
 // get budget expenses by budgetplan id
@@ -90,3 +119,17 @@ export async function getBudgetExpensesByBudgetPlanId(id: SelectBudgetPlan['id']
   return db.select().from(budgetPlanExpensesTable).where(eq(budgetPlanExpensesTable.budgetPlanID, id));
 }
 
+
+// create budget plan
+export async function createBudgetPlanExpense(budgetPlanExpense: InsertBudgetPlanExpense): Promise<string> {
+
+  try {
+    
+    const {budgetPlanId} = await db.insert(budgetPlanExpensesTable).values(budgetPlanExpense).returning({budgetPlanId: budgetPlanExpensesTable.budgetPlanID}).then(data => data[0]);
+
+    return budgetPlanId + '';
+
+  } catch (err) {
+    return "Failed to create Budget plan expense";
+  }
+}
