@@ -21,7 +21,7 @@ export default function BudgetPlans(
 ) {
 
     const BudgetPlanCards = budgetPlans.map( item => {
-        return <BudgetPlanCard budget={item.budget} expense={item.expense} balance={item.balance} budgetPlanId={item.id + ''} cardName={item.budgetPlanName} /> 
+        return <BudgetPlanCard key={item.id + '' + item.createdAt} budget={item.budget} expense={item.expense} balance={item.balance} budgetPlanId={item.id + ''} cardName={item.budgetPlanName} /> 
     })
 
     const [formActive, setFormActive] = useState<Boolean>(false);

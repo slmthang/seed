@@ -11,8 +11,6 @@ export default function ViewLayOutHelper(
 
     const [sideNav, setSideNav] = useState<Boolean>(false);
 
-    console.log('SideNavStatus: ', sideNav)
-
     return (
         <>
             {sideNav && <SideNavBar sideNavToggle={setSideNav}/>}

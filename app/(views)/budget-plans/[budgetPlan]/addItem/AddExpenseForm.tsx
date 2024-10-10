@@ -4,20 +4,15 @@ import { CloseButtonIcon } from "@/app/ui-components/Icons";
 import AddExpenseAction from './AddExpenseAction'
 
 export default function AddExpenseForm(
-    {budgetPlanId, toggleForm} : {budgetPlanId: string, toggleForm: Dispatch<SetStateAction<Boolean>>}
+    {budgetPlanId} : {budgetPlanId: string}
 ) {
 
     return (
         <div  className="flex items-center justify-center w-screen h-dvh min-h-dvh overflow-y-scroll pt-[3rem] fixed top-[0px] left-[0px] backdrop-brightness-50 z-30">
-            <form action={ async (formData) => {
-                    await AddExpenseAction(formData);
-                    toggleForm(prev => !prev);
-                }} 
-                className="flex flex-col items-center justify-center w-[90%] p-4 rounded-xl bg-darker border border-dark gap-y-4 z-40"
-            >
+            <form action={AddExpenseAction} className="flex flex-col items-center justify-center w-[90%] p-4 rounded-xl bg-darker border border-dark gap-y-4 z-40">
                 <div className="flex justify-center items-center relative w-full">
                     <h1>Add a new Item</h1>
-                    <div className="absolute right-0" onClick={() => toggleForm(prev => !prev)}>
+                    <div className="absolute right-0" >
                         <CloseButtonIcon />
                     </div>
                 </div>
