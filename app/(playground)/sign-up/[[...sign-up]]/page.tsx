@@ -1,7 +1,6 @@
 'use client'
 
-import { AppIcon, GoogleIcon } from '@/app/ui-components/Icons';
-import HRLine from '@/app/ui-components/HRLine';
+import { AppIcon, GoogleIcon, FacebookIcon, TikTokIcon } from '@/app/ui-components/Icons';
 import Link from 'next/link';
 import * as Clerk from '@clerk/elements/common'
 import * as SignUp from '@clerk/elements/sign-up'
@@ -39,10 +38,21 @@ export default function SignUpPage() {
             </h1>
           </header>
 
-          <Clerk.Connection name="google" className='w-full h-[3rem] flex gap-x-2 justify-center items-center bg-dark rounded-xl'>
-            <GoogleIcon />
-            Sign up with Google
-          </Clerk.Connection>
+          <div className='w-full flex flex-col gap-y-4 '>
+            <Clerk.Connection name="google" className='w-full h-[3rem] flex gap-x-2 justify-center items-center bg-dark rounded-xl'>
+              <GoogleIcon />
+              <p>Sign up with Google</p>
+            </Clerk.Connection>
+            <Clerk.Connection name="facebook" className='w-full h-[3rem] flex gap-x-2 justify-center items-center bg-dark rounded-xl'>
+              <FacebookIcon />
+              <p>Sign up with Facebook</p>
+            </Clerk.Connection>
+            <Clerk.Connection name="tiktok" className='w-full h-[3rem] flex gap-x-2 justify-center items-center bg-dark rounded-xl'>
+              <TikTokIcon />
+              <p>Sign up with TikTok</p>
+            </Clerk.Connection>
+          </div>
+          
 
           <div className='w-full h-[3rem] rounded-xl mt-4 flex items-center justify-center'>
             <p className='font-thin text-sm'>
