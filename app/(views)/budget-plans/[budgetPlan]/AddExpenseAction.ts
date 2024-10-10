@@ -3,14 +3,15 @@
 import { createBudgetPlanExpense } from "@/app/db/db";
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
+import { AddExpenseFormData } from "./AddExpenseFormUtils";
 
-export default async function AddBudgetPlan(formData: FormData) {
+export default async function AddBudgetPlan(formData: AddExpenseFormData) {
 
     const rawFormData = {
-        budgetPlanId: formData.get('budgetPlanId'),
-        item: formData.get('itemName'),
-        amount: formData.get('amount'),
-        category: formData.get('category')
+        budgetPlanId: formData.budgetPlanId,
+        item: formData.item,
+        amount: formData.amount,
+        category: formData.category
     }
 
     const id = await createBudgetPlanExpense({

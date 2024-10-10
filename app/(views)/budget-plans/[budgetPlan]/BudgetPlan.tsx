@@ -15,8 +15,9 @@ import AddExpenseForm from "./AddExpenseForm";
 import { AddButtonIcon } from "@/app/ui-components/Icons";
 
 export default function BudgetPlan(
-    {budgetPlanName, budget, expense, balance, expenses} : 
+    {budgetPlanId, budgetPlanName, budget, expense, balance, expenses} : 
     {
+        budgetPlanId: string,
         budgetPlanName: string, 
         budget: string, 
         expense: string, 
@@ -36,7 +37,7 @@ export default function BudgetPlan(
     return (
 
         <>
-            {formActive && <AddExpenseForm budgetPlanId={expenses[0].budgetPlanID + ''} toggleForm={setFormActive}/>}
+            {formActive && <AddExpenseForm budgetPlanId={budgetPlanId} toggleForm={setFormActive}/>}
             <div className=" w-screen h-dvh h-dvh overflow-y-scroll z-20 fixed top-[0px] bg-darker ">
                 <div className="w-screen backdrop-blur-md flex items-center justify-center">
                     <div className="w-[90%] h-[5rem] flex items-center justify-center relative">

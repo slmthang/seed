@@ -35,6 +35,9 @@ importers:
       '@fortawesome/react-fontawesome':
         specifier: ^0.2.2
         version: 0.2.2(@fortawesome/fontawesome-svg-core@6.6.0)(react@18.3.1)
+      '@hookform/resolvers':
+        specifier: ^3.9.0
+        version: 3.9.0(react-hook-form@7.53.0(react@18.3.1))
       '@neondatabase/serverless':
         specifier: ^0.9.5
         version: 0.9.5
@@ -49,7 +52,7 @@ importers:
         version: 16.4.5
       drizzle-orm:
         specifier: ^0.33.0
-        version: 0.33.0(@neondatabase/serverless@0.9.5)(@types/pg@8.11.10)(@types/react@18.3.10)(pg@8.13.0)(react@18.3.1)
+        version: 0.33.0(@neondatabase/serverless@0.9.5)(@types/pg@8.11.10)(@types/react@18.3.10)(pg@8.13.0)(postgres@3.4.4)(react@18.3.1)
       next:
         specifier: ^14.2.14
         version: 14.2.14(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -59,15 +62,24 @@ importers:
       pg:
         specifier: ^8.13.0
         version: 8.13.0
+      postgres:
+        specifier: ^3.4.4
+        version: 3.4.4
       react:
         specifier: ^18.3.1
         version: 18.3.1
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+      react-hook-form:
+        specifier: ^7.53.0
+        version: 7.53.0(react@18.3.1)
       victory:
         specifier: ^37.1.1
         version: 37.1.1(react@18.3.1)
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@testing-library/dom':
         specifier: ^10.4.0
@@ -733,6 +745,11 @@ packages:
     peerDependencies:
       '@fortawesome/fontawesome-svg-core': ~1 || ~6
       react: '>=16.3'
+
+  '@hookform/resolvers@3.9.0':
+    resolution: {integrity: sha512-bU0Gr4EepJ/EQsH/IwEzYLsT/PEj5C0ynLQ4m+GSHS+xKH4TfSelhluTgOaoc4kA5s7eCsQbM4wvZLzELmWzUg==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
 
   '@humanwhocodes/config-array@0.13.0':
     resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
@@ -2690,6 +2707,10 @@ packages:
   postgres-range@1.1.4:
     resolution: {integrity: sha512-i/hbxIE9803Alj/6ytL7UHQxRvZkI9O4Sy+J3HGc4F4oo/2eQAjTSNJ0bfxyse3bH0nuVesCk+3IRLaMtG3H6w==}
 
+  postgres@3.4.4:
+    resolution: {integrity: sha512-IbyN+9KslkqcXa8AO9fxpk97PA4pzewvpi2B3Dwy9u4zpV32QicaEdgmF3eSQUzdRk7ttDHQejNgAEr4XoeH4A==}
+    engines: {node: '>=12'}
+
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
@@ -2715,6 +2736,12 @@ packages:
 
   react-fast-compare@3.2.2:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
+
+  react-hook-form@7.53.0:
+    resolution: {integrity: sha512-M1n3HhqCww6S2hxLxciEXy2oISPnAzxY7gvwVPrtlczTM/1dDadXgUxDpHMrMTblDOcm/AXtXxHwZ3jpg1mqKQ==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -3416,6 +3443,9 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
+  zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+
 snapshots:
 
   '@adobe/css-tools@4.4.0': {}
@@ -3886,6 +3916,10 @@ snapshots:
       '@fortawesome/fontawesome-svg-core': 6.6.0
       prop-types: 15.8.1
       react: 18.3.1
+
+  '@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@18.3.1))':
+    dependencies:
+      react-hook-form: 7.53.0(react@18.3.1)
 
   '@humanwhocodes/config-array@0.13.0':
     dependencies:
@@ -4750,12 +4784,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.33.0(@neondatabase/serverless@0.9.5)(@types/pg@8.11.10)(@types/react@18.3.10)(pg@8.13.0)(react@18.3.1):
+  drizzle-orm@0.33.0(@neondatabase/serverless@0.9.5)(@types/pg@8.11.10)(@types/react@18.3.10)(pg@8.13.0)(postgres@3.4.4)(react@18.3.1):
     optionalDependencies:
       '@neondatabase/serverless': 0.9.5
       '@types/pg': 8.11.10
       '@types/react': 18.3.10
       pg: 8.13.0
+      postgres: 3.4.4
       react: 18.3.1
 
   eastasianwidth@0.2.0: {}
@@ -5949,6 +5984,8 @@ snapshots:
 
   postgres-range@1.1.4: {}
 
+  postgres@3.4.4: {}
+
   prelude-ls@1.2.1: {}
 
   pretty-format@27.5.1:
@@ -5974,6 +6011,10 @@ snapshots:
       scheduler: 0.23.2
 
   react-fast-compare@3.2.2: {}
+
+  react-hook-form@7.53.0(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   react-is@16.13.1: {}
 
@@ -6826,3 +6867,5 @@ snapshots:
   yaml@2.5.1: {}
 
   yocto-queue@0.1.0: {}
+
+  zod@3.23.8: {}

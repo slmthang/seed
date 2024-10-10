@@ -1,7 +1,8 @@
 
-import { drizzle } from "drizzle-orm/neon-http";
-import { neon } from "@neondatabase/serverless";
+import { drizzle } from 'drizzle-orm/postgres-js'
+import postgres from 'postgres'
 // import { config } from "dotenv";
+import 'dotenv/config'
 
 // DB STUFF
 import { asc, between, count, eq, getTableColumns, sql } from 'drizzle-orm';
@@ -9,8 +10,10 @@ import { SelectUser, InsertUser, usersTable } from '@/app/db/schema/usersTable';
 import { SelectBudgetPlan, InsertBudgetPlan, budgetPlansTable } from "./schema/budgetPlansTable";
 import { SelectBudgetPlanExpense, InsertBudgetPlanExpense, budgetPlanExpensesTable } from './schema/budgetPlanExpensesTable';
 
-const neon_sql = neon(process.env.DATABASE_URL!);
-export const db = drizzle(neon_sql);
+const connectionString = process.env.DATABASE_URL!
+// Disable prefetch as it is not supported for "Transaction" pool mode
+export const client = postgres(connectionString, { prepare: false })
+export const db = drizzle(client);
 
 // get user id
 export async function getUserById(id: SelectUser['id']): Promise<
@@ -47,7 +50,8 @@ export async function createUser(data: InsertUser) : Promise<Boolean> {
 
   } catch (err) {
     console.error('Something went wrong with creating user.')
-
+    console.log('Data: ', data)
+    console.log(err)
     return false;
   }
 

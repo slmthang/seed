@@ -8,12 +8,13 @@ import BudgetPlan from "./BudgetPlan"
 export default async function Page({ params }: { params: { budgetPlan: string } }) {
 
     const id = params.budgetPlan;
+    console.log(id)
 
     const budgetPlan = await getBudgetPlanById(+id).then(data => data[0]);
     const expenses = await getBudgetExpensesByBudgetPlanId(+id);
 
     return (
-        <BudgetPlan budgetPlanName={budgetPlan.budgetPlanName} budget={budgetPlan.budget} expense={budgetPlan.expense} balance={budgetPlan.balance} expenses={expenses}/>
+        <BudgetPlan budgetPlanId={id} budgetPlanName={budgetPlan.budgetPlanName} budget={budgetPlan.budget} expense={budgetPlan.expense} balance={budgetPlan.balance} expenses={expenses}/>
         // <></>
     )
 

@@ -30,7 +30,7 @@ export default async function Layout({
                 email: user?.primaryEmailAddress?.emailAddress as string
             })
 
-            if (createUserStatus) {
+            if (!createUserStatus) {
                 throw Error('user creation failed.')
             }
         }
