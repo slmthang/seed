@@ -1,17 +1,12 @@
 
 import { createBudgetPlan, createBudgetPlanExpense } from "@/app/db/db";
-import { getBudgetExpensesByBudgetPlanId } from "@/app/db/db";
+import { updateBudgetPlanExpense } from "@/app/db/db";
 
 export default async function Page() {
 
   // const status = await createBudgetPlan({userId: 'user_2nAkg093vE6oXvEDx2hVCJfoDiz', budgetPlanName: 'testName', budget: 'test', expense: 'test', balance: 'test'})
   // const expenses = await getBudgetExpensesByBudgetPlanId(43454);
-  const id = await createBudgetPlanExpense({
-    budgetPlanID: 43454,
-    item: "Phone",
-    amount: "5000.00",
-    category: "Personal"
-})
+  const id = await updateBudgetPlanExpense(,'1000.00', '500.00')
   // console.log('created: ', status)
 
   console.log(id)

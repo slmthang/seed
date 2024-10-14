@@ -3,8 +3,10 @@
 // modules
 import BudgetPlanCard from '@/app/ui-components/BudgetPlanCard';
 import { AddButtonIcon } from "@/app/ui-components/Icons"
-import AddBudgePlanForm from './AddBudgePlanForm';
+import AddBudgetPlanForm from './AddBudgetPlanForm';
 import { useState } from 'react';
+import isEmptyExpensesCard from '@/app/ui-components/IsEmptyExpensesCard';
+import IsEmptyExpensesCard from '@/app/ui-components/IsEmptyExpensesCard';
 
 export default function BudgetPlans(
     {budgetPlans} : { 
@@ -28,7 +30,7 @@ export default function BudgetPlans(
 
     return (
         <>
-            {formActive && <AddBudgePlanForm toggleForm={setFormActive}/>}
+            {formActive && <AddBudgetPlanForm toggleForm={setFormActive}/>}
 
             <div className=" w-screen h-dvh min-h-dvh overflow-y-scroll pt-[3rem] relative">
                 
@@ -36,7 +38,23 @@ export default function BudgetPlans(
                     {/* <BudgetPlanCard budget="4000.00" expense="3000.00" balance="1000.00" budgetPlanId="4803849" cardName="Weekly Budget Plan" isDefault={true} isShared={true} />
                     <BudgetPlanCard budget="3000.00" expense="1500.00" balance="1500.00" budgetPlanId="sdflkj230"  cardName="Roadtrip Budget Plan" />
                     <BudgetPlanCard budget="1000.00" expense="300.00" balance="700.00" budgetPlanId="sdfjlk983"  cardName="Monthly Budget Plan"  isShared={true} /> */}
-                    {BudgetPlanCards}
+                    {/* {BudgetPlanCards} */}
+
+                    {
+                        budgetPlans.length >= 1 ?
+                        
+                        (
+                            BudgetPlanCards
+                        ) :
+
+                        (
+                            <div className="w-[100%] flex flex-col items-center p-5">
+                                <h1 className="text-xl">EMPTY</h1>
+                                <p className="text-sm font-thin">Add a budget plan by clicking the add button.</p>
+                            </div>
+                        )
+                    }
+                    
                 </div>
 
                 <div onClick={() => setFormActive(prev => !prev)}>

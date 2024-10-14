@@ -1,10 +1,27 @@
 import { Dispatch, SetStateAction } from "react";
 import { CloseButtonIcon } from "@/app/ui-components/Icons";
-import AddBudgetPlan from "./AddBudgetPlan";
+import AddBudgetPlanAction from "./AddBudgetPlanAction";
+import { useForm } from "react-hook-form";
+import { AddBudgetPlanFormData, AddBudgetPlanFormSchema, BudgetPlanFormField} from "./AddBudgetPlanFormUtils";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function AddBudgePlanForm(
     {toggleForm} : {toggleForm: Dispatch<SetStateAction<Boolean>>}
 ) {
+
+    const {
+        register,
+        handleSubmit,
+        formState: {errors},
+        setError,
+    } = useForm<AddBudgetPlanFormData>({
+        resolver: zodResolver(AddBudgetPlanFormSchema)
+    });
+
+    const onSubmit = async (data: AddBudgetPlanFormData) => {
+        await AddBudgetPlanAction(data); // add budget plan using server action
+        toggleForm(prev => !prev); // close form
+    }
 
     return (
         <div  className="flex items-center justify-center w-screen h-dvh min-h-dvh overflow-y-scroll pt-[3rem] fixed top-[0px] left-[0px] backdrop-brightness-50 z-20">
@@ -15,6 +32,22 @@ export default function AddBudgePlanForm(
                         <CloseButtonIcon />
                     </div>
                 </div>
+
+                <BudgetPlanFormField 
+                    type="text"
+                    label="Budget Plan Name"
+                    name="budgetPlanName"
+                    register={register}
+                    error={errors.budgetPlanName}
+                />
+
+                <BudgetPlanFormField 
+                    type="text"
+                    label="Budget Amount"
+                    name="budgetPlanName"
+                    register={register}
+                    error={errors.budgetPlanName}
+                />
                 
                 <div >
                     <label htmlFor="budgetPlanName" className="text-sm">
@@ -32,7 +65,7 @@ export default function AddBudgePlanForm(
                         className="w-full h-[2.5rem] rounded-xl pl-4 mt-1 text-dark"
                     />
                 </div>
-                <button formAction={AddBudgetPlan} className="w-full h-[2.5rem] rounded-xl pl-4 bg-dark text-center">Add</button>
+                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-dark text-center">Add</button>
             </form>
         </div>
     )

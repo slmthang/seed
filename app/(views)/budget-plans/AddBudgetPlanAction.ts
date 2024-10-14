@@ -3,22 +3,18 @@ import { createBudgetPlan } from "@/app/db/db";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
+import { AddBudgetPlanFormData } from "./AddBudgetPlanFormUtils";
 
-export default async function AddBudgetPlan(formData: FormData) {
+export default async function AddBudgetPlanAction(formData: AddBudgetPlanFormData) {
 
     const user = await currentUser();
 
-    const rawFormData = {
-        budgetPlanName: formData.get('budgetPlanName'),
-        budgetAmount: formData.get('budgetAmount'),
-    }
-
     const id = await createBudgetPlan({
         userId: user?.id + '',
-        budgetPlanName: rawFormData?.budgetPlanName + '',
-        budget: rawFormData?.budgetAmount + '',
+        budgetPlanName: formData.budgetPlanName,
+        budget: formData.budgetAmount,
         expense: '0.00',
-        balance: rawFormData?.budgetAmount + ''
+        balance: formData.budgetAmount
     })
 
     revalidatePath('/budget-plans') // Update cached budgetplans

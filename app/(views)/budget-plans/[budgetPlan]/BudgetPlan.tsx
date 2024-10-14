@@ -13,6 +13,7 @@ import { BackButtonIcon, MeatBallIcon } from "@/app/ui-components/Icons";
 import AddExpenseForm from "./AddExpenseForm";
 // import AddButton from "./AddButton";
 import { AddButtonIcon } from "@/app/ui-components/Icons";
+import IsEmptyExpensesCard from "@/app/ui-components/IsEmptyExpensesCard";
 
 export default function BudgetPlan(
     {budgetPlanId, budgetPlanName, budget, expense, balance, expenses} : 
@@ -58,9 +59,23 @@ export default function BudgetPlan(
                     <TrioOverView income={budget} expense={expense} balance={balance} pageType="budget-plan"/>
                     
                     <div className="w-[90%] min-h-fit bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center my-4">
-                        <div className="w-[100%] flex flex-col items-center pt-6">
-                            <Items expenses={expenses}/> 
-                        </div>
+    
+                        {
+                            expenses.length <= 0 ?
+
+                            (
+                                <div className="w-[100%] flex flex-col items-center p-5">
+                                    <h1 className="text-xl">EMPTY</h1>
+                                    <p className="text-sm font-thin">Add an item by clicking the add button.</p>
+                                </div>
+                            ) :
+
+                            (
+                                <div className="w-[100%] flex flex-col items-center">
+                                    <Items expenses={expenses}/>
+                                </div>
+                            )
+                        }
                     </div>
                         
                     

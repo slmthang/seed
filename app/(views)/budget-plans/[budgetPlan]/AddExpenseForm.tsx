@@ -4,12 +4,12 @@ import AddExpenseAction from './AddExpenseAction'
 import { useForm } from "react-hook-form";
 import { budgetPlanData } from "@/app/lib/placeholder-data";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AddExpenseFormData, AddExpenseFromSchema, FormField } from "./AddExpenseFormUtils";
+import { AddExpenseFormData, AddExpenseFromSchema, AddExpenseFormField } from "./AddExpenseFormUtils";
 
 
 
 export default function AddExpenseForm(
-    {budgetPlanId, toggleForm} : {budgetPlanId: string, toggleForm: Dispatch<SetStateAction<Boolean>>}
+    {budgetPlanId, totalExpense, toggleForm} : {budgetPlanId: string, totalExpense: string, toggleForm: Dispatch<SetStateAction<Boolean>>}
 ) {
     const {
         register,
@@ -24,37 +24,41 @@ export default function AddExpenseForm(
         await AddExpenseAction(data)
         toggleForm(prev => !prev)
     }
-    // action={ async (formData) => {
-    //     // await AddExpenseAction(formData);
-    //     toggleForm(prev => !prev);
-    // }} 
+
     return (
         <div  className="flex items-center justify-center w-screen h-dvh min-h-dvh overflow-y-scroll pt-[3rem] fixed top-[0px] left-[0px] backdrop-brightness-50 z-30">
             <form onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col items-center justify-center w-[90%] p-4 rounded-xl bg-darker border border-dark gap-y-2 z-40"
             >
                 <div className="flex justify-center items-center relative w-full">
-                    <h1>Add a new Item</h1>
+                    <h1>Add an Expense</h1>
                     <div className="absolute right-0" onClick={() => toggleForm(prev => !prev)}>
                         <CloseButtonIcon />
                     </div>
                 </div>
-                <FormField 
+                <AddExpenseFormField 
                     type="hidden" 
                     name="budgetPlanId"
-                    actualValue={budgetPlanId}
+                    value={budgetPlanId}
                     register={register}
                     error={errors.budgetPlanId}
                 />
-                <FormField 
+                <AddExpenseFormField 
+                    type="hidden" 
+                    name="totalExpense"
+                    value={totalExpense}
+                    register={register}
+                    error={errors.budgetPlanId}
+                />
+                <AddExpenseFormField 
                     type="text"
-                    label="Item" 
+                    label="Name" 
                     name="item" 
-                    placeholder="Item Name"
+                    placeholder="Name"
                     register={register}
                     error={errors.item}
                 />
-                <FormField 
+                <AddExpenseFormField 
                     type="text"
                     label="Amount" 
                     name="amount" 
@@ -62,7 +66,7 @@ export default function AddExpenseForm(
                     register={register}
                     error={errors.amount}
                 />
-                <FormField 
+                <AddExpenseFormField 
                     type="text"
                     label="Category" 
                     name="category" 

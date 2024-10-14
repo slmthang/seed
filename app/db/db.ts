@@ -109,6 +109,29 @@ export async function createBudgetPlan(budgetPlan: InsertBudgetPlan): Promise<st
   }
 }
 
+// update budget plan by id and columns
+export async function updateBudgetPlanExpense(
+  budgetPlanId: SelectBudgetPlan['id'],
+  totalExpense: string,
+  newExpense: string
+): Promise<string> {
+
+  try {
+
+    const newTotalExpense = Number(totalExpense) + Number(newExpense)
+    
+    const updateBudgetPlan = await db.update(budgetPlansTable)
+      .set({expense: String(newTotalExpense)})
+      .where(eq(budgetPlansTable.id, budgetPlanId))
+      .returning({ id : budgetPlansTable.id }).then(data => data[0]);
+
+    return updateBudgetPlan.id + '';
+
+  } catch (err) {
+    return "Failed to update expense on BudgetPlansTable";
+  }
+}
+
 // get budget expenses by budgetplan id
 export async function getBudgetExpensesByBudgetPlanId(id: SelectBudgetPlan['id']): Promise<
   Array<{
