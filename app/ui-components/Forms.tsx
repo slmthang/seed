@@ -1,15 +1,58 @@
+
+
+/* ########################################### IMPORTS ########################################### */
+
 import { Dispatch, SetStateAction } from "react";
 import { CloseButtonIcon } from "@/app/ui-components/Icons";
-import AddExpenseAction from './AddExpenseAction'
+import { AddExpenseAction } from "@/app/lib/actions";
 import { useForm } from "react-hook-form";
-import { budgetPlanData } from "@/app/lib/placeholder-data";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AddExpenseFormData, AddExpenseFromSchema, AddExpenseFormField } from "./AddExpenseFormUtils";
+import { AddExpenseFormData, AddExpenseFromSchema, AddExpenseFormFieldProps } from "@/app/lib/definitions";
 
 
+/* ########################################### FORMS ########################################### */
 
-export default function AddExpenseForm(
-    {budgetPlanId, totalExpense, toggleForm} : {budgetPlanId: string, totalExpense: string, toggleForm: Dispatch<SetStateAction<Boolean>>}
+/****************************** AddExpenseForm ******************************/
+
+// AddExpenseFormField
+const AddExpenseFormField: React.FC<AddExpenseFormFieldProps> = ({
+    label,
+    type,
+    placeholder,
+    name,
+    value,
+    register,
+    error,
+    valueAsNumber,
+}) => (
+    <div className='w-full'>
+        {label && <label htmlFor={name} className="text-sm">{label}</label>}
+        {!value ?
+            (
+                <input
+                    type={type}
+                    placeholder={placeholder}
+                    {...register(name, { valueAsNumber })}
+                    className="w-full h-[2.5rem] rounded-xl pl-4 my-1 text-dark"
+                />
+            ) : (
+                <input
+                    type={type}
+                    placeholder={placeholder}
+                    {...register(name, { valueAsNumber })}
+                    className="w-full h-[2.5rem] rounded-xl pl-4 my-1 text-dark"
+                    value={value}
+                />
+            )
+        }
+        
+        {error && <span className="text-sm text-red-500">{error.message}</span>}
+    </div>
+);
+
+// AddExpenseForm
+export function AddExpenseForm(
+    {budgetPlanId,  totalExpense, totalBalance, toggleForm} : {budgetPlanId: string, totalBalance: string, totalExpense: string, toggleForm: Dispatch<SetStateAction<Boolean>>}
 ) {
     const {
         register,
@@ -47,6 +90,13 @@ export default function AddExpenseForm(
                     type="hidden" 
                     name="totalExpense"
                     value={totalExpense}
+                    register={register}
+                    error={errors.budgetPlanId}
+                />
+                <AddExpenseFormField 
+                    type="hidden" 
+                    name="totalBalance"
+                    value={totalBalance}
                     register={register}
                     error={errors.budgetPlanId}
                 />

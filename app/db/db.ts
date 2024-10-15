@@ -3,12 +3,16 @@ import { drizzle } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
 // import { config } from "dotenv";
 import 'dotenv/config'
+import getMessageError from '../lib/getMessageError';
+
+import { budgetPlanListType, budgetPlanType, expenseListType } from '../lib/definitions';
 
 // DB STUFF
 import { asc, between, count, eq, getTableColumns, sql } from 'drizzle-orm';
 import { SelectUser, InsertUser, usersTable } from '@/app/db/schema/usersTable';
 import { SelectBudgetPlan, InsertBudgetPlan, budgetPlansTable } from "./schema/budgetPlansTable";
 import { SelectBudgetPlanExpense, InsertBudgetPlanExpense, budgetPlanExpensesTable } from './schema/budgetPlanExpensesTable';
+import { calculateMoney } from '../lib/utils';
 
 const connectionString = process.env.DATABASE_URL!
 // Disable prefetch as it is not supported for "Transaction" pool mode
@@ -63,37 +67,55 @@ export async function createUser(data: InsertUser) : Promise<Boolean> {
 
 
 
-// get budget plans by user id
-export async function getBudgetPlansByUserId(id: SelectUser['id']): Promise<
-  Array<{
-    id: number;
-    userId: string;
-    budgetPlanName: string;
-    budget: string;
-    expense: string;
-    balance: string;
-    createdAt: Date;
-  }>
-> {
+/**
+ * Fetch a list of budget plans by user id.
+ *
+ * @param id { number } - user id
+ * @returns { Promise<Array<budgetPlanType>> } a promise with a list of budget plans
+ *
+ */
+export async function getBudgetPlans( id: string): Promise<Array<budgetPlanType>> {
   
   return db.select().from(budgetPlansTable).where(eq(budgetPlansTable.userId, id));
 }
 
-// get budget plan by its id
-export async function getBudgetPlanById(id: SelectBudgetPlan['id']): Promise<
-  Array<{
-    id: number;
-    userId: string;
-    budgetPlanName: string;
-    budget: string;
-    expense: string;
-    balance: string;
-    createdAt: Date;
-  }>
+
+
+/**
+ * Fetch a specific budget plan by using its id.
+ *
+ * @param id { number } - user id
+ * @returns { Promise<budgetPlanType> } a promise with a budget plan object
+ *
+ */
+export async function getBudgetPlanById(id: number): Promise<
+  {
+    success: boolean,
+    data: budgetPlanType | string
+  }
 > {
   
-  return db.select().from(budgetPlansTable).where(eq(budgetPlansTable.id, id));
+  try {
+    
+    const budgetPlanArray = await db.select().from(budgetPlansTable).where(eq(budgetPlansTable.id, id));
+
+    return {
+      success: true,
+      data: budgetPlanArray[0]
+    };
+
+  } catch (err) {
+
+    return {
+      success: false,
+      data: getMessageError(err)
+    }
+
+  }
 }
+
+
+
 
 // create budget plan
 export async function createBudgetPlan(budgetPlan: InsertBudgetPlan): Promise<string> {
@@ -113,15 +135,16 @@ export async function createBudgetPlan(budgetPlan: InsertBudgetPlan): Promise<st
 export async function updateBudgetPlanExpense(
   budgetPlanId: SelectBudgetPlan['id'],
   totalExpense: string,
-  newExpense: string
+  newExpense: string,
+  method: 'add' | 'subtract'
 ): Promise<string> {
 
   try {
 
-    const newTotalExpense = Number(totalExpense) + Number(newExpense)
+    const newTotalExpense = calculateMoney(totalExpense, newExpense, method)
     
     const updateBudgetPlan = await db.update(budgetPlansTable)
-      .set({expense: String(newTotalExpense)})
+      .set({expense: newTotalExpense})
       .where(eq(budgetPlansTable.id, budgetPlanId))
       .returning({ id : budgetPlansTable.id }).then(data => data[0]);
 
@@ -132,16 +155,58 @@ export async function updateBudgetPlanExpense(
   }
 }
 
-// get budget expenses by budgetplan id
-export async function getBudgetExpensesByBudgetPlanId(id: SelectBudgetPlan['id']): Promise<
-  Array<{
-    budgetPlanID: number;
-    item: string;
-    category: string;
-    amount: string;
-    createdAt: Date;
-  }>
-> {
+// update budget plan by id and columns
+export async function updateBudgetPlanBalance(
+  budgetPlanId: SelectBudgetPlan['id'],
+  totalBalance: string,
+  newExpense: string,
+  method: 'add' | 'subtract'
+): Promise<string> {
+
+  try {
+
+    const newTotalBalance = calculateMoney(totalBalance, newExpense, method);
+    
+    const updateBudgetPlan = await db.update(budgetPlansTable)
+      .set({ balance : newTotalBalance})
+      .where(eq(budgetPlansTable.id, budgetPlanId))
+      .returning({ id : budgetPlansTable.id }).then(data => data[0]);
+
+    return updateBudgetPlan.id + '';
+
+  } catch (err) {
+    return "Failed to update balance on BudgetPlansTable";
+  }
+}
+
+// update budget plan by id and columns
+export async function updateBudgetPlanBudgetAmount(
+  budgetPlanId: SelectBudgetPlan['id'],
+  newBudgetAmount: string
+): Promise<string> {
+
+  try {
+    
+    const updateBudgetPlan = await db.update(budgetPlansTable)
+      .set({ budget : newBudgetAmount})
+      .where(eq(budgetPlansTable.id, budgetPlanId))
+      .returning({ id : budgetPlansTable.id }).then(data => data[0]);
+
+    return updateBudgetPlan.id + '';
+
+  } catch (err) {
+    return "Failed to update budget on BudgetPlansTable";
+  }
+}
+
+/**
+ * Fetch a specific list of expenses by using a budget plan id.
+ *
+ * @param id { number } - budget plan id
+ * @returns { Promise<expenseListType> } a promise with a list of expenses
+ *
+ */
+export async function getExpenseList(id: number): Promise<expenseListType> {
   
   return db.select().from(budgetPlanExpensesTable).where(eq(budgetPlanExpensesTable.budgetPlanID, id));
 }

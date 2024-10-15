@@ -3,19 +3,30 @@
 import { getBudgetPlanById, getBudgetExpensesByBudgetPlanId } from "@/app/db/db";
 import BudgetPlan from "./BudgetPlan"
 
-
-
 export default async function Page({ params }: { params: { budgetPlan: string } }) {
 
+    // budgetPlan Id
     const id = params.budgetPlan;
-    console.log(id)
+    
+    const budgetPlan = await getBudgetPlanById(+id); // get a specific budget plan by using Id
+    const expenses = await getBudgetExpensesByBudgetPlanId(+id); // get expense list by using budgetplan id
 
-    const budgetPlan = await getBudgetPlanById(+id).then(data => data[0]);
-    const expenses = await getBudgetExpensesByBudgetPlanId(+id);
+    let error = {};
+
+    if (!budgetPlan.success && typeof budgetPlan.data === 'string') {
+    }
 
     return (
-        <BudgetPlan budgetPlanId={id} budgetPlanName={budgetPlan.budgetPlanName} budget={budgetPlan.budget} expense={budgetPlan.expense} balance={budgetPlan.balance} expenses={expenses}/>
-        // <></>
+        {
+            budgetPlan.success === true && typeof budgetPlan.data !== 'string' ?
+
+                <BudgetPlan budgetPlanId={id} budgetPlanName={budgetPlan.data.budgetPlanName} budget={budgetPlan.data.budget} expense={budgetPlan.data.expense} balance={budgetPlan.data.balance} expenses={expenses}/> : 
+                (
+                    <h1>lkj</h1>
+                )
+                
+        }
+        
     )
 
 }

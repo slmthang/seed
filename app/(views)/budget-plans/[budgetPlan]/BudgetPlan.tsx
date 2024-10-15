@@ -5,15 +5,10 @@
 import { useState } from "react";
 import Items from "@/app/ui-components/Items";
 import Link from "next/link";
-
-import DisplayChart from "@/app/ui-components/DisplayChart";
 import TrioOverView from '@/app/ui-components/TrioOverview'
-import Tabs from "@/app/ui-components/Tabs";
 import { BackButtonIcon, MeatBallIcon } from "@/app/ui-components/Icons";
-import AddExpenseForm from "./AddExpenseForm";
-// import AddButton from "./AddButton";
+import { AddExpenseForm } from "@/app/ui-components/Forms";
 import { AddButtonIcon } from "@/app/ui-components/Icons";
-import IsEmptyExpensesCard from "@/app/ui-components/IsEmptyExpensesCard";
 
 export default function BudgetPlan(
     {budgetPlanId, budgetPlanName, budget, expense, balance, expenses} : 
@@ -38,7 +33,8 @@ export default function BudgetPlan(
     return (
 
         <>
-            {formActive && <AddExpenseForm budgetPlanId={budgetPlanId} toggleForm={setFormActive}/>}
+            {formActive && <AddExpenseForm totalExpense={expense} totalBalance={balance} budgetPlanId={budgetPlanId} toggleForm={setFormActive}/>}
+            
             <div className=" w-screen h-dvh h-dvh overflow-y-scroll z-20 fixed top-[0px] bg-darker ">
                 <div className="w-screen backdrop-blur-md flex items-center justify-center">
                     <div className="w-[90%] h-[5rem] flex items-center justify-center relative">
