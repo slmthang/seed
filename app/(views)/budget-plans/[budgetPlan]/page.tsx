@@ -1,6 +1,6 @@
 
 
-import { getBudgetPlanById, getBudgetExpensesByBudgetPlanId } from "@/app/db/db";
+import { getBudgetPlanById } from "@/app/db/db";
 import BudgetPlan from "./BudgetPlan"
 
 export default async function Page({ params }: { params: { budgetPlan: string } }) {

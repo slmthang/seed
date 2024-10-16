@@ -88,28 +88,18 @@ export async function getBudgetPlans( id: string): Promise<Array<budgetPlanType>
  * @returns { Promise<budgetPlanType> } a promise with a budget plan object
  *
  */
-export async function getBudgetPlanById(id: number): Promise<
-  {
-    success: boolean,
-    data: budgetPlanType | string
-  }
-> {
+export async function getBudgetPlanById(id: number): Promise<budgetPlanType> {
   
   try {
     
-    const budgetPlanArray = await db.select().from(budgetPlansTable).where(eq(budgetPlansTable.id, id));
-
-    return {
-      success: true,
-      data: budgetPlanArray[0]
-    };
+    const budgetPlanArray = await db.select().from(budgetPlansTable).where(eq(budgetPlansTable.userId, id)));
+    
+    
+    return budgetPlanArray[0]
 
   } catch (err) {
 
-    return {
-      success: false,
-      data: getMessageError(err)
-    }
+    throw "Errr: " + err;
 
   }
 }
