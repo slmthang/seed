@@ -1,6 +1,6 @@
 
-import { createBudgetPlan, createBudgetPlanExpense, updateBudgetPlanBalance } from "@/app/db/db";
-import { updateBudgetPlanExpense } from "@/app/db/db";
+import { createBudgetPlan, createBudgetPlanExpense, updateBudgetPlanBalance } from "@/app/lib/db/drizzle";
+import { updateBudgetPlanExpense } from "@/app/lib/db/drizzle";
 
 export default async function Page() {
 

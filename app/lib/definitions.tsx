@@ -5,13 +5,12 @@ import { FieldError, UseFormRegister } from "react-hook-form";
 import { z, ZodType } from "zod"; // Add new import
 
 
-
 /* ########################################### TYPES ########################################### */
 
 /****************************** AddExpenseForm ******************************/
 
-// AddExpenseFormData
-export type AddExpenseFormData = {
+// AddExpenseFormData Type
+export type AddExpenseFormDataType = {
     budgetPlanId: string;
     totalExpense: string;
     totalBalance: string;
@@ -20,23 +19,23 @@ export type AddExpenseFormData = {
     category: string;
 }
 
-// AddExpenseFormFieldNames
-export type AddExpenseFormFieldNames = 'budgetPlanId' | 'totalExpense' | 'totalBalance' | 'item' | 'amount' | 'category';
+// AddExpenseFormFieldNames Type
+export type AddExpenseFormFieldNamesType = 'budgetPlanId' | 'totalExpense' | 'totalBalance' | 'item' | 'amount' | 'category';
 
-// AddExpenseFormFieldProps
-export type AddExpenseFormFieldProps = {
+// AddExpenseFormFieldProps Type
+export type AddExpenseFormFieldPropsType = {
     label?: string;
     type: string;
     placeholder?: string;
-    name: AddExpenseFormFieldNames;
+    name: AddExpenseFormFieldNamesType;
     value?: string;
-    register: UseFormRegister<AddExpenseFormData>;
+    register: UseFormRegister<AddExpenseFormDataType>;
     error: FieldError | undefined;
     valueAsNumber?: boolean
 }
 
-// AddExpenseFromSchema Zod Object
-export const AddExpenseFromSchema: ZodType<AddExpenseFormData> = z
+// AddExpenseFromSchema Zod Object 
+export const AddExpenseFromSchema: ZodType<AddExpenseFormDataType> = z
 .object({
     budgetPlanId: z.string(),
     totalExpense: z.string(),
@@ -53,6 +52,9 @@ export const AddExpenseFromSchema: ZodType<AddExpenseFormData> = z
 
 
 
+/****************************** Database Type ******************************/
+
+// budgetPlan Type
 export type budgetPlanType = {
     id: number;
     userId: string;
@@ -63,6 +65,7 @@ export type budgetPlanType = {
     createdAt: Date;
 }
 
+// expenseList Type
 export type expenseListType = Array<{
     id: number;
     budgetPlanID: number;
@@ -74,115 +77,109 @@ export type expenseListType = Array<{
 
 /************************************************************************************************************************/
 
-// data 
-export const data3 = [
-    ['Income', '2000'],
-    ['Expense', '2000'],
-    ['Balance', '2000']
-]
 
-export const durations = ['day', 'week', 'month', 'year'];
+// export const durations = ['day', 'week', 'month', 'year'];
 
 
-// types
-export type PageTypes = 'budget-plan' | 'subscriptions' | 'tracker' | 'savings';
+// // types
+// export type PageTypes = 'budget-plan' | 'subscriptions' | 'tracker' | 'savings';
 
-export type AppLayoutDataType = {
-    pageType : PageTypes;
-    income?: string;
-    budget?: string;
-    expense?: string;
-    balance?: string;
-}
-
-
-export type LargeWidgetTypes = 'tracker-home' | 'budgetPlanner-home';
-export type SmallWidgetTypes = 'savings-home' | 'subscriptions-home';
-
-export type LargeWidgetDataType = {
-    widgetType : LargeWidgetTypes;
-    budget? : string,
-    income? : string;
-    expense : string;
-    balance : string;
-}
-
-export type SmallWidgetDataType = {
-    widgetType : SmallWidgetTypes;
-    expense : string;
-}
-
-export type overViewDataType = {
-    budget? : {name: string, amount: string}, 
-    income?: {name: string, amount: string}, 
-    expense: {name: string, amount: string}, 
-    balance: {name: string, amount: string}
-}
-
-export type budgetPlanData = {
-    income: budgetPlanIncomeType;
-    expenseList: budgetPlanExpenseListType
-}
-
-export type budgetPlanIncomeType = string;
-
-export type budgetPlanExpenseListType = {
-    name: string, 
-    amount: string, 
-    category: string
-}[];
-
-export type subscriptionsExpenseListType = {
-    name: string, 
-    amount: string, 
-    category: string,
-    paymentDay: string
-}[];
-
-export type trackerItemsListType = {
-    name: string, 
-    amount: string,
-    isExpense: Boolean,
-    category: string,
-    date: string
-}[]
-
-export type savingsExpenseListType = {
-    name: string, 
-    amount: string,
-    category: string,
-    date: string
-}[];
+// export type AppLayoutDataType = {
+//     pageType : PageTypes;
+//     income?: string;
+//     budget?: string;
+//     expense?: string;
+//     balance?: string;
+// }
 
 
-export type AppDataType = {
-    user: {
-        id: string,
-        firstName: string,
-        lastName: string,
-        email: string,
-        joined: Date
-    }
-    // budgetPlan: {
-    //     budget: string,
-    //     expense: string,
-    //     balance: string,
-    //     expenseList: budgetPlanExpenseListType
-    // },
-    // subscriptions: {
-    //     expense: string,
-    //     expenseList: subscriptionsExpenseListType
-    // },
-    // tracker: {
-    //     income: string,
-    //     expense: string,
-    //     balance: string,
-    //     expenseList: trackerItemsListType,
-    //     incomeList: trackerItemsListType,
-    //     itemsList: trackerItemsListType
-    // },
-    // savings: {
-    //     expense: string,
-    //     expenseList: savingsExpenseListType
-    // },
-}
+// export type LargeWidgetTypes = 'tracker-home' | 'budgetPlanner-home';
+// export type SmallWidgetTypes = 'savings-home' | 'subscriptions-home';
+
+// export type LargeWidgetDataType = {
+//     widgetType : LargeWidgetTypes;
+//     budget? : string,
+//     income? : string;
+//     expense : string;
+//     balance : string;
+// }
+
+// export type SmallWidgetDataType = {
+//     widgetType : SmallWidgetTypes;
+//     expense : string;
+// }
+
+// export type overViewDataType = {
+//     budget? : {name: string, amount: string}, 
+//     income?: {name: string, amount: string}, 
+//     expense: {name: string, amount: string}, 
+//     balance: {name: string, amount: string}
+// }
+
+// export type budgetPlanData = {
+//     income: budgetPlanIncomeType;
+//     expenseList: budgetPlanExpenseListType
+// }
+
+// export type budgetPlanIncomeType = string;
+
+// export type budgetPlanExpenseListType = {
+//     name: string, 
+//     amount: string, 
+//     category: string
+// }[];
+
+// export type subscriptionsExpenseListType = {
+//     name: string, 
+//     amount: string, 
+//     category: string,
+//     paymentDay: string
+// }[];
+
+// export type trackerItemsListType = {
+//     name: string, 
+//     amount: string,
+//     isExpense: Boolean,
+//     category: string,
+//     date: string
+// }[]
+
+// export type savingsExpenseListType = {
+//     name: string, 
+//     amount: string,
+//     category: string,
+//     date: string
+// }[];
+
+
+// export type AppDataType = {
+//     user: {
+//         id: string,
+//         firstName: string,
+//         lastName: string,
+//         email: string,
+//         joined: Date
+//     }
+//     // budgetPlan: {
+//     //     budget: string,
+//     //     expense: string,
+//     //     balance: string,
+//     //     expenseList: budgetPlanExpenseListType
+//     // },
+//     // subscriptions: {
+//     //     expense: string,
+//     //     expenseList: subscriptionsExpenseListType
+//     // },
+//     // tracker: {
+//     //     income: string,
+//     //     expense: string,
+//     //     balance: string,
+//     //     expenseList: trackerItemsListType,
+//     //     incomeList: trackerItemsListType,
+//     //     itemsList: trackerItemsListType
+//     // },
+//     // savings: {
+//     //     expense: string,
+//     //     expenseList: savingsExpenseListType
+//     // },
+// }

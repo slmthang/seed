@@ -1,6 +1,6 @@
 
 
-import { getBudgetPlansByUserId } from "@/app/db/db"
+import { getBudgetPlansByUserId } from "@/app/lib/db/drizzle"
 import BudgetPlans from "./BudgetPlans"
 import { currentUser } from '@clerk/nextjs/server'
 

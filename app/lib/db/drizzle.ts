@@ -3,16 +3,16 @@ import { drizzle } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
 // import { config } from "dotenv";
 import 'dotenv/config'
-import getMessageError from '../lib/getMessageError';
+import getMessageError from '../getMessageError';
 
-import { budgetPlanListType, budgetPlanType, expenseListType } from '../lib/definitions';
+import { budgetPlanType, expenseListType } from '../definitions';
 
 // DB STUFF
 import { asc, between, count, eq, getTableColumns, sql } from 'drizzle-orm';
-import { SelectUser, InsertUser, usersTable } from '@/app/db/schema/usersTable';
+import { SelectUser, InsertUser, usersTable } from '@/app/lib/db/schema/usersTable';
 import { SelectBudgetPlan, InsertBudgetPlan, budgetPlansTable } from "./schema/budgetPlansTable";
 import { SelectBudgetPlanExpense, InsertBudgetPlanExpense, budgetPlanExpensesTable } from './schema/budgetPlanExpensesTable';
-import { calculateMoney } from '../lib/utils';
+import { calculateMoney } from '../utils';
 
 const connectionString = process.env.DATABASE_URL!
 // Disable prefetch as it is not supported for "Transaction" pool mode
@@ -84,22 +84,21 @@ export async function getBudgetPlans( id: string): Promise<Array<budgetPlanType>
 /**
  * Fetch a specific budget plan by using its id.
  *
- * @param id { number } - user id
+ * @param id { number } - budget plan id
  * @returns { Promise<budgetPlanType> } a promise with a budget plan object
  *
  */
-export async function getBudgetPlanById(id: number): Promise<budgetPlanType> {
+export async function getBudgetPlanByItsId(id: number): Promise<budgetPlanType> {
   
   try {
     
-    const budgetPlanArray = await db.select().from(budgetPlansTable).where(eq(budgetPlansTable.userId, id)));
-    
+    const budgetPlanArray = await db.select().from(budgetPlansTable).where(eq(budgetPlansTable.id, id));
     
     return budgetPlanArray[0]
 
   } catch (err) {
 
-    throw "Errr: " + err;
+    throw new Error("Fail to fetch budget plan.")
 
   }
 }
@@ -196,9 +195,17 @@ export async function updateBudgetPlanBudgetAmount(
  * @returns { Promise<expenseListType> } a promise with a list of expenses
  *
  */
-export async function getExpenseList(id: number): Promise<expenseListType> {
+export async function getExpenseListByBudgetPlanId(id: number): Promise<expenseListType> {
   
-  return db.select().from(budgetPlanExpensesTable).where(eq(budgetPlanExpensesTable.budgetPlanID, id));
+  try {
+    
+    return db.select().from(budgetPlanExpensesTable).where(eq(budgetPlanExpensesTable.budgetPlanID, id));
+
+  } catch (err) {
+
+    throw new Error("Fail to fetch expense list.")
+
+  }
 }
 
 

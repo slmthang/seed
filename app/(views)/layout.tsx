@@ -1,6 +1,6 @@
 
 
-import { userExistById, createUser } from "@/app/db/db";
+import { userExistById, createUser } from "@/app/lib/db/drizzle";
 import { AppDataType } from "@/app/lib/definitions";
 import { currentUser } from '@clerk/nextjs/server'
 import { SignOutButton } from '@clerk/nextjs'

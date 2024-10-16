@@ -7,7 +7,7 @@
 
 /* ########################################### IMPORTS ########################################### */
 
-import { createBudgetPlanExpense, updateBudgetPlanBalance, updateBudgetPlanExpense } from "@/app/db/db";
+import { createBudgetPlanExpense, updateBudgetPlanBalance, updateBudgetPlanExpense } from "@/app/lib/db/drizzle";
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 import { AddExpenseFormData } from "@/app/lib/definitions";

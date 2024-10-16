@@ -1,24 +1,30 @@
 
 'use client'
 
-// modules
+/* ########################################### IMPORTS ########################################### */
+
+// Remote
 import { useState } from "react";
-import Items from "@/app/ui-components/Items";
 import Link from "next/link";
-import TrioOverView from '@/app/ui-components/TrioOverview'
-import { BackButtonIcon, MeatBallIcon } from "@/app/ui-components/Icons";
-import { AddExpenseForm } from "@/app/ui-components/Forms";
-import { AddButtonIcon } from "@/app/ui-components/Icons";
+
+// Local
+import ExpenseList from "@/app/ui/views/budget-plans/id/ExpenseList";
+import BudgetPlanAtGlance from '@/app/ui/views/budget-plans/id/BudgetPlanAtGlance'
+import { BackButtonIcon, MeatBallIcon, AddButtonIcon } from "@/app/ui/Icons";
+import { AddExpenseForm } from "@/app/ui/views/budget-plans/id/AddExpenseForm";
+
+
+/* ########################################### Budget Plan ########################################### */
 
 export default function BudgetPlan(
-    {budgetPlanId, budgetPlanName, budget, expense, balance, expenses} : 
+    {budgetPlanId, budgetPlanName, totalBudget, totalExpense, totalBalance, expenseList} : 
     {
         budgetPlanId: string,
         budgetPlanName: string, 
-        budget: string, 
-        expense: string, 
-        balance: string, 
-        expenses: {
+        totalBudget: string, 
+        totalExpense: string, 
+        totalBalance: string, 
+        expenseList: {
             budgetPlanID: number;
             item: string;
             category: string;
@@ -33,8 +39,10 @@ export default function BudgetPlan(
     return (
 
         <>
-            {formActive && <AddExpenseForm totalExpense={expense} totalBalance={balance} budgetPlanId={budgetPlanId} toggleForm={setFormActive}/>}
+            {/* Form to add expense */}
+            {formActive && <AddExpenseForm totalExpense={totalExpense} totalBalance={totalBalance} budgetPlanId={budgetPlanId} toggleForm={setFormActive}/>}
             
+            {/* Budget Plan */}
             <div className=" w-screen h-dvh h-dvh overflow-y-scroll z-20 fixed top-[0px] bg-darker ">
                 <div className="w-screen backdrop-blur-md flex items-center justify-center">
                     <div className="w-[90%] h-[5rem] flex items-center justify-center relative">
@@ -52,31 +60,30 @@ export default function BudgetPlan(
                     </div>
                 </div>
                 <div className="w-screen min-h-[100%]  relative flex flex-col items-center  border-dark">
-                    <TrioOverView income={budget} expense={expense} balance={balance} pageType="budget-plan"/>
+                    <BudgetPlanAtGlance totalBudget={totalBudget} totalExpense={totalExpense} totalBalance={totalBalance} />
                     
                     <div className="w-[90%] min-h-fit bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center my-4">
     
-                        {
-                            expenses.length <= 0 ?
+                        <div className="w-[100%] flex flex-col items-center">
+                            {
+                                expenseList.length <= 0 ?
 
-                            (
-                                <div className="w-[100%] flex flex-col items-center p-5">
-                                    <h1 className="text-xl">EMPTY</h1>
-                                    <p className="text-sm font-thin">Add an item by clicking the add button.</p>
-                                </div>
-                            ) :
+                                (
+                                    <ExpenseListIsEmpty />
+                                ) :
 
-                            (
-                                <div className="w-[100%] flex flex-col items-center">
-                                    <Items expenses={expenses}/>
-                                </div>
-                            )
-                        }
+                                (
+                                    <ExpenseList expenseList={expenseList}/>
+                                )
+                            }
+                        
+                        </div>
                     </div>
                         
                     
                 </div>
 
+                {/* Add Button for Add Expense Form */}
                 <div onClick={() => setFormActive(prev => !prev)}>
                     <AddButtonIcon tailwindClass='fill-light z-10 fixed bottom-20 right-4 size-12'/>
                 </div>

@@ -1,5 +1,5 @@
 'use server'
-import { createBudgetPlan } from "@/app/db/db";
+import { createBudgetPlan } from "@/app/lib/db/drizzle";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'

@@ -3,11 +3,11 @@
 /* ########################################### IMPORTS ########################################### */
 
 import { Dispatch, SetStateAction } from "react";
-import { CloseButtonIcon } from "@/app/ui-components/Icons";
-import { AddExpenseAction } from "@/app/lib/actions";
+import { CloseButtonIcon } from "@/app/ui/Icons";
+import { AddExpenseAction } from "@/app/lib/serverActions";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AddExpenseFormData, AddExpenseFromSchema, AddExpenseFormFieldProps } from "@/app/lib/definitions";
+import { AddExpenseFormDataType, AddExpenseFromSchema, AddExpenseFormFieldPropsType } from "@/app/lib/definitions";
 
 
 /* ########################################### FORMS ########################################### */
@@ -15,7 +15,7 @@ import { AddExpenseFormData, AddExpenseFromSchema, AddExpenseFormFieldProps } fr
 /****************************** AddExpenseForm ******************************/
 
 // AddExpenseFormField
-const AddExpenseFormField: React.FC<AddExpenseFormFieldProps> = ({
+const AddExpenseFormField: React.FC<AddExpenseFormFieldPropsType> = ({
     label,
     type,
     placeholder,
@@ -59,11 +59,11 @@ export function AddExpenseForm(
         handleSubmit,
         formState: { errors },
         setError,
-    } = useForm<AddExpenseFormData>({
+    } = useForm<AddExpenseFormDataType>({
         resolver: zodResolver(AddExpenseFromSchema)
     });
 
-    const onSubmit = async (data: AddExpenseFormData) => {
+    const onSubmit = async (data: AddExpenseFormDataType) => {
         await AddExpenseAction(data)
         toggleForm(prev => !prev)
     }
