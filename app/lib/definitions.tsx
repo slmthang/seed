@@ -97,11 +97,21 @@ export type budgetPlanType = {
     id: number;
     userId: string;
     budgetPlanName: string;
-    budget: string;
-    expense: string;
-    balance: string;
+    totalBudget: string;
+    totalExpense: string;
+    totalBalance: string;
     createdAt: Date;
 }
+
+// export type budgetPlanListType = {
+//     id: number;
+//     userId: string;
+//     budgetPlanName: string;
+//     totalBudget: string;
+//     totalExpense: string;
+//     totalBalance: string;
+//     createdAt: Date;
+// }[] 
 
 // expenseList Type
 export type expenseListType = Array<{

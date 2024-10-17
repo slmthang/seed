@@ -74,7 +74,7 @@ export async function createUser(data: InsertUser) : Promise<Boolean> {
  * @returns { Promise<Array<budgetPlanType>> } a promise with a list of budget plans
  *
  */
-export async function getBudgetPlans( id: string ): Promise<Array<budgetPlanType>> {
+export async function getBudgetPlanListByUserId( id: string ): Promise<Array<budgetPlanType>> {
   
   return db.select().from(budgetPlansTable).where(eq(budgetPlansTable.userId, id));
 }
@@ -133,7 +133,7 @@ export async function updateExpenseOfBudgetPlan(
     const newTotalExpense = calculateMoney(totalExpense, newExpense, method)
     
     const updateBudgetPlan = await db.update(budgetPlansTable)
-      .set({expense: newTotalExpense})
+      .set({totalExpense: newTotalExpense})
       .where(eq(budgetPlansTable.id, budgetPlanId))
       .returning({ id : budgetPlansTable.id }).then(data => data[0]);
 
@@ -157,7 +157,7 @@ export async function updateBalanceOfBudgetPlan(
     const newTotalBalance = calculateMoney(totalBalance, newExpense, method);
     
     const updateBudgetPlan = await db.update(budgetPlansTable)
-      .set({ balance : newTotalBalance})
+      .set({ totalBalance : newTotalBalance})
       .where(eq(budgetPlansTable.id, budgetPlanId))
       .returning({ id : budgetPlansTable.id }).then(data => data[0]);
 
@@ -177,7 +177,7 @@ export async function updateBudgetOfBudgetPlan(
   try {
     
     const updateBudgetPlan = await db.update(budgetPlansTable)
-      .set({ budget : newBudgetAmount})
+      .set({ totalBudget : newBudgetAmount})
       .where(eq(budgetPlansTable.id, budgetPlanId))
       .returning({ id : budgetPlansTable.id }).then(data => data[0]);
 

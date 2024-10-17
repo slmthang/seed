@@ -1,19 +1,38 @@
 
+/* ########################################### Modules ########################################### */
 
+// remote
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faAngleRight, faSquare } from "@fortawesome/free-solid-svg-icons"
+import { faSquare } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link";
-import { CheckedIcon, ChevronRightIcon, SharedIcon } from "./Icons";
 
+// local
+import { ChevronRightIcon } from "../../Icons";
 import { splitMoney } from "@/app/lib/utils"
 
+/* ########################################### BudgetPlanCard ########################################### */
+
 export default function BudgetPlanCard(
-    {budget, expense, balance, budgetPlanId, cardName, isDefault = false, isShared = false} : { budget: string, expense: string, balance: string, budgetPlanId: string, cardName: string, isDefault?: Boolean, isShared?: Boolean}
+    { 
+        totalBudget, 
+        totalExpense, 
+        totalBalance, 
+        budgetPlanId, 
+        cardName
+
+    } : 
+    { 
+        totalBudget: string, 
+        totalExpense: string, 
+        totalBalance: string, 
+        budgetPlanId: string, 
+        cardName: string
+    }
 ) {
 
-    const [budgetDollars, budgetCents] = splitMoney(budget);
-    const [expenseDollars, expenseCents] = splitMoney(expense);
-    const [balanceDollars, balanceCents] = splitMoney(balance);
+    const [totalBudgetDollars, totalBudgetCents] = splitMoney(totalBudget);
+    const [totalExpenseDollars, totalExpenseCents] = splitMoney(totalExpense);
+    const [totalBalanceDollars, totalBalanceCents] = splitMoney(totalBalance);
 
     return (
         <div className={"w-[90%] min-h-[12rem] bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center "}>
@@ -21,8 +40,6 @@ export default function BudgetPlanCard(
                 
                 <div className="flex h-full items-center gap-x-2">
                     <p className="font-thin mr-1">{cardName}</p>
-                    {isDefault && <CheckedIcon tailwindClass="size-[1rem]"/>}
-                    {isShared && <SharedIcon tailwindClass="size-[1rem]"/>}
                 </div>
                 <div >
                     <Link href={'/budget-plans/' + budgetPlanId}>
@@ -41,7 +58,7 @@ export default function BudgetPlanCard(
                     </p>
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
-                    <p className="text-lg mt-1">${budgetDollars}.<span className="text-xs">{budgetCents}</span></p>
+                    <p className="text-lg mt-1">${totalBudgetDollars}.<span className="text-xs">{totalBudgetCents}</span></p>
                 </div>
             </div>
             <div className="w-full h-[3rem] flex px-4 ">
@@ -52,7 +69,7 @@ export default function BudgetPlanCard(
                     </p>
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
-                    <p className="text-lg mt-1">${expenseDollars}.<span className="text-xs">{expenseCents}</span></p>
+                    <p className="text-lg mt-1">${totalExpenseDollars}.<span className="text-xs">{totalExpenseCents}</span></p>
                 </div>
             </div>
             <div className="w-full h-[3rem] flex px-4 ">
@@ -63,7 +80,7 @@ export default function BudgetPlanCard(
                     </p>
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
-                    <p className="text-lg mt-1">${balanceDollars}.<span className="text-xs">{balanceCents}</span></p>
+                    <p className="text-lg mt-1">${totalBalanceDollars}.<span className="text-xs">{totalBalanceCents}</span></p>
                 </div>
             </div>
         </div>

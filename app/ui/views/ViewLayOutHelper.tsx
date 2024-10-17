@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from "react";
-import MenuBar from "../ui-components/MenuBar";
-import NavBar from "../ui-components/NavBar";
-import SideNavBar from "./SideNavBar";
+import MenuBar from "../MenuBar";
+import NavBar from "../NavBar";
+import SideNavBar from "../SideNavBar";
 
 export default function ViewLayOutHelper(
     {children} : {children : React.ReactNode}

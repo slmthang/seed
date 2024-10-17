@@ -1,11 +1,17 @@
 
+/* ########################################### Modules ########################################### */
 
+// remote
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSquare } from "@fortawesome/free-solid-svg-icons"
 
+// local
 import { splitMoney } from "@/app/lib/utils"
 
-export default function TrioOverView(
+
+/* ########################################### BudgetPlanAtGlance ########################################### */
+
+export default function BudgetPlanAtGlance(
     { 
         totalBudget, 
         totalExpense, 

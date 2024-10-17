@@ -1,4 +1,6 @@
 
+/* ########################################### CLIENT COMPONENT ########################################### */
+
 'use client'
 
 /* ########################################### IMPORTS ########################################### */
@@ -12,6 +14,7 @@ import ExpenseList from "@/app/ui/views/budget-plans/id/ExpenseList";
 import BudgetPlanAtGlance from '@/app/ui/views/budget-plans/id/BudgetPlanAtGlance'
 import { BackButtonIcon, MeatBallIcon, AddButtonIcon } from "@/app/ui/Icons";
 import { AddExpenseForm } from "@/app/ui/views/budget-plans/id/AddExpenseForm";
+import EmptyExpenseList from "./EmptyExpenseList";
 
 
 /* ########################################### Budget Plan ########################################### */
@@ -69,7 +72,7 @@ export default function BudgetPlan(
                                 expenseList.length <= 0 ?
 
                                 (
-                                    <ExpenseListIsEmpty />
+                                    <EmptyExpenseList />
                                 ) :
 
                                 (

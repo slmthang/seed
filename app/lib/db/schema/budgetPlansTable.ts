@@ -9,9 +9,9 @@ export const budgetPlansTable = pgTable('budget_plans', {
     .notNull()
     .references(() => usersTable.id, { onDelete: 'cascade' }),
   budgetPlanName: varchar('budget_plan_name', { length: 120 }).notNull(),
-  budget: varchar('budget', { length: 30 }).notNull(),
-  expense: varchar('expense', { length: 30 }).notNull(),
-  balance: varchar('balance', { length: 30 }).notNull(),
+  totalBudget: varchar('total_budget', { length: 30 }).notNull(),
+  totalExpense: varchar('total_expense', { length: 30 }).notNull(),
+  totalBalance: varchar('total_balance', { length: 30 }).notNull(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   // updatedAt: timestamp('updated_at')
   //   .notNull()

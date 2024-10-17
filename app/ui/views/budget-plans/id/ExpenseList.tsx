@@ -1,9 +1,13 @@
 
-// data
-import clsx from "clsx";
+/* ########################################### Modules ########################################### */
 
+// remote
+import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSquare } from "@fortawesome/free-solid-svg-icons"
+
+
+/* ########################################### ExpenseList ########################################### */
 
 export default function ExpenseList(
     {expenseList} :

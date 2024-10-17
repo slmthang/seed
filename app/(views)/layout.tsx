@@ -1,10 +1,9 @@
 
 
 import { userExistById, createUser } from "@/app/lib/db/drizzle";
-import { AppDataType } from "@/app/lib/definitions";
 import { currentUser } from '@clerk/nextjs/server'
 import { SignOutButton } from '@clerk/nextjs'
-import ViewLayOutHelper from "../ui-components/ViewLayOutHelper";
+import ViewLayOutHelper from "../ui/views/ViewLayOutHelper";
 
 
 

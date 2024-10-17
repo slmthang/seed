@@ -1,12 +1,43 @@
 
 
+/* ########################################### IMPORTS ########################################### */
+
+// remote
 import { Dispatch, SetStateAction } from "react";
-import { CloseButtonIcon } from "@/app/ui/Icons";
-import AddBudgetPlanAction from "@/app/lib/serverActions";
 import { useForm } from "react-hook-form";
-import { AddBudgetPlanFormDataType, AddBudgetPlanFormSchema, AddBudgetPlanFormFieldPropsType } from "@/app/lib/definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+// local
+import { CloseButtonIcon } from "@/app/ui/Icons";
+import AddBudgetPlanAction from "@/app/lib/serverActions";
+import { AddBudgetPlanFormDataType, AddBudgetPlanFormSchema, AddBudgetPlanFormFieldPropsType } from "@/app/lib/definitions";
+
+
+/* ########################################### Add Budget Plan Form ########################################### */
+
+// form field
+export const BudgetPlanFormField: React.FC<AddBudgetPlanFormFieldPropsType> = ({
+    label,
+    type,
+    placeholder,
+    name,
+    register,
+    error,
+    valueAsNumber,
+}) => (
+    <div className='w-full'>
+        {label && <label htmlFor={name} className="text-sm">{label}</label>}
+        <input
+            type={type}
+            placeholder={placeholder}
+            {...register(name, { valueAsNumber })}
+            className="w-full h-[2.5rem] rounded-xl pl-4 my-1 text-dark"
+        />
+        {error && <span className="text-sm text-red-500">{error.message}</span>}
+    </div>
+);
+
+// form
 export default function AddBudgePlanForm(
     {toggleForm} : {toggleForm: Dispatch<SetStateAction<Boolean>>}
 ) {
@@ -55,25 +86,3 @@ export default function AddBudgePlanForm(
         </div>
     )
 }
-
-
-export const BudgetPlanFormField: React.FC<AddBudgetPlanFormFieldPropsType> = ({
-    label,
-    type,
-    placeholder,
-    name,
-    register,
-    error,
-    valueAsNumber,
-}) => (
-    <div className='w-full'>
-        {label && <label htmlFor={name} className="text-sm">{label}</label>}
-        <input
-            type={type}
-            placeholder={placeholder}
-            {...register(name, { valueAsNumber })}
-            className="w-full h-[2.5rem] rounded-xl pl-4 my-1 text-dark"
-        />
-        {error && <span className="text-sm text-red-500">{error.message}</span>}
-    </div>
-);

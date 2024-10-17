@@ -60,9 +60,9 @@ export default async function AddBudgetPlanAction(formData: AddBudgetPlanFormDat
     const id = await createBudgetPlan({
         userId: user?.id + '',
         budgetPlanName: formData.budgetPlanName,
-        budget: formData.budgetAmount,
-        expense: '0.00',
-        balance: formData.budgetAmount
+        totalBudget: formData.budgetAmount,
+        totalExpense: '0.00',
+        totalBalance: formData.budgetAmount
     })
 
     revalidatePath('/budget-plans') // Update cached budgetplans

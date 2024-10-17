@@ -1,8 +1,13 @@
 
 
+/* ########################################### Modules ########################################### */
+
+// local
 import { getBudgetPlanByItsId, getExpenseListByBudgetPlanId } from "@/app/lib/db/drizzle";
 import BudgetPlan from "@/app/ui/views/budget-plans/id/BudgetPlan";
 
+
+/* ########################################### Page ########################################### */
 
 export default async function Page({ params }: { params: { id: string } }) {
 
@@ -12,7 +17,7 @@ export default async function Page({ params }: { params: { id: string } }) {
     const expenseList = await getExpenseListByBudgetPlanId(+budgetPlanId);
 
     return (
-        <BudgetPlan budgetPlanId={budgetPlanId} budgetPlanName={budgetPlanData.budgetPlanName} totalBudget={budgetPlanData.budget} totalExpense={budgetPlanData.expense} totalBalance={budgetPlanData.balance} expenseList={expenseList}/>
+        <BudgetPlan budgetPlanId={budgetPlanId} budgetPlanName={budgetPlanData.budgetPlanName} totalBudget={budgetPlanData.totalBudget} totalExpense={budgetPlanData.totalExpense} totalBalance={budgetPlanData.totalBalance} expenseList={expenseList}/>
     )
 
 }
