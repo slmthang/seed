@@ -1,9 +1,24 @@
+
+/* ########################################### Client Component ########################################### */
+
 'use client'
 
+
+
+/* ########################################### Modules ########################################### */
+
+// remote
 import { useState } from "react";
+
+// local
 import MenuBar from "../MenuBar";
 import NavBar from "../NavBar";
 import SideNavBar from "../SideNavBar";
+
+
+
+/* ########################################### ViewLayOutHelper ########################################### */
+
 
 export default function ViewLayOutHelper(
     {children} : {children : React.ReactNode}

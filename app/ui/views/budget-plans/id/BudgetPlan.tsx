@@ -1,9 +1,9 @@
 
-/* ########################################### CLIENT COMPONENT ########################################### */
+/* ########################################### Client Component ########################################### */
 
 'use client'
 
-/* ########################################### IMPORTS ########################################### */
+/* ########################################### Modules ########################################### */
 
 // Remote
 import { useState } from "react";
@@ -15,6 +15,7 @@ import BudgetPlanAtGlance from '@/app/ui/views/budget-plans/id/BudgetPlanAtGlanc
 import { BackButtonIcon, MeatBallIcon, AddButtonIcon } from "@/app/ui/Icons";
 import { AddExpenseForm } from "@/app/ui/views/budget-plans/id/AddExpenseForm";
 import EmptyExpenseList from "./EmptyExpenseList";
+
 
 
 /* ########################################### Budget Plan ########################################### */
@@ -88,7 +89,7 @@ export default function BudgetPlan(
 
                 {/* Add Button for Add Expense Form */}
                 <div onClick={() => setFormActive(prev => !prev)}>
-                    <AddButtonIcon tailwindClass='fill-light z-10 fixed bottom-20 right-4 size-12'/>
+                    <AddButtonIcon tailwindClass='fill-light z-10 fixed bottom-20 right-4 size-14'/>
                 </div>
                 
             </div>

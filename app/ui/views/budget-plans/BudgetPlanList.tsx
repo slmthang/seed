@@ -60,7 +60,7 @@ export default function BudgetPlanList(
                 </div>
 
                 <div onClick={() => setFormActive(prev => !prev)}>
-                    <AddButtonIcon tailwindClass='fill-light z-10 fixed bottom-20 right-4 size-12'/>
+                    <AddButtonIcon tailwindClass='fill-light z-10 fixed bottom-20 right-4 size-14'/>
                 </div>
 
             </div>

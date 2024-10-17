@@ -4,14 +4,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleRight, faSquare } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link";
-import { ChevronRightIcon } from "./Icons";
-import OptionsSelector from "./OptionsSelector";
+import { ChevronRightIcon } from "@/app/ui/Icons";
+import OptionsSelector from "@/app/ui/OptionsSelector";
 
 import { splitMoney } from "@/app/lib/utils"
 import clsx from "clsx";
 
 export default function TrioWidget(
-    {cardName, pathName, optionsSelctor=false, income, expense, balance} : {cardName: string, pathName: string, optionsSelctor?: Boolean, income: string, expense: string, balance: string}
+    {cardName, pathName, hasOptionsSelctor=false, income, expense, balance} : {cardName: string, pathName: string, hasOptionsSelctor?: Boolean, income: string, expense: string, balance: string}
 ) {
 
     const [incomeDollars, incomeCents] = splitMoney(income);
@@ -28,7 +28,7 @@ export default function TrioWidget(
                 
             </div>
 
-            { optionsSelctor && <OptionsSelector data={['day', 'week', 'month', 'year']}/> }
+            { hasOptionsSelctor && <OptionsSelector data={['day', 'week', 'month', 'year']}/> }
 
             <div className="w-full h-[3rem] flex px-4 ">
                 <div className="w-[50%] h-[100%] flex items-center"> 

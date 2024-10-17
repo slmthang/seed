@@ -92,6 +92,15 @@ export const AddBudgetPlanFormSchema: ZodType<AddBudgetPlanFormDataType> = z
 
 /****************************** Database Type ******************************/
 
+// userInfo Type
+export type userType = {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    joined?: Date | undefined;
+}
+
 // budgetPlan Type
 export type budgetPlanType = {
     id: number;
@@ -102,16 +111,6 @@ export type budgetPlanType = {
     totalBalance: string;
     createdAt: Date;
 }
-
-// export type budgetPlanListType = {
-//     id: number;
-//     userId: string;
-//     budgetPlanName: string;
-//     totalBudget: string;
-//     totalExpense: string;
-//     totalBalance: string;
-//     createdAt: Date;
-// }[] 
 
 // expenseList Type
 export type expenseListType = Array<{

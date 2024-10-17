@@ -1,39 +1,35 @@
 
 
-import { userExistById, createUser } from "@/app/lib/db/drizzle";
+/* ########################################### Modules ########################################### */
+
+// remote
 import { currentUser } from '@clerk/nextjs/server'
-import { SignOutButton } from '@clerk/nextjs'
-import ViewLayOutHelper from "../ui/views/ViewLayOutHelper";
+
+// local
+import { validateUser } from "@/app/lib/db/drizzle";
+import ViewLayOutHelper from "../ui/views/ViewsLayOutHelper";
+import { userType } from "../lib/definitions";
 
 
 
-export default async function Layout({
+/* ########################################### Layout ########################################### */
+
+export default async function ViewsLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
 
-    const user = await currentUser();
+    const userClerk = await currentUser();
 
-    if (user?.primaryEmailAddress?.verification?.status === 'verified') {
-        // check if the user already exits
-        const checkUserExist = await userExistById(user?.id as string);
-
-        // if it is new user add to database
-        if ( !checkUserExist ) {
-            
-            const createUserStatus = await createUser({
-                id: user?.id as string,
-                firstName: user?.firstName as string,
-                lastName: user?.lastName as string,
-                email: user?.primaryEmailAddress?.emailAddress as string
-            })
-
-            if (!createUserStatus) {
-                throw Error('user creation failed.')
-            }
-        }
+    const user : userType = {
+        id: userClerk?.id as string,
+        firstName: userClerk?.firstName as string,
+        lastName: userClerk?.lastName as string,
+        email: userClerk?.primaryEmailAddress?.emailAddress as string
     }
+
+    await validateUser(user);
 
     return (
 
@@ -41,6 +37,5 @@ export default async function Layout({
             <ViewLayOutHelper children={children}/>
         </>
 
-        
     )
 }

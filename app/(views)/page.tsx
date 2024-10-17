@@ -1,15 +1,15 @@
 
-// 'use server'
+/* ########################################### Modules ########################################### */
 
-import Home from './Home'
-import { currentUser } from '@clerk/nextjs/server'
-import { getUserById } from '../lib/db/drizzle'
+// local
+import Overview from '@/app/ui/views/Overview'
 
-export default async function Page() {
 
-  // user?.firstName
+/* ########################################### OverviewPage ########################################### */
+
+export default async function OverviewPage() {
   
   return (
-      <Home />
+      <Overview />
   )
 }

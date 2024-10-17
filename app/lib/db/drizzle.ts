@@ -5,7 +5,11 @@ import postgres from 'postgres'
 import 'dotenv/config'
 import getMessageError from '../getMessageError';
 
-import { budgetPlanType, expenseListType } from '../definitions';
+import { 
+  budgetPlanType, 
+  expenseListType,
+  userType
+} from '../definitions';
 
 // DB STUFF
 import { asc, between, count, eq, getTableColumns, sql } from 'drizzle-orm';
@@ -33,36 +37,75 @@ export async function getUserById(id: string): Promise<
   return db.select().from(usersTable).where(eq(usersTable.id, id)).limit(1);
 }
 
-// check user exists
-export async function userExistById(id: SelectUser['id']) : Promise<Boolean> {
-
-  const users = await getUserById(id);
-
-  if (users.length === 1) {
-    return true;
-  }
-
-  return false;
-}
-
-// create user
-export async function createUser(data: InsertUser) : Promise<Boolean> {
+/**
+ * Check if a user exists by user id.
+ *
+ * @param id { number } - user id
+ * @returns { Promise<Boolean> } a promise with boolean base of the existence status
+ *
+ */
+export async function checkUserExistByUserId(id: SelectUser['id']) : Promise<Boolean> {
 
   try {
-    
-    await db.insert(usersTable).values(data);
+    const users = await getUserById(id);
+
+    if (users.length === 1) {
+      return true;
+    }
+
+    return false;
 
   } catch (err) {
-    console.error('Something went wrong with creating user.')
-    console.log('Data: ', data)
-    console.log(err)
-    return false;
-  }
 
-  return true;
+    throw new Error('Failed to check user existence.')
+
+  }
   
 }
 
+/**
+ * Create a new user -> add the user to database
+ * @param user { userType } - user info
+ * @returns { void }
+ */
+export async function createNewUser( user : userType ) {
+
+  try {
+    
+    await db.insert(usersTable).values(user);
+
+  } catch (err) {
+    
+    throw new Error('Failed to create new user.')
+  }
+  
+}
+
+
+/**
+ * Check user exists. If user is new, add the new user to database.
+ * @param user { userType } - user info
+ * @returns { void }
+ */
+export async function validateUser( user : userType ) {
+
+  try {
+
+    const checkUserExist = await checkUserExistByUserId(user?.id as string);
+
+    if ( !checkUserExist ) {
+        
+      await createNewUser(user);
+
+    }
+
+  } catch (err) {
+
+    throw new Error('Failed to validate user.')
+
+  }
+  
+}
 
 
 

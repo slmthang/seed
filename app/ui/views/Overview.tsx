@@ -1,11 +1,18 @@
 
-// 'use client'
 
+/* ########################################### Modules ########################################### */
+
+// remote
 import { currentUser } from '@clerk/nextjs/server'
-import { formatDate } from '../lib/utils';
-import TrioWidget from '../ui-components/TrioWidget';
 
-export default async function Home() {
+// local
+import TrioWidget from './TrioWidget';
+
+
+
+/* ########################################### Home ########################################### */
+
+export default async function Overview() {
 
     const user = await currentUser();
 
