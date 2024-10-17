@@ -1,8 +1,10 @@
+
+
 import { Dispatch, SetStateAction } from "react";
-import { CloseButtonIcon } from "@/app/ui-components/Icons";
-import AddBudgetPlanAction from "./AddBudgetPlanAction";
+import { CloseButtonIcon } from "@/app/ui/Icons";
+import AddBudgetPlanAction from "@/app/lib/serverActions";
 import { useForm } from "react-hook-form";
-import { AddBudgetPlanFormData, AddBudgetPlanFormSchema, BudgetPlanFormField} from "./AddBudgetPlanFormUtils";
+import { AddBudgetPlanFormDataType, AddBudgetPlanFormSchema, AddBudgetPlanFormFieldPropsType } from "@/app/lib/definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function AddBudgePlanForm(
@@ -14,11 +16,11 @@ export default function AddBudgePlanForm(
         handleSubmit,
         formState: {errors},
         setError,
-    } = useForm<AddBudgetPlanFormData>({
+    } = useForm<AddBudgetPlanFormDataType>({
         resolver: zodResolver(AddBudgetPlanFormSchema)
     });
 
-    const onSubmit = async (data: AddBudgetPlanFormData) => {
+    const onSubmit = async (data: AddBudgetPlanFormDataType) => {
         await AddBudgetPlanAction(data); // add budget plan using server action
         toggleForm(prev => !prev); // close form
     }
@@ -53,3 +55,25 @@ export default function AddBudgePlanForm(
         </div>
     )
 }
+
+
+export const BudgetPlanFormField: React.FC<AddBudgetPlanFormFieldPropsType> = ({
+    label,
+    type,
+    placeholder,
+    name,
+    register,
+    error,
+    valueAsNumber,
+}) => (
+    <div className='w-full'>
+        {label && <label htmlFor={name} className="text-sm">{label}</label>}
+        <input
+            type={type}
+            placeholder={placeholder}
+            {...register(name, { valueAsNumber })}
+            className="w-full h-[2.5rem] rounded-xl pl-4 my-1 text-dark"
+        />
+        {error && <span className="text-sm text-red-500">{error.message}</span>}
+    </div>
+);

@@ -52,6 +52,44 @@ export const AddExpenseFromSchema: ZodType<AddExpenseFormDataType> = z
 
 
 
+/****************************** AddBudgetPlanForm ******************************/
+
+export type AddBudgetPlanFormDataType = {
+    budgetPlanName: string;
+    budgetAmount: string;
+}
+
+
+export type AddBudgetPlanFormFieldsTypes = 'budgetPlanName' | 'budgetAmount' ;
+
+
+export type AddBudgetPlanFormFieldPropsType = {
+    label?: string;
+    type: string;
+    placeholder?: string;
+    name: AddBudgetPlanFormFieldsTypes;
+    actualValue?: string;
+    register: UseFormRegister<AddBudgetPlanFormDataType>;
+    error: FieldError | undefined;
+    valueAsNumber?: boolean
+}
+
+
+export const AddBudgetPlanFormSchema: ZodType<AddBudgetPlanFormDataType> = z
+.object({
+    budgetPlanName: z.string()
+        .min(1, { message: 'Name is required.'})
+        .max(120, { message: 'Name must be not be longer than 120 characters.'}),
+    budgetAmount: z.string()
+        .min(1, { message: 'Amount is required.'})
+        .regex(new RegExp(/[0-9]*\.[0-9]*/), 'Enter a valid amount. Examples: "100.00" for $100 and "99.99" for $99.99 ')
+})
+
+
+
+
+
+
 /****************************** Database Type ******************************/
 
 // budgetPlan Type

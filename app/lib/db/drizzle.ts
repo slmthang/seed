@@ -20,7 +20,7 @@ export const client = postgres(connectionString, { prepare: false })
 export const db = drizzle(client);
 
 // get user id
-export async function getUserById(id: SelectUser['id']): Promise<
+export async function getUserById(id: string): Promise<
   Array<{
     id: string;
     firstName: string;
@@ -74,7 +74,7 @@ export async function createUser(data: InsertUser) : Promise<Boolean> {
  * @returns { Promise<Array<budgetPlanType>> } a promise with a list of budget plans
  *
  */
-export async function getBudgetPlans( id: string): Promise<Array<budgetPlanType>> {
+export async function getBudgetPlans( id: string ): Promise<Array<budgetPlanType>> {
   
   return db.select().from(budgetPlansTable).where(eq(budgetPlansTable.userId, id));
 }
@@ -121,7 +121,7 @@ export async function createBudgetPlan(budgetPlan: InsertBudgetPlan): Promise<st
 }
 
 // update budget plan by id and columns
-export async function updateBudgetPlanExpense(
+export async function updateExpenseOfBudgetPlan(
   budgetPlanId: SelectBudgetPlan['id'],
   totalExpense: string,
   newExpense: string,
@@ -145,7 +145,7 @@ export async function updateBudgetPlanExpense(
 }
 
 // update budget plan by id and columns
-export async function updateBudgetPlanBalance(
+export async function updateBalanceOfBudgetPlan(
   budgetPlanId: SelectBudgetPlan['id'],
   totalBalance: string,
   newExpense: string,
@@ -169,7 +169,7 @@ export async function updateBudgetPlanBalance(
 }
 
 // update budget plan by id and columns
-export async function updateBudgetPlanBudgetAmount(
+export async function updateBudgetOfBudgetPlan(
   budgetPlanId: SelectBudgetPlan['id'],
   newBudgetAmount: string
 ): Promise<string> {
