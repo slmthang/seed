@@ -15,6 +15,8 @@ import AddBudgetPlanForm from '@/app/ui/views/budget-plans/AddBudgetPlanForm';
 import EmptyBudgetPlans from '@/app/ui/views/budget-plans/EmptyBudgetPlans';
 import { budgetPlanType } from '@/app/lib/definitions';
 
+import BudgetPlan from './id/BudgetPlan';
+
 
 /* ########################################### BudgetPlanList ########################################### */
 
@@ -60,7 +62,7 @@ export default function BudgetPlanList(
                 </div>
 
                 <div onClick={() => setFormActive(prev => !prev)}>
-                    <AddButtonIcon tailwindClass='fill-light z-10 fixed bottom-20 right-4 size-14'/>
+                    <AddButtonIcon tailwindClass='fill-light z-10 fixed bottom-20 right-4 size-12'/>
                 </div>
 
             </div>
