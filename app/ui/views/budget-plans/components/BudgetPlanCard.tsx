@@ -2,12 +2,10 @@
 /* ########################################### Modules ########################################### */
 
 // remote
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSquare } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link";
 
 // local
-import { ChevronRightIcon } from "../../Icons";
+import { MeatBallMenuIcon, SquareIcon } from "../../../Icons";
 import { splitMoney } from "@/app/lib/utils"
 
 /* ########################################### BudgetPlanCard ########################################### */
@@ -35,15 +33,15 @@ export default function BudgetPlanCard(
     const [totalBalanceDollars, totalBalanceCents] = splitMoney(totalBalance);
 
     return (
-        <div className={"w-[90%] min-h-[12rem] bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center "}>
+        <div className={"w-[90%] min-h-[12rem] bg-dark-surface-1 rounded-2xl flex flex-col justify-center items-center "}>
             <div className="w-full min-h-[2rem] px-4 py-2 flex items-center justify-between">
                 
                 <div className="flex h-full items-center gap-x-2">
-                    <p className="font-thin mr-1">{cardName}</p>
+                    <p className="text-dark-title-text mr-1 text-lg">{cardName}</p>
                 </div>
                 <div >
                     <Link href={'/budget-plans/' + budgetPlanId}>
-                        <ChevronRightIcon tailwindClass="size-6 stroke-[0.5]" />
+                        <MeatBallMenuIcon tailwindClass="size-6 stroke-[0.5]" />
                     </Link>
                     
                 </div>
@@ -52,8 +50,8 @@ export default function BudgetPlanCard(
 
             <div className="w-full h-[3rem] flex px-4 ">
                 <div className="w-[50%] h-[100%] flex items-center"> 
-                    <FontAwesomeIcon icon={faSquare} className="fa-fw fa-2xs text-green-500 mr-1"/>
-                    <p className="inline text-sm font-light">
+                    <SquareIcon tailwindClass="fa-fw fa-2xs text-green-500 mr-1"/>
+                    <p className="inline">
                         Budget
                     </p>
                 </div>
@@ -63,8 +61,8 @@ export default function BudgetPlanCard(
             </div>
             <div className="w-full h-[3rem] flex px-4 ">
                 <div className="w-[50%] h-[100%] flex items-center"> 
-                    <FontAwesomeIcon icon={faSquare} className="fa-fw fa-2xs text-red-500 mr-1"/>
-                    <p className="inline text-sm font-light">
+                    <SquareIcon tailwindClass="fa-fw fa-2xs text-red-500 mr-1"/>
+                    <p className="inline">
                         Expense
                     </p>
                 </div>
@@ -74,8 +72,8 @@ export default function BudgetPlanCard(
             </div>
             <div className="w-full h-[3rem] flex px-4 ">
                 <div className="w-[50%] h-[100%] flex items-center"> 
-                    <FontAwesomeIcon icon={faSquare} className="fa-fw fa-2xs text-blue-500 mr-1"/>
-                    <p className="inline text-sm font-light">
+                    <SquareIcon tailwindClass="fa-fw fa-2xs text-blue-500 mr-1"/>
+                    <p className="inline">
                         Balance
                     </p>
                 </div>

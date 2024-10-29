@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Dispatch, SetStateAction } from 'react';
 
 // local
-import { ProfileIcon, OptionsIcon } from './Icons';
+import { ProfileIcon, MeatBallMenuIcon } from './Icons';
 
 export default function MenuBar(
     {sideNavToggle} : {sideNavToggle: Dispatch<SetStateAction<Boolean>>}
@@ -27,7 +27,7 @@ export default function MenuBar(
             <p className="text-xs">{pathName}</p>
             {/* filter/options */}
             <div className="w-6 absolute right-px mr-5">
-                <OptionsIcon tailwindClass='size-7'/>
+                <MeatBallMenuIcon tailwindClass='size-7'/>
             </div>
         </nav>
     )

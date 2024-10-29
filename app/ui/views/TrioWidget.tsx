@@ -1,8 +1,6 @@
 
 'use client'
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faAngleRight, faSquare } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link";
 import { ChevronRightIcon } from "@/app/ui/Icons";
 import OptionsSelector from "@/app/ui/OptionsSelector";

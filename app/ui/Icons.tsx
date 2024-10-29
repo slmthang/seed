@@ -1,16 +1,41 @@
 
-import Image from 'next/image';
-import AppIconImage from '@/public/img/favicon/android-chrome-192x192.png'
+/* ########################################### Modules ########################################### */
 
+// remote
+import Image from 'next/image';
+import { twMerge } from 'tailwind-merge';
+
+// local
+import AppIconImage from '@/public/img/favicon/android-chrome-192x192.png';
+
+
+/* ########################################### Icons ########################################### */
+
+// ChevronRightIcon
 export function ChevronRightIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
 
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className={tailwindClass}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={tailwindClass}>
+            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m9 18l6-6l-6-6"></path>
+        </svg>
+    )
+}
+
+
+// ChevronDownIcon
+export function ChevronDownIcon(
+    {tailwindClass = ''} : {tailwindClass?: string}
+) {
+
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={tailwindClass}>
+            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m6 9l6 6l6-6"></path>
         </svg>
     )
 }
@@ -19,7 +44,7 @@ export function ProfileIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={tailwindClass}>
@@ -28,11 +53,11 @@ export function ProfileIcon(
     )
 }
 
-export function OptionsIcon(
+export function MeatBallMenuIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={tailwindClass}>
@@ -45,7 +70,7 @@ export function HomeIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-inherit ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-inherit', tailwindClass);
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={tailwindClass}>
@@ -58,7 +83,7 @@ export function BudgetPlanIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-inherit ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-inherit', tailwindClass);
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={tailwindClass}>
@@ -71,7 +96,7 @@ export function SubscriptionsIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-inherit ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-inherit', tailwindClass);
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={tailwindClass}>
@@ -85,7 +110,7 @@ export function TrackerIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-inherit ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-inherit', tailwindClass);
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={tailwindClass}>
@@ -99,7 +124,7 @@ export function SavingsIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
     
-    tailwindClass = 'size-6 stroke-1 stroke-inherit ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-inherit', tailwindClass);
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={tailwindClass}>
@@ -112,7 +137,7 @@ export function PersonIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
     
-    tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={tailwindClass}>
@@ -127,7 +152,7 @@ export function HelpIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={tailwindClass}>
@@ -140,7 +165,7 @@ export function SettingIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={tailwindClass}>
@@ -154,7 +179,7 @@ export function LogoutIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={tailwindClass}>
@@ -165,14 +190,15 @@ export function LogoutIcon(
 }
 
 export function AddButtonIcon(
-    {tailwindClass = ''} : {tailwindClass?: string}
+    {tailwindClass = 'stroke-dark-primary-color text-dark-primary-color z-10 fixed bottom-20 right-4 size-12'} : {tailwindClass?: string}
 ) {
+
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={tailwindClass}>
-            <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clipRule="evenodd" />
+            <path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2m5 11h-4v4h-2v-4H7v-2h4V7h2v4h4z"></path>
         </svg>
-
     )
 }
 
@@ -180,7 +206,7 @@ export function SharedIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={tailwindClass}>
@@ -194,7 +220,7 @@ export function CheckedIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
     
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={tailwindClass}>
@@ -208,7 +234,7 @@ export function CloseButtonIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
     
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className={tailwindClass}>
@@ -221,7 +247,7 @@ export function CloseButtonIcon(
 export function BackButtonIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
-    tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className={tailwindClass}>
@@ -237,7 +263,7 @@ export function GoogleIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-lighter w-[30px] h-[30px] ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter w-[30px] h-[30px]', tailwindClass);
     
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className={tailwindClass}>
@@ -253,7 +279,7 @@ export function FacebookIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-lighter w-[30px] h-[30px] ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter w-[30px] h-[30px]', tailwindClass);
     
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" className={tailwindClass}>
@@ -267,7 +293,7 @@ export function TikTokIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-lighter w-[30px] h-[30px] ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter w-[30px] h-[30px]', tailwindClass);
     
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 290" className={tailwindClass}>
@@ -287,15 +313,42 @@ export function AppIcon(
     )
 }
 
-export function MeatBallIcon(
+export function KebabMenuIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
     
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={tailwindClass}>
             <path fill="currentColor" d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0-4 0m0-6a2 2 0 1 0 4 0a2 2 0 0 0-4 0m0 12a2 2 0 1 0 4 0a2 2 0 0 0-4 0"></path>
+        </svg>
+    )
+}
+
+
+export function SquareIcon(
+    {tailwindClass = ''} : {tailwindClass?: string}
+) {
+
+    tailwindClass = 'size-4 stroke-1 stroke-lighter ' + tailwindClass;
+    
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 12 12" className={tailwindClass}>
+            <path fill="currentColor" d="M2 4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"></path>
+        </svg>
+    )
+}
+
+export function SearchIcon(
+    {tailwindClass = ''} : {tailwindClass?: string}
+) {
+
+    tailwindClass = 'size-6 stroke-1 ' + tailwindClass;
+    
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={tailwindClass}>
+            <path fill="currentColor" d="m19.485 20.154l-6.262-6.262q-.75.639-1.725.989t-1.96.35q-2.402 0-4.066-1.663T3.808 9.503T5.47 5.436t4.064-1.667t4.068 1.664T15.268 9.5q0 1.042-.369 2.017t-.97 1.668l6.262 6.261zM9.539 14.23q1.99 0 3.36-1.37t1.37-3.361t-1.37-3.36t-3.36-1.37t-3.361 1.37t-1.37 3.36t1.37 3.36t3.36 1.37"></path>
         </svg>
     )
 }

@@ -1,13 +1,9 @@
 
 /* ########################################### Modules ########################################### */
 
-// remote
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSquare } from "@fortawesome/free-solid-svg-icons"
-
 // local
 import { splitMoney } from "@/app/lib/utils"
-
+import { SquareIcon } from "@/app/ui/Icons";
 
 /* ########################################### BudgetPlanAtGlance ########################################### */
 
@@ -28,11 +24,11 @@ export default function BudgetPlanAtGlance(
     const [ totalBalanceDollars, totalBalanceCents ] = splitMoney(totalBalance);
 
     return (
-        <div className="w-[90%] h-[10rem] bg-darker rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center">
+        <div className="w-[90%] h-[10rem] bg-dark-surface-1 rounded-2xl flex flex-col justify-center items-center">
             <div className="w-full h-[3rem] flex px-6 ">
                 <div className="w-[50%] h-[100%] flex items-center"> 
-                    <FontAwesomeIcon icon={faSquare} className="fa-fw fa-2xs text-green-500 mr-1"/>
-                    <p className="inline text-sm font-extralight">
+                    <SquareIcon tailwindClass="fa-fw fa-2xs text-green-500 mr-1"/>
+                    <p className="inline">
                         Budget
                     </p>
                 </div>
@@ -42,8 +38,8 @@ export default function BudgetPlanAtGlance(
             </div>
             <div className="w-full h-[3rem] flex px-6 ">
                 <div className="w-[50%] h-[100%] flex items-center"> 
-                    <FontAwesomeIcon icon={faSquare} className="fa-fw fa-2xs text-red-500 mr-1"/>
-                    <p className="inline text-sm font-extralight">
+                    <SquareIcon tailwindClass="fa-fw fa-2xs text-red-500 mr-1"/>
+                    <p className="inline">
                         Expense
                     </p>
                 </div>
@@ -53,8 +49,8 @@ export default function BudgetPlanAtGlance(
             </div>
             <div className="w-full h-[3rem] flex px-6 ">
                 <div className="w-[50%] h-[100%] flex items-center"> 
-                    <FontAwesomeIcon icon={faSquare} className="fa-fw fa-2xs text-blue-500 mr-1"/>
-                    <p className="inline text-sm font-extralight">
+                    <SquareIcon tailwindClass="fa-fw fa-2xs text-blue-500 mr-1"/>
+                    <p className="inline">
                         Balance
                     </p>
                 </div>

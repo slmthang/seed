@@ -33,7 +33,7 @@ export const BudgetPlanFormField: React.FC<AddBudgetPlanFormFieldPropsType> = ({
             {...register(name, { valueAsNumber })}
             className="w-full h-[2.5rem] rounded-xl pl-4 my-1 text-dark"
         />
-        {error && <span className="text-sm text-red-500">{error.message}</span>}
+        {error && <span className="text-sm text-dark-error-text">{error.message}</span>}
     </div>
 );
 
@@ -58,7 +58,7 @@ export default function AddBudgePlanForm(
 
     return (
         <div  className="flex items-center justify-center w-screen h-dvh min-h-dvh overflow-y-scroll pt-[3rem] fixed top-[0px] left-[0px] backdrop-brightness-50 z-20">
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center justify-center w-[90%] p-4 rounded-xl bg-darker border border-dark gap-y-4 z-30">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center justify-center w-[90%] p-4 rounded-xl bg-dark-surface-1 border-[2px] border-dark-border gap-y-4 z-30">
                 <div className="flex justify-center items-center relative w-full">
                     <h1>Add a new Budget Plan</h1>
                     <div className="absolute right-0" onClick={() => toggleForm(prev => !prev)}>
@@ -81,7 +81,7 @@ export default function AddBudgePlanForm(
                     register={register}
                     error={errors.budgetAmount}
                 />
-                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-dark text-center">Add</button>
+                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-dark-primary-color text-center">Add</button>
             </form>
         </div>
     )

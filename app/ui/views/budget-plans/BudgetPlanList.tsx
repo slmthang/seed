@@ -9,13 +9,11 @@
 import { useState } from 'react';
 
 // local
-import BudgetPlanCard from '@/app/ui/views/budget-plans/BudgetPlanCard';
+import BudgetPlanCard from '@/app/ui/views/budget-plans/components/BudgetPlanCard';
 import { AddButtonIcon } from "@/app/ui/Icons"
-import AddBudgetPlanForm from '@/app/ui/views/budget-plans/AddBudgetPlanForm';
-import EmptyBudgetPlans from '@/app/ui/views/budget-plans/EmptyBudgetPlans';
+import AddBudgetPlanForm from '@/app/ui/views/budget-plans/components/AddBudgetPlanForm';
+import EmptyBudgetPlansCard from '@/app/ui/views/budget-plans/components/EmptyBudgetPlansCard';
 import { budgetPlanType } from '@/app/lib/definitions';
-
-import BudgetPlan from './id/BudgetPlan';
 
 
 /* ########################################### BudgetPlanList ########################################### */
@@ -55,14 +53,14 @@ export default function BudgetPlanList(
                         ) :
 
                         (
-                            <EmptyBudgetPlans />
+                            <EmptyBudgetPlansCard />
                         )
                     }
                     
                 </div>
 
                 <div onClick={() => setFormActive(prev => !prev)}>
-                    <AddButtonIcon tailwindClass='fill-light z-10 fixed bottom-20 right-4 size-12'/>
+                    <AddButtonIcon />
                 </div>
 
             </div>

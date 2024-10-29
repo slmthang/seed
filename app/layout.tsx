@@ -8,13 +8,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-
-
-import { config } from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
-import { check } from 'drizzle-orm/mysql-core';
-config.autoAddCss = false
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -32,7 +25,7 @@ export default async function RootLayout({
 
   return (
       <html lang="en">
-        <body className={'w-screen h-dvh bg-darkest relative flex items-center justify-center'}>
+        <body className={'w-screen h-dvh relative flex items-center justify-center bg-dark-background-color text-dark-primary-text'}>
           
         <ClerkProvider
           appearance={{
@@ -40,11 +33,6 @@ export default async function RootLayout({
           }}
         >
           {children}
-          {/* {'This is a ' + ( checkUserExist ? 'old user.' : 'new user.') }
-          {user?.firstName + ' ' + user?.lastName}
-          <SignOutButton>
-            <button className='bg-blue-600 rounded-xl p-2'>Sign Out</button>
-          </SignOutButton> */}
         </ClerkProvider>
         </body>
       </html>

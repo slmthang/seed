@@ -10,11 +10,11 @@ import { useState } from "react";
 import Link from "next/link";
 
 // Local
-import ExpenseList from "@/app/ui/views/budget-plans/id/ExpenseList";
-import BudgetPlanAtGlance from '@/app/ui/views/budget-plans/id/BudgetPlanAtGlance'
+import ExpenseList from "@/app/ui/views/budget-plans/id/components/ExpenseList";
+import BudgetPlanAtGlance from '@/app/ui/views/budget-plans/id/components/BudgetPlanAtGlance'
 import { BackButtonIcon, MeatBallIcon, AddButtonIcon } from "@/app/ui/Icons";
-import { AddExpenseForm } from "@/app/ui/views/budget-plans/id/AddExpenseForm";
-import EmptyExpenseList from "./EmptyExpenseList";
+import { AddExpenseForm } from "@/app/ui/views/budget-plans/id/components/AddExpenseForm";
+import EmptyExpenseList from "./components/EmptyExpenseList";
 
 
 

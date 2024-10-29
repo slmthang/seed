@@ -122,6 +122,15 @@ export type expenseListType = Array<{
     createdAt: Date;
 }>
 
+
+
+
+/****************************** Option ******************************/
+
+export type sortByType = 'Name' | 'Amount'
+export type orderByType = 'Asc' | 'Desc'
+export type groupByType = 'Item' | 'Category'
+
 /************************************************************************************************************************/
 
 
