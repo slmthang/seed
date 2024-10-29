@@ -13,18 +13,18 @@ import BudgetPlanCard from '@/app/ui/views/budget-plans/components/BudgetPlanCar
 import { AddButtonIcon } from "@/app/ui/Icons"
 import AddBudgetPlanForm from '@/app/ui/views/budget-plans/components/AddBudgetPlanForm';
 import EmptyBudgetPlansCard from '@/app/ui/views/budget-plans/components/EmptyBudgetPlansCard';
-import { budgetPlanType } from '@/app/lib/definitions';
+import { budgetPlanDataType } from '@/app/lib/definitions';
 
 
 /* ########################################### BudgetPlanList ########################################### */
 
 export default function BudgetPlanList(
-    { budgetPlanList } : { 
-        budgetPlanList : Array<budgetPlanType>
+    { budgetPlanListData } : { 
+        budgetPlanListData : budgetPlanDataType[]
     }
 ) {
 
-    const BudgetPlanCards = budgetPlanList.map( item => {
+    const BudgetPlanCards = budgetPlanListData.map( item => {
         return <BudgetPlanCard 
                     key={item.id + '' + item.createdAt} 
                     totalBudget={item.totalBudget} 
@@ -46,7 +46,7 @@ export default function BudgetPlanList(
                 <div className="w-screen min-h-[100%] border-t-[1px] border-dark gap-y-[1rem] relative pt-[1rem] pb-[6rem] flex flex-col  items-center border-t-[1px] border-dark">
 
                     {
-                        budgetPlanList.length >= 1 ?
+                        budgetPlanListData.length >= 1 ?
                         
                         (
                             BudgetPlanCards

@@ -8,23 +8,27 @@
 
 // remote
 import Link from "next/link";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 // local
 import { BackButtonIcon, MeatBallMenuIcon } from "@/app/ui/Icons";
-import BudgetPlanOptions from "./BudgetPlanOptions";
+import Option from "../../../components/Option";
+import DropDownOption from "../../../components/DropDownOption";
+import { expenseListOptionsType, groupByType, orderByType, sortByType } from "@/app/lib/definitions";
 
 
 /* ########################################### BudgetPlanHeader ########################################### */
 
-
-
 export default function BudgetPlanHeader(
     {
-        budgetPlanName
+        budgetPlanName,
+        expenseListOptions,
+        setExpenseListOptions
     } : 
     {
-        budgetPlanName: string
+        budgetPlanName: string,
+        expenseListOptions: expenseListOptionsType,
+        setExpenseListOptions: Dispatch<SetStateAction<expenseListOptionsType>>
     }
 ) {
 
@@ -47,7 +51,16 @@ export default function BudgetPlanHeader(
             </div>
         
             {
-                showOptions && <BudgetPlanOptions />
+                showOptions && 
+                
+                (
+                    <div className="w-[15rem] min-h-[5rem] absolute right-[0px] z-20">
+                        <Option optionName="Edit" order="first" />
+                        <DropDownOption displayOptionName="Group By" optionName="groupBy" subOptions={['Item', 'Category']} setFunction={setExpenseListOptions}/>
+                        <DropDownOption displayOptionName="Sort By" optionName="sortBy" subOptions={['Name', 'Amount']} setFunction={setExpenseListOptions}/>
+                        <DropDownOption displayOptionName="Order By" optionName="orderBy" order="last" subOptions={['Asc', 'Desc']} setFunction={setExpenseListOptions}/>
+                    </div>
+                )
             }
         </div>
     )

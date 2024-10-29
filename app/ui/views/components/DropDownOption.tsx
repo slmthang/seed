@@ -7,25 +7,30 @@
 /* ########################################### Modules ########################################### */
 
 // remote
-import { useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 import clsx from "clsx";
 
 // local
 import { ChevronRightIcon, ChevronDownIcon } from "@/app/ui/Icons";
-import { sortByType, orderByType, groupByType } from "@/app/lib/definitions";
+import { sortByType, orderByType, groupByType, expenseListOptionsType } from "@/app/lib/definitions";
+import { setupFsCheck } from "next/dist/server/lib/router-utils/filesystem";
 
 /* ########################################### Option ########################################### */
 
 export default function DropDownOption(
     {
+        displayOptionName,
         optionName,
         subOptions,
+        setFunction,
         defaultOption=subOptions[0],
         order
     } : 
     {
+        displayOptionName: string,
         optionName: string,
         subOptions : Array<sortByType> | Array<orderByType> | Array<groupByType>,
+        setFunction: Dispatch<SetStateAction<expenseListOptionsType>>
         defaultOption? : sortByType | orderByType | groupByType,
         order?: 'first' | 'last'
     }
@@ -39,7 +44,7 @@ export default function DropDownOption(
         <div>
             <div 
                 className={clsx(
-                    "w-full h-[3rem] flex items-center relative border-0 bg-dark-surface-2",
+                    "w-full h-[3rem] flex items-center relative border-0 bg-dark-surface-1",
                     {
                         'rounded-t-xl': order === 'first',
                         'rounded-b-xl': order === 'last' && !showOptions
@@ -48,7 +53,7 @@ export default function DropDownOption(
 
                 onClick={() => setShowOptions(prev => !prev)}
             >
-                <h1 className="pl-[1rem]">{optionName}</h1>
+                <h1 className="pl-[1rem]">{displayOptionName}</h1>
                 {!showOptions && <ChevronRightIcon tailwindClass="absolute right-[1rem] stroke-2"/> }
                 {showOptions && <ChevronDownIcon tailwindClass="absolute right-[1rem] stroke-2"/> }
             </div>
@@ -59,7 +64,7 @@ export default function DropDownOption(
                 (
                     <div 
                         className={clsx(
-                            "w-full min-h-[4rem] flex flex-wrap items-center gap-[1rem] p-[1rem] bg-dark-surface-1 border-0",
+                            "w-full min-h-[4rem] flex flex-wrap items-center gap-[1rem] p-[1rem] bg-dark-surface-2 border-0",
                             {
                                 'rounded-b-xl': order === 'last'
                             }
@@ -80,7 +85,15 @@ export default function DropDownOption(
                                             }
                                         )}
 
-                                        onClick={() => setSelectedOption(subOption)}
+                                        onClick={
+                                            () => { 
+                                                setSelectedOption(subOption);
+                                                setFunction({
+                                                    ...
+                                                });
+                                                console.log(subOption, "HEHEH")
+                                            }
+                                        }
                                     >
                                         <p className="text-sm">{subOption}</p>
                                     </div>

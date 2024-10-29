@@ -11,29 +11,58 @@
 // remote
 
 // local
-import { splitMoney } from "@/app/lib/utils"
+import { sortExpenseList, splitMoney } from "@/app/lib/utils"
 import { SquareIcon, SearchIcon } from "@/app/ui/Icons";
 import { useState } from "react";
+import { expenseDataType } from "@/app/lib/definitions";
 
 
 /* ########################################### ExpenseList ########################################### */
 
 export default function ExpenseList(
-    {expenseList} :
+    {
+        expenseListData,
+        groupBy,
+        sortBy,
+        orderBy
+    } :
      {
-        expenseList: {
-            budgetPlanID: number;
-            item: string;
-            category: string;
-            amount: string;
-            createdAt: Date;
-        }[]
+        expenseListData: expenseDataType[],
+        groupBy: string,
+        sortBy: string,
+        orderBy: string
      }
 ) {
 
-    const [searchBarActive, setSearchBarActive] = useState(false);
+    console.log(orderBy, "bruh")
 
-    let expenseListCards = expenseList.map((e, i) => {
+    const [searchBarActive, setSearchBarActive] = useState(false);
+    const [searchBarValue, setSearchBarValue] = useState('');
+
+
+    // search input handler
+    const searchInputHandler = (element: any) => {
+
+        const input = element.target.value.toLowerCase();
+
+        setSearchBarValue(input);
+    }
+
+    const filteredExpenseListData = expenseListData.filter((element, index) => {
+
+        if (searchBarValue == '') {
+            return true;
+        } 
+        
+        else {
+            return element.item.toLowerCase().includes(searchBarValue);
+        }
+
+    })
+
+    const sortedFilteredExpenseListData = sortExpenseList(filteredExpenseListData, sortBy=sortBy, orderBy=orderBy);
+
+    let actualExpenseList = sortedFilteredExpenseListData.map((e, i) => {
 
         const [amountDollars, amountCents] = splitMoney(e.amount);
 
@@ -67,28 +96,31 @@ export default function ExpenseList(
             <div className="w-[100%] flex flex-col items-center">
                 
                 <div className="w-full flex flex-col justify-center items-center mt-2 divide-y-[2px] divide-dark-border">
-                    <div className="w-[95%] min-h-[5rem] flex justify-between items-center p-2 pb-[1.5rem]">
-                        <div className="w-full min-h-[5rem] flex flex-col items-start justify-center relative">
-                            <div className="flex items-center justify-center h-[2rem] mb-[0.5rem]">
+                    <div className="w-[95%] min-h-[5rem] flex flex-col justify-between items-center p-2 pb-[1.5rem]">
+                        <div className="w-full h-[3rem] flex items-center justify-center relative">
+                            <div className="w-full flex items-center justify-begin pl-[0.5rem] h-[2rem]">
                                 <p className="text-lg text-dark-title-text">Expenses</p>
                             </div>
-                    
-                            <div className=" w-full h-[2.5rem] flex items-center justify-center relative">
+                            <div onClick={() => setSearchBarActive(prev => !prev)} className="flex items-center justify-begin h-[2rem] bg-blue-500">
+                                <SearchIcon tailwindClass="absolute right-[0.5rem] stroke-dark-secondary-text"/>
+                            </div>
+                            
+                        </div>
+                        {
+                            searchBarActive && 
+
+                            <div className=" w-full h-[2.5rem] flex items-center justify-center relative mt-[1rem]">
 
                                 { 
-                                    // searchBarActive && 
-                                    <input type="text" name="searchExpense" id="searchExpense" className="w-full h-full pl-[1rem] pr-[3rem] rounded-xl bg-dark-primary-text border-[1px] border-dark-border text-light-primary-text text-sm"/>
-                                }
-
-                                {
-                                    // !searchBarActive &&
-                                    <SearchIcon tailwindClass="absolute right-[0.5rem] stroke-dark-secondary-text"/>
+                                    <input type="text" name="searchExpense" id="searchExpense" placeholder="Search an Expense" onChange={searchInputHandler} className="w-full h-full pl-[1rem] pr-[3rem] rounded-xl bg-dark-primary-text border-[1px] border-dark-border text-light-primary-text text-sm placeholder-light-secondary-text"/>
                                 }
                                 
                             </div>
-                        </div>
+                        }
+                        
                     </div>
-                    {expenseListCards}
+
+                    {actualExpenseList}
                 </div>
             
             </div>

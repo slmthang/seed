@@ -31,9 +31,9 @@ const config: Config = {
         "dark-on-primary": '#121212',
         "dark-on-secondary": "#121212",
         "dark-on-background-1": "#D2D2D2",
-        "dark-on-background-2": "#A4A4A4",
+        "dark-on-background-2": "#979797",
         "dark-on-surface-1": "#D2D2D2",
-        "dark-on-surface-2": "#A4A4A4",
+        "dark-on-surface-2": "#979797",
         "dark-on-error": "#121212",
         "dark-error-text": '#CF6679',
 
@@ -48,14 +48,14 @@ const config: Config = {
 
         // text colors
         "light-primary-text": "#000000",
-        "light-secondary-text": "#A4A4A4",
-        "light-title-text": "#a4a4a4",
+        "light-secondary-text": "#979797",
+        "light-title-text": "#979797",
         "light-on-primary": '#121212',
         "light-on-secondary": "#121212",
         "light-on-background-1": "#D2D2D2",
-        "light-on-background-2": "#A4A4A4",
+        "light-on-background-2": "#979797",
         "light-on-surface-1": "#D2D2D2",
-        "light-on-surface-2": "#A4A4A4",
+        "light-on-surface-2": "#979797",
         "light-on-error": "#121212",
         "light-error-text": '#CF6679',
 
@@ -67,7 +67,7 @@ const config: Config = {
         'dark': '#282828',
         'darker': '#121212',
         'darkest': '#0a0a0a',
-        'light': '#A4A4A4',
+        'light': '#979797',
         'lighter': '#D2D2D2',
         'lightest': '#fff',
 

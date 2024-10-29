@@ -4,6 +4,8 @@
 //     trackerItemsListType, savingsExpenseListType 
 // } from "./definitions"
 
+import { expenseDataType, orderByType, sortByType } from "./definitions";
+
 
 export function calculateMoney(x: string, y: string, method: 'add' | 'subtract') : string {
 
@@ -105,4 +107,66 @@ export function formatDate(date: Date) {
         day = '0' + day;
 
     return [year, month, day].join('-');
+}
+
+
+export function sortExpenseList(
+    expenseListData: expenseDataType[],
+    sortBy: string,
+    orderBy: string
+) {
+
+    function sortByAmountAsc(A: expenseDataType, B: expenseDataType) {
+
+        const [dollarsA, centsA] = splitMoney(A.amount);
+        const [dollarsB, centsB] = splitMoney(B.amount);
+
+        if (+dollarsA < +dollarsB) {
+            return -1;
+        } else if (+dollarsA > +dollarsB) {
+            return 1;
+        } 
+
+        if (+centsA < +centsB) {
+            return -1;
+        } else if (+centsA > +centsB) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    function sortByAmountDesc(A: expenseDataType, B: expenseDataType) {
+
+        const [dollarsA, centsA] = splitMoney(A.amount);
+        const [dollarsB, centsB] = splitMoney(B.amount);
+
+        if (+dollarsA > +dollarsB) {
+            return -1;
+        } else if (+dollarsA < +dollarsB) {
+            return 1;
+        } 
+
+        if (+centsA > +centsB) {
+            return -1;
+        } else if (+centsA < +centsB) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    
+
+    if (sortBy === 'Amount' && orderBy === 'Asc') {
+        return expenseListData.sort(sortByAmountAsc);
+    }
+
+    else if (sortBy === 'Amount' && orderBy === 'Desc') {
+        return expenseListData.sort(sortByAmountDesc);
+    }
+
+    else {
+        return expenseListData.sort(sortByAmountAsc);
+    }
 }

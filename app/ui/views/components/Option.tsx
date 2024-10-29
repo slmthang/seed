@@ -21,7 +21,7 @@ export default function Option(
     return (
         <div 
             className={clsx(
-                "w-full h-[3rem] flex items-center relative border-0 bg-dark-surface-2",
+                "w-full h-[3rem] flex items-center relative border-0 bg-dark-surface-1",
                 {
                     'rounded-t-xl': order === 'first',
                     'rounded-b-xl': order === 'last'

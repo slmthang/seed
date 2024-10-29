@@ -93,7 +93,7 @@ export const AddBudgetPlanFormSchema: ZodType<AddBudgetPlanFormDataType> = z
 /****************************** Database Type ******************************/
 
 // userInfo Type
-export type userType = {
+export type userDataType = {
     id: string;
     firstName: string;
     lastName: string;
@@ -102,7 +102,7 @@ export type userType = {
 }
 
 // budgetPlan Type
-export type budgetPlanType = {
+export type budgetPlanDataType = {
     id: number;
     userId: string;
     budgetPlanName: string;
@@ -113,14 +113,14 @@ export type budgetPlanType = {
 }
 
 // expenseList Type
-export type expenseListType = Array<{
+export type expenseDataType = {
     id: number;
     budgetPlanID: number;
     item: string;
     amount: string;
     category: string;
     createdAt: Date;
-}>
+}
 
 
 
@@ -130,6 +130,12 @@ export type expenseListType = Array<{
 export type sortByType = 'Name' | 'Amount'
 export type orderByType = 'Asc' | 'Desc'
 export type groupByType = 'Item' | 'Category'
+
+export type expenseListOptionsType = {
+    groupBy: groupByType,
+    sortBy: sortByType,
+    orderBy: orderByType
+}
 
 /************************************************************************************************************************/
 
