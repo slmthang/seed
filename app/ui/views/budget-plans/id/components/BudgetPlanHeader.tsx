@@ -14,7 +14,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { BackButtonIcon, MeatBallMenuIcon } from "@/app/ui/Icons";
 import Option from "../../../components/Option";
 import DropDownOption from "../../../components/DropDownOption";
-import { expenseListOptionsType, groupByType, orderByType, sortByType } from "@/app/lib/definitions";
+import { budgetPlanOptions, groupByType, orderByType, sortByType } from "@/app/lib/definitions";
 
 
 /* ########################################### BudgetPlanHeader ########################################### */
@@ -22,13 +22,13 @@ import { expenseListOptionsType, groupByType, orderByType, sortByType } from "@/
 export default function BudgetPlanHeader(
     {
         budgetPlanName,
-        expenseListOptions,
-        setExpenseListOptions
+        budgetPlanOptions,
+        setBudgetPlanOptions
     } : 
     {
         budgetPlanName: string,
-        expenseListOptions: expenseListOptionsType,
-        setExpenseListOptions: Dispatch<SetStateAction<expenseListOptionsType>>
+        budgetPlanOptions: budgetPlanOptions,
+        setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptions>>
     }
 ) {
 
@@ -56,9 +56,9 @@ export default function BudgetPlanHeader(
                 (
                     <div className="w-[15rem] min-h-[5rem] absolute right-[0px] z-20">
                         <Option optionName="Edit" order="first" />
-                        <DropDownOption displayOptionName="Group By" optionName="groupBy" subOptions={['Item', 'Category']} setFunction={setExpenseListOptions}/>
-                        <DropDownOption displayOptionName="Sort By" optionName="sortBy" subOptions={['Name', 'Amount']} setFunction={setExpenseListOptions}/>
-                        <DropDownOption displayOptionName="Order By" optionName="orderBy" order="last" subOptions={['Asc', 'Desc']} setFunction={setExpenseListOptions}/>
+                        <DropDownOption displayOptionName="Group By" optionName="groupBy" subOptions={['Item', 'Category']} stateData={budgetPlanOptions} setFunction={setBudgetPlanOptions}/>
+                        <DropDownOption displayOptionName="Sort By" optionName="sortBy" subOptions={['Name', 'Amount']} stateData={budgetPlanOptions} setFunction={setBudgetPlanOptions}/>
+                        <DropDownOption displayOptionName="Order By" optionName="orderBy" order="last" subOptions={['Asc', 'Desc']} stateData={budgetPlanOptions} setFunction={setBudgetPlanOptions}/>
                     </div>
                 )
             }

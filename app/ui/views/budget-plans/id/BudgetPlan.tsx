@@ -60,6 +60,7 @@ export default function BudgetPlan(
                 <div className="w-screen flex items-center justify-center">
                     <BudgetPlanHeader 
                         budgetPlanName={budgetPlanName}
+                        setExpenseListOptions={setExpenseListOptions}
                         expenseListOptions={expenseListOptions}
                     />
                 </div>

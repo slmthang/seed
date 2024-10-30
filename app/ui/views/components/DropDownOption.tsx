@@ -12,7 +12,7 @@ import clsx from "clsx";
 
 // local
 import { ChevronRightIcon, ChevronDownIcon } from "@/app/ui/Icons";
-import { sortByType, orderByType, groupByType, expenseListOptionsType } from "@/app/lib/definitions";
+import { sortByType, orderByType, groupByType, budgetPlanOptions } from "@/app/lib/definitions";
 import { setupFsCheck } from "next/dist/server/lib/router-utils/filesystem";
 
 /* ########################################### Option ########################################### */
@@ -20,25 +20,23 @@ import { setupFsCheck } from "next/dist/server/lib/router-utils/filesystem";
 export default function DropDownOption(
     {
         displayOptionName,
-        optionName,
         subOptions,
         setFunction,
-        defaultOption=subOptions[0],
+        defaultOption,
         order
     } : 
     {
-        displayOptionName: string,
-        optionName: string,
-        subOptions : Array<sortByType> | Array<orderByType> | Array<groupByType>,
-        setFunction: Dispatch<SetStateAction<expenseListOptionsType>>
-        defaultOption? : sortByType | orderByType | groupByType,
+        displayOptionName: sortByType,
+        subOptions : Array<sortByType>,
+        setFunction: Dispatch<SetStateAction<sortByType>>,
+        defaultOption: sortByType,
         order?: 'first' | 'last'
     }
 ) {
 
     const [showOptions, setShowOptions] = useState(false);
 
-    const [selectedOption, setSelectedOption] = useState<sortByType | orderByType | groupByType>(defaultOption);
+    const [selectedOption, setSelectedOption] = useState<sortByType>(defaultOption);
 
     return (
         <div>
@@ -88,10 +86,7 @@ export default function DropDownOption(
                                         onClick={
                                             () => { 
                                                 setSelectedOption(subOption);
-                                                setFunction({
-                                                    ...
-                                                });
-                                                console.log(subOption, "HEHEH")
+                                                setFunction(subOption);
                                             }
                                         }
                                     >
