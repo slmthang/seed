@@ -40,7 +40,7 @@ export default function BudgetPlan(
 ) {
 
     const [formActive, setFormActive] = useState<Boolean>(false);
-    const [expenseListOptions, setExpenseListOptions] = useState<expenseListOptionsType>(
+    const [budgetPlanOptions, setBudgetPlanOptions] = useState<expenseListOptionsType>(
         {
             groupBy: 'Item',
             sortBy: 'Amount',
@@ -60,8 +60,8 @@ export default function BudgetPlan(
                 <div className="w-screen flex items-center justify-center">
                     <BudgetPlanHeader 
                         budgetPlanName={budgetPlanName}
-                        setExpenseListOptions={setExpenseListOptions}
-                        expenseListOptions={expenseListOptions}
+                        budgetPlanOptions={budgetPlanOptions}
+                        setBudgetPlanOptions={setBudgetPlanOptions}
                     />
                 </div>
 
