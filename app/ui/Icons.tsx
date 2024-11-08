@@ -331,7 +331,7 @@ export function SquareIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-4 stroke-1 stroke-lighter ' + tailwindClass;
+    tailwindClass = twMerge('size-4 stroke-1 stroke-lighter', tailwindClass);
     
     return (
         <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 12 12" className={tailwindClass}>
@@ -344,7 +344,7 @@ export function SearchIcon(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
     
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={tailwindClass}>
@@ -354,11 +354,51 @@ export function SearchIcon(
 }
 
 
+export function FilterIcon(
+    {tailwindClass = ''} : {tailwindClass?: string}
+) {
+
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" className={tailwindClass}>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M22 3H2l8 9.46V19l4 2v-8.54z"></path>
+        </svg>
+    )
+}
+
+
+export function EditModeIcon(
+    {tailwindClass = ''} : {tailwindClass?: string}
+) {
+
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={tailwindClass}>
+            <path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 20h9M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"></path>
+        </svg>
+    )
+}
+
+export function ReadModeIcon(
+    {tailwindClass = ''} : {tailwindClass?: string}
+) {
+
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={tailwindClass}>
+            <path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 7v14m-9-3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4a4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3a3 3 0 0 0-3-3z"></path>
+        </svg>
+    )
+}
+
 export function TemplateStringsArray(
     {tailwindClass = ''} : {tailwindClass?: string}
 ) {
 
-    tailwindClass = 'size-6 stroke-1 stroke-lighter ' + tailwindClass;
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
     
     return (
         <></>

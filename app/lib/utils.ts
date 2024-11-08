@@ -112,8 +112,8 @@ export function formatDate(date: Date) {
 
 export function sortExpenseList(
     expenseListData: expenseDataType[],
-    sortBy: string,
-    orderBy: string
+    sortBy: sortByType,
+    orderBy: orderByType
 ) {
 
     function sortByAmountAsc(A: expenseDataType, B: expenseDataType) {
@@ -156,17 +156,49 @@ export function sortExpenseList(
         return 0;
     }
 
+
+    function sortByNameAsc(A: expenseDataType, B: expenseDataType) {
+
+        const itemA = A.item.toLowerCase();
+        const itemB = B.item.toLowerCase();
+
+        if (itemA < itemB) {
+            return -1;
+        } else if (itemA > itemB) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    function sortByNameDesc(A: expenseDataType, B: expenseDataType) {
+
+        const itemA = A.item.toLowerCase();
+        const itemB = B.item.toLowerCase();
+
+        if (itemA > itemB) {
+            return -1;
+        } else if (itemA < itemB) {
+            return 1;
+        }
+
+        return 0;
+    }
     
 
     if (sortBy === 'Amount' && orderBy === 'Asc') {
+
         return expenseListData.sort(sortByAmountAsc);
     }
-
     else if (sortBy === 'Amount' && orderBy === 'Desc') {
         return expenseListData.sort(sortByAmountDesc);
     }
 
+
+    if (sortBy === 'Name' && orderBy === 'Asc') {
+        return expenseListData.sort(sortByNameAsc);
+    }
     else {
-        return expenseListData.sort(sortByAmountAsc);
+        return expenseListData.sort(sortByNameDesc);
     }
 }

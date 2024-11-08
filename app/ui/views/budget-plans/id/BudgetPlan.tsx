@@ -15,7 +15,7 @@ import { AddButtonIcon } from "@/app/ui/Icons";
 import { AddExpenseForm } from "@/app/ui/views/budget-plans/id/components/AddExpenseForm";
 import EmptyExpenseList from "./components/EmptyExpenseList";
 import BudgetPlanHeader from "./components/BudgetPlanHeader";
-import { expenseDataType, sortByType, orderByType, groupByType, expenseListOptionsType } from "@/app/lib/definitions";
+import { expenseDataType, sortByType, orderByType, groupByType, budgetPlanOptionsType } from "@/app/lib/definitions";
 
 /* ########################################### Budget Plan ########################################### */
 
@@ -40,7 +40,7 @@ export default function BudgetPlan(
 ) {
 
     const [formActive, setFormActive] = useState<Boolean>(false);
-    const [budgetPlanOptions, setBudgetPlanOptions] = useState<expenseListOptionsType>(
+    const [budgetPlanOptions, setBudgetPlanOptions] = useState<budgetPlanOptionsType>(
         {
             groupBy: 'Item',
             sortBy: 'Amount',
@@ -78,9 +78,8 @@ export default function BudgetPlan(
                         (
                             <ExpenseList 
                                 expenseListData={expenseListData}
-                                groupBy={groupBy}
-                                sortBy={sortBy}
-                                orderBy={orderBy}
+                                budgetPlanOptions={budgetPlanOptions}
+                                setBudgetPlanOptions={setBudgetPlanOptions}
                             />
                         )
                     }

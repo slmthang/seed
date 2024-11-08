@@ -9,40 +9,54 @@
 /* ########################################### Modules ########################################### */
 
 // remote
+import { Dispatch, SetStateAction, useState } from "react";
 
 // local
 import { sortExpenseList, splitMoney } from "@/app/lib/utils"
-import { SquareIcon, SearchIcon } from "@/app/ui/Icons";
-import { useState } from "react";
-import { expenseDataType } from "@/app/lib/definitions";
-
+import { SquareIcon, SearchIcon, FilterIcon, EditModeIcon, ReadModeIcon } from "@/app/ui/Icons";
+import { expenseDataType, budgetPlanOptionsType } from "@/app/lib/definitions";
+import Option from "../../../components/Option";
+import DropDownOption from "../../../components/DropDownOption";
 
 /* ########################################### ExpenseList ########################################### */
+
+function ExpenseSearchBar(
+    {
+        searchInputHandler
+    } : {
+        searchInputHandler: (element: any) => void
+    }
+) {
+    return (
+        <div className=" w-full h-[2.5rem] flex items-center justify-center relative mt-[1rem]">
+
+            { 
+                <input type="text" name="searchExpense" id="searchExpense" placeholder="Search an Expense" onChange={searchInputHandler} className="w-full h-full pl-[1rem] pr-[3rem] rounded-xl bg-dark-primary-text border-[1px] border-dark-border text-light-primary-text text-sm placeholder-light-secondary-text"/>
+            }
+            
+        </div>
+    )
+}
 
 export default function ExpenseList(
     {
         expenseListData,
-        groupBy,
-        sortBy,
-        orderBy
+        budgetPlanOptions,
+        setBudgetPlanOptions
     } :
      {
         expenseListData: expenseDataType[],
-        groupBy: string,
-        sortBy: string,
-        orderBy: string
+        budgetPlanOptions: budgetPlanOptionsType,
+        setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptionsType>>
      }
 ) {
 
-    console.log(orderBy, "bruh")
-
-    const [searchBarActive, setSearchBarActive] = useState(false);
+    const [filterActive, setFilterActive] = useState(false);
     const [searchBarValue, setSearchBarValue] = useState('');
 
 
     // search input handler
     const searchInputHandler = (element: any) => {
-
         const input = element.target.value.toLowerCase();
 
         setSearchBarValue(input);
@@ -60,7 +74,7 @@ export default function ExpenseList(
 
     })
 
-    const sortedFilteredExpenseListData = sortExpenseList(filteredExpenseListData, sortBy=sortBy, orderBy=orderBy);
+    const sortedFilteredExpenseListData = sortExpenseList(filteredExpenseListData, budgetPlanOptions.sortBy, budgetPlanOptions.orderBy);
 
     let actualExpenseList = sortedFilteredExpenseListData.map((e, i) => {
 
@@ -96,29 +110,41 @@ export default function ExpenseList(
             <div className="w-[100%] flex flex-col items-center">
                 
                 <div className="w-full flex flex-col justify-center items-center mt-2 divide-y-[2px] divide-dark-border">
-                    <div className="w-[95%] min-h-[5rem] flex flex-col justify-between items-center p-2 pb-[1.5rem]">
-                        <div className="w-full h-[3rem] flex items-center justify-center relative">
+
+                    <div className="w-[90%] min-h-[3rem] mb-[1rem] relative">
+                        <div className="w-full min-h-[3rem] flex items-center justify-center">
                             <div className="w-full flex items-center justify-begin pl-[0.5rem] h-[2rem]">
-                                <p className="text-lg text-dark-title-text">Expenses</p>
+                                <p className="text-xl font-bold">Expenses</p>
                             </div>
-                            <div onClick={() => setSearchBarActive(prev => !prev)} className="flex items-center justify-begin h-[2rem] bg-blue-500">
-                                <SearchIcon tailwindClass="absolute right-[0.5rem] stroke-dark-secondary-text"/>
+
+                            <div className="flex gap-x-[1rem] absolute right-[0.5rem]">
+                                <div onClick={() => setFilterActive(prev => !prev)} className="flex items-center justify-begin h-[2rem]">
+                                    <ReadModeIcon/>
+                                </div>
+                                <div onClick={() => setFilterActive(prev => !prev)} className="flex items-center justify-begin h-[2rem]">
+                                    <FilterIcon/>
+                                </div>
                             </div>
                             
+                            
                         </div>
+
                         {
-                            searchBarActive && 
+                            filterActive &&
 
-                            <div className=" w-full h-[2.5rem] flex items-center justify-center relative mt-[1rem]">
-
-                                { 
-                                    <input type="text" name="searchExpense" id="searchExpense" placeholder="Search an Expense" onChange={searchInputHandler} className="w-full h-full pl-[1rem] pr-[3rem] rounded-xl bg-dark-primary-text border-[1px] border-dark-border text-light-primary-text text-sm placeholder-light-secondary-text"/>
-                                }
-                                
+                            <div className="w-[15rem] absolute right-[0px] z-20 ">
+                                <DropDownOption displayOptionName='Group By' optionType="groupBy" order="first" subOptions={['Item', 'Category']} defaultOption={budgetPlanOptions.groupBy} stateData={budgetPlanOptions} setStateData={setBudgetPlanOptions}/>
+                                <DropDownOption displayOptionName="Sort By" optionType="sortBy" subOptions={['Name', 'Amount']} defaultOption={budgetPlanOptions.sortBy} stateData={budgetPlanOptions} setStateData={setBudgetPlanOptions}/>
+                                <DropDownOption displayOptionName="Order By" optionType="orderBy" order="last" subOptions={['Asc', 'Desc']} defaultOption={budgetPlanOptions.orderBy} stateData={budgetPlanOptions} setStateData={setBudgetPlanOptions}/>
                             </div>
                         }
-                        
+
+                        <ExpenseSearchBar searchInputHandler={searchInputHandler}/>
+
                     </div>
+
+                    
+                    
 
                     {actualExpenseList}
                 </div>

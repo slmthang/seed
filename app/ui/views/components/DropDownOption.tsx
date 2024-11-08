@@ -12,37 +12,41 @@ import clsx from "clsx";
 
 // local
 import { ChevronRightIcon, ChevronDownIcon } from "@/app/ui/Icons";
-import { sortByType, orderByType, groupByType, budgetPlanOptions } from "@/app/lib/definitions";
+import { sortByType, orderByType, groupByType, budgetPlanOptionsType } from "@/app/lib/definitions";
 import { setupFsCheck } from "next/dist/server/lib/router-utils/filesystem";
 
 /* ########################################### Option ########################################### */
 
-export default function DropDownOption(
+export default function DropDownOption<T extends sortByType | orderByType | groupByType>(
     {
         displayOptionName,
+        optionType,
         subOptions,
-        setFunction,
+        stateData,
+        setStateData,
         defaultOption,
         order
     } : 
     {
-        displayOptionName: sortByType,
-        subOptions : Array<sortByType>,
-        setFunction: Dispatch<SetStateAction<sortByType>>,
-        defaultOption: sortByType,
+        displayOptionName: string,
+        optionType: string,
+        subOptions : Array<T>,
+        stateData: budgetPlanOptionsType,
+        setStateData: Dispatch<SetStateAction<budgetPlanOptionsType>>,
+        defaultOption: T,
         order?: 'first' | 'last'
     }
 ) {
 
     const [showOptions, setShowOptions] = useState(false);
 
-    const [selectedOption, setSelectedOption] = useState<sortByType>(defaultOption);
+    const [selectedOption, setSelectedOption] = useState<T>(defaultOption);
 
     return (
         <div>
             <div 
                 className={clsx(
-                    "w-full h-[3rem] flex items-center relative border-0 bg-dark-surface-1",
+                    "w-full h-[3rem] text flex items-center relative border-0 bg-dark-surface-2",
                     {
                         'rounded-t-xl': order === 'first',
                         'rounded-b-xl': order === 'last' && !showOptions
@@ -74,10 +78,10 @@ export default function DropDownOption(
                                 return (
                                     <div 
 
-                                        key={subOption + index}
+                                        key={subOption + '' + index}
                                         
                                         className={clsx(
-                                            "flex items-center justify-center w-[5rem] h-[2.25rem] p-2 rounded-xl border border-dark-surface-2",
+                                            "flex items-center justify-center w-[5rem] h-[2.25rem] p-2 rounded-xl border border-dark-border",
                                             {
                                                 'bg-dark': subOption === selectedOption
                                             }
@@ -86,7 +90,11 @@ export default function DropDownOption(
                                         onClick={
                                             () => { 
                                                 setSelectedOption(subOption);
-                                                setFunction(subOption);
+                                                setStateData({
+                                                    ...stateData,
+                                                    [optionType]: subOption
+                                                });
+                                                console.log(subOption)
                                             }
                                         }
                                     >

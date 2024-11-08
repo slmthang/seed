@@ -131,7 +131,7 @@ export type sortByType = 'Name' | 'Amount'
 export type orderByType = 'Asc' | 'Desc'
 export type groupByType = 'Item' | 'Category'
 
-export type budgetPlanOptions = {
+export interface budgetPlanOptionsType {
     groupBy: groupByType,
     sortBy: sortByType,
     orderBy: orderByType

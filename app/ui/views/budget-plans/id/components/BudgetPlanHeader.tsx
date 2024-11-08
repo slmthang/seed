@@ -14,7 +14,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { BackButtonIcon, MeatBallMenuIcon } from "@/app/ui/Icons";
 import Option from "../../../components/Option";
 import DropDownOption from "../../../components/DropDownOption";
-import { budgetPlanOptions, groupByType, orderByType, sortByType } from "@/app/lib/definitions";
+import { budgetPlanOptionsType, groupByType, orderByType, sortByType } from "@/app/lib/definitions";
 
 
 /* ########################################### BudgetPlanHeader ########################################### */
@@ -27,15 +27,15 @@ export default function BudgetPlanHeader(
     } : 
     {
         budgetPlanName: string,
-        budgetPlanOptions: budgetPlanOptions,
-        setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptions>>
+        budgetPlanOptions: budgetPlanOptionsType,
+        setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptionsType>>
     }
 ) {
 
     const [showOptions, setShowOptions] = useState(false);
 
     return (
-        <div className="relative w-[90%] mb-[1rem]">
+        <div className="relative w-[90%] mb-[1rem] bg-blue-500">
             <div className="w-full h-[3rem] mb-[0.5rem] flex items-center justify-center relative">
                 <Link href='/budget-plans'>
                     <div className="h-full flex items-center justify-center">
@@ -56,9 +56,9 @@ export default function BudgetPlanHeader(
                 (
                     <div className="w-[15rem] min-h-[5rem] absolute right-[0px] z-20">
                         <Option optionName="Edit" order="first" />
-                        <DropDownOption displayOptionName="Group By" optionName="groupBy" subOptions={['Item', 'Category']} stateData={budgetPlanOptions} setFunction={setBudgetPlanOptions}/>
-                        <DropDownOption displayOptionName="Sort By" optionName="sortBy" subOptions={['Name', 'Amount']} stateData={budgetPlanOptions} setFunction={setBudgetPlanOptions}/>
-                        <DropDownOption displayOptionName="Order By" optionName="orderBy" order="last" subOptions={['Asc', 'Desc']} stateData={budgetPlanOptions} setFunction={setBudgetPlanOptions}/>
+                        <DropDownOption displayOptionName='Group By' optionType="groupBy" subOptions={['Item', 'Category']} defaultOption={budgetPlanOptions.groupBy} stateData={budgetPlanOptions} setStateData={setBudgetPlanOptions}/>
+                        <DropDownOption displayOptionName="Sort By" optionType="sortBy" subOptions={['Name', 'Amount']} defaultOption={budgetPlanOptions.sortBy} stateData={budgetPlanOptions} setStateData={setBudgetPlanOptions}/>
+                        <DropDownOption displayOptionName="Order By" optionType="orderBy" order="last" subOptions={['Asc', 'Desc']} defaultOption={budgetPlanOptions.orderBy} stateData={budgetPlanOptions} setStateData={setBudgetPlanOptions}/>
                     </div>
                 )
             }
