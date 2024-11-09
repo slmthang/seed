@@ -20,6 +20,67 @@ import DropDownOption from "../../../components/DropDownOption";
 
 /* ########################################### ExpenseList ########################################### */
 
+function ExpenseListSideOptions() {
+    return (
+        <div className="absolute right-0 w-[12rem] z-10">
+            <div className="flex flex-col bg-dark-surface-1">
+                <div className="bg-dark-surface-3 p-2 rounded-t-xl">
+                    <h1>
+                        Sort By
+                    </h1>
+                </div>
+
+                <div className="flex flex-col pl-[1rem] py-[0.5rem] bg-dark-surface-2">
+                    <div>
+                        <input type="radio" name="sortBy" id="name" value='name' className="mr-2"/>
+                        <label htmlFor="slm">Name</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="sortBy" id="amount" value='amount' className="mr-2"/>
+                        <label htmlFor="slm">Amount</label>
+                    </div>
+                </div>
+            </div>
+            <div className="flex flex-col bg-dark-surface-1">
+                <div className="bg-dark-surface-3 p-2">
+                    <h1>
+                        Order By
+                    </h1>
+                </div>
+
+                <div className="flex flex-col pl-[1rem] py-[0.5rem] bg-dark-surface-2">
+                    <div>
+                        <input type="radio" name="orderBy" id="asc" value='asc' className="mr-2"/>
+                        <label htmlFor="slm">Asc</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="orderBy" id="desc" value='desc' className="mr-2"/>
+                        <label htmlFor="slm">Desc</label>
+                    </div>
+                </div>
+            </div>
+            <div className="flex flex-col bg-dark-surface-1">
+                <div className="bg-dark-surface-3 p-2">
+                    <h1>
+                        Group By
+                    </h1>
+                </div>
+
+                <div className="flex flex-col pl-[1rem] py-[0.5rem] bg-dark-surface-2 rounded-b-xl">
+                    <div>
+                        <input type="radio" name="groupBy" id="item" value='item' className="mr-2"/>
+                        <label htmlFor="slm">Item</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="groupBy" id="category" value='category' className="mr-2"/>
+                        <label htmlFor="slm">Category</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 function ExpenseSearchBar(
     {
         searchInputHandler
@@ -53,6 +114,7 @@ export default function ExpenseList(
 
     const [filterActive, setFilterActive] = useState(false);
     const [searchBarValue, setSearchBarValue] = useState('');
+    const [editActive, setEditActive] = useState(false);
 
 
     // search input handler
@@ -118,8 +180,10 @@ export default function ExpenseList(
                             </div>
 
                             <div className="flex gap-x-[1rem] absolute right-[0.5rem]">
-                                <div onClick={() => setFilterActive(prev => !prev)} className="flex items-center justify-begin h-[2rem]">
-                                    <ReadModeIcon/>
+                                <div onClick={() => setEditActive(prev => !prev)} className="flex items-center justify-begin h-[2rem]">
+
+                                    {editActive ? <ReadModeIcon/> : <EditModeIcon />}
+
                                 </div>
                                 <div onClick={() => setFilterActive(prev => !prev)} className="flex items-center justify-begin h-[2rem]">
                                     <FilterIcon/>
@@ -132,11 +196,7 @@ export default function ExpenseList(
                         {
                             filterActive &&
 
-                            <div className="w-[15rem] absolute right-[0px] z-20 ">
-                                <DropDownOption displayOptionName='Group By' optionType="groupBy" order="first" subOptions={['Item', 'Category']} defaultOption={budgetPlanOptions.groupBy} stateData={budgetPlanOptions} setStateData={setBudgetPlanOptions}/>
-                                <DropDownOption displayOptionName="Sort By" optionType="sortBy" subOptions={['Name', 'Amount']} defaultOption={budgetPlanOptions.sortBy} stateData={budgetPlanOptions} setStateData={setBudgetPlanOptions}/>
-                                <DropDownOption displayOptionName="Order By" optionType="orderBy" order="last" subOptions={['Asc', 'Desc']} defaultOption={budgetPlanOptions.orderBy} stateData={budgetPlanOptions} setStateData={setBudgetPlanOptions}/>
-                            </div>
+                            <ExpenseListSideOptions />
                         }
 
                         <ExpenseSearchBar searchInputHandler={searchInputHandler}/>
