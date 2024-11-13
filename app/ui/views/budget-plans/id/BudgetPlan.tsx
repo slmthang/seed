@@ -42,9 +42,9 @@ export default function BudgetPlan(
     const [formActive, setFormActive] = useState<Boolean>(false);
     const [budgetPlanOptions, setBudgetPlanOptions] = useState<budgetPlanOptionsType>(
         {
-            groupBy: 'Item',
-            sortBy: 'Amount',
-            orderBy: 'Desc'
+            groupBy: 'item',
+            sortBy: 'amount',
+            orderBy: 'desc'
         }
     )
 

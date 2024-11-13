@@ -186,16 +186,16 @@ export function sortExpenseList(
     }
     
 
-    if (sortBy === 'Amount' && orderBy === 'Asc') {
+    if (sortBy === 'name' && orderBy === 'asc') {
 
         return expenseListData.sort(sortByAmountAsc);
     }
-    else if (sortBy === 'Amount' && orderBy === 'Desc') {
+    else if (sortBy === 'amount' && orderBy === 'desc') {
         return expenseListData.sort(sortByAmountDesc);
     }
 
 
-    if (sortBy === 'Name' && orderBy === 'Asc') {
+    if (sortBy === 'name' && orderBy === 'asc') {
         return expenseListData.sort(sortByNameAsc);
     }
     else {

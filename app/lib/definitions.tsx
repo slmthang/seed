@@ -127,9 +127,9 @@ export type expenseDataType = {
 
 /****************************** Option ******************************/
 
-export type sortByType = 'Name' | 'Amount'
-export type orderByType = 'Asc' | 'Desc'
-export type groupByType = 'Item' | 'Category'
+export type sortByType = 'name' | 'amount'
+export type orderByType = 'asc' | 'desc'
+export type groupByType = 'item' | 'category'
 
 export interface budgetPlanOptionsType {
     groupBy: groupByType,
