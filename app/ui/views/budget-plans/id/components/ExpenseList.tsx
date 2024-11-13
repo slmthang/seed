@@ -39,23 +39,30 @@ function ExpenseListSideOptions(
         })
     }
 
+    const [s, setS] = useState(true);
+
     return (
         <div className="absolute right-0 w-[12rem] z-10 bg-dark-surface-1 rounded-xl">
             <div className="flex flex-col p-4">
-                <div >
+                <div className="w-full bg-blue-400" onClick={() => setS(prev => !prev)}>
                     <h1>Sort By</h1>
                 </div>
-
-                <div className="flex flex-col pl-[1rem] py-[0.5rem]">
-                    <div>
-                        <input type="radio" name="sortBy" id="name" value='name' className="mr-2" defaultChecked={budgetPlanOptions.sortBy === 'name'} onClick={() => updateOptions<sortByType>('sortBy', 'name')}/>
-                        <label htmlFor="name" className="text-sm">Name</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="sortBy" id="amount" value='amount' className="mr-2 " defaultChecked={budgetPlanOptions.sortBy === 'amount'} onClick={() => updateOptions<sortByType>('sortBy', 'amount')}/>
-                        <label htmlFor="amount" className="text-sm">Amount</label>
-                    </div>
-                </div>
+                {
+                    s &&
+                    (
+                        <div className="flex flex-col pl-[1rem] py-[0.5rem]">
+                            <div>
+                                <input type="radio" name="sortBy" id="name" value='name' className="mr-2" defaultChecked={budgetPlanOptions.sortBy === 'name'} onClick={() => updateOptions<sortByType>('sortBy', 'name')}/>
+                                <label htmlFor="name" className="text-sm">Name</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="sortBy" id="amount" value='amount' className="mr-2 " defaultChecked={budgetPlanOptions.sortBy === 'amount'} onClick={() => updateOptions<sortByType>('sortBy', 'amount')}/>
+                                <label htmlFor="amount" className="text-sm">Amount</label>
+                            </div>
+                        </div>
+                    )
+                }
+                        
             </div>
             <div className="flex flex-col p-4 border-t-[1px] border-dark-border">
                 <div >

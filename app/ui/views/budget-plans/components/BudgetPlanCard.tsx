@@ -5,7 +5,7 @@
 import Link from "next/link";
 
 // local
-import { MeatBallMenuIcon, SquareIcon } from "../../../Icons";
+import { ChevronRightIcon, SquareIcon } from "../../../Icons";
 import { splitMoney } from "@/app/lib/utils"
 
 /* ########################################### BudgetPlanCard ########################################### */
@@ -41,7 +41,7 @@ export default function BudgetPlanCard(
                 </div>
                 <div >
                     <Link href={'/budget-plans/' + budgetPlanId}>
-                        <MeatBallMenuIcon tailwindClass="size-6 stroke-[0.5]" />
+                        <ChevronRightIcon tailwindClass="size-6 stroke-[0.5]" />
                     </Link>
                     
                 </div>

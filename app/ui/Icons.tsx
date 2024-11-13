@@ -25,6 +25,19 @@ export function ChevronRightIcon(
     )
 }
 
+export function ChevronLeftIcon(
+    {tailwindClass = ''} : {tailwindClass?: string}
+) {
+
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={tailwindClass}>
+            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m15 18l-6-6l6-6"></path>
+        </svg>
+    )
+}
+
 
 // ChevronDownIcon
 export function ChevronDownIcon(

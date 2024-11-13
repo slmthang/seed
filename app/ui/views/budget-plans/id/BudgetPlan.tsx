@@ -65,7 +65,12 @@ export default function BudgetPlan(
                     />
                 </div>
 
-                <div className="w-screen min-h-[100%]  relative flex flex-col items-center  border-dark">
+                <div className="w-screen min-h-[100%] relative flex flex-col items-center  border-dark">
+
+                    <div className="w-[90%] px-2 text-2xl font-bold mb-[1rem]">
+                        <h1>{budgetPlanName}</h1>
+                    </div>
+
                     <BudgetPlanAtGlance totalBudget={totalBudget} totalExpense={totalExpense} totalBalance={totalBalance} />
                     
                     {
