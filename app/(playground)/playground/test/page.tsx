@@ -11,7 +11,7 @@ import { useState } from "react"
 
 // local
 import { ChevronRightIcon, ChevronDownIcon } from "@/app/ui/Icons";
-import { Option } from "@/app/ui/views/components/DropDownOption";
+import { Option } from "@/app/ui/views/components/DropDownOption2";
 /* ########################################### DropDownMenu ########################################### */
 
 

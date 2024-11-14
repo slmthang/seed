@@ -202,3 +202,35 @@ export function sortExpenseList(
         return expenseListData.sort(sortByNameDesc);
     }
 }
+
+/**
+ * Capitalize Words
+ * @example
+ * // returns 'Solomon'
+ * capitalize('solomon')
+ * @example
+ * // returns 'Solomon Thang'
+ * capitalize('solomon thang')
+ * @param str <string>
+ * @returns <string>
+ */
+export function capitalize(str: string): string {
+
+    let splittedStr = str.split(' ');
+
+    if (splittedStr.length < 0) {
+        throw new Error('The input string must not be empty.')
+    }
+
+    if (splittedStr.length > 1) {
+
+        splittedStr = splittedStr.map((element) => {
+            return element.charAt(0).toUpperCase() + element.slice(1);
+        })
+
+        return splittedStr.join(' ');
+
+    } 
+
+    return splittedStr[0].charAt(0).toUpperCase() + splittedStr[0].slice(1);
+}
