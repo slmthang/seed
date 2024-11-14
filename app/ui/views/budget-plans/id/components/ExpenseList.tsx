@@ -43,7 +43,7 @@ function ExpenseListSideOptions(
 
     return (
         <div className="absolute right-0 w-[12rem] z-10 bg-dark-surface-1 rounded-xl">
-            <div className="flex flex-col p-4">
+            {/* <div className="flex flex-col p-4">
                 <div className="w-full bg-blue-400" onClick={() => setS(prev => !prev)}>
                     <h1>Sort By</h1>
                 </div>
@@ -95,7 +95,9 @@ function ExpenseListSideOptions(
                         <label htmlFor="category" className="text-sm">Category</label>
                     </div>
                 </div>
-            </div>
+            </div> */}
+
+            <DropDownOption displayOptionName="Sort By" optionType="sortBy" subOptions={['name', 'amount']}  />
         </div>
     )
 }
