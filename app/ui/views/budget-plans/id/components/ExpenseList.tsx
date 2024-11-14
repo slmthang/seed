@@ -43,59 +43,7 @@ function ExpenseListSideOptions(
 
     return (
         <div className="absolute right-0 w-[12rem] z-10 bg-dark-surface-1 rounded-xl">
-            <div className="flex flex-col p-4">
-                <div className="w-full bg-blue-400" onClick={() => setS(prev => !prev)}>
-                    <h1>Sort By</h1>
-                </div>
-                {
-                    s &&
-                    (
-                        <div className="flex flex-col pl-[1rem] py-[0.5rem]">
-                            <div>
-                                <input type="radio" name="sortBy" id="name" value='name' className="mr-2" defaultChecked={budgetPlanOptions.sortBy === 'name'} onClick={() => updateOptions<sortByType>('sortBy', 'name')}/>
-                                <label htmlFor="name" className="text-sm">Name</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="sortBy" id="amount" value='amount' className="mr-2 " defaultChecked={budgetPlanOptions.sortBy === 'amount'} onClick={() => updateOptions<sortByType>('sortBy', 'amount')}/>
-                                <label htmlFor="amount" className="text-sm">Amount</label>
-                            </div>
-                        </div>
-                    )
-                }
-                        
-            </div>
-            <div className="flex flex-col p-4 border-t-[1px] border-dark-border">
-                <div >
-                    <h1>Order By</h1>
-                </div>
-
-                <div className="flex flex-col pl-[1rem] py-[0.5rem]">
-                    <div>
-                        <input type="radio" name="orderBy" id="asc" value='asc' className="mr-2" defaultChecked={budgetPlanOptions.orderBy === 'asc'} onClick={() => updateOptions<orderByType>('orderBy', 'asc')}/>
-                        <label htmlFor="asc" className="text-sm">Asc</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="orderBy" id="desc" value='desc' className="mr-2" defaultChecked={budgetPlanOptions.orderBy === 'desc'} onClick={() => updateOptions<orderByType>('orderBy', 'desc')}/>
-                        <label htmlFor="desc" className="text-sm">Desc</label>
-                    </div>
-                </div>
-            </div>
-            <div className="flex flex-col p-4 border-t-[1px] border-dark-border">
-                <div>
-                    <h1>Group By</h1>
-                </div>
-
-                <div className="flex flex-col pl-[1rem] py-[0.5rem]">
-                    <div>
-                        <input type="radio" name="groupBy" id="item" value='item' className="mr-2" defaultChecked={budgetPlanOptions.groupBy === 'item'} onClick={() => updateOptions<groupByType>('groupBy', 'item')}/>
-                        <label htmlFor="item" className="text-sm">Item</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="groupBy" id="category" value='category' className="mr-2" defaultChecked={budgetPlanOptions.groupBy === 'category'} onClick={() => updateOptions<groupByType>('groupBy', 'category')}/>
-                        <label htmlFor="category" className="text-sm">Category</label>
-                    </div>
-                </div>
-            </div>
+            <h1>Hello</h1>
         </div>
     )
 }
