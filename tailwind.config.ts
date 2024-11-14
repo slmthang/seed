@@ -60,7 +60,7 @@ const config: Config = {
         "light-error-text": '#CF6679',
 
         // border
-        "dark-border": "#282828",
+        "dark-border": "#303030",
         "light-border": "#121212",
 
 

@@ -380,6 +380,49 @@ export function FilterIcon(
     )
 }
 
+export function OrderByIcon(
+    {tailwindClass = ''} : {tailwindClass?: string}
+) {
+
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={tailwindClass}>
+            <path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6h18M7 12h10m-7 6h4"></path>
+        </svg>
+    )
+}
+
+export function SortByIcon(
+    {tailwindClass = ''} : {tailwindClass?: string}
+) {
+
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={tailwindClass}>
+            <path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m21 16l-4 4l-4-4m4 4V4M3 8l4-4l4 4M7 4v16"></path>
+        </svg>
+    )
+}
+
+export function GroupByIcon(
+    {tailwindClass = ''} : {tailwindClass?: string}
+) {
+
+    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={tailwindClass}>
+            <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                <path d="M3 7V5c0-1.1.9-2 2-2h2m10 0h2c1.1 0 2 .9 2 2v2m0 10v2c0 1.1-.9 2-2 2h-2M7 21H5c-1.1 0-2-.9-2-2v-2" />
+                <rect width="7" height="5" x="7" y="7" rx="1" />
+                <rect width="7" height="5" x="10" y="12" rx="1" />
+            </g>
+        </svg>
+    )
+}
+
 
 export function EditModeIcon(
     {tailwindClass = ''} : {tailwindClass?: string}

@@ -4,8 +4,9 @@
 /* ########################################### Modules ########################################### */
 
 // remote
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
 import { budgetPlanOptionsType, groupByType, orderByType, sortByType } from "@/app/lib/definitions";
+import { ChevronDownIcon, ChevronRightIcon } from "../../Icons";
 
 // local 
 import { capitalize } from "@/app/lib/utils";
@@ -13,12 +14,16 @@ import { capitalize } from "@/app/lib/utils";
 export default function DropDownOption<T extends sortByType | orderByType | groupByType>(
     {
         optionName,
+        OptionIcon,
         optionType,
         optionValues,
         budgetPlanOptions,
         setBudgetPlanOptions
     } : 
     {
+        OptionIcon: React.ComponentType<{
+            tailwindClass?: string;
+        }>,
         optionName: 'Sort By' | 'Order By' | 'Group By',
         optionType: 'sortBy' | 'orderBy' | 'groupBy',
         optionValues: T[],
@@ -27,7 +32,7 @@ export default function DropDownOption<T extends sortByType | orderByType | grou
     }
 ) {
 
-    const [optionsShown, setOptionShown] = useState(true);
+    const [optionsShown, setOptionShown] = useState(false);
 
     const optionList = optionValues.map((element) => {
         return (
@@ -39,9 +44,18 @@ export default function DropDownOption<T extends sortByType | orderByType | grou
     })
 
     return (
-        <div className="flex flex-col p-4">
-            <div className="w-full bg-blue-400" onClick={() => setOptionShown(prev => !prev)}>
-                <h1>{optionName}</h1>
+
+        <div className="flex flex-col">
+            <div className="w-full flex" onClick={() => setOptionShown(prev => !prev)}>
+                <div className="flex items-center justify-center h-[3rem] w-[2rem] mr-[0.5rem]">
+                    <OptionIcon tailwindClass="size-5"/>
+                </div>
+                <div className="flex items-center justify-start h-[3rem] w-[7rem]">
+                    <h1>{optionName}</h1>
+                </div>
+                <div className="flex items-center justify-center h-[3rem] w-[2rem]">
+                    {optionsShown ? <ChevronDownIcon tailwindClass="size-5" /> : <ChevronRightIcon tailwindClass="size-5" />}
+                </div>
             </div>
 
             {

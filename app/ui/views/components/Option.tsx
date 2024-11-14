@@ -1,34 +1,59 @@
 
 
+
 /* ########################################### Modules ########################################### */
 
 // remote
-import clsx from "clsx";
+import { Dispatch, FC, SetStateAction, useState } from "react";
+import { budgetPlanOptionsType, groupByType, orderByType, sortByType } from "@/app/lib/definitions";
+import { ChevronDownIcon, ChevronRightIcon } from "../../Icons";
 
+// local 
+import { capitalize } from "@/app/lib/utils";
 
-
-/* ########################################### Option ########################################### */
-
-export default function Option(
+export default function Option<T extends sortByType | orderByType | groupByType>(
     {
         optionName,
-        order
-    } : {
+        OptionIcon,
+        setFunction,
+        // optionType,
+        // optionValues,
+        // budgetPlanOptions,
+        // setBudgetPlanOptions
+    } : 
+    {
         optionName: string,
-        order?: 'first' | 'last'
+        OptionIcon: React.ComponentType<{
+            tailwindClass?: string;
+        }>,
+        setFunction: Dispatch<SetStateAction<boolean>>
+        // optionType: 'sortBy' | 'orderBy' | 'groupBy',
+        // optionValues: T[],
+        // budgetPlanOptions: budgetPlanOptionsType,
+        // setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptionsType>>
     }
 ) {
+
+    // const [optionsShown, setOptionShown] = useState(true);
+
+    // const optionList = optionValues.map((element) => {
+    //     return (
+    //         <div>
+    //             <input type="radio" name={optionType} id={String(element)} className="mr-2" defaultChecked={budgetPlanOptions[optionType] === String(element)} onClick={() => setBudgetPlanOptions({...budgetPlanOptions, [optionType]: element})}/>
+    //             <label htmlFor={String(element)} className="text-sm">{capitalize(String(element))}</label>
+    //         </div>
+    //     )
+    // })
+
     return (
-        <div 
-            className={clsx(
-                "w-full h-[3rem] flex items-center relative border-0 bg-dark-surface-1",
-                {
-                    'rounded-t-xl': order === 'first',
-                    'rounded-b-xl': order === 'last'
-                }
-            )}
-        >
-            <h1 className="pl-[1rem]">{optionName}</h1>
+
+        <div className="flex" onClick={() => setFunction(prev => !prev)}>
+            <div className="flex items-center justify-center h-[3rem] w-[2rem] mr-[0.5rem]">
+                <OptionIcon tailwindClass="size-5"/>
+            </div>
+            <div className="flex items-center justify-start h-[3rem] w-[7rem]">
+                <h1>{optionName}</h1>
+            </div>
         </div>
     )
 }

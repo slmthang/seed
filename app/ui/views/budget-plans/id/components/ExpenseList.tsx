@@ -13,7 +13,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 
 // local
 import { sortExpenseList, splitMoney } from "@/app/lib/utils"
-import { SquareIcon, SearchIcon, FilterIcon, EditModeIcon, ReadModeIcon, TrashIcon } from "@/app/ui/Icons";
+import { SquareIcon, SearchIcon, FilterIcon, SortByIcon, OrderByIcon, GroupByIcon, TrashIcon } from "@/app/ui/Icons";
 import { expenseDataType, budgetPlanOptionsType, sortByType, groupByType, orderByType } from "@/app/lib/definitions";
 import Option from "../../../components/Option";
 import DropDownOption from "../../../components/DropDownOption";
@@ -31,19 +31,11 @@ function ExpenseListSideOptions(
     }
 ) {
 
-    function updateOptions<T extends sortByType | orderByType | groupByType >(optionProperty: string, optionValue: T) {
-
-        setBudgetPlanOptions({
-            ...budgetPlanOptions,
-            [optionProperty]: optionValue
-        })
-    }
-
-    const [s, setS] = useState(true);
-
     return (
-        <div className="absolute right-0 w-[12rem] z-10 bg-dark-surface-1 rounded-xl">
-            <h1>Hello</h1>
+        <div className="absolute right-0 w-[14rem] z-10 bg-dark-surface-1 rounded-xl px-4 py-2">
+            <DropDownOption optionName="Sort By" OptionIcon={SortByIcon} optionType="sortBy" optionValues={['name', 'amount']} budgetPlanOptions={budgetPlanOptions} setBudgetPlanOptions={setBudgetPlanOptions}/>
+            <DropDownOption optionName="Order By" OptionIcon={OrderByIcon} optionType="orderBy" optionValues={['asc', 'desc']} budgetPlanOptions={budgetPlanOptions} setBudgetPlanOptions={setBudgetPlanOptions}/>
+            <DropDownOption optionName="Group By" OptionIcon={GroupByIcon} optionType="groupBy" optionValues={['item', 'category']} budgetPlanOptions={budgetPlanOptions} setBudgetPlanOptions={setBudgetPlanOptions}/>  
         </div>
     )
 }
@@ -104,6 +96,9 @@ export default function ExpenseList(
     })
 
     const sortedFilteredExpenseListData = sortExpenseList(filteredExpenseListData, budgetPlanOptions.sortBy, budgetPlanOptions.orderBy);
+
+    console.log(filteredExpenseListData.map(e => e.amount))
+    console.log(sortedFilteredExpenseListData.map(e=>e.amount))
 
     const expenseItemList = sortedFilteredExpenseListData.map((e, i) => {
 
