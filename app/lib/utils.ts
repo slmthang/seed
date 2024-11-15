@@ -186,7 +186,7 @@ export function sortExpenseList(
     }
     
 
-    if (sortBy === 'name' && orderBy === 'asc') {
+    if (sortBy === 'amount' && orderBy === 'asc') {
 
         return expenseListData.sort(sortByAmountAsc);
     }

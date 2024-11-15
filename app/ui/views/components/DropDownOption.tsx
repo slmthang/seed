@@ -34,9 +34,9 @@ export default function DropDownOption<T extends sortByType | orderByType | grou
 
     const [optionsShown, setOptionShown] = useState(false);
 
-    const optionList = optionValues.map((element) => {
+    const optionList = optionValues.map((element, index) => {
         return (
-            <div>
+            <div key={element + '' + index}>
                 <input type="radio" name={optionType} id={String(element)} className="mr-2" defaultChecked={budgetPlanOptions[optionType] === String(element)} onClick={() => setBudgetPlanOptions({...budgetPlanOptions, [optionType]: element})}/>
                 <label htmlFor={String(element)} className="text-sm">{capitalize(String(element))}</label>
             </div>

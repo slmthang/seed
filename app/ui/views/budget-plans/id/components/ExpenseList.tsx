@@ -97,9 +97,6 @@ export default function ExpenseList(
 
     const sortedFilteredExpenseListData = sortExpenseList(filteredExpenseListData, budgetPlanOptions.sortBy, budgetPlanOptions.orderBy);
 
-    console.log(filteredExpenseListData.map(e => e.amount))
-    console.log(sortedFilteredExpenseListData.map(e=>e.amount))
-
     const expenseItemList = sortedFilteredExpenseListData.map((e, i) => {
 
         const [amountDollars, amountCents] = splitMoney(e.amount);
