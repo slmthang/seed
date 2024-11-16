@@ -4,8 +4,6 @@
 
 "use client"
 
-
-
 /* ########################################### Modules ########################################### */
 
 // remote
@@ -14,7 +12,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 // local
 import { sortExpenseList, splitMoney } from "@/app/lib/utils"
 import { SquareIcon, SearchIcon, FilterIcon, SortByIcon, OrderByIcon, GroupByIcon, TrashIcon } from "@/app/ui/Icons";
-import { expenseDataType, budgetPlanOptionsType, sortByType, groupByType, orderByType } from "@/app/lib/definitions";
+import { expenseDataType, sortOptionsType, sortByType, groupByType, orderByType } from "@/app/lib/definitions";
 import Option from "../../../components/Option";
 import DropDownOption from "../../../components/DropDownOption";
 
@@ -22,20 +20,20 @@ import DropDownOption from "../../../components/DropDownOption";
 
 function ExpenseListSideOptions(
     {
-        budgetPlanOptions,
-        setBudgetPlanOptions
+        expenseListOptions,
+        setExpenseListOptions
     } : 
     {
-        budgetPlanOptions: budgetPlanOptionsType,
-        setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptionsType>>
+        expenseListOptions: sortOptionsType,
+        setExpenseListOptions: Dispatch<SetStateAction<sortOptionsType>>
     }
 ) {
 
     return (
-        <div className="absolute right-0 w-[14rem] z-10 bg-dark-surface-1 rounded-xl px-4 py-2">
-            <DropDownOption optionName="Sort By" OptionIcon={SortByIcon} optionType="sortBy" optionValues={['name', 'amount']} budgetPlanOptions={budgetPlanOptions} setBudgetPlanOptions={setBudgetPlanOptions}/>
-            <DropDownOption optionName="Order By" OptionIcon={OrderByIcon} optionType="orderBy" optionValues={['asc', 'desc']} budgetPlanOptions={budgetPlanOptions} setBudgetPlanOptions={setBudgetPlanOptions}/>
-            <DropDownOption optionName="Group By" OptionIcon={GroupByIcon} optionType="groupBy" optionValues={['item', 'category']} budgetPlanOptions={budgetPlanOptions} setBudgetPlanOptions={setBudgetPlanOptions}/>  
+        <div className="absolute right-0 w-[14rem] z-10 bg-dark-surface-2 rounded-xl px-4 py-2">
+            <DropDownOption optionName="Sort By" OptionIcon={SortByIcon} optionType="sortBy" optionValues={['name', 'amount']} options={expenseListOptions} setOptions={setExpenseListOptions}/>
+            <DropDownOption optionName="Order By" OptionIcon={OrderByIcon} optionType="orderBy" optionValues={['asc', 'desc']} options={expenseListOptions} setOptions={setExpenseListOptions}/>
+            <DropDownOption optionName="Group By" OptionIcon={GroupByIcon} optionType="groupBy" optionValues={['item', 'category']} options={expenseListOptions} setOptions={setExpenseListOptions}/>  
         </div>
     )
 }
@@ -58,22 +56,25 @@ function ExpenseSearchBar(
     )
 }
 
-export default function ExpenseList(
+export function List(
     {
-        expenseListData,
-        budgetPlanOptions,
-        setBudgetPlanOptions
+        expenseListData
     } :
      {
-        expenseListData: expenseDataType[],
-        budgetPlanOptions: budgetPlanOptionsType,
-        setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptionsType>>
+        expenseListData: expenseDataType[]
      }
 ) {
 
     const [filterActive, setFilterActive] = useState(false);
     const [searchBarValue, setSearchBarValue] = useState('');
-    const [editActive, setEditActive] = useState(false);
+
+    const [expenseListOptions, setExpenseListOptions] = useState<sortOptionsType>(
+        {
+            groupBy: 'item',
+            sortBy: 'amount',
+            orderBy: 'desc'
+        }
+    )
 
 
     // search input handler
@@ -95,26 +96,26 @@ export default function ExpenseList(
 
     })
 
-    const sortedFilteredExpenseListData = sortExpenseList(filteredExpenseListData, budgetPlanOptions.sortBy, budgetPlanOptions.orderBy);
+    const sortedFilteredExpenseListData = sortExpenseList(filteredExpenseListData, expenseListOptions.sortBy, expenseListOptions.orderBy);
 
     const expenseItemList = sortedFilteredExpenseListData.map((e, i) => {
 
-        const [amountDollars, amountCents] = splitMoney(e.amount);
+        const [amountDollars, amountCents] = splitMoney(String(e.amount));
 
         return (
-            <div key={e.budgetPlanID + i + ''} className="w-[90%] min-h-[5rem] flex flex-col justify-between items-center p-2">
+            <div key={e.budgetPlanID + i + ''} className="w-[95%] h-[4rem] flex flex-col justify-between items-center p-2  rounded-xl">
                 
-                <div className="w-full h-[5rem] flex flex-col">
-                    <div className="w-full h-[3rem] flex items-center relative justify-center">
+                <div className="w-full h-[3rem] flex flex-col">
+                    <div className="w-full h-[2rem] flex items-center relative justify-center">
                         <div className="absolute left-0 flex items-center">
                             <SquareIcon tailwindClass="fa-fw fa-2xs mr-1 text-red-500"/>
                             <p className="inline">{e.item}</p>
                         </div>
                         <div className="absolute right-0">
-                            <p className="text-lg mt-1">${amountDollars}.<span className="text-xs">{amountCents}</span></p>
+                            <p className="text-base mt-1">${amountDollars}.<span className="text-xs">{amountCents}</span></p>
                         </div>
                     </div>
-                    <div className="w-full h-[2rem] flex items-center relative">
+                    <div className="w-full h-[1rem] flex items-center relative">
 
                         <div className="flex gap-x-2 right-0 absolute">
                             <p className="text-xs font-light">{e.category}</p>
@@ -128,11 +129,11 @@ export default function ExpenseList(
 
     return (
 
-        <div className="w-[90%] min-h-fit bg-dark-surface-2 rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center my-4">
+        <div className="w-full min-h-fit bg-dark-surface-1 rounded-2xl border-[1px] border-dark-border flex flex-col justify-center  items-center py-2" >
     
             <div className="w-[100%] flex flex-col items-center">
                 
-                <div className="w-full flex flex-col justify-center items-center mt-2 divide-y-[2px] divide-dark-border">
+                <div className="w-full flex flex-col justify-center items-center mt-2">
 
                     <div className="w-[90%] min-h-[3rem] mb-[1rem] relative">
                         <div className="w-full min-h-[3rem] flex items-center justify-center">
@@ -153,8 +154,8 @@ export default function ExpenseList(
                             filterActive &&
 
                             <ExpenseListSideOptions 
-                                budgetPlanOptions={budgetPlanOptions}
-                                setBudgetPlanOptions={setBudgetPlanOptions}
+                                expenseListOptions={expenseListOptions}
+                                setExpenseListOptions={setExpenseListOptions}
                             />
                         }
 
@@ -163,13 +164,33 @@ export default function ExpenseList(
                     </div>
 
                     
+                    {/*  border-dark-border border-2 divide-y-2 divide-dark-border */}
+                    <div className="flex flex-col justify-center  items-center w-[95%] gap-y-2"> 
+                        {expenseItemList}
+                    </div>
                     
-
-                    {expenseItemList}
                 </div>
             
             </div>
         </div>
     )
 
+}
+
+export function Empty() {
+    return (
+
+        <div className="w-[90%] min-h-fit bg-dark-surface-1 rounded-2xl border-[1px] border-dark flex flex-col justify-center items-center my-4">
+            
+            <div className="w-[100%] flex flex-col items-center">
+
+                <div className="w-full flex flex-col justify-center items-center mt-2 p-5">
+                    <h1 className="text-xl mb-4">EMPTY</h1>
+                    <p className="text-sm font-thin">Add an item by clicking the add button.</p>
+                </div>
+            
+            </div>
+        </div>
+        
+    )
 }

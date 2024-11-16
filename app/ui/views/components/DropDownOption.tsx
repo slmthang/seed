@@ -5,7 +5,7 @@
 
 // remote
 import { Dispatch, FC, SetStateAction, useState } from "react";
-import { budgetPlanOptionsType, groupByType, orderByType, sortByType } from "@/app/lib/definitions";
+import { sortOptionsType, groupByType, orderByType, sortByType } from "@/app/lib/definitions";
 import { ChevronDownIcon, ChevronRightIcon } from "../../Icons";
 
 // local 
@@ -17,8 +17,8 @@ export default function DropDownOption<T extends sortByType | orderByType | grou
         OptionIcon,
         optionType,
         optionValues,
-        budgetPlanOptions,
-        setBudgetPlanOptions
+        options,
+        setOptions
     } : 
     {
         OptionIcon: React.ComponentType<{
@@ -27,8 +27,8 @@ export default function DropDownOption<T extends sortByType | orderByType | grou
         optionName: 'Sort By' | 'Order By' | 'Group By',
         optionType: 'sortBy' | 'orderBy' | 'groupBy',
         optionValues: T[],
-        budgetPlanOptions: budgetPlanOptionsType,
-        setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptionsType>>
+        options: sortOptionsType,
+        setOptions: Dispatch<SetStateAction<sortOptionsType>>
     }
 ) {
 
@@ -37,7 +37,7 @@ export default function DropDownOption<T extends sortByType | orderByType | grou
     const optionList = optionValues.map((element, index) => {
         return (
             <div key={element + '' + index}>
-                <input type="radio" name={optionType} id={String(element)} className="mr-2" defaultChecked={budgetPlanOptions[optionType] === String(element)} onClick={() => setBudgetPlanOptions({...budgetPlanOptions, [optionType]: element})}/>
+                <input type="radio" name={optionType} id={String(element)} className="mr-2" defaultChecked={options[optionType] === String(element)} onClick={() => setOptions({...options, [optionType]: element})}/>
                 <label htmlFor={String(element)} className="text-sm">{capitalize(String(element))}</label>
             </div>
         )
@@ -50,8 +50,9 @@ export default function DropDownOption<T extends sortByType | orderByType | grou
                 <div className="flex items-center justify-center h-[3rem] w-[2rem] mr-[0.5rem]">
                     <OptionIcon tailwindClass="size-5"/>
                 </div>
-                <div className="flex items-center justify-start h-[3rem] w-[7rem]">
+                <div className="flex flex-col items-start justify-center h-[3rem] w-[7rem] ">
                     <h1>{optionName}</h1>
+                    <p className="text-xs font-thin">{options[optionType]}</p>
                 </div>
                 <div className="flex items-center justify-center h-[3rem] w-[2rem]">
                     {optionsShown ? <ChevronDownIcon tailwindClass="size-5" /> : <ChevronRightIcon tailwindClass="size-5" />}

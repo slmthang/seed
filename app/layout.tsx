@@ -25,7 +25,7 @@ export default async function RootLayout({
 
   return (
       <html lang="en">
-        <body className={'w-screen h-dvh relative flex items-center justify-center bg-dark-background-color text-dark-primary-text'}>
+        <body className={'w-screen h-dvh relative flex items-center justify-center bg-dark-surface-0 text-dark-primary-text text-sm'}>
           
         <ClerkProvider
           appearance={{

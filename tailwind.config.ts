@@ -18,10 +18,10 @@ const config: Config = {
         // colors
         "dark-primary-color": '#6200EE',
         "dark-secondary-color": "#03DAC6",
-        "dark-background-color": "#0A0A0A",
-        "dark-surface-1": "#252525",
-        "dark-surface-2": "#212121",
-        "dark-surface-3": "#1e1e1e",
+        "dark-surface-0": "#101010",
+        "dark-surface-1": "#191919",
+        "dark-surface-2": "#2b2b2b",
+        "dark-surface-3": "#353535",
         "dark-error": "#CF6679",
 
         // text colors
