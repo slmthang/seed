@@ -6,7 +6,7 @@
 // remote
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import { sortOptionsType, groupByType, orderByType, sortByType } from "@/app/lib/definitions";
-import { ChevronDownIcon, ChevronRightIcon } from "../../Icons";
+import { ChevronDownIcon, ChevronUpIcon } from "../../Icons";
 
 // local 
 import { capitalize } from "@/app/lib/utils";
@@ -46,7 +46,7 @@ export default function DropDownOption<T extends sortByType | orderByType | grou
     return (
 
         <div className="flex flex-col">
-            <div className="w-full flex" onClick={() => setOptionShown(prev => !prev)}>
+            <div className="w-full flex justify-center items-center" onClick={() => setOptionShown(prev => !prev)}>
                 <div className="flex items-center justify-center h-[3rem] w-[2rem] mr-[0.5rem]">
                     <OptionIcon tailwindClass="size-5"/>
                 </div>
@@ -55,7 +55,7 @@ export default function DropDownOption<T extends sortByType | orderByType | grou
                     <p className="text-xs font-thin">{options[optionType]}</p>
                 </div>
                 <div className="flex items-center justify-center h-[3rem] w-[2rem]">
-                    {optionsShown ? <ChevronDownIcon tailwindClass="size-5" /> : <ChevronRightIcon tailwindClass="size-5" />}
+                    {optionsShown ? <ChevronUpIcon  /> : <ChevronDownIcon  />}
                 </div>
             </div>
 

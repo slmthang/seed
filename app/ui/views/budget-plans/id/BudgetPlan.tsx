@@ -10,15 +10,15 @@ import { useState } from "react";
 import { VictoryPie, VictoryTheme } from "victory";
 
 // local
-import * as ExpenseList from "@/app/ui/views/budget-plans/id/components/ExpenseList";
-import Stats from "@/app/ui/views/budget-plans/id/components/Chart";
+import BudgetPlanExpenses from "@/app/ui/views/budget-plans/id/components/BudgetPlanExpenses";
+import BudgetPlanStats from "@/app/ui/views/budget-plans/id/components/BudgetPlanStats";
 import BudgetPlanAtGlance from '@/app/ui/views/budget-plans/id/components/BudgetPlanAtGlance'
 import { AddButtonIcon } from "@/app/ui/Icons";
 import { AddExpenseForm } from "@/app/ui/views/budget-plans/id/components/AddExpenseForm";
 import BudgetPlanHeader from "./components/BudgetPlanHeader";
 import { expenseDataType, sortByType, orderByType, groupByType } from "@/app/lib/definitions";
 import TabsDuo from "../../components/TabsDuo";
-import { categorizeExpenseList } from "@/app/lib/utils";
+import BudgetPlanEmptyExpenses from "./components/BudgetPlanEmptyExpenses";
 
 /* ########################################### Budget Plan ########################################### */
 
@@ -53,7 +53,7 @@ export default function BudgetPlan(
             {formActive && <AddExpenseForm totalExpense={totalExpense} totalBalance={totalBalance} budgetPlanId={budgetPlanId} toggleForm={setFormActive}/>}
             
             {/* Budget Plan */}
-            <div className=" w-screen h-dvh h-dvh overflow-y-scroll z-20 fixed top-[0px] bg-dark-surface-1 ">
+            <div className=" w-screen h-dvh h-dvh overflow-y-scroll z-20 fixed top-[0px] bg-dark-surface-1">
 
                 <div className="w-screen flex items-center justify-center">
                     <BudgetPlanHeader
@@ -61,7 +61,7 @@ export default function BudgetPlan(
                     />
                 </div>
 
-                <div className="w-screen h-screen relative flex flex-col items-center  border-dark gap-y-[0.75rem]">
+                <div className="w-screen min-h-screen relative flex flex-col items-center  border-dark gap-y-[0.75rem] pb-[2rem]">
 
                     {/* background card */}
                     <div className="w-full bg-dark-surface-0 h-[calc(100%-5rem)] top-[5rem] absolute border-t-[1px] border-dark-border rounded-t-xl z-[-10]">
@@ -74,47 +74,23 @@ export default function BudgetPlan(
                     
                     <TabsDuo fields={['Expenses', 'Stats']} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
                     
-                    {
-                        selectedTab === 'Expenses' ?
-                        (
-                            <div className="w-[90%]">
+                    <div className="w-[90%]">
+                        {
+                            expenseListData.length <=0 ?
+                                (
+                                    <BudgetPlanEmptyExpenses />
+                                ) :
                                 
-                                {
-                                    expenseListData.length <= 0 ?
+                            selectedTab === 'Expenses' ?
+                                (
+                                    <BudgetPlanExpenses expenseListData={expenseListData}/>                             
+                                ) :
 
-                                    (
-                                        <ExpenseList.Empty />
-                                    ) :
-
-                                    (
-                                        <ExpenseList.List 
-                                            expenseListData={expenseListData}
-                                        />
-                                    )
-                                }
-
-                            </div>
-                        ) : 
-
-                        (
-                            <div className="w-[90%]">
-
-                                {
-                                    expenseListData.length <= 0 ?
-
-                                    (
-                                        <ExpenseList.Empty />
-                                    ) :
-
-                                    (
-                                        <Stats expenseListData={expenseListData} /> 
-                                    )
-                                }
-
-                            </div>
-                            
-                        )
-                    }
+                                (
+                                    <BudgetPlanStats expenseListData={expenseListData} />                           
+                                )
+                        }
+                    </div>
                             
                         
                 </div>
