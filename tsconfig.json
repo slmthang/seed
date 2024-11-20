@@ -27,9 +27,9 @@
         "**/*.tsx",
         ".next/types/**/*.ts",
         "app/ui-components/UserProfile.js",
-        "app/ui/views/TrioWidgettsx.text",
-        "app/ui/ItemsCopy.text",
-        "app/ui/Itemstsx"
+        "app/dfl/views/TrioWidgettsx.text",
+        "app/dfl/ItemsCopy.text",
+        "app/dfl/Itemstsx"
     ],
     "exclude": ["node_modules"]
 }
