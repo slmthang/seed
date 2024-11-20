@@ -1,9 +1,7 @@
-
 /* ########################################### IMPORTS ########################################### */
 
-import { FieldError, UseFormRegister } from "react-hook-form";
-import { z, ZodType } from "zod"; // Add new import
-
+import { FieldError, UseFormRegister } from 'react-hook-form';
+import { z, ZodType } from 'zod'; // Add new import
 
 /* ########################################### TYPES ########################################### */
 
@@ -17,10 +15,16 @@ export type AddExpenseFormDataType = {
     item: string;
     amount: string;
     category: string;
-}
+};
 
 // AddExpenseFormFieldNames Type
-export type AddExpenseFormFieldNamesType = 'budgetPlanId' | 'totalExpense' | 'totalBalance' | 'item' | 'amount' | 'category';
+export type AddExpenseFormFieldNamesType =
+    | 'budgetPlanId'
+    | 'totalExpense'
+    | 'totalBalance'
+    | 'item'
+    | 'amount'
+    | 'category';
 
 // AddExpenseFormFieldProps Type
 export type AddExpenseFormFieldPropsType = {
@@ -31,37 +35,35 @@ export type AddExpenseFormFieldPropsType = {
     value?: string;
     register: UseFormRegister<AddExpenseFormDataType>;
     error: FieldError | undefined;
-    valueAsNumber?: boolean
-}
+    valueAsNumber?: boolean;
+};
 
-// AddExpenseFromSchema Zod Object 
-export const AddExpenseFromSchema: ZodType<AddExpenseFormDataType> = z
-.object({
+// AddExpenseFromSchema Zod Object
+export const AddExpenseFromSchema: ZodType<AddExpenseFormDataType> = z.object({
     budgetPlanId: z.string(),
     totalExpense: z.string(),
     totalBalance: z.string(),
-    item: z.string()
-        .min(1, { message: 'Name is required.'})
-        .max(120, { message: 'Name must be not be longer than 120 characters.'}),
-    amount: z.string()
-        .min(1, { message: 'Amount is required.'})
-        .regex(new RegExp(/[0-9]*\.[0-9]*/), 'Enter a valid amount. Examples: "100.00" for $100 and "99.99" for $99.99 '),
-    category: z.string()
-        .min(1, { message: 'Category is required.'}),
-})
-
-
+    item: z.string().min(1, { message: 'Name is required.' }).max(120, {
+        message: 'Name must be not be longer than 120 characters.'
+    }),
+    amount: z
+        .string()
+        .min(1, { message: 'Amount is required.' })
+        .regex(
+            new RegExp(/[0-9]*\.[0-9]*/),
+            'Enter a valid amount. Examples: "100.00" for $100 and "99.99" for $99.99 '
+        ),
+    category: z.string().min(1, { message: 'Category is required.' })
+});
 
 /****************************** AddBudgetPlanForm ******************************/
 
 export type AddBudgetPlanFormDataType = {
     budgetPlanName: string;
     budgetAmount: string;
-}
+};
 
-
-export type AddBudgetPlanFormFieldsTypes = 'budgetPlanName' | 'budgetAmount' ;
-
+export type AddBudgetPlanFormFieldsTypes = 'budgetPlanName' | 'budgetAmount';
 
 export type AddBudgetPlanFormFieldPropsType = {
     label?: string;
@@ -71,26 +73,27 @@ export type AddBudgetPlanFormFieldPropsType = {
     actualValue?: string;
     register: UseFormRegister<AddBudgetPlanFormDataType>;
     error: FieldError | undefined;
-    valueAsNumber?: boolean
-}
+    valueAsNumber?: boolean;
+};
 
+export const AddBudgetPlanFormSchema: ZodType<AddBudgetPlanFormDataType> =
+    z.object({
+        budgetPlanName: z
+            .string()
+            .min(1, { message: 'Name is required.' })
+            .max(120, {
+                message: 'Name must be not be longer than 120 characters.'
+            }),
+        budgetAmount: z
+            .string()
+            .min(1, { message: 'Amount is required.' })
+            .regex(
+                new RegExp(/[0-9]*\.[0-9]*/),
+                'Enter a valid amount. Examples: "100.00" for $100 and "99.99" for $99.99 '
+            )
+    });
 
-export const AddBudgetPlanFormSchema: ZodType<AddBudgetPlanFormDataType> = z
-.object({
-    budgetPlanName: z.string()
-        .min(1, { message: 'Name is required.'})
-        .max(120, { message: 'Name must be not be longer than 120 characters.'}),
-    budgetAmount: z.string()
-        .min(1, { message: 'Amount is required.'})
-        .regex(new RegExp(/[0-9]*\.[0-9]*/), 'Enter a valid amount. Examples: "100.00" for $100 and "99.99" for $99.99 ')
-})
-
-
-
-
-
-
-/****************************** Database Type ******************************/
+/****************************** Drizzle Database Type ******************************/
 
 // userInfo Type
 export type userDataType = {
@@ -99,7 +102,7 @@ export type userDataType = {
     lastName: string;
     email: string;
     joined?: Date | undefined;
-}
+};
 
 // budgetPlan Type
 export type budgetPlanDataType = {
@@ -110,7 +113,7 @@ export type budgetPlanDataType = {
     totalExpense: string;
     totalBalance: string;
     createdAt: Date;
-}
+};
 
 // expenseList Type
 export type expenseDataType = {
@@ -120,44 +123,50 @@ export type expenseDataType = {
     amount: string;
     category: string;
     createdAt: Date;
-}
-
-
-
+};
 
 /****************************** Option ******************************/
 
-export type sortByType = 'name' | 'amount'
-export type orderByType = 'asc' | 'desc'
-export type groupByType = 'item' | 'category'
+export type sortByType = 'name' | 'amount';
+export type orderByType = 'asc' | 'desc';
+export type groupByType = 'item' | 'category';
 
 export interface sortOptionsType {
-    groupBy?: groupByType,
-    sortBy: sortByType,
-    orderBy: orderByType
+    groupBy?: groupByType;
+    sortBy: sortByType;
+    orderBy: orderByType;
 }
-
 
 /****************************** Chart ******************************/
 export interface pieDataType {
-    label: string,
-    y: number,
-    fill: string
+    label: string;
+    y: number;
+    fill: string;
 }
 
 export interface categoriedExpenseType {
-    category: string,
-    amount: string
+    category: string;
+    amount: string;
 }
 
-export const colorPalette = [ "#ea5545", "#f46a9b", "#ef9b20", "#edbf33", "#ede15b", "#bdcf32", "#87bc45", "#27aeef", "#b33dc6", "#0bb4ff", "#50e991", "#e6d800" ]
-
+export const colorPalette = [
+    '#ea5545',
+    '#f46a9b',
+    '#ef9b20',
+    '#edbf33',
+    '#ede15b',
+    '#bdcf32',
+    '#87bc45',
+    '#27aeef',
+    '#b33dc6',
+    '#0bb4ff',
+    '#50e991',
+    '#e6d800'
+];
 
 /************************************************************************************************************************/
 
-
 // export const durations = ['day', 'week', 'month', 'year'];
-
 
 // // types
 // export type PageTypes = 'budget-plan' | 'subscriptions' | 'tracker' | 'savings';
@@ -169,7 +178,6 @@ export const colorPalette = [ "#ea5545", "#f46a9b", "#ef9b20", "#edbf33", "#ede1
 //     expense?: string;
 //     balance?: string;
 // }
-
 
 // export type LargeWidgetTypes = 'tracker-home' | 'budgetPlanner-home';
 // export type SmallWidgetTypes = 'savings-home' | 'subscriptions-home';
@@ -188,9 +196,9 @@ export const colorPalette = [ "#ea5545", "#f46a9b", "#ef9b20", "#edbf33", "#ede1
 // }
 
 // export type overViewDataType = {
-//     budget? : {name: string, amount: string}, 
-//     income?: {name: string, amount: string}, 
-//     expense: {name: string, amount: string}, 
+//     budget? : {name: string, amount: string},
+//     income?: {name: string, amount: string},
+//     expense: {name: string, amount: string},
 //     balance: {name: string, amount: string}
 // }
 
@@ -202,20 +210,20 @@ export const colorPalette = [ "#ea5545", "#f46a9b", "#ef9b20", "#edbf33", "#ede1
 // export type budgetPlanIncomeType = string;
 
 // export type budgetPlanExpenseListType = {
-//     name: string, 
-//     amount: string, 
+//     name: string,
+//     amount: string,
 //     category: string
 // }[];
 
 // export type subscriptionsExpenseListType = {
-//     name: string, 
-//     amount: string, 
+//     name: string,
+//     amount: string,
 //     category: string,
 //     paymentDay: string
 // }[];
 
 // export type trackerItemsListType = {
-//     name: string, 
+//     name: string,
 //     amount: string,
 //     isExpense: Boolean,
 //     category: string,
@@ -223,12 +231,11 @@ export const colorPalette = [ "#ea5545", "#f46a9b", "#ef9b20", "#edbf33", "#ede1
 // }[]
 
 // export type savingsExpenseListType = {
-//     name: string, 
+//     name: string,
 //     amount: string,
 //     category: string,
 //     date: string
 // }[];
-
 
 // export type AppDataType = {
 //     user: {

@@ -1,39 +1,21 @@
-
-
-
 /* ########################################### Modules ########################################### */
 
 // remote
-import { Dispatch, FC, SetStateAction, useState } from "react";
-import { budgetPlanOptionsType, groupByType, orderByType, sortByType } from "@/app/lib/definitions";
-import { ChevronDownIcon, ChevronRightIcon } from "../../Icons";
+import { Dispatch, SetStateAction } from 'react';
 
-// local 
-import { capitalize } from "@/app/lib/utils";
+// local
 
-export default function Option<T extends sortByType | orderByType | groupByType>(
-    {
-        optionName,
-        OptionIcon,
-        setFunction,
-        // optionType,
-        // optionValues,
-        // budgetPlanOptions,
-        // setBudgetPlanOptions
-    } : 
-    {
-        optionName: string,
-        OptionIcon: React.ComponentType<{
-            tailwindClass?: string;
-        }>,
-        setFunction: Dispatch<SetStateAction<boolean>>
-        // optionType: 'sortBy' | 'orderBy' | 'groupBy',
-        // optionValues: T[],
-        // budgetPlanOptions: budgetPlanOptionsType,
-        // setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptionsType>>
-    }
-) {
-
+export default function Option({
+    optionName,
+    OptionIcon,
+    setFunction
+}: {
+    optionName: string;
+    OptionIcon: React.ComponentType<{
+        tailwindClass?: string;
+    }>;
+    setFunction: Dispatch<SetStateAction<boolean>>;
+}) {
     // const [optionsShown, setOptionShown] = useState(true);
 
     // const optionList = optionValues.map((element) => {
@@ -46,14 +28,13 @@ export default function Option<T extends sortByType | orderByType | groupByType>
     // })
 
     return (
-
-        <div className="flex" onClick={() => setFunction(prev => !prev)}>
+        <div className="flex" onClick={() => setFunction((prev) => !prev)}>
             <div className="flex items-center justify-center h-[3rem] w-[2rem] mr-[0.5rem]">
-                <OptionIcon tailwindClass="size-5"/>
+                <OptionIcon tailwindClass="size-5" />
             </div>
             <div className="flex items-center justify-start h-[3rem] w-[7rem]">
                 <h1>{optionName}</h1>
             </div>
         </div>
-    )
+    );
 }

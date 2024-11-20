@@ -1,94 +1,96 @@
-
-
-'use client'
+'use client';
 
 // modules (remote)
-import { useEffect, useState } from "react"
-import Link from "next/link"
-import clsx from "clsx"
-import { usePathname } from 'next/navigation'
-import path from "path"
-import { HomeIcon, BudgetPlanIcon, SubscriptionsIcon, TrackerIcon, SavingsIcon } from "./Icons"
+import clsx from 'clsx';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import {
+    BudgetPlanIcon,
+    HomeIcon,
+    SavingsIcon,
+    SubscriptionsIcon,
+    TrackerIcon
+} from './Icons';
 
-
-function NavBarOption(
-    { route, selected, onClick, children} : {route: string, selected: Boolean, onClick: any, children: React.ReactNode}
-) {
+function NavBarOption({
+    route,
+    selected,
+    onClick,
+    children
+}: {
+    route: string;
+    selected: boolean;
+    onClick: () => void;
+    children: React.ReactNode;
+}) {
     return (
         <Link href={route}>
-            < div className={clsx(
-                "w-6", 
-                {
+            <div
+                className={clsx('w-6', {
                     'stroke-light': !selected,
                     'stroke-lightest': selected
-                }
-            )} 
-
-            onClick={onClick}
+                })}
+                onClick={onClick}
             >
                 {children}
-            </ div>
+            </div>
         </Link>
-    )
+    );
 }
 
-
-
-export default function NavBar(
-) {
-
-    const  NavBarOptionsData = [
+export default function NavBar() {
+    const NavBarOptionsData = [
         {
             path: '/',
-            icon: (
-                <HomeIcon />
-            )
+            icon: <HomeIcon />
         },
         {
             path: '/budget-plans',
-            icon: (
-                <BudgetPlanIcon />
-            )
+            icon: <BudgetPlanIcon />
         },
         {
             path: '/subscriptions',
-            icon: (
-                <SubscriptionsIcon />
-            )
+            icon: <SubscriptionsIcon />
         },
         {
             path: '/tracker',
-            icon: (
-                <TrackerIcon />
-            )
+            icon: <TrackerIcon />
         },
         {
             path: '/savings',
-            icon: (
-                <SavingsIcon />
-            )
+            icon: <SavingsIcon />
         }
-    ]
+    ];
 
     const pathName = usePathname();
 
     const [selected, setSelected] = useState<string>(pathName);
 
     useEffect(() => {
-        setSelected(pathName)
-    }, [pathName])
+        setSelected(pathName);
+    }, [pathName]);
 
-    const optionsToShow = NavBarOptionsData.map( (e, i) => {
+    const optionsToShow = NavBarOptionsData.map((e, i) => {
         return (
-            <NavBarOption key={String(e.path) + String(i)} route={ e.path} selected={selected === e.path} onClick={ () => setSelected(e.path)}>
-                { e.icon}
+            <NavBarOption
+                key={String(e.path) + String(i)}
+                route={e.path}
+                selected={selected === e.path}
+                onClick={() => setSelected(e.path)}
+            >
+                {e.icon}
             </NavBarOption>
-        )
-    })
+        );
+    });
 
     return (
-        <nav className={"z-10 flex justify-between items-center absolute bottom-[0px] left-[0px] w-screen h-16 px-5 backdrop-blur-md  " }>
+        <nav
+            className={
+                'z-10 flex justify-between items-center absolute bottom-[0px] left-[0px] w-screen h-16 px-5 backdrop-blur-md  '
+            }
+        >
             {optionsToShow}
         </nav>
-    )
+    );
 }

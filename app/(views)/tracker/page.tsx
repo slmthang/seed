@@ -1,9 +1,5 @@
-
-
-import Tracker from "./Tracker";
+import Tracker from './Tracker';
 
 export default function Page() {
-    return (
-        <Tracker />
-    )
+    return <Tracker />;
 }

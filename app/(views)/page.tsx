@@ -1,15 +1,10 @@
-
 /* ########################################### Modules ########################################### */
 
 // local
-import Overview from '@/app/ui/views/Overview'
-
+import Overview from '@/app/ui/views/Overview';
 
 /* ########################################### OverviewPage ########################################### */
 
 export default async function OverviewPage() {
-  
-  return (
-      <Overview />
-  )
+    return <Overview />;
 }

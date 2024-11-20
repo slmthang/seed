@@ -1,10 +1,7 @@
-
-
 // // chart
 
 // import React, { PureComponent } from 'react';
 // // import { PieChart, Pie, BarChart, Bar, ResponsiveContainer, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line} from 'recharts';
-
 
 // let data1 = [
 //   { name: 'Group A', value: 400 },
@@ -35,7 +32,6 @@
 //   );
 // };
 
-
 // export function Pie_Chart({pieData, children} : {pieData?: any, children?: React.ReactNode}) {
 
 //     return (
@@ -58,9 +54,7 @@
 //     )
 // }
 
-
 // // Bar chart
-
 
 // const data = [
 //   {
@@ -131,7 +125,6 @@
 //   )
 // }
 
-
 // // line chart
 
 // const data3 = [
@@ -178,7 +171,6 @@
 //     amt: 2100,
 //   },
 // ];
-
 
 // export function Line_Chart({children} : {children?: React.ReactNode}) {
 //   return (

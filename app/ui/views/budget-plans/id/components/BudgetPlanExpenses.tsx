@@ -1,74 +1,93 @@
-
-
 /* ########################################### Client Component ########################################### */
 
-"use client"
+'use client';
 
 /* ########################################### Modules ########################################### */
 
 // remote
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState } from 'react';
 
 // local
-import { sortExpenseList, splitMoney } from "@/app/lib/utils"
-import { SquareIcon, SearchIcon, FilterIcon, SortByIcon, OrderByIcon, GroupByIcon, TrashIcon } from "@/app/ui/Icons";
-import { expenseDataType, sortOptionsType, sortByType, groupByType, orderByType } from "@/app/lib/definitions";
-import Option from "../../../components/Option";
-import DropDownOption from "../../../components/DropDownOption";
+import { expenseDataType, sortOptionsType } from '@/app/lib/definitions';
+import { sortExpenseList, splitMoney } from '@/app/lib/utils';
+import {
+    FilterIcon,
+    GroupByIcon,
+    OrderByIcon,
+    SortByIcon,
+    SquareIcon
+} from '@/app/ui/Icons';
+import DropDownOption from '../../../components/DropDownOption';
 
 /* ########################################### BudgetPlanExpenses ########################################### */
 
-function BudgetPlanExpensesOptionsMenu(
-    {
-        budgetPlanExpensesOptions,
-        setBudgetPlanExpensesOptions
-    } : 
-    {
-        budgetPlanExpensesOptions: sortOptionsType,
-        setBudgetPlanExpensesOptions: Dispatch<SetStateAction<sortOptionsType>>
-    }
-) {
-
+function BudgetPlanExpensesOptionsMenu({
+    budgetPlanExpensesOptions,
+    setBudgetPlanExpensesOptions
+}: {
+    budgetPlanExpensesOptions: sortOptionsType;
+    setBudgetPlanExpensesOptions: Dispatch<SetStateAction<sortOptionsType>>;
+}) {
     return (
         <div className="absolute flex flex-col right-0 min-w-[12rem] z-10 bg-dark-surface-2 rounded-xl gap-y-2 p-4">
-            <DropDownOption optionName="Sort By" OptionIcon={SortByIcon} optionType="sortBy" optionValues={['name', 'amount']} options={budgetPlanExpensesOptions} setOptions={setBudgetPlanExpensesOptions}/>
-            <DropDownOption optionName="Order By" OptionIcon={OrderByIcon} optionType="orderBy" optionValues={['asc', 'desc']} options={budgetPlanExpensesOptions} setOptions={setBudgetPlanExpensesOptions}/>
-            <DropDownOption optionName="Group By" OptionIcon={GroupByIcon} optionType="groupBy" optionValues={['item', 'category']} options={budgetPlanExpensesOptions} setOptions={setBudgetPlanExpensesOptions}/>  
+            <DropDownOption
+                optionName="Sort By"
+                OptionIcon={SortByIcon}
+                optionType="sortBy"
+                optionValues={['name', 'amount']}
+                options={budgetPlanExpensesOptions}
+                setOptions={setBudgetPlanExpensesOptions}
+            />
+            <DropDownOption
+                optionName="Order By"
+                OptionIcon={OrderByIcon}
+                optionType="orderBy"
+                optionValues={['asc', 'desc']}
+                options={budgetPlanExpensesOptions}
+                setOptions={setBudgetPlanExpensesOptions}
+            />
+            <DropDownOption
+                optionName="Group By"
+                OptionIcon={GroupByIcon}
+                optionType="groupBy"
+                optionValues={['item', 'category']}
+                options={budgetPlanExpensesOptions}
+                setOptions={setBudgetPlanExpensesOptions}
+            />
         </div>
-    )
+    );
 }
 
-function ExpenseSearchBar(
-    {
-        searchInputHandler
-    } : {
-        searchInputHandler: (element: any) => void
-    }
-) {
+function ExpenseSearchBar({
+    searchInputHandler
+}: {
+    searchInputHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}) {
     return (
         <div className=" w-full h-[2.5rem] flex items-center justify-center relative mt-[1rem]">
-
-            { 
-                <input type="text" name="searchExpense" id="searchExpense" placeholder="Search an Expense" onChange={searchInputHandler} className="w-full h-full pl-[1rem] pr-[3rem] rounded-xl bg-dark-primary-text border-[1px] border-dark-border text-light-primary-text text-sm placeholder-light-secondary-text"/>
+            {
+                <input
+                    type="text"
+                    name="searchExpense"
+                    id="searchExpense"
+                    placeholder="Search an Expense"
+                    onChange={searchInputHandler}
+                    className="w-full h-full pl-[1rem] pr-[3rem] rounded-xl bg-dark-primary-text border-[1px] border-dark-border text-light-primary-text text-sm placeholder-light-secondary-text"
+                />
             }
-            
         </div>
-    )
+    );
 }
 
-function BudgetPlanExpensesHeader(
-    {
-        budgetPlanExpensesOptions,
-        setBudgetPlanExpensesOptions,
-        searchInputHandler
-    } : 
-    {
-        budgetPlanExpensesOptions: sortOptionsType,
-        setBudgetPlanExpensesOptions: Dispatch<SetStateAction<sortOptionsType>>,
-        searchInputHandler: (element: any) => void
-    }
-) {
-
+function BudgetPlanExpensesHeader({
+    budgetPlanExpensesOptions,
+    setBudgetPlanExpensesOptions,
+    searchInputHandler
+}: {
+    budgetPlanExpensesOptions: sortOptionsType;
+    setBudgetPlanExpensesOptions: Dispatch<SetStateAction<sortOptionsType>>;
+    searchInputHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}) {
     const [filterActive, setFilterActive] = useState(false);
 
     return (
@@ -79,128 +98,126 @@ function BudgetPlanExpensesHeader(
                 </div>
 
                 <div className="flex gap-x-[1rem] absolute right-[0.5rem]">
-                    <div onClick={() => setFilterActive(prev => !prev)} className="flex items-center justify-begin h-[2rem]">
-                        <FilterIcon/>
+                    <div
+                        onClick={() => setFilterActive((prev) => !prev)}
+                        className="flex items-center justify-begin h-[2rem]"
+                    >
+                        <FilterIcon />
                     </div>
                 </div>
-                
-                
             </div>
 
-            {
-                filterActive &&
-
-                <BudgetPlanExpensesOptionsMenu 
+            {filterActive && (
+                <BudgetPlanExpensesOptionsMenu
                     budgetPlanExpensesOptions={budgetPlanExpensesOptions}
                     setBudgetPlanExpensesOptions={setBudgetPlanExpensesOptions}
                 />
-            }
+            )}
 
-            <ExpenseSearchBar searchInputHandler={searchInputHandler}/>
-
+            <ExpenseSearchBar searchInputHandler={searchInputHandler} />
         </div>
-    )
+    );
 }
 
-function BudgetPlanExpensesCards(
-    {
-        sortedFilteredExpenseListData
-    } : 
-    {
-        sortedFilteredExpenseListData: expenseDataType[]
-    }
-) {
+function BudgetPlanExpensesCards({
+    sortedFilteredExpenseListData
+}: {
+    sortedFilteredExpenseListData: expenseDataType[];
+}) {
+    const sortedFilteredExpenseListCards = sortedFilteredExpenseListData.map(
+        (e, i) => {
+            const [amountDollars, amountCents] = splitMoney(String(e.amount));
 
-    const sortedFilteredExpenseListCards = sortedFilteredExpenseListData.map((e, i) => {
-
-        const [amountDollars, amountCents] = splitMoney(String(e.amount));
-
-        return (
-            <div key={e.budgetPlanID + i + ''} className="w-full h-[4rem] flex flex-col justify-between items-center  rounded-xl">
-                
-                <div className="w-full h-[3rem] flex flex-col">
-                    <div className="w-full h-[2rem] flex items-center relative justify-center">
-                        <div className="absolute left-0 flex items-center">
-                            <SquareIcon tailwindClass="fa-fw fa-2xs mr-1 text-red-500"/>
-                            <p className="inline">{e.item}</p>
+            return (
+                <div
+                    key={e.budgetPlanID + i + ''}
+                    className="w-full h-[4rem] flex flex-col justify-between items-center  rounded-xl"
+                >
+                    <div className="w-full h-[3rem] flex flex-col">
+                        <div className="w-full h-[2rem] flex items-center relative justify-center">
+                            <div className="absolute left-0 flex items-center">
+                                <SquareIcon tailwindClass="fa-fw fa-2xs mr-1 text-red-500" />
+                                <p className="inline">{e.item}</p>
+                            </div>
+                            <div className="absolute right-0">
+                                <p className="text-base mt-1">
+                                    ${amountDollars}.
+                                    <span className="text-xs">
+                                        {amountCents}
+                                    </span>
+                                </p>
+                            </div>
                         </div>
-                        <div className="absolute right-0">
-                            <p className="text-base mt-1">${amountDollars}.<span className="text-xs">{amountCents}</span></p>
-                        </div>
-                    </div>
-                    <div className="w-full h-[1rem] flex items-center relative">
-
-                        <div className="flex gap-x-2 right-0 absolute">
-                            <p className="text-xs font-light">{e.category}</p>
+                        <div className="w-full h-[1rem] flex items-center relative">
+                            <div className="flex gap-x-2 right-0 absolute">
+                                <p className="text-xs font-light">
+                                    {e.category}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
-        )
-    })
+            );
+        }
+    );
 
     return (
         <div className="w-[100%] flex flex-col items-center">
-            
             <div className="w-full flex flex-col justify-center items-center p-2">
-                
-                <div className="flex flex-col justify-center  items-center w-full gap-y-2"> 
+                <div className="flex flex-col justify-center  items-center w-full gap-y-2">
                     {sortedFilteredExpenseListCards}
                 </div>
-                
             </div>
-        
         </div>
-    )
+    );
 }
 
-export default function Main(
-    {
-        expenseListData
-    } :
-     {
-        expenseListData: expenseDataType[]
-     }
-) {
-
+export default function Main({
+    expenseListData
+}: {
+    expenseListData: expenseDataType[];
+}) {
     const [searchBarValue, setSearchBarValue] = useState('');
 
-    const [budgetPlanExpensesOptions, setBudgetPlanExpensesOptions] = useState<sortOptionsType>(
-        {
+    const [budgetPlanExpensesOptions, setBudgetPlanExpensesOptions] =
+        useState<sortOptionsType>({
             groupBy: 'item',
             sortBy: 'amount',
             orderBy: 'desc'
-        }
-    )
-
+        });
 
     // search input handler
-    const searchInputHandler = (element: any) => {
-        const input = element.target.value.toLowerCase();
+    const searchInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const element = event.target as HTMLInputElement;
+        const value = element.value;
 
-        setSearchBarValue(input);
-    }
+        setSearchBarValue(value);
+    };
 
-    const filteredExpenseListData = expenseListData.filter((element, index) => {
-
+    const filteredExpenseListData = expenseListData.filter((element) => {
         if (searchBarValue == '') {
             return true;
-        } 
-        
-        else {
+        } else {
             return element.item.toLowerCase().includes(searchBarValue);
         }
+    });
 
-    })
-
-    const sortedFilteredExpenseListData = sortExpenseList(filteredExpenseListData, budgetPlanExpensesOptions.sortBy, budgetPlanExpensesOptions.orderBy);
+    const sortedFilteredExpenseListData = sortExpenseList(
+        filteredExpenseListData,
+        budgetPlanExpensesOptions.sortBy,
+        budgetPlanExpensesOptions.orderBy
+    );
 
     return (
-        <div className="w-full min-h-fit bg-dark-surface-1 rounded-2xl border-[1px] border-dark-border flex flex-col justify-center  items-center py-[1rem] px-[1rem]" >
-            <BudgetPlanExpensesHeader budgetPlanExpensesOptions={budgetPlanExpensesOptions} setBudgetPlanExpensesOptions={setBudgetPlanExpensesOptions} searchInputHandler={searchInputHandler}/>
-            <BudgetPlanExpensesCards sortedFilteredExpenseListData={sortedFilteredExpenseListData}/>
+        <div className="w-full min-h-fit bg-dark-surface-1 rounded-2xl border-[1px] border-dark-border flex flex-col justify-center  items-center py-[1rem] px-[1rem]">
+            <BudgetPlanExpensesHeader
+                budgetPlanExpensesOptions={budgetPlanExpensesOptions}
+                setBudgetPlanExpensesOptions={setBudgetPlanExpensesOptions}
+                searchInputHandler={searchInputHandler}
+            />
+            <BudgetPlanExpensesCards
+                sortedFilteredExpenseListData={sortedFilteredExpenseListData}
+            />
         </div>
-    )
-
+    );
 }

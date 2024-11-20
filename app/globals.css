@@ -3,85 +3,83 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
 }
 
 body {
-  color: #e5e5e5;
+    color: #e5e5e5;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
+    }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
 }
-
 
 /* Skeleton Loader Animation */
 
 .skeletonAnimationA {
-  animation: skeletonLoaderAnimationA 3s linear infinite alternate;
+    animation: skeletonLoaderAnimationA 3s linear infinite alternate;
 }
 
 @keyframes skeletonLoaderAnimationA {
-  0% {
-    background-color: 	hsl(0, 0%, 15%);
-  }
+    0% {
+        background-color: hsl(0, 0%, 15%);
+    }
 
-  100% {
-    background-color: 	hsl(0, 0%, 50%);
-  }
+    100% {
+        background-color: hsl(0, 0%, 50%);
+    }
 }
 
 .skeletonAnimationB {
-  animation: skeletonLoaderAnimationB 3s linear infinite alternate;
+    animation: skeletonLoaderAnimationB 3s linear infinite alternate;
 }
 
 @keyframes skeletonLoaderAnimationB {
-  0% {
-    background-color: 	hsl(0, 0%, 55%);
-  }
+    0% {
+        background-color: hsl(0, 0%, 55%);
+    }
 
-  100% {
-    background-color: 	hsl(0, 0%, 95%);
-  }
+    100% {
+        background-color: hsl(0, 0%, 95%);
+    }
 }
-
 
 /* fade in and out */
 
 .card-fade-in {
-  animation: fade-in 5s;
+    animation: fade-in 5s;
 }
 
 @keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 100;
-  }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 100;
+    }
 }
 
 .card-fade-out {
-  animation: fade-out 5s;
+    animation: fade-out 5s;
 }
 
 @keyframes fade-out {
-  from {
-    opacity: 100;
-  }
-  to {
-    opacity: 0;
-  }
+    from {
+        opacity: 100;
+    }
+    to {
+        opacity: 0;
+    }
 }

@@ -1,17 +1,17 @@
-'use client'
+'use client';
 
-import { useClerk } from '@clerk/nextjs'
+import { useClerk } from '@clerk/nextjs';
 
 const SignOutButton = () => {
-  const { signOut } = useClerk()
+    const { signOut } = useClerk();
 
-  return (
-    // Clicking this button signs out a user
-    // and redirects them to the home page "/".
-    <button onClick={() => signOut({ redirectUrl: '/' })}>Sign out</button>
-  )
-}
+    return (
+        // Clicking this button signs out a user
+        // and redirects them to the home page "/".
+        <button onClick={() => signOut({ redirectUrl: '/' })}>Sign out</button>
+    );
+};
 
 export default function Page() {
-    return <SignOutButton />
+    return <SignOutButton />;
 }

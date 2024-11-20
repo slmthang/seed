@@ -1,10 +1,8 @@
 // 'use server'
 
-
 // import { ProfileIcon, PersonIcon, HelpIcon, SettingIcon, LogoutIcon } from './Icons';
 
 // import { useClerk } from '@clerk/nextjs'
-
 
 // import { currentUser } from '@clerk/nextjs/server';
 
@@ -16,7 +14,7 @@
 //     const user = await currentUser();
 
 //     return (
-        
+
 //         <div className="w-[50%] h-full bg-darkest flex flex-col pl-6 gap-y-4">
 //             <div className="pt-6 mb-6">
 //                 <ProfileIcon tailwindClass=' !size-11'/>

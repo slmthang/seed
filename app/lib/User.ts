@@ -1,15 +1,18 @@
+import {
+    budgetPlanIncomeType,
+    budgetPlanExpenseListType,
+    subscriptionsExpenseListType,
+    trackerItemsListType,
+    savingsExpenseListType
+} from './definitions';
 
-
-import { budgetPlanIncomeType, budgetPlanExpenseListType, subscriptionsExpenseListType, trackerItemsListType, savingsExpenseListType } from "./definitions"
-
-import { calculateTotal } from "./utils";
+import { calculateTotal } from './utils';
 
 export default class User {
-    
     _budgetPlanIncome: budgetPlanIncomeType;
-    _budgetPlanExpenseList: budgetPlanExpenseListType ;
-    _subscriptionsExpenseList: subscriptionsExpenseListType ;
-    _trackerItemsList: trackerItemsListType ;
+    _budgetPlanExpenseList: budgetPlanExpenseListType;
+    _subscriptionsExpenseList: subscriptionsExpenseListType;
+    _trackerItemsList: trackerItemsListType;
     _savingsExpenseList: savingsExpenseListType;
 
     /*** DATA ***/
@@ -73,17 +76,16 @@ export default class User {
 
     /*** Static Methods ***/
     static getTotalExpense(
-        expenses : budgetPlanExpenseListType | subscriptionsExpenseListType | trackerItemsListType | savingsExpenseListType
-    ) : string {
-
-
+        expenses:
+            | budgetPlanExpenseListType
+            | subscriptionsExpenseListType
+            | trackerItemsListType
+            | savingsExpenseListType
+    ): string {
         return calculateTotal(expenses);
     }
 
-    static getTotalIncome(
-        expenses: trackerItemsListType
-    ) : string {
-
+    static getTotalIncome(expenses: trackerItemsListType): string {
         return calculateTotal(expenses);
     }
 }

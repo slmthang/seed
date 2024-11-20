@@ -1,9 +1,5 @@
-
-import LoginPage from './LogIn'
-
+import LoginPage from './LogIn';
 
 export default function Page() {
-  return (
-    <LoginPage />
-  )
+    return <LoginPage />;
 }

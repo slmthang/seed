@@ -1,9 +1,5 @@
-
-
-import Subscriptions from "./Subscriptions"
+import Subscriptions from './Subscriptions';
 
 export default function Page() {
-    return (
-        <Subscriptions />
-    )
+    return <Subscriptions />;
 }

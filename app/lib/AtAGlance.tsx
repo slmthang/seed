@@ -1,5 +1,3 @@
-
-
 export default function AtAGlance() {
     return (
         <section className="w-screen min-h-24 flex flex-col items-center justify-center mt-2 mb-4">
@@ -20,7 +18,6 @@ export default function AtAGlance() {
                 </div>
             </div>
             {pageType === 'tracker' || pageType == 'savings' ? <OptionsSelector data={durations } /> : null} */}
-            
         </section>
-    )
+    );
 }
