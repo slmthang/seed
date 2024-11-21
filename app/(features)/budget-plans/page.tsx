@@ -4,8 +4,8 @@
 import { currentUser } from '@clerk/nextjs/server';
 
 // local
-import { getBudgetPlanListByUserId } from '@/app/lib/db/drizzle';
-import BudgetPlans from '@/app/_features/budget-plans/BudgetPlanList'
+import { getBudgetPlanListByUserId } from '@/app/lib/db/drizzle/drizzle';
+import BudgetPlans from '@/app/_features/budget-plans/BudgetPlanList';
 import { budgetPlanDataType } from '@/app/lib/definitions';
 
 /* ########################################### Page ########################################### */

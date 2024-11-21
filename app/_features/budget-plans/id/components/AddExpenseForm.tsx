@@ -6,18 +6,14 @@ import { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 
 // local
-import {
-    AddExpenseFormDataType,
-    AddExpenseFormFieldPropsType,
-    AddExpenseFromSchema
-} from '@/app/lib/definitions';
-import { AddExpenseAction } from '@/app/lib/serverActions';
+import { AddExpenseFormData, AddExpenseFormFieldProps, AddExpenseFromSchema} from '@/app/lib/definitions/forms/AddExpenseForm/types';
+import { AddExpenseAction } from '@/app/_features/budget-plans/actions/serverActions';
 import { CloseButtonIcon } from '@/app/_features/shared/components/Icons';
 
 /* ########################################### AddExpenseForm ########################################### */
 
 // form field
-const AddExpenseFormField: React.FC<AddExpenseFormFieldPropsType> = ({
+const AddExpenseFormField: React.FC<AddExpenseFormFieldProps> = ({
     label,
     type,
     placeholder,
@@ -26,7 +22,7 @@ const AddExpenseFormField: React.FC<AddExpenseFormFieldPropsType> = ({
     register,
     error,
     valueAsNumber
-}: AddExpenseFormFieldPropsType) => (
+}: AddExpenseFormFieldProps) => (
     <div className="w-full">
         {label && (
             <label htmlFor={name} className="text-sm">
@@ -57,24 +53,24 @@ const AddExpenseFormField: React.FC<AddExpenseFormFieldPropsType> = ({
 // form
 export function AddExpenseForm({
     budgetPlanId,
-    totalExpense,
-    totalBalance,
+    expense,
+    balance,
     toggleForm
 }: {
-    budgetPlanId: string;
-    totalBalance: string;
-    totalExpense: string;
+    budgetPlanId: number;
+    expense: number;
+    balance: number;
     toggleForm: Dispatch<SetStateAction<boolean>>;
 }) {
     const {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm<AddExpenseFormDataType>({
+    } = useForm<AddExpenseFormData>({
         resolver: zodResolver(AddExpenseFromSchema)
     });
 
-    const onSubmit = async (data: AddExpenseFormDataType) => {
+    const onSubmit = async (data: AddExpenseFormData) => {
         await AddExpenseAction(data);
         toggleForm((prev) => !prev);
     };
@@ -104,14 +100,14 @@ export function AddExpenseForm({
                 <AddExpenseFormField
                     type="hidden"
                     name="totalExpense"
-                    value={totalExpense}
+                    value={expense}
                     register={register}
                     error={errors.budgetPlanId}
                 />
                 <AddExpenseFormField
                     type="hidden"
                     name="totalBalance"
-                    value={totalBalance}
+                    value={balance}
                     register={register}
                     error={errors.budgetPlanId}
                 />

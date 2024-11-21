@@ -1,6 +1,11 @@
 'use client';
 
-import { AppIcon, GoogleIcon, FacebookIcon, TikTokIcon } from '@/app/_features/shared/components/Icons';
+import {
+    AppIcon,
+    GoogleIcon,
+    FacebookIcon,
+    TikTokIcon
+} from '@/app/_features/shared/components/Icons';
 import * as Clerk from '@clerk/elements/common';
 import * as SignIn from '@clerk/elements/sign-in';
 import Link from 'next/link';

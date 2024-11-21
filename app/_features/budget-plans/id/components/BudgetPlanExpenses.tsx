@@ -8,7 +8,8 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 
 // local
-import { expenseDataType, sortOptionsType } from '@/app/lib/definitions';
+import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/types';
+import { sortOptionsType } from '@/app/lib/definitions/menuOptions/types';
 import { sortExpenseList, splitMoney } from '@/app/lib/utils';
 import {
     FilterIcon,
@@ -122,7 +123,7 @@ function BudgetPlanExpensesHeader({
 function BudgetPlanExpensesCards({
     sortedFilteredExpenseListData
 }: {
-    sortedFilteredExpenseListData: expenseDataType[];
+    sortedFilteredExpenseListData: SelectbudgetPlanExpense[];
 }) {
     const sortedFilteredExpenseListCards = sortedFilteredExpenseListData.map(
         (e, i) => {
@@ -130,7 +131,7 @@ function BudgetPlanExpensesCards({
 
             return (
                 <div
-                    key={e.budgetPlanID + i + ''}
+                    key={e.budgetPlanId + i + ''}
                     className="w-full h-[4rem] flex flex-col justify-between items-center  rounded-xl"
                 >
                     <div className="w-full h-[3rem] flex flex-col">
@@ -151,7 +152,7 @@ function BudgetPlanExpensesCards({
                         <div className="w-full h-[1rem] flex items-center relative">
                             <div className="flex gap-x-2 right-0 absolute">
                                 <p className="text-xs font-light">
-                                    {e.category}
+                                    {e.categoryId}
                                 </p>
                             </div>
                         </div>
@@ -175,7 +176,7 @@ function BudgetPlanExpensesCards({
 export default function Main({
     expenseListData
 }: {
-    expenseListData: expenseDataType[];
+    expenseListData: SelectbudgetPlanExpense[];
 }) {
     const [searchBarValue, setSearchBarValue] = useState('');
 

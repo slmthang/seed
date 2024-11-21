@@ -4,18 +4,11 @@
 
 /* ########################################### IMPORTS ########################################### */
 
-import {
-    createBudgetPlanExpense,
-    updateBalanceOfBudgetPlan,
-    updateExpenseOfBudgetPlan
-} from '@/app/lib/db/drizzle';
-import { redirect } from 'next/navigation';
+import { AddExpenseFormData } from '@/app/lib/definitions/forms/AddExpenseForm/types';
+import { AddBudgetPlanFormData } from '@/app/lib/definitions/forms/AddBudgetPlanForm/types';
 import { revalidatePath } from 'next/cache';
-import { AddExpenseFormDataType } from '@/app/lib/definitions';
-
-import { createBudgetPlan } from '@/app/lib/db/drizzle';
+import { redirect } from 'next/navigation';
 import { currentUser } from '@clerk/nextjs/server';
-import { AddBudgetPlanFormDataType } from '@/app/lib/definitions';
 
 /* ########################################### SERVER ACTIONS ########################################### */
 
@@ -26,18 +19,25 @@ import { AddBudgetPlanFormDataType } from '@/app/lib/definitions';
  * @param { AddExpenseFormDataType } formData : form data from addExpenseForm form
  */
 
-export async function AddExpenseAction(formData: AddExpenseFormDataType) {
+import {
+    createBudgetPlan,
+    createBudgetPlanExpense,
+    updateBalanceOfBudgetPlan,
+    updateExpenseOfBudgetPlan
+} from '@/app/lib/db/drizzle/drizzle';
+
+export async function AddExpenseAction(formData: AddExpenseFormData) {
     // add item
     const id = await createBudgetPlanExpense({
-        budgetPlanID: Number(formData.budgetPlanId),
+        budgetPlanId: Number(formData.budgetPlanId),
         item: formData.item,
         amount: formData.amount,
-        category: formData.category
+        categoryId: formData.category
     });
 
     // update the budget plan with new expense
     await updateExpenseOfBudgetPlan(
-        +formData.budgetPlanId,
+        formData.budgetPlanId,
         formData.totalExpense,
         formData.amount,
         'add'
@@ -57,20 +57,20 @@ export async function AddExpenseAction(formData: AddExpenseFormDataType) {
 /**
  * AddBudgetPlanAction : ( server action )
  * Add a new budget plan.
- * @param { AddBudgetPlanFormDataType } formData : form data from addExpenseForm form
+ * @param { AddBudgetPlanFormData } formData : form data from addExpenseForm form
  */
 
 export default async function AddBudgetPlanAction(
-    formData: AddBudgetPlanFormDataType
+    formData: AddBudgetPlanFormData
 ) {
     const user = await currentUser();
 
     const id = await createBudgetPlan({
         userId: user?.id + '',
         budgetPlanName: formData.budgetPlanName,
-        totalBudget: formData.budgetAmount,
-        totalExpense: '0.00',
-        totalBalance: formData.budgetAmount
+        budget: formData.budgetAmount,
+        expense: 0.0,
+        balance: formData.budgetAmount
     });
 
     revalidatePath('/budget-plans'); // Update cached budgetplans

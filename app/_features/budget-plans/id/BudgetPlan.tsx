@@ -13,7 +13,8 @@ import BudgetPlanAtGlance from '@/app/_features/budget-plans/id/components/Budge
 import BudgetPlanExpenses from '@/app/_features/budget-plans/id/components/BudgetPlanExpenses';
 import BudgetPlanStats from '@/app/_features/budget-plans/id/components/BudgetPlanStats';
 import TabsDuo from '@/app/_features/shared/components/TabsDuo';
-import { expenseDataType } from '@/app/lib/definitions';
+
+import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/types';
 import { AddButtonIcon } from '@/app/_features/shared/components/Icons';
 import BudgetPlanEmptyExpenses from './components/BudgetPlanEmptyExpenses';
 import BudgetPlanHeader from './components/BudgetPlanHeader';
@@ -23,17 +24,17 @@ import BudgetPlanHeader from './components/BudgetPlanHeader';
 export default function BudgetPlan({
     budgetPlanId,
     budgetPlanName,
-    totalBudget,
-    totalExpense,
-    totalBalance,
+    budget,
+    expense,
+    balance,
     expenseListData
 }: {
-    budgetPlanId: string;
+    budgetPlanId: number;
     budgetPlanName: string;
-    totalBudget: string;
-    totalExpense: string;
-    totalBalance: string;
-    expenseListData: expenseDataType[];
+    budget: number;
+    expense: number;
+    balance: number;
+    expenseListData: SelectbudgetPlanExpense[];
 }) {
     const [formActive, setFormActive] = useState<boolean>(false);
     const [selectedTab, setSelectedTab] = useState<string>('Expenses');
@@ -43,8 +44,8 @@ export default function BudgetPlan({
             {/* Form to add expense */}
             {formActive && (
                 <AddExpenseForm
-                    totalExpense={totalExpense}
-                    totalBalance={totalBalance}
+                    expense={expense}
+                    balance={balance}
                     budgetPlanId={budgetPlanId}
                     toggleForm={setFormActive}
                 />
@@ -62,9 +63,9 @@ export default function BudgetPlan({
 
                     <div className="w-[90%]">
                         <BudgetPlanAtGlance
-                            totalBudget={totalBudget}
-                            totalExpense={totalExpense}
-                            totalBalance={totalBalance}
+                            budget={budget}
+                            expense={expense}
+                            balance={balance}
                         />
                     </div>
 
@@ -74,7 +75,7 @@ export default function BudgetPlan({
                         setSelectedTab={setSelectedTab}
                     />
 
-                    <div className="w-[90%]">
+                    <div className="w-[90%] justify-center items-center flex">
                         {expenseListData.length <= 0 ? (
                             <BudgetPlanEmptyExpenses />
                         ) : selectedTab === 'Expenses' ? (

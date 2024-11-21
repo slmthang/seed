@@ -1,125 +1,34 @@
 {
-    "id": "a62509ba-d68a-4a53-bdf0-eed9a0c04638",
-    "prevId": "00000000-0000-0000-0000-000000000000",
+    "id": "00000000-0000-0000-0000-000000000000",
+    "prevId": "",
     "version": "7",
     "dialect": "postgresql",
     "tables": {
-        "public.budget_plan_expenses": {
-            "name": "budget_plan_expenses",
+        "public.users_table": {
+            "name": "users_table",
             "schema": "",
             "columns": {
                 "id": {
                     "name": "id",
-                    "type": "bigserial",
+                    "type": "bigint",
                     "primaryKey": true,
-                    "notNull": true
-                },
-                "budget_plan_id": {
-                    "name": "budget_plan_id",
-                    "type": "bigserial",
-                    "primaryKey": false,
-                    "notNull": true
-                },
-                "item": {
-                    "name": "item",
-                    "type": "varchar(120)",
-                    "primaryKey": false,
-                    "notNull": true
-                },
-                "category": {
-                    "name": "category",
-                    "type": "varchar(120)",
-                    "primaryKey": false,
-                    "notNull": true
-                },
-                "amount": {
-                    "name": "amount",
-                    "type": "varchar(30)",
-                    "primaryKey": false,
-                    "notNull": true
-                },
-                "created_at": {
-                    "name": "created_at",
-                    "type": "timestamp",
-                    "primaryKey": false,
                     "notNull": true,
-                    "default": "now()"
-                }
-            },
-            "indexes": {},
-            "foreignKeys": {
-                "budget_plan_expenses_budget_plan_id_budget_plans_id_fk": {
-                    "name": "budget_plan_expenses_budget_plan_id_budget_plans_id_fk",
-                    "tableFrom": "budget_plan_expenses",
-                    "tableTo": "budget_plans",
-                    "columnsFrom": ["budget_plan_id"],
-                    "columnsTo": ["id"],
-                    "onDelete": "cascade",
-                    "onUpdate": "no action"
-                }
-            },
-            "compositePrimaryKeys": {},
-            "uniqueConstraints": {}
-        },
-        "public.budget_plans": {
-            "name": "budget_plans",
-            "schema": "",
-            "columns": {
-                "id": {
-                    "name": "id",
-                    "type": "bigserial",
-                    "primaryKey": true,
-                    "notNull": true
+                    "identity": {
+                        "type": "always",
+                        "name": "users_table_id_seq",
+                        "increment": "1",
+                        "minValue": "1",
+                        "maxValue": "9223372036854775807",
+                        "startWith": "10000",
+                        "cache": "1",
+                        "cycle": false,
+                        "schema": "public"
+                    }
                 },
-                "user_id": {
-                    "name": "user_id",
-                    "type": "varchar(200)",
+                "auth_id": {
+                    "name": "auth_id",
+                    "type": "varchar(255)",
                     "primaryKey": false,
-                    "notNull": true
-                },
-                "budget_plan_name": {
-                    "name": "budget_plan_name",
-                    "type": "varchar(120)",
-                    "primaryKey": false,
-                    "notNull": true
-                },
-                "budget": {
-                    "name": "budget",
-                    "type": "varchar(30)",
-                    "primaryKey": false,
-                    "notNull": true
-                },
-                "created_at": {
-                    "name": "created_at",
-                    "type": "timestamp",
-                    "primaryKey": false,
-                    "notNull": true,
-                    "default": "now()"
-                }
-            },
-            "indexes": {},
-            "foreignKeys": {
-                "budget_plans_user_id_users_id_fk": {
-                    "name": "budget_plans_user_id_users_id_fk",
-                    "tableFrom": "budget_plans",
-                    "tableTo": "users",
-                    "columnsFrom": ["user_id"],
-                    "columnsTo": ["id"],
-                    "onDelete": "cascade",
-                    "onUpdate": "no action"
-                }
-            },
-            "compositePrimaryKeys": {},
-            "uniqueConstraints": {}
-        },
-        "public.users": {
-            "name": "users",
-            "schema": "",
-            "columns": {
-                "id": {
-                    "name": "id",
-                    "type": "varchar(200)",
-                    "primaryKey": true,
                     "notNull": true
                 },
                 "first_name": {
@@ -152,20 +61,233 @@
             "foreignKeys": {},
             "compositePrimaryKeys": {},
             "uniqueConstraints": {
-                "users_email_unique": {
-                    "name": "users_email_unique",
+                "users_table_auth_id_key": {
+                    "columns": ["auth_id"],
                     "nullsNotDistinct": false,
-                    "columns": ["email"]
+                    "name": "users_table_auth_id_key"
                 }
             }
+        },
+        "public.categories_table": {
+            "name": "categories_table",
+            "schema": "",
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "bigint",
+                    "primaryKey": true,
+                    "notNull": true,
+                    "identity": {
+                        "type": "always",
+                        "name": "categories_table_id_seq",
+                        "increment": "1",
+                        "minValue": "1",
+                        "maxValue": "9223372036854775807",
+                        "startWith": "10000",
+                        "cache": "1",
+                        "cycle": false,
+                        "schema": "public"
+                    }
+                },
+                "user_id": {
+                    "name": "user_id",
+                    "type": "varchar(255)",
+                    "primaryKey": false,
+                    "notNull": true
+                },
+                "name": {
+                    "name": "name",
+                    "type": "varchar(120)",
+                    "primaryKey": false,
+                    "notNull": true
+                },
+                "color": {
+                    "name": "color",
+                    "type": "varchar(120)",
+                    "primaryKey": false,
+                    "notNull": true
+                }
+            },
+            "indexes": {},
+            "foreignKeys": {
+                "categories_table_fk_user": {
+                    "name": "categories_table_fk_user",
+                    "tableFrom": "categories_table",
+                    "tableTo": "users_table",
+                    "schemaTo": "public",
+                    "columnsFrom": ["user_id"],
+                    "columnsTo": ["auth_id"],
+                    "onDelete": "cascade",
+                    "onUpdate": "no action"
+                }
+            },
+            "compositePrimaryKeys": {},
+            "uniqueConstraints": {}
+        },
+        "public.budget_plans_table": {
+            "name": "budget_plans_table",
+            "schema": "",
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "bigint",
+                    "primaryKey": true,
+                    "notNull": true,
+                    "identity": {
+                        "type": "always",
+                        "name": "budget_plans_table_id_seq",
+                        "increment": "1",
+                        "minValue": "1",
+                        "maxValue": "9223372036854775807",
+                        "startWith": "10000",
+                        "cache": "1",
+                        "cycle": false,
+                        "schema": "public"
+                    }
+                },
+                "user_id": {
+                    "name": "user_id",
+                    "type": "varchar(255)",
+                    "primaryKey": false,
+                    "notNull": true
+                },
+                "budget_plan_name": {
+                    "name": "budget_plan_name",
+                    "type": "varchar(120)",
+                    "primaryKey": false,
+                    "notNull": true
+                },
+                "budget": {
+                    "name": "budget",
+                    "type": "bigint",
+                    "primaryKey": false,
+                    "notNull": true
+                },
+                "expense": {
+                    "name": "expense",
+                    "type": "bigint",
+                    "primaryKey": false,
+                    "notNull": true
+                },
+                "balance": {
+                    "name": "balance",
+                    "type": "bigint",
+                    "primaryKey": false,
+                    "notNull": true
+                },
+                "createdat": {
+                    "name": "createdat",
+                    "type": "timestamp",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "default": "now()"
+                }
+            },
+            "indexes": {},
+            "foreignKeys": {
+                "budget_plan_table_fk_user": {
+                    "name": "budget_plan_table_fk_user",
+                    "tableFrom": "budget_plans_table",
+                    "tableTo": "users_table",
+                    "schemaTo": "public",
+                    "columnsFrom": ["user_id"],
+                    "columnsTo": ["auth_id"],
+                    "onDelete": "cascade",
+                    "onUpdate": "no action"
+                }
+            },
+            "compositePrimaryKeys": {},
+            "uniqueConstraints": {}
+        },
+        "public.budget_plan_expenses_table": {
+            "name": "budget_plan_expenses_table",
+            "schema": "",
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "bigint",
+                    "primaryKey": true,
+                    "notNull": true,
+                    "identity": {
+                        "type": "always",
+                        "name": "budget_plan_expenses_table_id_seq",
+                        "increment": "1",
+                        "minValue": "1",
+                        "maxValue": "9223372036854775807",
+                        "startWith": "10000",
+                        "cache": "1",
+                        "cycle": false,
+                        "schema": "public"
+                    }
+                },
+                "budget_plan_id": {
+                    "name": "budget_plan_id",
+                    "type": "bigint",
+                    "primaryKey": false,
+                    "notNull": true
+                },
+                "category_id": {
+                    "name": "category_id",
+                    "type": "bigint",
+                    "primaryKey": false,
+                    "notNull": true
+                },
+                "item": {
+                    "name": "item",
+                    "type": "varchar(120)",
+                    "primaryKey": false,
+                    "notNull": true
+                },
+                "amount": {
+                    "name": "amount",
+                    "type": "bigint",
+                    "primaryKey": false,
+                    "notNull": true
+                },
+                "createdat": {
+                    "name": "createdat",
+                    "type": "timestamp",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "default": "now()"
+                }
+            },
+            "indexes": {},
+            "foreignKeys": {
+                "budget_plan_expenses_table_fk_budget_plan": {
+                    "name": "budget_plan_expenses_table_fk_budget_plan",
+                    "tableFrom": "budget_plan_expenses_table",
+                    "tableTo": "budget_plans_table",
+                    "schemaTo": "public",
+                    "columnsFrom": ["budget_plan_id"],
+                    "columnsTo": ["id"],
+                    "onDelete": "cascade",
+                    "onUpdate": "no action"
+                },
+                "budget_plan_expenses_table_fk_category": {
+                    "name": "budget_plan_expenses_table_fk_category",
+                    "tableFrom": "budget_plan_expenses_table",
+                    "tableTo": "categories_table",
+                    "schemaTo": "public",
+                    "columnsFrom": ["category_id"],
+                    "columnsTo": ["id"],
+                    "onDelete": "set null",
+                    "onUpdate": "no action"
+                }
+            },
+            "compositePrimaryKeys": {},
+            "uniqueConstraints": {}
         }
     },
     "enums": {},
     "schemas": {},
     "sequences": {},
     "_meta": {
-        "columns": {},
         "schemas": {},
+        "tables": {},
+        "columns": {}
+    },
+    "internal": {
         "tables": {}
     }
 }

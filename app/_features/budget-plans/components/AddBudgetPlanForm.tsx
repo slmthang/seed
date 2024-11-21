@@ -6,18 +6,14 @@ import { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 
 // local
-import {
-    AddBudgetPlanFormDataType,
-    AddBudgetPlanFormFieldPropsType,
-    AddBudgetPlanFormSchema
-} from '@/app/lib/definitions';
-import AddBudgetPlanAction from '@/app/lib/serverActions';
+import AddBudgetPlanAction from '@/app/_features/budget-plans/actions/serverActions';
 import { CloseButtonIcon } from '@/app/_features/shared/components/Icons';
+import { AddBudgetPlanFormData, AddBudgetPlanFormFieldProps, AddBudgetPlanFormSchema } from '@/app/lib/definitions/forms/AddBudgetPlanForm/types';
 
 /* ########################################### Add Budget Plan Form ########################################### */
 
 // form field
-export const BudgetPlanFormField: React.FC<AddBudgetPlanFormFieldPropsType> = ({
+export const BudgetPlanFormField: React.FC<AddBudgetPlanFormFieldProps> = ({
     label,
     type,
     placeholder,
@@ -25,7 +21,7 @@ export const BudgetPlanFormField: React.FC<AddBudgetPlanFormFieldPropsType> = ({
     register,
     error,
     valueAsNumber
-}: AddBudgetPlanFormFieldPropsType) => (
+}: AddBudgetPlanFormFieldProps) => (
     <div className="w-full">
         {label && (
             <label htmlFor={name} className="text-sm">
@@ -56,11 +52,11 @@ export default function AddBudgePlanForm({
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm<AddBudgetPlanFormDataType>({
+    } = useForm<AddBudgetPlanFormData>({
         resolver: zodResolver(AddBudgetPlanFormSchema)
     });
 
-    const onSubmit = async (data: AddBudgetPlanFormDataType) => {
+    const onSubmit = async (data: AddBudgetPlanFormData) => {
         await AddBudgetPlanAction(data); // add budget plan using server action
         toggleForm((prev) => !prev); // close form
     };
@@ -90,7 +86,7 @@ export default function AddBudgePlanForm({
                 />
 
                 <BudgetPlanFormField
-                    type="text"
+                    type="number"
                     label="Budget Amount"
                     name="budgetAmount"
                     register={register}

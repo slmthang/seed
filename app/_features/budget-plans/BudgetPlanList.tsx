@@ -12,24 +12,24 @@ import BudgetPlanCard from '@/app/_features/budget-plans/components/BudgetPlanCa
 import { AddButtonIcon } from '@/app/_features/shared/components/Icons';
 import AddBudgetPlanForm from '@/app/_features/budget-plans/components/AddBudgetPlanForm';
 import EmptyBudgetPlansCard from '@/app/_features/budget-plans/components/EmptyBudgetPlansCard';
-import { budgetPlanDataType } from '@/app/lib/definitions';
+import { SelectBudgetPlan } from '@/app/lib/definitions/db/types';
 
 /* ########################################### BudgetPlanList ########################################### */
 
 export default function BudgetPlanList({
     budgetPlanListData
 }: {
-    budgetPlanListData: budgetPlanDataType[];
+    budgetPlanListData: SelectBudgetPlan[];
 }) {
     const BudgetPlanCards = budgetPlanListData.map((item) => {
         return (
             <BudgetPlanCard
-                key={item.id + '' + item.createdAt}
-                totalBudget={item.totalBudget}
-                totalExpense={item.totalExpense}
-                totalBalance={item.totalBalance}
-                budgetPlanId={item.id + ''}
-                cardName={item.budgetPlanName}
+                key={item.id + '' + item.createdat}
+                budget={item.budget}
+                expense={item.expense}
+                balance={item.balance}
+                budgetPlanId={item.id}
+                budgetPlanName={item.budgetPlanName}
             />
         );
     });

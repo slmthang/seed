@@ -3,56 +3,22 @@
 //     trackerItemsListType, savingsExpenseListType
 // } from "./definitions"
 
-import {
-    categoriedExpenseType,
-    colorPalette,
-    expenseDataType,
-    orderByType,
-    pieDataType,
-    sortByType
-} from './definitions';
+import { sortByType, orderByType } from './definitions/menuOptions/types';
+
+import { categorizedExpenseType, colorPalette, pieDataType } from './definitions/types';
+
+import { SelectbudgetPlanExpense } from './definitions/db/types';
 
 export function calculateMoney(
-    x: string,
-    y: string,
+    x: number,
+    y: number,
     method: 'add' | 'subtract'
-): string {
-    const xCents: number = +x.split('.')[0] * 100 + +x.split('.')[1];
-    const yCents: number = +y.split('.')[0] * 100 + +y.split('.')[1];
-
-    let newDollar: number;
-    let newCents: number | string;
-
+): number {
     if (method === 'add') {
-        const totalCents: number = xCents + yCents;
-
-        newDollar = Math.floor(totalCents / 100);
-        newCents = totalCents % 100;
+        return Number((x + y).toFixed(2));
     } else {
-        const remainingCents: number = xCents - yCents;
-
-        newDollar = Math.floor(remainingCents / 100);
-        newCents = remainingCents % 100;
+        return Number((x - y).toFixed(2));
     }
-
-    if (newCents < 0) {
-        newCents = -1 * newCents;
-    } else if (newCents === 0) {
-        newCents = newCents + '0';
-    }
-
-    return newDollar + '.' + newCents;
-}
-
-// export function calculateTotal(expenses: string[]): string {
-//     return expenses.reduce((accumulator, e) => calculateMoney(accumulator, e.amount, 'add'), '0.00')
-// }
-
-export function calculateTotalGeneric(expenses: string[]): string {
-    return expenses.reduce(
-        (accumulator, e) => calculateMoney(accumulator, e, 'add'),
-        '0.00'
-    );
 }
 
 export function validateMoneyInput(x: string): string {
@@ -82,11 +48,14 @@ export function formatDate(date: Date) {
 }
 
 export function sortExpenseList(
-    expenseListData: expenseDataType[],
+    expenseListData: SelectbudgetPlanExpense[],
     sortBy: sortByType,
     orderBy: orderByType
 ) {
-    function sortByAmountAsc(A: expenseDataType, B: expenseDataType) {
+    function sortByAmountAsc(
+        A: SelectbudgetPlanExpense,
+        B: SelectbudgetPlanExpense
+    ) {
         const [dollarsA, centsA] = splitMoney(String(A.amount));
         const [dollarsB, centsB] = splitMoney(String(B.amount));
 
@@ -105,7 +74,10 @@ export function sortExpenseList(
         return 0;
     }
 
-    function sortByAmountDesc(A: expenseDataType, B: expenseDataType) {
+    function sortByAmountDesc(
+        A: SelectbudgetPlanExpense,
+        B: SelectbudgetPlanExpense
+    ) {
         const [dollarsA, centsA] = splitMoney(String(A.amount));
         const [dollarsB, centsB] = splitMoney(String(B.amount));
 
@@ -124,7 +96,10 @@ export function sortExpenseList(
         return 0;
     }
 
-    function sortByNameAsc(A: expenseDataType, B: expenseDataType) {
+    function sortByNameAsc(
+        A: SelectbudgetPlanExpense,
+        B: SelectbudgetPlanExpense
+    ) {
         const itemA = A.item.toLowerCase();
         const itemB = B.item.toLowerCase();
 
@@ -137,7 +112,10 @@ export function sortExpenseList(
         return 0;
     }
 
-    function sortByNameDesc(A: expenseDataType, B: expenseDataType) {
+    function sortByNameDesc(
+        A: SelectbudgetPlanExpense,
+        B: SelectbudgetPlanExpense
+    ) {
         const itemA = A.item.toLowerCase();
         const itemB = B.item.toLowerCase();
 
@@ -164,57 +142,30 @@ export function sortExpenseList(
 }
 
 export function sortCategorizedList(
-    categorizedExpenseList: categoriedExpenseType[],
+    categorizedExpenseList: categorizedExpenseType[],
     sortBy: sortByType,
     orderBy: orderByType
 ) {
     function sortByAmountAsc(
-        A: categoriedExpenseType,
-        B: categoriedExpenseType
+        A: categorizedExpenseType,
+        B: categorizedExpenseType
     ) {
-        const [dollarsA, centsA] = splitMoney(String(A.amount));
-        const [dollarsB, centsB] = splitMoney(String(B.amount));
-
-        if (+dollarsA < +dollarsB) {
-            return -1;
-        } else if (+dollarsA > +dollarsB) {
-            return 1;
-        }
-
-        if (+centsA < +centsB) {
-            return -1;
-        } else if (+centsA > +centsB) {
-            return 1;
-        }
-
-        return 0;
+        return Math.round(A.amount - B.amount);
     }
 
     function sortByAmountDesc(
-        A: categoriedExpenseType,
-        B: categoriedExpenseType
+        A: categorizedExpenseType,
+        B: categorizedExpenseType
     ) {
-        const [dollarsA, centsA] = splitMoney(String(A.amount));
-        const [dollarsB, centsB] = splitMoney(String(B.amount));
-
-        if (+dollarsA > +dollarsB) {
-            return -1;
-        } else if (+dollarsA < +dollarsB) {
-            return 1;
-        }
-
-        if (+centsA > +centsB) {
-            return -1;
-        } else if (+centsA < +centsB) {
-            return 1;
-        }
-
-        return 0;
+        return Math.round(B.amount - A.amount);
     }
 
-    function sortByNameAsc(A: categoriedExpenseType, B: categoriedExpenseType) {
-        const itemA = A.category.toLowerCase();
-        const itemB = B.category.toLowerCase();
+    function sortByNameAsc(
+        A: categorizedExpenseType,
+        B: categorizedExpenseType
+    ) {
+        const itemA = A.name.toLowerCase();
+        const itemB = B.name.toLowerCase();
 
         if (itemA < itemB) {
             return -1;
@@ -226,11 +177,11 @@ export function sortCategorizedList(
     }
 
     function sortByNameDesc(
-        A: categoriedExpenseType,
-        B: categoriedExpenseType
+        A: categorizedExpenseType,
+        B: categorizedExpenseType
     ) {
-        const itemA = A.category.toLowerCase();
-        const itemB = B.category.toLowerCase();
+        const itemA = A.name.toLowerCase();
+        const itemB = B.name.toLowerCase();
 
         if (itemA > itemB) {
             return -1;
@@ -284,11 +235,11 @@ export function capitalize(str: string): string {
 }
 
 export function pieExpenseList(
-    expenseListData: expenseDataType[]
+    expenseListData: SelectbudgetPlanExpense[]
 ): pieDataType[] {
     return categorizeExpenseList(expenseListData).map((element, index) => {
         return {
-            label: element.category,
+            label: element.name,
             y: +element.amount,
             fill: colorPalette[index]
         };
@@ -296,22 +247,22 @@ export function pieExpenseList(
 }
 
 export function categorizeExpenseList(
-    expenseListData: expenseDataType[]
-): categoriedExpenseType[] {
+    expenseListData: SelectbudgetPlanExpense[]
+): categorizedExpenseType[] {
     const categorizedExpenseList: { [key: string]: number } = {};
 
     expenseListData.forEach((element) => {
-        if (categorizedExpenseList[element.category]) {
-            categorizedExpenseList[element.category] += Number(element.amount);
+        if (categorizedExpenseList[element.categoryId]) {
+            categorizedExpenseList[element.categoryId] += Number(element.amount);
         } else {
-            categorizedExpenseList[element.category] = Number(element.amount);
+            categorizedExpenseList[element.categoryId] = Number(element.amount);
         }
     });
 
     return Object.entries(categorizedExpenseList).map((element) => {
         return {
-            category: element[0],
-            amount: String(element[1])
+            name: element[0],
+            amount: element[1]
         };
     });
 }

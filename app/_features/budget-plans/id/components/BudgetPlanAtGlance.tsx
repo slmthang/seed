@@ -7,17 +7,14 @@ import { SquareIcon } from '@/app/_features/shared/components/Icons';
 /* ########################################### BudgetPlanAtGlance ########################################### */
 
 export default function BudgetPlanAtGlance({
-    totalBudget,
-    totalExpense,
-    totalBalance
+    budget,
+    expense,
+    balance
 }: {
-    totalBudget: string;
-    totalExpense: string;
-    totalBalance: string;
+    budget: number;
+    expense: number;
+    balance: number;
 }) {
-    const [totalBudgetDollar, totalBudgetCents] = splitMoney(totalBudget);
-    const [totalExpenseDollars, totalExpenseCents] = splitMoney(totalExpense);
-    const [totalBalanceDollars, totalBalanceCents] = splitMoney(totalBalance);
 
     return (
         <div className="w-full h-[10rem] bg-dark-surface-1 border-[1px] border-dark-border rounded-2xl flex flex-col justify-center items-center">
@@ -28,8 +25,7 @@ export default function BudgetPlanAtGlance({
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
                     <p className="text-base mt-1">
-                        ${totalBudgetDollar}.
-                        <span className="text-xs">{totalBudgetCents}</span>
+                        ${budget}
                     </p>
                 </div>
             </div>
@@ -40,8 +36,7 @@ export default function BudgetPlanAtGlance({
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
                     <p className="text-base mt-1">
-                        ${totalExpenseDollars}.
-                        <span className="text-xs">{totalExpenseCents}</span>
+                        ${expense}
                     </p>
                 </div>
             </div>
@@ -52,8 +47,7 @@ export default function BudgetPlanAtGlance({
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
                     <p className="text-base mt-1">
-                        ${totalBalanceDollars}.
-                        <span className="text-xs">{totalBalanceCents}</span>
+                        ${balance}
                     </p>
                 </div>
             </div>

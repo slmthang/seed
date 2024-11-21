@@ -4,27 +4,26 @@
 import Link from 'next/link';
 
 // local
-import { ChevronRightIcon, SquareIcon } from '@/app/_features/shared/components/Icons';
-import { splitMoney } from '@/app/lib/utils';
+import {
+    ChevronRightIcon,
+    SquareIcon
+} from '@/app/_features/shared/components/Icons';
 
 /* ########################################### BudgetPlanCard ########################################### */
 
 export default function BudgetPlanCard({
-    totalBudget,
-    totalExpense,
-    totalBalance,
+    budget,
+    expense,
+    balance,
     budgetPlanId,
-    cardName
+    budgetPlanName
 }: {
-    totalBudget: string;
-    totalExpense: string;
-    totalBalance: string;
-    budgetPlanId: string;
-    cardName: string;
+    budget: number;
+    expense: number;
+    balance: number;
+    budgetPlanId: number;
+    budgetPlanName: string;
 }) {
-    const [totalBudgetDollars, totalBudgetCents] = splitMoney(totalBudget);
-    const [totalExpenseDollars, totalExpenseCents] = splitMoney(totalExpense);
-    const [totalBalanceDollars, totalBalanceCents] = splitMoney(totalBalance);
 
     return (
         <div
@@ -35,7 +34,7 @@ export default function BudgetPlanCard({
             <div className="w-full min-h-[2rem] px-4 py-2 flex items-center justify-between">
                 <div className="flex h-full items-center gap-x-2">
                     <p className="text-dark-title-text mr-1 text-lg">
-                        {cardName}
+                        {budgetPlanName}
                     </p>
                 </div>
                 <div>
@@ -52,8 +51,7 @@ export default function BudgetPlanCard({
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
                     <p className="text-lg mt-1">
-                        ${totalBudgetDollars}.
-                        <span className="text-xs">{totalBudgetCents}</span>
+                        ${budget}
                     </p>
                 </div>
             </div>
@@ -64,8 +62,7 @@ export default function BudgetPlanCard({
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
                     <p className="text-lg mt-1">
-                        ${totalExpenseDollars}.
-                        <span className="text-xs">{totalExpenseCents}</span>
+                        ${expense}
                     </p>
                 </div>
             </div>
@@ -76,8 +73,7 @@ export default function BudgetPlanCard({
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
                     <p className="text-lg mt-1">
-                        ${totalBalanceDollars}.
-                        <span className="text-xs">{totalBalanceCents}</span>
+                        ${balance}
                     </p>
                 </div>
             </div>

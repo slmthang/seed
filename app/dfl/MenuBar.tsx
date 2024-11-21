@@ -5,7 +5,10 @@ import { usePathname } from 'next/navigation';
 import { Dispatch, SetStateAction } from 'react';
 
 // local
-import { ProfileIcon, MeatBallMenuIcon } from '../_features/shared/components/Icons';
+import {
+    ProfileIcon,
+    MeatBallMenuIcon
+} from '../_features/shared/components/Icons';
 
 export default function MenuBar({
     sideNavToggle

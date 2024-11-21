@@ -3,42 +3,36 @@ import postgres from 'postgres';
 // import { config } from "dotenv";
 import 'dotenv/config';
 
-import {
-    budgetPlanDataType,
-    expenseDataType,
-    userDataType
-} from '../definitions';
-
 // DB STUFF
-import { SelectUser, usersTable } from '@/app/lib/db/schema/usersTable';
 import { eq } from 'drizzle-orm';
-import { calculateMoney } from '../utils';
-import {
-    InsertBudgetPlanExpense,
-    budgetPlanExpensesTable
-} from './schema/budgetPlanExpensesTable';
-import {
-    InsertBudgetPlan,
-    SelectBudgetPlan,
-    budgetPlansTable
-} from './schema/budgetPlansTable';
+import { calculateMoney } from '../../utils';
 
 const connectionString = process.env.DATABASE_URL!;
 // Disable prefetch as it is not supported for "Transaction" pool mode
 export const client = postgres(connectionString, { prepare: false });
 export const db = drizzle(client);
 
+// types
+import {
+    InsertBudgetPlan,
+    SelectBudgetPlan,
+    SelectUser,
+    SelectbudgetPlanExpense,
+    InsertbudgetPlanExpense,
+    InsertUser
+} from '../../definitions/db/types';
+import {
+    budgetPlanExpensesTable,
+    budgetPlansTable,
+    usersTable,
+} from '../migrations/schema';
 // get user id
-export async function getUserById(id: string): Promise<
-    Array<{
-        id: string;
-        firstName: string;
-        lastName: string;
-        email: string;
-        joined: Date;
-    }>
-> {
-    return db.select().from(usersTable).where(eq(usersTable.id, id)).limit(1);
+export async function getUserById(id: string): Promise<SelectUser[]> {
+    return db
+        .select()
+        .from(usersTable)
+        .where(eq(usersTable.authId, id))
+        .limit(1);
 }
 
 /**
@@ -49,27 +43,27 @@ export async function getUserById(id: string): Promise<
  *
  */
 export async function checkUserExistByUserId(
-    id: SelectUser['id']
+    id: SelectUser['authId']
 ): Promise<boolean> {
     try {
         const users = await getUserById(id);
-
+        
         if (users.length === 1) {
             return true;
         }
 
         return false;
     } catch (err) {
-        throw new Error('Failed to check user existence.');
+        throw new Error('Failed to check user existence: ');
     }
 }
 
 /**
  * Create a new user -> add the user to database
- * @param user { userDataType } - user info
+ * @param user { SelectUser } - user info
  * @returns { void }
  */
-export async function createNewUser(user: userDataType) {
+export async function createNewUser(user: InsertUser) {
     try {
         await db.insert(usersTable).values(user);
     } catch (err) {
@@ -79,18 +73,22 @@ export async function createNewUser(user: userDataType) {
 
 /**
  * Check user exists. If user is new, add the new user to database.
- * @param user { userDataType } - user info
+ * @param user { SelectUser } - user info
  * @returns { void }
  */
-export async function validateUser(user: userDataType) {
+export async function validateUser(user: InsertUser) {
     try {
-        const checkUserExist = await checkUserExistByUserId(user?.id as string);
+        const checkUserExist = await checkUserExistByUserId(
+            user?.authId as string
+        );
+
 
         if (!checkUserExist) {
             await createNewUser(user);
         }
     } catch (err) {
-        throw new Error('Failed to validate user.');
+        // throw new Error('Failed to validate user.');
+        console.log(err)
     }
 }
 
@@ -98,12 +96,12 @@ export async function validateUser(user: userDataType) {
  * Fetch a list of budget plans by user id.
  *
  * @param id { number } - user id
- * @returns { Promise<Array<budgetPlanDataType>> } a promise with a list of budget plans
+ * @returns { Promise<SelectBudgetPlan[]> } a promise with a list of budget plans
  *
  */
 export async function getBudgetPlanListByUserId(
     id: string
-): Promise<Array<budgetPlanDataType>> {
+): Promise<SelectBudgetPlan[]> {
     return db
         .select()
         .from(budgetPlansTable)
@@ -114,12 +112,12 @@ export async function getBudgetPlanListByUserId(
  * Fetch a specific budget plan by using its id.
  *
  * @param id { number } - budget plan id
- * @returns { Promise<budgetPlanDataType> } a promise with a budget plan object
+ * @returns { Promise<SelectBudgetPlan> } a promise with a budget plan object
  *
  */
 export async function getBudgetPlanByItsId(
     id: number
-): Promise<budgetPlanDataType> {
+): Promise<SelectBudgetPlan> {
     try {
         const budgetPlanArray = await db
             .select()
@@ -135,7 +133,7 @@ export async function getBudgetPlanByItsId(
 // create budget plan
 export async function createBudgetPlan(
     budgetPlan: InsertBudgetPlan
-): Promise<string> {
+): Promise<number> {
     try {
         const insertedId = await db
             .insert(budgetPlansTable)
@@ -143,82 +141,74 @@ export async function createBudgetPlan(
             .returning({ insertedId: budgetPlansTable.id })
             .then((data) => data[0]);
 
-        return insertedId.insertedId + '';
+        return insertedId.insertedId;
     } catch (err) {
-        return 'Failed to create Budget Plan';
+        throw new Error('Failed to create Budget Plan');
     }
 }
 
 // update budget plan by id and columns
 export async function updateExpenseOfBudgetPlan(
     budgetPlanId: SelectBudgetPlan['id'],
-    totalExpense: string,
-    newExpense: string,
+    expense: number,
+    newExpense: number,
     method: 'add' | 'subtract'
-): Promise<string> {
+): Promise<number> {
     try {
-        const newTotalExpense = calculateMoney(
-            totalExpense,
-            newExpense,
-            method
-        );
+        const newTotalExpense = calculateMoney(expense, newExpense, method);
 
         const updateBudgetPlan = await db
             .update(budgetPlansTable)
-            .set({ totalExpense: newTotalExpense })
+            .set({ expense: newTotalExpense })
             .where(eq(budgetPlansTable.id, budgetPlanId))
             .returning({ id: budgetPlansTable.id })
             .then((data) => data[0]);
 
-        return updateBudgetPlan.id + '';
+        return updateBudgetPlan.id;
     } catch (err) {
-        return 'Failed to update expense on BudgetPlansTable';
+        throw new Error('Failed to update expense on BudgetPlansTable');
     }
 }
 
 // update budget plan by id and columns
 export async function updateBalanceOfBudgetPlan(
     budgetPlanId: SelectBudgetPlan['id'],
-    totalBalance: string,
-    newExpense: string,
-    method: 'add' | 'subtract'
-): Promise<string> {
+    balance: number,
+    newExpense: number,
+    method: 'subtract'
+): Promise<number> {
     try {
-        const newTotalBalance = calculateMoney(
-            totalBalance,
-            newExpense,
-            method
-        );
+        const newTotalBalance = calculateMoney(balance, newExpense, method);
 
         const updateBudgetPlan = await db
             .update(budgetPlansTable)
-            .set({ totalBalance: newTotalBalance })
+            .set({ balance: newTotalBalance })
             .where(eq(budgetPlansTable.id, budgetPlanId))
             .returning({ id: budgetPlansTable.id })
             .then((data) => data[0]);
 
-        return updateBudgetPlan.id + '';
+        return updateBudgetPlan.id;
     } catch (err) {
-        return 'Failed to update balance on BudgetPlansTable';
+        throw new Error('Failed to update balance on BudgetPlansTable');
     }
 }
 
 // update budget plan by id and columns
 export async function updateBudgetOfBudgetPlan(
     budgetPlanId: SelectBudgetPlan['id'],
-    newBudgetAmount: string
+    newBudgetAmount: number
 ): Promise<string> {
     try {
         const updateBudgetPlan = await db
             .update(budgetPlansTable)
-            .set({ totalBudget: newBudgetAmount })
+            .set({ budget: newBudgetAmount })
             .where(eq(budgetPlansTable.id, budgetPlanId))
             .returning({ id: budgetPlansTable.id })
             .then((data) => data[0]);
 
         return updateBudgetPlan.id + '';
     } catch (err) {
-        return 'Failed to update budget on BudgetPlansTable';
+        throw new Error('Failed to update budget on BudgetPlansTable');
     }
 }
 
@@ -226,17 +216,17 @@ export async function updateBudgetOfBudgetPlan(
  * Fetch a specific list of expenses by using a budget plan id.
  *
  * @param id { number } - budget plan id
- * @returns { Promise<expenseDataType[]> } a promise with a list of expenses
+ * @returns { Promise<SelectbudgetPlanExpenses[]> } a promise with a list of expenses
  *
  */
 export async function getExpenseListByBudgetPlanId(
     id: number
-): Promise<expenseDataType[]> {
+): Promise<SelectbudgetPlanExpense[]> {
     try {
         return db
             .select()
             .from(budgetPlanExpensesTable)
-            .where(eq(budgetPlanExpensesTable.budgetPlanID, id));
+            .where(eq(budgetPlanExpensesTable.budgetPlanId, id));
     } catch (err) {
         throw new Error('Fail to fetch expense list.');
     }
@@ -244,19 +234,19 @@ export async function getExpenseListByBudgetPlanId(
 
 // create budget plan
 export async function createBudgetPlanExpense(
-    budgetPlanExpense: InsertBudgetPlanExpense
-): Promise<string> {
+    budgetPlanExpense: InsertbudgetPlanExpense
+): Promise<number> {
     try {
         const { budgetPlanId } = await db
             .insert(budgetPlanExpensesTable)
             .values(budgetPlanExpense)
             .returning({
-                budgetPlanId: budgetPlanExpensesTable.budgetPlanID
+                budgetPlanId: budgetPlanExpensesTable.budgetPlanId
             })
             .then((data) => data[0]);
 
-        return budgetPlanId + '';
+        return budgetPlanId;
     } catch (err) {
-        return 'Failed to create Budget plan expense';
+        throw new Error('Failed to create Budget plan expense');
     }
 }

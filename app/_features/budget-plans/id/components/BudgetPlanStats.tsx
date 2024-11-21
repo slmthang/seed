@@ -9,11 +9,9 @@ import { useState, SetStateAction, Dispatch } from 'react';
 import { VictoryPie } from 'victory';
 
 // local
-import {
-    categoriedExpenseType,
-    expenseDataType,
-    sortOptionsType
-} from '@/app/lib/definitions';
+import { sortOptionsType } from '@/app/lib/definitions/menuOptions/types';
+
+import { categorizedExpenseType } from '@/app/lib/definitions/types';
 import {
     pieExpenseList,
     sortCategorizedList,
@@ -30,13 +28,15 @@ import {
 } from '@/app/_features/shared/components/Icons';
 import DropDownOption from '@/app/_features/shared/components//DropDownOption';
 
+import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/types';
+
 function BudgetPlanStatsChart({
     expenseListData
 }: {
-    expenseListData: expenseDataType[];
+    expenseListData: SelectbudgetPlanExpense[];
 }) {
     return (
-        <div className="w-full py-6 px-2">
+        <div className="w-full py-6 px-2 border-[1px] border-dark-border rounded-xl">
             <div className="w-full h-[15rem]">
                 <VictoryPie
                     style={{
@@ -120,51 +120,110 @@ function BudgetPlanStatsHeader({
     );
 }
 
-function BudgetPlanStatsBreakDown({
-    sortedCategorizedExpenseListData
+function BudgetPlanStatsBreakDownCard({
+    categorizedExpenseData,
+    expenseListData
 }: {
-    sortedCategorizedExpenseListData: categoriedExpenseType[];
+    categorizedExpenseData: categorizedExpenseType;
+    expenseListData: SelectbudgetPlanExpense[];
 }) {
-    const [breakDownActive, setBreakDownActive] = useState<boolean>(false);
+    const [categorizedExpenseDataDollars, categorizedExpenseDataCents] =
+        splitMoney(String(categorizedExpenseData.amount));
 
-    const sortedCategorizedExpenseListCards =
-        sortedCategorizedExpenseListData.map((e, i) => {
-            const [amountDollars, amountCents] = splitMoney(String(e.amount));
+    const [showMoreActive, SetShowMoreActive] = useState<boolean>(false);
+
+    const expenseListCards = expenseListData.map((expenseData) => {
+        if (expenseData.categoryId === categorizedExpenseData.id) {
+            const [expenseDataAmountDollars, expenseDataAmountCents] =
+                splitMoney(String(expenseData.amount));
 
             return (
                 <div
-                    key={e.category + i + ''}
-                    className="w-[95%] h-[4rem] flex flex-col justify-between items-center rounded-xl"
+                    key={expenseData.id}
+                    className="w-full h-[3rem] flex justify-center items-center px-2"
                 >
-                    <div className="w-full h-[3rem] flex flex-col">
-                        <div className="w-full h-[2rem] flex items-center relative justify-center">
-                            <div className="absolute left-0 flex items-center">
-                                <SquareIcon tailwindClass="fa-fw fa-2xs mr-1 text-red-500" />
-                                <p className="inline">{e.category}</p>
-                            </div>
-                            <div className="absolute right-0">
-                                <p className="text-base mt-1">
-                                    ${amountDollars}.
-                                    <span className="text-xs">
-                                        {amountCents ? amountCents : '00'}
-                                    </span>
-                                </p>
-                            </div>
+                    <div className="w-[2rem] h-[3rem] flex justify-center items-center"></div>
+                    <div className="w-full h-[3rem] flex items-center justify-between">
+                        <div className="flex items-center">
+                            <SquareIcon tailwindClass="fa-fw fa-2xs mr-1 text-red-500" />
+                            <p className="inline">{expenseData.item}</p>
                         </div>
-                        <div className="w-full h-[1rem] flex items-center relative">
-                            <div className="flex gap-x-2 right-0 absolute">
-                                <p className="text-xs font-light">
-                                    {e.category}
-                                </p>
-                            </div>
+                        <div>
+                            <p className="text-base mt-1">
+                                ${expenseDataAmountDollars}.
+                                <span className="text-xs">
+                                    {expenseDataAmountCents
+                                        ? expenseDataAmountCents
+                                        : '00'}
+                                </span>
+                            </p>
                         </div>
                     </div>
                 </div>
             );
+        }
+    });
+
+    return (
+        <div className="w-full min-h-[2rem] flex flex-col justify-between items-center rounded-xl bg-dark-surface-2 p-2">
+            <div
+                className="w-full h-[2rem] flex justify-center items-center"
+                onClick={() => SetShowMoreActive((prev) => !prev)}
+            >
+                <div className="w-[2rem] h-[2rem] flex justify-center items-center">
+                    {showMoreActive ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                </div>
+                <div className="w-full h-[2rem] flex items-center relative justify-between px-2">
+                    <div className="flex items-center">
+                        <p className="inline">{categorizedExpenseData.name}</p>
+                    </div>
+                    <div>
+                        <p className="text-base mt-1">
+                            ${categorizedExpenseDataDollars}.
+                            <span className="text-xs">
+                                {categorizedExpenseDataCents
+                                    ? categorizedExpenseDataCents
+                                    : '00'}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {showMoreActive && expenseListCards}
+        </div>
+    );
+}
+
+function BudgetPlanStatsBreakDown({
+    expenseListData,
+    budgetPlanStatsOptions
+}: {
+    expenseListData: SelectbudgetPlanExpense[];
+    budgetPlanStatsOptions: sortOptionsType;
+}) {
+    const [breakDownActive, setBreakDownActive] = useState<boolean>(false);
+
+    // categorize and sort expenseListData
+    const sortedCategorizedExpenseListData = sortCategorizedList(
+        categorizeExpenseList(expenseListData),
+        budgetPlanStatsOptions.sortBy,
+        budgetPlanStatsOptions.orderBy
+    );
+
+    const sortedCategorizedExpenseListCards =
+        sortedCategorizedExpenseListData.map((e, i) => {
+            return (
+                <BudgetPlanStatsBreakDownCard
+                    key={i + '' + e.id}
+                    categorizedExpenseData={e}
+                    expenseListData={expenseListData}
+                />
+            );
         });
 
     return (
-        <div className="w-full min-h-fit flex flex-col justify-center items-center bg-dark-surface-2 rounded-xl">
+        <div className="w-full min-h-fit flex flex-col justify-center items-center bg-dark-surface-1 border-[1px] border-dark-border rounded-xl">
             <div className="w-full flex flex-col items-center">
                 <div className="w-full flex flex-col justify-center items-center">
                     <div
@@ -192,20 +251,13 @@ function BudgetPlanStatsBreakDown({
 export default function Main({
     expenseListData
 }: {
-    expenseListData: expenseDataType[];
+    expenseListData: SelectbudgetPlanExpense[];
 }) {
     const [budgetPlanStatsOptions, setBudgetPlanStatsOptions] =
         useState<sortOptionsType>({
             sortBy: 'amount',
             orderBy: 'desc'
         });
-
-    // categorize and sort expenseListData
-    const sortedCategorizedExpenseListData = sortCategorizedList(
-        categorizeExpenseList(expenseListData),
-        budgetPlanStatsOptions.sortBy,
-        budgetPlanStatsOptions.orderBy
-    );
 
     return (
         <div className="w-full flex flex-col items-center justify-center gap-y-[1rem] py-[1rem] px-[1rem] bg-dark-surface-1 border-[1px] border-dark-border rounded-xl">
@@ -215,9 +267,8 @@ export default function Main({
             />
             <BudgetPlanStatsChart expenseListData={expenseListData} />
             <BudgetPlanStatsBreakDown
-                sortedCategorizedExpenseListData={
-                    sortedCategorizedExpenseListData
-                }
+                expenseListData={expenseListData}
+                budgetPlanStatsOptions={budgetPlanStatsOptions}
             />
         </div>
     );

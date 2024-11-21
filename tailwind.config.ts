@@ -20,7 +20,7 @@ const config: Config = {
                 'dark-secondary-color': '#03DAC6',
                 'dark-surface-0': '#101010',
                 'dark-surface-1': '#191919',
-                'dark-surface-2': '#2b2b2b',
+                'dark-surface-2': '#272727',
                 'dark-surface-3': '#353535',
                 'dark-error': '#CF6679',
 

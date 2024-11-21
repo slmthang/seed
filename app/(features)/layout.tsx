@@ -4,9 +4,9 @@
 import { currentUser } from '@clerk/nextjs/server';
 
 // local
-import { validateUser } from '@/app/lib/db/drizzle';
+import { validateUser } from '../lib/db/drizzle/drizzle';
 import ViewLayOutHelper from '../_features/ViewsLayOutHelper';
-import { userDataType } from '../lib/definitions';
+import { InsertUser } from '../lib/definitions/db/types';
 
 /* ########################################### Layout ########################################### */
 
@@ -17,8 +17,8 @@ export default async function ViewsLayout({
 }>) {
     const userClerk = await currentUser();
 
-    const user: userDataType = {
-        id: userClerk?.id as string,
+    const user: InsertUser = {
+        authId: userClerk?.id as string,
         firstName: userClerk?.firstName as string,
         lastName: userClerk?.lastName as string,
         email: userClerk?.primaryEmailAddress?.emailAddress as string
