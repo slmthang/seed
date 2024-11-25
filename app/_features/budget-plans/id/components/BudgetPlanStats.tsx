@@ -31,7 +31,7 @@ import {
 } from '@/app/lib/utils';
 
 import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/types';
-
+ 
 function BudgetPlanStatsChart({
     expenseListData
 }: {
