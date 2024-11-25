@@ -2,20 +2,19 @@
 
 // remote
 import { Dispatch, SetStateAction, useState } from 'react';
+
 import {
-    sortOptionsType,
-    groupByType,
-    orderByType,
-    sortByType
-} from '@/app/lib/definitions';
+    sortBy,
+    orderBy,
+    groupBy,
+    sortOptionsType
+} from '@/app/lib/definitions/menuOptions/types';
 import { ChevronDownIcon, ChevronUpIcon } from './Icons';
 
 // local
-import { capitalize } from '@/app/lib/utils';
+import { capitalizeString } from '@/app/lib/utils';
 
-export default function DropDownOption<
-    T extends sortByType | orderByType | groupByType
->({
+export default function DropDownOption<T extends sortBy | orderBy | groupBy>({
     optionName,
     OptionIcon,
     optionType,
@@ -51,7 +50,7 @@ export default function DropDownOption<
                     }
                 />
                 <label htmlFor={String(element)} className="text-sm">
-                    {capitalize(String(element))}
+                    {capitalizeString(String(element))}
                 </label>
             </div>
         );

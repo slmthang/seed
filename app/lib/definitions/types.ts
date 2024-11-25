@@ -1,13 +1,12 @@
-export interface pieDataType {
+export interface PieChartDataType {
     label: string;
     y: number;
     fill: string;
 }
 
-export interface categorizedExpenseType {
-    id?: number;
+export interface categorizedExpense {
     name: string;
-    amount: number;
+    amount: string;
 }
 
 export const colorPalette = [

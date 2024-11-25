@@ -8,7 +8,7 @@
 import { useState } from 'react';
 
 // local
-import { AddExpenseForm } from '@/app/_features/budget-plans/id/components/AddExpenseForm';
+import { BudgetExpenseForm } from './components/BudgetExpenseForm';
 import BudgetPlanAtGlance from '@/app/_features/budget-plans/id/components/BudgetPlanAtGlance';
 import BudgetPlanExpenses from '@/app/_features/budget-plans/id/components/BudgetPlanExpenses';
 import BudgetPlanStats from '@/app/_features/budget-plans/id/components/BudgetPlanStats';
@@ -43,7 +43,7 @@ export default function BudgetPlan({
         <>
             {/* Form to add expense */}
             {formActive && (
-                <AddExpenseForm
+                <BudgetExpenseForm
                     expense={expense}
                     balance={balance}
                     budgetPlanId={budgetPlanId}
@@ -85,6 +85,7 @@ export default function BudgetPlan({
                         ) : (
                             <BudgetPlanStats
                                 expenseListData={expenseListData}
+                                expense={expense}
                             />
                         )}
                     </div>

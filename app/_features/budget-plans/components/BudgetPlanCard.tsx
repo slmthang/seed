@@ -24,7 +24,6 @@ export default function BudgetPlanCard({
     budgetPlanId: number;
     budgetPlanName: string;
 }) {
-
     return (
         <div
             className={
@@ -50,9 +49,7 @@ export default function BudgetPlanCard({
                     <p className="inline">Budget</p>
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
-                    <p className="text-lg mt-1">
-                        ${budget}
-                    </p>
+                    <p className="text-lg mt-1">${budget}</p>
                 </div>
             </div>
             <div className="w-full h-[3rem] flex px-4 ">
@@ -61,9 +58,7 @@ export default function BudgetPlanCard({
                     <p className="inline">Expense</p>
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
-                    <p className="text-lg mt-1">
-                        ${expense}
-                    </p>
+                    <p className="text-lg mt-1">${expense}</p>
                 </div>
             </div>
             <div className="w-full h-[3rem] flex px-4 ">
@@ -72,9 +67,7 @@ export default function BudgetPlanCard({
                     <p className="inline">Balance</p>
                 </div>
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
-                    <p className="text-lg mt-1">
-                        ${balance}
-                    </p>
+                    <p className="text-lg mt-1">${balance}</p>
                 </div>
             </div>
         </div>

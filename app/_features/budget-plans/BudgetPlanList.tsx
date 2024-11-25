@@ -10,7 +10,7 @@ import { useState } from 'react';
 // local
 import BudgetPlanCard from '@/app/_features/budget-plans/components/BudgetPlanCard';
 import { AddButtonIcon } from '@/app/_features/shared/components/Icons';
-import AddBudgetPlanForm from '@/app/_features/budget-plans/components/AddBudgetPlanForm';
+import AddBudgetPlanForm from '@/app/_features/budget-plans/components/BudgetPlanForm';
 import EmptyBudgetPlansCard from '@/app/_features/budget-plans/components/EmptyBudgetPlansCard';
 import { SelectBudgetPlan } from '@/app/lib/definitions/db/types';
 

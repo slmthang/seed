@@ -6,14 +6,18 @@ import { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 
 // local
-import AddBudgetPlanAction from '@/app/_features/budget-plans/actions/serverActions';
+import { AddNewBudgetPlan } from '../actions/forms/BudgetPlanFormActions';
 import { CloseButtonIcon } from '@/app/_features/shared/components/Icons';
-import { AddBudgetPlanFormData, AddBudgetPlanFormFieldProps, AddBudgetPlanFormSchema } from '@/app/lib/definitions/forms/AddBudgetPlanForm/types';
+import {
+    BudgetPlanFormData,
+    BudgetPlanFormFieldProps,
+    BudgetPlanFormSchema
+} from '@/app/lib/definitions/forms/BudgetPlanForm/types';
 
 /* ########################################### Add Budget Plan Form ########################################### */
 
 // form field
-export const BudgetPlanFormField: React.FC<AddBudgetPlanFormFieldProps> = ({
+export const BudgetPlanFormField: React.FC<BudgetPlanFormFieldProps> = ({
     label,
     type,
     placeholder,
@@ -21,7 +25,7 @@ export const BudgetPlanFormField: React.FC<AddBudgetPlanFormFieldProps> = ({
     register,
     error,
     valueAsNumber
-}: AddBudgetPlanFormFieldProps) => (
+}: BudgetPlanFormFieldProps) => (
     <div className="w-full">
         {label && (
             <label htmlFor={name} className="text-sm">
@@ -43,7 +47,7 @@ export const BudgetPlanFormField: React.FC<AddBudgetPlanFormFieldProps> = ({
 );
 
 // form
-export default function AddBudgePlanForm({
+export default function BudgetPlanForm({
     toggleForm
 }: {
     toggleForm: Dispatch<SetStateAction<boolean>>;
@@ -52,12 +56,12 @@ export default function AddBudgePlanForm({
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm<AddBudgetPlanFormData>({
-        resolver: zodResolver(AddBudgetPlanFormSchema)
+    } = useForm<BudgetPlanFormData>({
+        resolver: zodResolver(BudgetPlanFormSchema)
     });
 
-    const onSubmit = async (data: AddBudgetPlanFormData) => {
-        await AddBudgetPlanAction(data); // add budget plan using server action
+    const onSubmit = async (data: BudgetPlanFormData) => {
+        await AddNewBudgetPlan(data); // add budget plan using server action
         toggleForm((prev) => !prev); // close form
     };
 

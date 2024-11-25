@@ -24,7 +24,7 @@ import {
 import {
     budgetPlanExpensesTable,
     budgetPlansTable,
-    usersTable,
+    usersTable
 } from '../migrations/schema';
 // get user id
 export async function getUserById(id: string): Promise<SelectUser[]> {
@@ -47,7 +47,7 @@ export async function checkUserExistByUserId(
 ): Promise<boolean> {
     try {
         const users = await getUserById(id);
-        
+
         if (users.length === 1) {
             return true;
         }
@@ -82,13 +82,12 @@ export async function validateUser(user: InsertUser) {
             user?.authId as string
         );
 
-
         if (!checkUserExist) {
             await createNewUser(user);
         }
     } catch (err) {
         // throw new Error('Failed to validate user.');
-        console.log(err)
+        console.log(err);
     }
 }
 
@@ -150,10 +149,10 @@ export async function createBudgetPlan(
 // update budget plan by id and columns
 export async function updateExpenseOfBudgetPlan(
     budgetPlanId: SelectBudgetPlan['id'],
-    expense: number,
-    newExpense: number,
+    expense: string,
+    newExpense: string,
     method: 'add' | 'subtract'
-): Promise<number> {
+): Promise<string> {
     try {
         const newTotalExpense = calculateMoney(expense, newExpense, method);
 
@@ -164,7 +163,7 @@ export async function updateExpenseOfBudgetPlan(
             .returning({ id: budgetPlansTable.id })
             .then((data) => data[0]);
 
-        return updateBudgetPlan.id;
+        return '' + updateBudgetPlan.id;
     } catch (err) {
         throw new Error('Failed to update expense on BudgetPlansTable');
     }
@@ -173,8 +172,8 @@ export async function updateExpenseOfBudgetPlan(
 // update budget plan by id and columns
 export async function updateBalanceOfBudgetPlan(
     budgetPlanId: SelectBudgetPlan['id'],
-    balance: number,
-    newExpense: number,
+    balance: string,
+    newExpense: string,
     method: 'subtract'
 ): Promise<number> {
     try {
@@ -196,7 +195,7 @@ export async function updateBalanceOfBudgetPlan(
 // update budget plan by id and columns
 export async function updateBudgetOfBudgetPlan(
     budgetPlanId: SelectBudgetPlan['id'],
-    newBudgetAmount: number
+    newBudgetAmount: string
 ): Promise<string> {
     try {
         const updateBudgetPlan = await db

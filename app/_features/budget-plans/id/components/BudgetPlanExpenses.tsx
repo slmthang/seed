@@ -10,7 +10,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 // local
 import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/types';
 import { sortOptionsType } from '@/app/lib/definitions/menuOptions/types';
-import { sortExpenseList, splitMoney } from '@/app/lib/utils';
+import { sortBudgetPlanExpenseList, splitMoney } from '@/app/lib/utils';
 import {
     FilterIcon,
     GroupByIcon,
@@ -132,7 +132,7 @@ function BudgetPlanExpensesCards({
             return (
                 <div
                     key={e.budgetPlanId + i + ''}
-                    className="w-full h-[4rem] flex flex-col justify-between items-center  rounded-xl"
+                    className="w-full h-[4rem] flex flex-col justify-center items-center rounded-xl bg-dark-surface-2 px-4 py-2"
                 >
                     <div className="w-full h-[3rem] flex flex-col">
                         <div className="w-full h-[2rem] flex items-center relative justify-center">
@@ -151,8 +151,8 @@ function BudgetPlanExpensesCards({
                         </div>
                         <div className="w-full h-[1rem] flex items-center relative">
                             <div className="flex gap-x-2 right-0 absolute">
-                                <p className="text-xs font-light">
-                                    {e.categoryId}
+                                <p className="text-xs font-thin">
+                                    {e.category}
                                 </p>
                             </div>
                         </div>
@@ -163,8 +163,8 @@ function BudgetPlanExpensesCards({
     );
 
     return (
-        <div className="w-[100%] flex flex-col items-center">
-            <div className="w-full flex flex-col justify-center items-center p-2">
+        <div className="w-full flex flex-col items-center">
+            <div className="w-full flex flex-col justify-center items-center">
                 <div className="flex flex-col justify-center  items-center w-full gap-y-2">
                     {sortedFilteredExpenseListCards}
                 </div>
@@ -203,7 +203,7 @@ export default function Main({
         }
     });
 
-    const sortedFilteredExpenseListData = sortExpenseList(
+    const sortedFilteredExpenseListData = sortBudgetPlanExpenseList(
         filteredExpenseListData,
         budgetPlanExpensesOptions.sortBy,
         budgetPlanExpensesOptions.orderBy

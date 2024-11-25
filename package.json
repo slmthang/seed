@@ -6,8 +6,8 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "test": "vitest run",
-        "lint": "next lint",
+        "test": "jest",
+        "lint": "eslint .",
         "prt": "exec prettier . --write",
         "dbg": "npx drizzle-kit generate",
         "dbm": "npx drizzle-kit migrate"
