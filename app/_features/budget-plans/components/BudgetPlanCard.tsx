@@ -18,9 +18,9 @@ export default function BudgetPlanCard({
     budgetPlanId,
     budgetPlanName
 }: {
-    budget: number;
-    expense: number;
-    balance: number;
+    budget: string;
+    expense: string;
+    balance: string;
     budgetPlanId: number;
     budgetPlanName: string;
 }) {

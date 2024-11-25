@@ -24,7 +24,7 @@ export default function BudgetPlanList({
     const BudgetPlanCards = budgetPlanListData.map((item) => {
         return (
             <BudgetPlanCard
-                key={item.id + '' + item.createdat}
+                key={item.id + '' + item.createdAt}
                 budget={item.budget}
                 expense={item.expense}
                 balance={item.balance}
