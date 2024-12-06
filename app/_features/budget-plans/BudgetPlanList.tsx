@@ -40,8 +40,8 @@ export default function BudgetPlanList({
         <>
             {formActive && <AddBudgetPlanForm toggleForm={setFormActive} />}
 
-            <div className=" w-screen h-dvh min-h-dvh overflow-y-scroll pt-[3rem] relative">
-                <div className="w-screen min-h-[100%] border-t-[1px] border-dark gap-y-[1rem] relative pt-[1rem] pb-[6rem] flex flex-col  items-center border-t-[1px] border-dark">
+            <div className=" w-full h-dvh min-h-dvh overflow-y-scroll mt-[3rem] pt-[2rem] px-4 pb-[6rem] relative">
+                <div className="w-full min-h-full border-dark gap-y-[1rem] relative flex flex-col  items-center">
                     {budgetPlanListData.length >= 1 ? (
                         BudgetPlanCards
                     ) : (

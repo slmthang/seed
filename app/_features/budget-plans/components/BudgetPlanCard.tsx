@@ -27,14 +27,12 @@ export default function BudgetPlanCard({
     return (
         <div
             className={
-                'w-[90%] min-h-[12rem] bg-dark-surface-1 rounded-2xl flex flex-col justify-center items-center '
+                'w-full min-h-[12rem] bg-dark-surface-1 rounded-2xl flex flex-col justify-center items-center '
             }
         >
             <div className="w-full min-h-[2rem] px-4 py-2 flex items-center justify-between">
                 <div className="flex h-full items-center gap-x-2">
-                    <p className="text-dark-title-text mr-1 text-lg">
-                        {budgetPlanName}
-                    </p>
+                    <p className="mr-1 text-lg">{budgetPlanName}</p>
                 </div>
                 <div>
                     <Link href={'/budget-plans/' + budgetPlanId}>

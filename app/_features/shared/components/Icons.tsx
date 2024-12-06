@@ -6,6 +6,7 @@ import { twMerge } from 'tailwind-merge';
 
 // local
 import AppIconImage from '@/public/img/favicon/android-chrome-192x192.png';
+import { CSSProperties } from 'react';
 
 /* ########################################### Icons ########################################### */
 
@@ -15,7 +16,10 @@ export function ChevronRightIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -40,7 +44,10 @@ export function ChevronLeftIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -65,7 +72,10 @@ export function ChevronUpIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -91,7 +101,10 @@ export function ChevronDownIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -116,7 +129,10 @@ export function ProfileIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -139,7 +155,10 @@ export function MeatBallMenuIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -279,7 +298,10 @@ export function SavingsIcon({
 }
 
 export function PersonIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -300,7 +322,10 @@ export function PersonIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
 }
 
 export function HelpIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -324,7 +349,10 @@ export function SettingIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -349,7 +377,10 @@ export function SettingIcon({
     );
 }
 export function LogoutIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -370,11 +401,14 @@ export function LogoutIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
 }
 
 export function AddButtonIcon({
-    tailwindClass = 'stroke-dark-primary-color text-dark-primary-color z-10 fixed bottom-20 right-4 size-12'
+    tailwindClass = ''
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'stroke-dark-button-color text-dark-button-color z-10 fixed bottom-20 right-4 size-12',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -391,7 +425,10 @@ export function AddButtonIcon({
 }
 
 export function SharedIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -416,7 +453,10 @@ export function CheckedIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -441,7 +481,10 @@ export function CloseButtonIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -464,7 +507,10 @@ export function BackButtonIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -484,7 +530,7 @@ export function BackButtonIcon({
 
 export function GoogleIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
     tailwindClass = twMerge(
-        'size-6 stroke-1 stroke-lighter w-[30px] h-[30px]',
+        'size-6 stroke-1 stroke-dark-text-1 w-[30px] h-[30px]',
         tailwindClass
     );
 
@@ -520,7 +566,7 @@ export function FacebookIcon({
     tailwindClass?: string;
 }) {
     tailwindClass = twMerge(
-        'size-6 stroke-1 stroke-lighter w-[30px] h-[30px]',
+        'size-6 stroke-1 stroke-dark-text-1 w-[30px] h-[30px]',
         tailwindClass
     );
 
@@ -544,7 +590,7 @@ export function FacebookIcon({
 
 export function TikTokIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
     tailwindClass = twMerge(
-        'size-6 stroke-1 stroke-lighter w-[30px] h-[30px]',
+        'size-6 stroke-1 stroke-dark-text-1 w-[30px] h-[30px]',
         tailwindClass
     );
 
@@ -589,7 +635,10 @@ export function KebabMenuIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -605,14 +654,24 @@ export function KebabMenuIcon({
     );
 }
 
-export function SquareIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
-    tailwindClass = twMerge('size-4 stroke-1 stroke-lighter', tailwindClass);
+export function SquareIcon({
+    tailwindClass = '',
+    style
+}: {
+    tailwindClass?: string;
+    style?: CSSProperties;
+}) {
+    tailwindClass = twMerge(
+        'size-4 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 12 12"
             className={tailwindClass}
+            style={style}
         >
             <path
                 fill="currentColor"
@@ -623,7 +682,10 @@ export function SquareIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
 }
 
 export function SearchIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -640,7 +702,10 @@ export function SearchIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
 }
 
 export function FilterIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -663,7 +728,10 @@ export function OrderByIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -683,7 +751,10 @@ export function OrderByIcon({
 }
 
 export function SortByIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -707,7 +778,10 @@ export function GroupByIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -735,7 +809,10 @@ export function EditModeIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -755,7 +832,10 @@ export function EditModeIcon({
 }
 
 export function TrashIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -779,7 +859,10 @@ export function ReadModeIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-lighter', tailwindClass);
+    tailwindClass = twMerge(
+        'size-6 stroke-1 stroke-dark-text-1',
+        tailwindClass
+    );
 
     return (
         <svg
@@ -803,7 +886,7 @@ export function ReadModeIcon({
 // }: {
 //   tailwindClass?: string;
 // }) {
-//   tailwindClass = twMerge("size-6 stroke-1 stroke-lighter", tailwindClass);
+//   tailwindClass = twMerge("size-6 stroke-1 stroke-dark-text-1", tailwindClass);
 
 //   return <></>;
 // }

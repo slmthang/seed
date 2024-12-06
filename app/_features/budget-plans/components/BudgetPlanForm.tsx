@@ -96,7 +96,7 @@ export default function BudgetPlanForm({
                     register={register}
                     error={errors.budgetAmount}
                 />
-                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-dark-primary-color text-center">
+                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-dark-button-color text-center">
                     Add
                 </button>
             </form>

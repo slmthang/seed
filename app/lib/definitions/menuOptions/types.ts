@@ -4,8 +4,8 @@ export type sortBy = 'name' | 'amount';
 export type orderBy = 'asc' | 'desc';
 export type groupBy = 'item' | 'category';
 
-export interface sortOptionsType {
+export interface budgetPlanOptions {
     groupBy?: groupBy;
-    sortBy: sortBy;
+    sortBy?: sortBy;
     orderBy: orderBy;
 }

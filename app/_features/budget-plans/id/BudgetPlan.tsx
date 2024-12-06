@@ -5,39 +5,40 @@
 /* ########################################### Modules ########################################### */
 
 // remote
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 // local
 import { BudgetExpenseForm } from './components/BudgetExpenseForm';
 import BudgetPlanAtGlance from '@/app/_features/budget-plans/id/components/BudgetPlanAtGlance';
-import BudgetPlanExpenses from '@/app/_features/budget-plans/id/components/BudgetPlanExpenses';
-import BudgetPlanStats from '@/app/_features/budget-plans/id/components/BudgetPlanStats';
-import TabsDuo from '@/app/_features/shared/components/TabsDuo';
-
+import NestedMenuBar from '@/app/dfl/BudgetPlanNestedMenuBar';
 import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/types';
 import { AddButtonIcon } from '@/app/_features/shared/components/Icons';
 import BudgetPlanEmptyExpenses from './components/BudgetPlanEmptyExpenses';
-import BudgetPlanHeader from './components/BudgetPlanHeader';
+import BudgetPlanBreakDown from './components/BudgetPlanBreakDown';
+
+import { budgetPlanOptions } from '@/app/lib/definitions/menuOptions/types';
+import BudgetPlanChart from './components/BudgetPlanChart';
 
 /* ########################################### Budget Plan ########################################### */
 
-export default function BudgetPlan({
+function BudgetPlan({
     budgetPlanId,
-    budgetPlanName,
     budget,
     expense,
     balance,
-    expenseListData
+    expenseListData,
+    budgetPlanOptions,
+    setBudgetPlanOptions
 }: {
     budgetPlanId: number;
-    budgetPlanName: string;
     budget: number;
     expense: number;
     balance: number;
     expenseListData: SelectbudgetPlanExpense[];
+    budgetPlanOptions: budgetPlanOptions;
+    setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptions>>;
 }) {
     const [formActive, setFormActive] = useState<boolean>(false);
-    const [selectedTab, setSelectedTab] = useState<string>('Expenses');
 
     return (
         <>
@@ -52,16 +53,9 @@ export default function BudgetPlan({
             )}
 
             {/* Budget Plan */}
-            <div className=" w-screen h-dvh h-dvh overflow-y-scroll z-20 fixed top-[0px] bg-dark-surface-1">
-                <div className="w-screen flex items-center justify-center">
-                    <BudgetPlanHeader budgetPlanName={budgetPlanName} />
-                </div>
-
-                <div className="w-screen min-h-screen relative flex flex-col items-center  border-dark gap-y-[0.75rem] pb-[2rem]">
-                    {/* background card */}
-                    <div className="w-full bg-dark-surface-0 h-[calc(100%-5rem)] top-[5rem] absolute border-t-[1px] border-dark-border rounded-t-xl z-[-10]"></div>
-
-                    <div className="w-[90%]">
+            <div className="relative w-full h-dvh min-h-dvh overflow-y-scroll mt-[3rem] pt-[2rem] px-4 pb-[6rem] ">
+                <div className="w-full min-h-full relative flex flex-col items-center  border-dark gap-y-[0.75rem]">
+                    <div className="w-full">
                         <BudgetPlanAtGlance
                             budget={budget}
                             expense={expense}
@@ -69,23 +63,19 @@ export default function BudgetPlan({
                         />
                     </div>
 
-                    <TabsDuo
-                        fields={['Expenses', 'Stats']}
-                        selectedTab={selectedTab}
-                        setSelectedTab={setSelectedTab}
-                    />
+                    <div className="w-full justify-center items-center flex">
+                        <BudgetPlanChart expenseListData={expenseListData} />
+                    </div>
 
-                    <div className="w-[90%] justify-center items-center flex">
+                    <div className="w-full justify-center items-center flex">
                         {expenseListData.length <= 0 ? (
                             <BudgetPlanEmptyExpenses />
-                        ) : selectedTab === 'Expenses' ? (
-                            <BudgetPlanExpenses
-                                expenseListData={expenseListData}
-                            />
                         ) : (
-                            <BudgetPlanStats
+                            <BudgetPlanBreakDown
                                 expenseListData={expenseListData}
                                 expense={expense}
+                                budgetPlanOptions={budgetPlanOptions}
+                                setBudgetPlanOptions={setBudgetPlanOptions}
                             />
                         )}
                     </div>
@@ -96,6 +86,44 @@ export default function BudgetPlan({
                     <AddButtonIcon />
                 </div>
             </div>
+        </>
+    );
+}
+
+export default function Main({
+    budgetPlanId,
+    budgetPlanName,
+    budget,
+    expense,
+    balance,
+    expenseListData
+}: {
+    budgetPlanId: number;
+    budgetPlanName: string;
+    budget: number;
+    expense: number;
+    balance: number;
+    expenseListData: SelectbudgetPlanExpense[];
+}) {
+    const [budgetPlanOptions, setBudgetPlanOptions] =
+        useState<budgetPlanOptions>({
+            groupBy: 'item',
+            sortBy: 'amount',
+            orderBy: 'desc'
+        });
+
+    return (
+        <>
+            <NestedMenuBar pageName={budgetPlanName} />
+            <BudgetPlan
+                budgetPlanId={budgetPlanId}
+                budget={budget}
+                expense={expense}
+                balance={balance}
+                expenseListData={expenseListData}
+                budgetPlanOptions={budgetPlanOptions}
+                setBudgetPlanOptions={setBudgetPlanOptions}
+            />
         </>
     );
 }

@@ -7,7 +7,7 @@ import {
     sortBy,
     orderBy,
     groupBy,
-    sortOptionsType
+    budgetPlanOptions
 } from '@/app/lib/definitions/menuOptions/types';
 import { ChevronDownIcon, ChevronUpIcon } from './Icons';
 
@@ -28,8 +28,8 @@ export default function DropDownOption<T extends sortBy | orderBy | groupBy>({
     optionName: 'Sort By' | 'Order By' | 'Group By';
     optionType: 'sortBy' | 'orderBy' | 'groupBy';
     optionValues: T[];
-    options: sortOptionsType;
-    setOptions: Dispatch<SetStateAction<sortOptionsType>>;
+    options: budgetPlanOptions;
+    setOptions: Dispatch<SetStateAction<budgetPlanOptions>>;
 }) {
     const [optionsShown, setOptionShown] = useState(false);
 

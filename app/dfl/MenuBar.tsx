@@ -1,43 +1,22 @@
 'use client';
 
 // modules (remote)
-import { usePathname } from 'next/navigation';
-import { Dispatch, SetStateAction } from 'react';
-
 // local
-import {
-    ProfileIcon,
-    MeatBallMenuIcon
-} from '../_features/shared/components/Icons';
+import { MeatBallMenuIcon } from '../_features/shared/components/Icons';
 
-export default function MenuBar({
-    sideNavToggle
-}: {
-    sideNavToggle: Dispatch<SetStateAction<boolean>>;
-}) {
-    let pathName = usePathname();
-    pathName = pathName.slice(1, pathName.length);
-
-    pathName = pathName.length >= 1 ? pathName : 'home';
-
+export default function MenuBar({ pageName }: { pageName: string }) {
     return (
         <nav
             className={
-                'z-10 flex justify-center items-center w-screen h-12 absolute top-[0px] left-[0px] backdrop-blur-md '
+                'z-10 flex justify-between items-center w-screen h-[3rem] absolute top-[0px] left-[0px] backdrop-blur-md px-4'
             }
         >
-            {/* Profile/Menu */}
-            <div
-                className="w-6 absolute left-px ml-5"
-                onClick={() => sideNavToggle((prev) => !prev)}
-            >
-                <ProfileIcon tailwindClass="size-7" />
+            <div>
+                <p className="text-xl font-bold">{pageName}</p>
             </div>
-            {/* pathname */}
-            <p className="text-xs">{pathName}</p>
-            {/* filter/options */}
-            <div className="w-6 absolute right-px mr-5">
-                <MeatBallMenuIcon tailwindClass="size-7" />
+
+            <div className="w-6">
+                <MeatBallMenuIcon tailwindClass="size-6 stroke-2" />
             </div>
         </nav>
     );

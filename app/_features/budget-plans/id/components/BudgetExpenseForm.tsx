@@ -99,9 +99,9 @@ function CategoryField({
                     defaultValue={'Housing'}
                 />
                 {listShown ? (
-                    <ChevronUpIcon tailwindClass="absolute right-2 text-light-primary-text" />
+                    <ChevronUpIcon tailwindClass="absolute right-2 text-red-500" />
                 ) : (
-                    <ChevronDownIcon tailwindClass="absolute right-2 text-light-primary-text" />
+                    <ChevronDownIcon tailwindClass="absolute right-2 text-red-500" />
                 )}
             </div>
             <div className="w-full relative text-dark">
@@ -205,7 +205,7 @@ export function BudgetExpenseForm({
                     error={errors.category}
                 />
 
-                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-dark-primary-color text-center mt-4">
+                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-dark-button-color text-center mt-4 text-dark-text-on-primary">
                     Add
                 </button>
             </form>
