@@ -18,9 +18,9 @@ export default async function Page() {
         await getBudgetPlanListByUserId(user?.id as string);
 
     return (
-        <>
+        <div className="w-full relative min-h-full">
             <MenuBar pageName="Budget Plans" />
             <BudgetPlans budgetPlanListData={budgetPlanListData} />
-        </>
+        </div>
     );
 }

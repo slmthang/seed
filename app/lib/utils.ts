@@ -7,7 +7,9 @@ import { orderBy, sortBy } from './definitions/menuOptions/types';
 
 import { categories, categoryList } from './definitions/categories/type';
 
-import { categorizedExpense, PieChartDataType } from './definitions/types';
+import { categorizedExpense } from './definitions/categories/type';
+
+import { PieChartDataType } from './definitions/charts/piechart/type';
 
 import { SelectbudgetPlanExpense } from './definitions/db/types';
 
@@ -352,16 +354,30 @@ export function toPieChartData(
     });
 }
 
+/**
+ * check if a number is negative
+ * @param x : number
+ * @returns
+ */
+export function isNegative(x: number): boolean {
+    if (x < 0) {
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * convert number to absolute number
+ * @param x : number
+ * @returns
+ */
+export function absoluteNumber(x: number): number {
+    if (x < 0) {
+        return -x;
+    }
+
+    return x;
+}
+
 // ***************************************** UnTested ***************************************** //
-
-// export function formatDate(date: Date) {
-//     const d = new Date(date);
-//     let month = '' + (d.getMonth() + 1);
-//     let day = '' + d.getDate();
-//     const year = d.getFullYear();
-
-//     if (month.length < 2) month = '0' + month;
-//     if (day.length < 2) day = '0' + day;
-
-//     return [year, month, day].join('-');
-// }

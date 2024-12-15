@@ -16,7 +16,7 @@ import {
     ChevronRightIcon,
     SquareIcon
 } from '@/app/_features/shared/components/Icons';
-import { categorizedExpense } from '@/app/lib/definitions/types';
+import { categorizedExpense } from '@/app/lib/definitions/categories/type';
 import {
     categorizeBudgetExpenseList,
     sortBudgetPlanExpenseList,

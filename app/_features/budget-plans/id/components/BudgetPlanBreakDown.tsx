@@ -18,11 +18,12 @@ import { BudgetPlanOptionMenu } from './BudgetPlanOptionMenu';
 import {
     ChevronDownIcon,
     ChevronRightIcon,
+    CircleIcon,
     FilterIcon,
     SearchIcon,
     SquareIcon
 } from '@/app/_features/shared/components/Icons';
-import { categorizedExpense } from '@/app/lib/definitions/types';
+import { categorizedExpense } from '@/app/lib/definitions/categories/type';
 import {
     categorizeBudgetExpenseList,
     sortBudgetPlanExpenseList,
@@ -39,12 +40,12 @@ function CategorizedCard({
 }: {
     categorizedExpenseData: categorizedExpense;
     expenseListData: SelectbudgetPlanExpense[];
-    expense: number;
+    expense: string;
 }) {
     const [categorizedExpenseDataDollars, categorizedExpenseDataCents] =
         splitMoney(String(categorizedExpenseData.amount));
 
-    const percentage = (+categorizedExpenseData.amount / expense) * 100;
+    const percentage = (+categorizedExpenseData.amount / +expense) * 100;
 
     const [showMoreActive, SetShowMoreActive] = useState<boolean>(false);
 
@@ -67,7 +68,7 @@ function CategorizedCard({
                     <div className="w-[2rem] h-[2.5rem] flex justify-center items-center"></div>
                     <div className="w-full h-[2.5rem] flex items-center justify-between border-l-[2px] border-dark-border pl-2">
                         <div className="flex items-center">
-                            <SquareIcon
+                            <CircleIcon
                                 tailwindClass={`fa-fw fa-2xs mr-1 text-red-500`}
                             />
                             <p className="inline">{expenseData.item}</p>
@@ -89,16 +90,16 @@ function CategorizedCard({
     });
 
     return (
-        <div className="w-full min-h-[3rem] flex flex-col justify-between items-center rounded-xl  py-2 px-4 border-dark-border border-[1px] shadow-sm shadow-dark-border">
+        <div className="w-full min-h-[3rem] flex flex-col justify-between items-center rounded-xl  py-2 px-4 bg-dark-surface-1 shadow-sm shadow-dark-border">
             <div
                 className="w-full h-[3rem] flex justify-center items-center"
                 onClick={() => SetShowMoreActive((prev) => !prev)}
             >
                 <div className="w-[2rem] h-[3rem] flex justify-center items-center">
                     {showMoreActive ? (
-                        <ChevronDownIcon />
+                        <ChevronDownIcon tailwindClass="size-5" />
                     ) : (
-                        <ChevronRightIcon />
+                        <ChevronRightIcon tailwindClass="size-5" />
                     )}
                 </div>
                 <div className="w-full h-[3rem] flex items-center relative justify-between">
@@ -144,7 +145,7 @@ function CategorizedCardList({
 }: {
     expenseListData: SelectbudgetPlanExpense[];
     budgetPlanOptions: budgetPlanOptions;
-    expense: number;
+    expense: string;
     searchBarValue: string;
 }) {
     // categorize and sort expenseListData
@@ -241,12 +242,12 @@ function ItemizedCardList({
         return (
             <div
                 key={e.budgetPlanId + i + ''}
-                className="w-full h-[4rem] flex flex-col justify-center items-center rounded-xl px-4 py-2 border-dark-border border-[1px] shadow-sm shadow-dark-border"
+                className="w-full h-[4rem] flex flex-col justify-center items-center rounded-xl px-4 py-2 bg-dark-surface-1 shadow-sm shadow-dark-border"
             >
                 <div className="w-full h-[3rem] flex flex-col">
                     <div className="w-full h-[3rem] flex items-center relative justify-center">
                         <div className="absolute left-0 flex items-center">
-                            <SquareIcon tailwindClass="fa-fw fa-2xs mr-1 text-red-500" />
+                            <CircleIcon tailwindClass="fa-fw fa-2xs mr-1 text-red-500" />
                             <p className="inline">{e.item}</p>
                         </div>
                         <div className="absolute right-0">
@@ -267,12 +268,8 @@ function ItemizedCardList({
     });
 
     return (
-        <div className="w-full flex flex-col items-center">
-            <div className="w-full flex flex-col justify-center items-center">
-                <div className="flex flex-col justify-center  items-center w-full gap-y-2">
-                    {cards}
-                </div>
-            </div>
+        <div className="w-full flex flex-col justify-center items-center gap-y-2 ">
+            {cards}
         </div>
     );
 }
@@ -286,7 +283,7 @@ export default function BudgetPlanBreakDown({
     expenseListData: SelectbudgetPlanExpense[];
     budgetPlanOptions: budgetPlanOptions;
     setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptions>>;
-    expense: number;
+    expense: string;
 }) {
     const [searchBarValue, setSearchBarValue] = useState('');
     const [searchBarActive, setSearchBarActive] = useState<boolean>(false);
@@ -301,7 +298,7 @@ export default function BudgetPlanBreakDown({
     };
 
     return (
-        <div className="w-full min-h-fit rounded-2xl border-[1px] border-dark-border flex flex-col justify-center  items-center py-[1rem] px-[1rem] ">
+        <div className="w-full min-h-fit rounded-2xl bg-dark-surface-0 border-[1px] border-dark-border flex flex-col justify-center  items-center py-[1rem] px-[1rem] ">
             <div className="w-full mb-[1rem]">
                 <div className="w-full flex items-center justify-between">
                     <div onClick={() => setSearchBarActive((prev) => !prev)}>
@@ -328,7 +325,7 @@ export default function BudgetPlanBreakDown({
                 )}
             </div>
 
-            <div className="w-full mt-[1rem]">
+            <div className="w-full mt-[1rem] overflow-hidden overflow-y-scroll ">
                 {budgetPlanOptions.groupBy === 'item' ? (
                     <ItemizedCardList
                         expenseListData={expenseListData}
@@ -343,6 +340,129 @@ export default function BudgetPlanBreakDown({
                         searchBarValue={searchBarValue}
                     />
                 )}
+            </div>
+        </div>
+    );
+}
+
+export function BudgetPlanExpensesTab({
+    expenseListData,
+    budgetPlanOptions,
+    setBudgetPlanOptions
+}: {
+    expenseListData: SelectbudgetPlanExpense[];
+    budgetPlanOptions: budgetPlanOptions;
+    setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptions>>;
+}) {
+    const [searchBarValue, setSearchBarValue] = useState('');
+    const [searchBarActive, setSearchBarActive] = useState<boolean>(false);
+    const [optionsActive, setOptionsActive] = useState<boolean>(false);
+
+    // search input handler
+    const searchInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const element = event.target as HTMLInputElement;
+        const value = element.value;
+
+        setSearchBarValue(value);
+    };
+
+    return (
+        <div className="w-full min-h-fit rounded-2xl bg-dark-surface-0 border-[1px] border-dark-border flex flex-col justify-center  items-center py-[1rem] px-[1rem] ">
+            <div className="w-full mb-[1rem]">
+                <div className="w-full flex items-center justify-between">
+                    <div onClick={() => setSearchBarActive((prev) => !prev)}>
+                        <SearchIcon tailwindClass="size-7" />
+                    </div>
+                    <div className="relative">
+                        <div onClick={() => setOptionsActive((prev) => !prev)}>
+                            <FilterIcon />
+                        </div>
+
+                        {optionsActive && (
+                            <BudgetPlanOptionMenu
+                                budgetPlanOptions={budgetPlanOptions}
+                                setBudgetPlanOptions={setBudgetPlanOptions}
+                            />
+                        )}
+                    </div>
+                </div>
+            </div>
+
+            <div className="w-full">
+                {searchBarActive && (
+                    <ExpenseSearchBar searchInputHandler={searchInputHandler} />
+                )}
+            </div>
+
+            <div className="w-full mt-[1rem] overflow-hidden overflow-y-scroll ">
+                <ItemizedCardList
+                    expenseListData={expenseListData}
+                    searchBarValue={searchBarValue}
+                    budgetPlanOptions={budgetPlanOptions}
+                />
+            </div>
+        </div>
+    );
+}
+
+export function BudgetPlanStatsTab({
+    expenseListData,
+    budgetPlanOptions,
+    setBudgetPlanOptions,
+    expense
+}: {
+    expenseListData: SelectbudgetPlanExpense[];
+    budgetPlanOptions: budgetPlanOptions;
+    setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptions>>;
+    expense: string;
+}) {
+    const [searchBarValue, setSearchBarValue] = useState('');
+    const [searchBarActive, setSearchBarActive] = useState<boolean>(false);
+    const [optionsActive, setOptionsActive] = useState<boolean>(false);
+
+    // search input handler
+    const searchInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const element = event.target as HTMLInputElement;
+        const value = element.value;
+
+        setSearchBarValue(value);
+    };
+
+    return (
+        <div className="w-full min-h-fit rounded-2xl bg-dark-surface-0 border-[1px] border-dark-border flex flex-col justify-center  items-center py-[1rem] px-[1rem] ">
+            <div className="w-full mb-[1rem]">
+                <div className="w-full flex items-center justify-between">
+                    <div onClick={() => setSearchBarActive((prev) => !prev)}>
+                        <SearchIcon tailwindClass="size-7" />
+                    </div>
+                    <div className="relative">
+                        <div onClick={() => setOptionsActive((prev) => !prev)}>
+                            <FilterIcon />
+                        </div>
+
+                        {optionsActive && (
+                            <BudgetPlanOptionMenu
+                                budgetPlanOptions={budgetPlanOptions}
+                                setBudgetPlanOptions={setBudgetPlanOptions}
+                            />
+                        )}
+                    </div>
+                </div>
+            </div>
+
+            <div className="w-full">
+                {searchBarActive && (
+                    <ExpenseSearchBar searchInputHandler={searchInputHandler} />
+                )}
+            </div>
+
+            <div className="w-full mt-[1rem] overflow-hidden overflow-y-scroll ">
+                <CategorizedCardList
+                    expenseListData={expenseListData}
+                    budgetPlanOptions={budgetPlanOptions}
+                    expense={expense}
+                    searchBarValue={searchBarValue}
+                />
             </div>
         </div>
     );

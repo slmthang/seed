@@ -37,11 +37,11 @@ export default function BudgetPlanList({
     const [formActive, setFormActive] = useState<boolean>(false);
 
     return (
-        <>
+        <div className="w-full">
             {formActive && <AddBudgetPlanForm toggleForm={setFormActive} />}
 
-            <div className=" w-full h-dvh min-h-dvh overflow-y-scroll mt-[3rem] pt-[2rem] px-4 pb-[6rem] relative">
-                <div className="w-full min-h-full border-dark gap-y-[1rem] relative flex flex-col  items-center">
+            <div className=" w-full h-[calc(100dvh-(6rem))] overflow-y-scroll pt-[1rem] px-4 pb-[8rem] relative">
+                <div className="w-full border-dark gap-y-[1rem] relative flex flex-col  items-center">
                     {budgetPlanListData.length >= 1 ? (
                         BudgetPlanCards
                     ) : (
@@ -53,6 +53,6 @@ export default function BudgetPlanList({
                     <AddButtonIcon />
                 </div>
             </div>
-        </>
+        </div>
     );
 }

@@ -8,7 +8,7 @@ export default function MenuBar({ pageName }: { pageName: string }) {
     return (
         <nav
             className={
-                'z-10 flex justify-between items-center w-screen h-[3rem] absolute top-[0px] left-[0px] backdrop-blur-md px-4'
+                'z-30 flex justify-between items-center w-screen h-[3rem] bg-dark-surface-0  sticky top-[0px] left-[0px] px-4'
             }
         >
             <div>

@@ -1,4 +1,4 @@
-import { categorizedExpense } from '@/app/lib/definitions/types';
+import { categorizedExpense } from '@/app/lib/definitions/categories/type';
 import { sortCategorizedExpenseList } from '../../lib/utils';
 
 const categorizedExpenseListData: categorizedExpense[] = [

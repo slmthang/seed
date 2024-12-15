@@ -16,11 +16,7 @@ export default async function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body
-                className={
-                    'w-screen h-dvh relative flex items-center justify-center bg-dark-surface-0 text-dark-text-1 text-sm'
-                }
-            >
+            <body className={'bg-dark-surface-0 text-dark-text-1 text-sm'}>
                 <ClerkProvider
                     appearance={{
                         baseTheme: neobrutalism

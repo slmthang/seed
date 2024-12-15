@@ -35,7 +35,7 @@ export type BudgetExpenseFormFieldProps = {
     type: string;
     placeholder?: string;
     name: BudgetExpenseFormFields;
-    value?: number;
+    value?: string;
     register: UseFormRegister<BudgetExpenseFormData>;
     error: FieldError | undefined;
 };

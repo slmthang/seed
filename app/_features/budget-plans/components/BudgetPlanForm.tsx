@@ -36,7 +36,7 @@ export const BudgetPlanFormField: React.FC<BudgetPlanFormFieldProps> = ({
             type={type}
             placeholder={placeholder}
             {...register(name, { valueAsNumber })}
-            className="w-full h-[2.5rem] rounded-xl pl-4 my-1 text-dark"
+            className="w-full h-[2.5rem] rounded-xl pl-4 my-1 rounded-xl bg-dark-surface-1 border-[1px] border-dark-border text-dark-text-2 text-sm placeholder-dark-text-2"
         />
         {error && (
             <span className="text-sm text-dark-error-text">
@@ -84,6 +84,7 @@ export default function BudgetPlanForm({
                 <BudgetPlanFormField
                     type="text"
                     label="Budget Plan Name"
+                    placeholder="Budget Plan Name"
                     name="budgetPlanName"
                     register={register}
                     error={errors.budgetPlanName}
@@ -92,6 +93,7 @@ export default function BudgetPlanForm({
                 <BudgetPlanFormField
                     type="number"
                     label="Budget Amount"
+                    placeholder="Budget Amount"
                     name="budgetAmount"
                     register={register}
                     error={errors.budgetAmount}

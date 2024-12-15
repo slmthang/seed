@@ -22,12 +22,9 @@ export default function ViewLayOutHelper({
         <>
             <main
                 className={
-                    'overflow-hidden relative w-screen h-dvh justify-center items-center flex '
-                    // (sideNav ? 'ml-[60%]' : '')
+                    'overflow-hidden relative w-screen h-dvh min-h-dvh justify-center items-center flex flex-col'
                 }
             >
-                {/* <MenuBar/> */}
-
                 {children}
 
                 <NavBar />

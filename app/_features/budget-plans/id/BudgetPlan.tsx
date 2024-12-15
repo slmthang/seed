@@ -10,14 +10,17 @@ import { Dispatch, SetStateAction, useState } from 'react';
 // local
 import { BudgetExpenseForm } from './components/BudgetExpenseForm';
 import BudgetPlanAtGlance from '@/app/_features/budget-plans/id/components/BudgetPlanAtGlance';
-import NestedMenuBar from '@/app/dfl/BudgetPlanNestedMenuBar';
 import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/types';
 import { AddButtonIcon } from '@/app/_features/shared/components/Icons';
 import BudgetPlanEmptyExpenses from './components/BudgetPlanEmptyExpenses';
-import BudgetPlanBreakDown from './components/BudgetPlanBreakDown';
+import {
+    BudgetPlanExpensesTab,
+    BudgetPlanStatsTab
+} from './components/BudgetPlanBreakDown';
 
 import { budgetPlanOptions } from '@/app/lib/definitions/menuOptions/types';
 import BudgetPlanChart from './components/BudgetPlanChart';
+import TabsDuo from '../../shared/components/TabsDuo';
 
 /* ########################################### Budget Plan ########################################### */
 
@@ -31,14 +34,17 @@ function BudgetPlan({
     setBudgetPlanOptions
 }: {
     budgetPlanId: number;
-    budget: number;
-    expense: number;
-    balance: number;
+    budget: string;
+    expense: string;
+    balance: string;
     expenseListData: SelectbudgetPlanExpense[];
     budgetPlanOptions: budgetPlanOptions;
     setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptions>>;
 }) {
     const [formActive, setFormActive] = useState<boolean>(false);
+    const [selectedTab, setSelectedTab] = useState<'Expenses' | 'Stats'>(
+        'Expenses'
+    );
 
     return (
         <>
@@ -53,9 +59,11 @@ function BudgetPlan({
             )}
 
             {/* Budget Plan */}
-            <div className="relative w-full h-dvh min-h-dvh overflow-y-scroll mt-[3rem] pt-[2rem] px-4 pb-[6rem] ">
-                <div className="w-full min-h-full relative flex flex-col items-center  border-dark gap-y-[0.75rem]">
-                    <div className="w-full">
+            <div className="relative w-full h-[calc(100dvh-(6rem))] flex flex-col items-center overflow-y-scroll">
+                <div className="w-full relative flex flex-col items-center  border-dark-border gap-y-[0.75rem] py-[1rem]">
+                    <div className="w-full min-h-full bg-dark-surface-1 border-dark-border border-t-[1px] absolute top-[6rem] -z-10"></div>
+
+                    <div className="w-full px-4">
                         <BudgetPlanAtGlance
                             budget={budget}
                             expense={expense}
@@ -63,20 +71,35 @@ function BudgetPlan({
                         />
                     </div>
 
-                    <div className="w-full justify-center items-center flex">
-                        <BudgetPlanChart expenseListData={expenseListData} />
+                    <div className="w-full px-4">
+                        <TabsDuo
+                            fields={['Expenses', 'Stats']}
+                            selectedTab={selectedTab}
+                            setSelectedTab={setSelectedTab}
+                        />
                     </div>
 
-                    <div className="w-full justify-center items-center flex">
+                    <div className="w-full justify-center items-center flex flex-col px-4 gap-y-[0.75rem]">
                         {expenseListData.length <= 0 ? (
                             <BudgetPlanEmptyExpenses />
-                        ) : (
-                            <BudgetPlanBreakDown
+                        ) : selectedTab === 'Expenses' ? (
+                            <BudgetPlanExpensesTab
                                 expenseListData={expenseListData}
-                                expense={expense}
                                 budgetPlanOptions={budgetPlanOptions}
                                 setBudgetPlanOptions={setBudgetPlanOptions}
                             />
+                        ) : (
+                            <>
+                                <BudgetPlanChart
+                                    expenseListData={expenseListData}
+                                />
+                                <BudgetPlanStatsTab
+                                    expenseListData={expenseListData}
+                                    budgetPlanOptions={budgetPlanOptions}
+                                    setBudgetPlanOptions={setBudgetPlanOptions}
+                                    expense={expense}
+                                />
+                            </>
                         )}
                     </div>
                 </div>
@@ -92,17 +115,15 @@ function BudgetPlan({
 
 export default function Main({
     budgetPlanId,
-    budgetPlanName,
     budget,
     expense,
     balance,
     expenseListData
 }: {
     budgetPlanId: number;
-    budgetPlanName: string;
-    budget: number;
-    expense: number;
-    balance: number;
+    budget: string;
+    expense: string;
+    balance: string;
     expenseListData: SelectbudgetPlanExpense[];
 }) {
     const [budgetPlanOptions, setBudgetPlanOptions] =
@@ -113,17 +134,14 @@ export default function Main({
         });
 
     return (
-        <>
-            <NestedMenuBar pageName={budgetPlanName} />
-            <BudgetPlan
-                budgetPlanId={budgetPlanId}
-                budget={budget}
-                expense={expense}
-                balance={balance}
-                expenseListData={expenseListData}
-                budgetPlanOptions={budgetPlanOptions}
-                setBudgetPlanOptions={setBudgetPlanOptions}
-            />
-        </>
+        <BudgetPlan
+            budgetPlanId={budgetPlanId}
+            budget={budget}
+            expense={expense}
+            balance={balance}
+            expenseListData={expenseListData}
+            budgetPlanOptions={budgetPlanOptions}
+            setBudgetPlanOptions={setBudgetPlanOptions}
+        />
     );
 }

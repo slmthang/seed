@@ -22,6 +22,7 @@ import {
     BudgetExpenseFormSchema
 } from '@/app/lib/definitions/forms/BudgetExpenseForm/types';
 import { AddNewBudgetExpense } from '../../actions/forms/BudgetExpenseFormActions';
+import clsx from 'clsx';
 
 /* ########################################### AddExpenseForm ########################################### */
 
@@ -47,7 +48,7 @@ const AddExpenseFormField: React.FC<BudgetExpenseFormFieldProps> = ({
                 type={type}
                 placeholder={placeholder}
                 {...register(name)}
-                className="w-full h-[2.5rem] rounded-xl pl-4 my-1 text-dark"
+                className="w-full h-[2.5rem] rounded-xl pl-4 my-1 rounded-xl bg-dark-surface-1 border-[1px] border-dark-border text-dark-text-2 text-sm placeholder-dark-text-2"
                 value={value}
             />
         ) : (
@@ -55,7 +56,7 @@ const AddExpenseFormField: React.FC<BudgetExpenseFormFieldProps> = ({
                 type={type}
                 placeholder={placeholder}
                 {...register(name)}
-                className="w-full h-[2.5rem] rounded-xl pl-4 my-1 text-dark"
+                className="w-full h-[2.5rem] rounded-xl pl-4 my-1 rounded-xl bg-dark-surface-1 border-[1px] border-dark-border text-dark-text-2 text-sm placeholder-dark-text-2"
             />
         )}
     </div>
@@ -68,14 +69,18 @@ function CategoryField({
     setValue
 }: BudgetExpenseFormCategoryFieldProp) {
     const [listShown, setListShown] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState('Housing');
     const options = categories.map((category) => {
         return (
             <div
                 key={category}
-                className={'w-full h-[2rem] px-4 flex items-center '}
+                className={clsx('w-full h-[2rem] px-4 flex items-center ', {
+                    ' bg-dark-surface-3': category === selectedCategory
+                })}
                 onClick={() => {
                     setValue('category', category);
                     setListShown((prev) => !prev);
+                    setSelectedCategory(category);
                 }}
             >
                 <p>{category}</p>
@@ -95,18 +100,18 @@ function CategoryField({
                     type={'text'}
                     placeholder={'Category'}
                     {...register('category')}
-                    className="w-full h-[2.5rem] rounded-xl pl-4 my-1 text-dark"
+                    className="w-full h-[2.5rem] rounded-xl pl-4 my-1 rounded-xl bg-dark-surface-1 border-[1px] border-dark-border text-dark-text-2 text-sm placeholder-dark-text-2"
                     defaultValue={'Housing'}
                 />
                 {listShown ? (
-                    <ChevronUpIcon tailwindClass="absolute right-2 text-red-500" />
+                    <ChevronUpIcon tailwindClass="absolute right-2" />
                 ) : (
-                    <ChevronDownIcon tailwindClass="absolute right-2 text-red-500" />
+                    <ChevronDownIcon tailwindClass="absolute right-2" />
                 )}
             </div>
             <div className="w-full relative text-dark">
                 {listShown && (
-                    <div className="w-full bg-white divide-y divide-border-light rounded-xl overflow-hidden">
+                    <div className="w-full bg-dark-surface-1 border-[1px] border-dark-border divide-y divide-dark-border rounded-xl overflow-hidden">
                         {options}
                     </div>
                 )}
@@ -123,8 +128,8 @@ export function BudgetExpenseForm({
     toggleForm
 }: {
     budgetPlanId: number;
-    expense: number;
-    balance: number;
+    expense: string;
+    balance: string;
     toggleForm: Dispatch<SetStateAction<boolean>>;
 }) {
     const {
@@ -162,7 +167,7 @@ export function BudgetExpenseForm({
                 <AddExpenseFormField
                     type="hidden"
                     name="budgetPlanId"
-                    value={budgetPlanId}
+                    value={String(budgetPlanId)}
                     register={register}
                     error={errors.budgetPlanId}
                 />

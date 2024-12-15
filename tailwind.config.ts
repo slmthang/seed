@@ -18,8 +18,8 @@ const config: Config = {
                 // colors
                 'dark-button-color': '#1d4ed8',
                 'dark-surface-0': '#101010',
-                'dark-surface-1': '#191919',
-                'dark-surface-2': '#272727',
+                'dark-surface-1': '#161616',
+                'dark-surface-2': '#232323',
                 'dark-surface-3': '#353535',
                 'dark-surface-4': '#646464',
                 'dark-error': '#CF6679',

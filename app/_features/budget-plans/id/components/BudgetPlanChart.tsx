@@ -7,22 +7,11 @@ export default function BudgetPlanChart({
 }: {
     expenseListData: SelectbudgetPlanExpense[];
 }) {
-    // const [chartActive, setChartActive] = useState<boolean>(true);
-
     const categorizedExpenseListData =
         categorizeBudgetExpenseList(expenseListData);
 
     return (
-        <div className="w-full border-[1px] border-dark-border rounded-xl">
-            {/* <div className={clsx("w-full px-4 py-2 h-[3rem]  flex items-center justify-between", {'rounded-xl': !chartActive}, {'rounded-t-xl border-b-[1px] border-dark-border': chartActive})} onClick={() => setChartActive(prev => !prev)}>
-                <p className="text-lg font-bold">Chart</p>
-                {
-                    chartActive? 
-                    <ChevronDownIcon /> :
-                    <ChevronRightIcon />
-                }
-            </div> */}
-
+        <div className="w-full bg-dark-surface-0 border-[1px] border-dark-border rounded-xl">
             <div className="w-full h-[12rem] my-[2rem]">
                 <VictoryPie
                     style={{
@@ -30,8 +19,9 @@ export default function BudgetPlanChart({
                             fill: ({ datum }) => datum.fill
                         },
                         labels: {
-                            fontSize: 22,
-                            fill: '#dadada'
+                            fontSize: 20,
+                            fill: '#dadada',
+                            padding: 20
                         }
                     }}
                     data={toPieChartData(categorizedExpenseListData)}

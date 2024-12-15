@@ -43,23 +43,23 @@ export default function NavBar() {
     const NavBarOptionsData = [
         {
             path: '/',
-            icon: <HomeIcon />
+            icon: <HomeIcon tailwindClass="stroke-dark-text-1" />
         },
         {
             path: '/budget-plans',
-            icon: <BudgetPlanIcon />
+            icon: <BudgetPlanIcon tailwindClass="stroke-dark-text-1" />
         },
         {
             path: '/subscriptions',
-            icon: <SubscriptionsIcon />
+            icon: <SubscriptionsIcon tailwindClass="stroke-dark-text-1" />
         },
         {
             path: '/tracker',
-            icon: <TrackerIcon />
+            icon: <TrackerIcon tailwindClass="stroke-dark-text-1" />
         },
         {
             path: '/savings',
-            icon: <SavingsIcon />
+            icon: <SavingsIcon tailwindClass="stroke-dark-text-1" />
         }
     ];
 
@@ -87,7 +87,7 @@ export default function NavBar() {
     return (
         <nav
             className={
-                'z-10 flex justify-between items-center absolute bottom-[0px] left-[0px] w-screen h-[3rem] px-4 backdrop-blur-md'
+                'z-30 flex justify-between items-center absolute bottom-[0px] left-[0px] w-screen h-[3rem] px-4 bg-dark-surface-0'
             }
         >
             {optionsToShow}

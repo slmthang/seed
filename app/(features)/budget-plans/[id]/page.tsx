@@ -10,6 +10,7 @@ import {
     SelectbudgetPlanExpense
 } from '@/app/lib/definitions/db/types';
 import BudgetPlan from '@/app/_features/budget-plans/id/BudgetPlan';
+import NestedMenuBar from '@/app/dfl/BudgetPlanNestedMenuBar';
 
 /* ########################################### Page ########################################### */
 
@@ -22,13 +23,15 @@ export default async function Page({ params }: { params: { id: string } }) {
         await getExpenseListByBudgetPlanId(+budgetPlanId);
 
     return (
-        <BudgetPlan
-            budgetPlanId={+budgetPlanId}
-            budgetPlanName={budgetPlanData.budgetPlanName}
-            budget={+budgetPlanData.budget}
-            expense={+budgetPlanData.expense}
-            balance={+budgetPlanData.balance}
-            expenseListData={expenseListData}
-        />
+        <div className="w-full min-h-full">
+            <NestedMenuBar pageName={budgetPlanData.budgetPlanName} />
+            <BudgetPlan
+                budgetPlanId={+budgetPlanId}
+                budget={budgetPlanData.budget}
+                expense={budgetPlanData.expense}
+                balance={budgetPlanData.balance}
+                expenseListData={expenseListData}
+            />
+        </div>
     );
 }

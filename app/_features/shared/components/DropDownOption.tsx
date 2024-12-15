@@ -65,12 +65,16 @@ export default function DropDownOption<T extends sortBy | orderBy | groupBy>({
                 <div className="flex items-center justify-center h-[3rem] w-[2rem] mr-[0.5rem]">
                     <OptionIcon tailwindClass="size-5" />
                 </div>
-                <div className="flex flex-col items-start justify-center h-[3rem] w-[7rem] ">
+                <div className="flex flex-col items-start justify-center h-[3rem] w-[5rem] ">
                     <h1>{optionName}</h1>
                     <p className="text-xs font-thin">{options[optionType]}</p>
                 </div>
                 <div className="flex items-center justify-center h-[3rem] w-[2rem]">
-                    {optionsShown ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                    {optionsShown ? (
+                        <ChevronUpIcon tailwindClass="size-6" />
+                    ) : (
+                        <ChevronDownIcon tailwindClass="size-6" />
+                    )}
                 </div>
             </div>
 
