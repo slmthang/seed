@@ -77,7 +77,7 @@ const AddExpenseFormField: React.FC<BudgetExpenseFormFieldProps> = ({
         )}
 
         {error && (
-            <span className="pl-2 text-xs text-light-error font-light">
+            <span className="pl-1 text-sm text-light-error font-light">
                 {error.message}
             </span>
         )}
