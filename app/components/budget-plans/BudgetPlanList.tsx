@@ -17,11 +17,25 @@ import { SelectBudgetPlan } from '@/app/lib/definitions/db/DataBaseDefinitions';
 /* ########################################### BudgetPlanList ########################################### */
 
 export default function BudgetPlanList({
-    budgetPlanListData
+    budgetPlanListData,
+    searchBarValue
 }: {
     budgetPlanListData: SelectBudgetPlan[];
+    searchBarValue: string;
 }) {
-    const BudgetPlanCards = budgetPlanListData.map((item) => {
+    const [formActive, setFormActive] = useState<boolean>(false);
+
+    const filteredBudgetPlans = budgetPlanListData.filter((element) => {
+        if (searchBarValue == '') {
+            return true;
+        } else {
+            return element.budgetPlanName
+                .toLowerCase()
+                .includes(searchBarValue.toLowerCase());
+        }
+    });
+
+    const BudgetPlanCards = filteredBudgetPlans.map((item) => {
         return (
             <BudgetPlanCard
                 key={item.id + '' + item.createdAt}
@@ -34,13 +48,11 @@ export default function BudgetPlanList({
         );
     });
 
-    const [formActive, setFormActive] = useState<boolean>(false);
-
     return (
         <div className="w-full">
             {formActive && <AddBudgetPlanForm toggleForm={setFormActive} />}
 
-            <div className=" w-full h-[calc(100dvh-(6rem))] overflow-y-scroll pt-[1rem] px-4 pb-[8rem] relative">
+            <div className=" w-full h-[calc(100dvh-(6rem))] overflow-y-scroll px-4 pb-[8rem] relative">
                 <div className="w-full border-dark gap-y-[1rem] relative flex flex-col  items-center">
                     {budgetPlanListData.length >= 1 ? (
                         BudgetPlanCards
@@ -50,7 +62,7 @@ export default function BudgetPlanList({
                 </div>
 
                 <div onClick={() => setFormActive((prev) => !prev)}>
-                    <AddButtonIcon />
+                    <AddButtonIcon tailwindClass="stroke-indigo-500 text-indigo-500" />
                 </div>
             </div>
         </div>

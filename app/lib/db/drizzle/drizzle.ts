@@ -268,7 +268,12 @@ export async function getBudgetPlanExpenseList(
                     )
                 )
             )
-            .where(eq(budgetPlansTable.userId, userId));
+            .where(
+                and(
+                    eq(budgetPlansTable.id, budgetPlanId),
+                    eq(budgetPlansTable.userId, userId)
+                )
+            );
     } catch (err) {
         throw new Error('Fail to fetch expense list.');
     }

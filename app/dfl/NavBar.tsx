@@ -42,28 +42,31 @@ function NavBarOption({
 export default function NavBar() {
     const NavBarOptionsData = [
         {
-            path: '/',
+            path: '',
             icon: <HomeIcon />
         },
         {
-            path: '/budget-plans',
+            path: 'budget-plans',
             icon: <BudgetPlanIcon />
         },
         {
-            path: '/subscriptions',
+            path: 'subscriptions',
             icon: <SubscriptionsIcon />
         },
         {
-            path: '/tracker',
+            path: 'tracker',
             icon: <TrackerIcon />
         },
         {
-            path: '/savings',
+            path: 'savings',
             icon: <SavingsIcon />
         }
     ];
 
-    const pathName = usePathname();
+    const userPathNameValue = usePathname();
+    const pathName = userPathNameValue
+        .slice(1, userPathNameValue.length)
+        .split('/')[0];
 
     const [selected, setSelected] = useState<string>(pathName);
 
@@ -75,7 +78,7 @@ export default function NavBar() {
         return (
             <NavBarOption
                 key={String(e.path) + String(i)}
-                route={e.path}
+                route={'/' + e.path}
                 selected={selected === e.path}
                 onClick={() => setSelected(e.path)}
             >

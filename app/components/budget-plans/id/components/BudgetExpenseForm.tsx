@@ -66,7 +66,7 @@ const AddExpenseFormField: React.FC<BudgetExpenseFormFieldProps> = ({
                 type={type}
                 {...register(name)}
                 className={clsx(
-                    'inputDarkModeOverride w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[1px] border-light-border text-sm  focus:outline-none focus:border-indigo-500',
+                    'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[2px] border-light-border text-sm  focus:outline-none focus:border-indigo-500',
                     {
                         'border-light-error focus:border-light-error text-light-error':
                             error
@@ -98,7 +98,7 @@ function CategoryField({
             <div
                 key={category}
                 className={clsx('w-full h-[2rem] px-4 flex items-center ', {
-                    'bg-blue-700 text-white': category === selectedCategory
+                    'bg-indigo-500 text-white': category === selectedCategory
                 })}
                 onClick={() => {
                     setValue('category', category);
@@ -125,7 +125,7 @@ function CategoryField({
                         placeholder={'Category'}
                         {...register('category')}
                         className={clsx(
-                            'inputDarkModeOverride w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[1px] border-light-border text-light-text-2 text-sm placeholder-light-text-3 focus:outline-none focus:border-blue-700',
+                            'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[2px] border-light-border text-light-text-2 text-sm placeholder-light-text-3 focus:outline-none focus:border-indigo-500',
                             {
                                 'border-light-error focus:border-light-error':
                                     error
@@ -243,7 +243,7 @@ export function BudgetExpenseForm({
                     error={errors.category}
                 />
 
-                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-light-button-color text-center mt-4 text-white">
+                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-indigo-500 text-center mt-4 text-white">
                     Add
                 </button>
             </form>

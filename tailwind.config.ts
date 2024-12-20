@@ -44,7 +44,7 @@ const config: Config = {
                 'light-surface-0': '#f5f5f5',
                 'light-surface-1': '#eee',
                 'light-surface-2': '#e7e7e7',
-                'light-surface-3': '#d7d7d7',
+                'light-surface-3': '#d9d9d9',
                 'light-surface-4': '#646464',
                 'light-error': '#b10000',
 

@@ -397,7 +397,7 @@ export function AddButtonIcon({
     tailwindClass?: string;
 }) {
     tailwindClass = twMerge(
-        'stroke-dark-button-color text-dark-button-color z-10 fixed bottom-20 right-4 size-12',
+        'z-10 fixed bottom-20 right-4 size-12',
         tailwindClass
     );
 
@@ -695,10 +695,14 @@ export function SearchIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
             viewBox="0 0 24 24"
             className={tailwindClass}
         >
-            <path
-                fill="currentColor"
-                d="m19.485 20.154l-6.262-6.262q-.75.639-1.725.989t-1.96.35q-2.402 0-4.066-1.663T3.808 9.503T5.47 5.436t4.064-1.667t4.068 1.664T15.268 9.5q0 1.042-.369 2.017t-.97 1.668l6.262 6.261zM9.539 14.23q1.99 0 3.36-1.37t1.37-3.361t-1.37-3.36t-3.36-1.37t-3.361 1.37t-1.37 3.36t1.37 3.36t3.36 1.37"
-            ></path>
+            <g fill="none" stroke="currentColor">
+                <circle cx="11" cy="11" r="5.5" />
+                <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m15 15l4 4"
+                />
+            </g>
         </svg>
     );
 }
@@ -714,7 +718,7 @@ export function FilterIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
         >
             <path
                 fill="currentColor"
-                d="M7 6h10l-5.01 6.3zm-2.75-.39C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39A.998.998 0 0 0 18.95 4H5.04c-.83 0-1.3.95-.79 1.61"
+                d="M11 18h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1M3 7c0 .55.45 1 1 1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1m4 6h10c.55 0 1-.45 1-1s-.45-1-1-1H7c-.55 0-1 .45-1 1s.45 1 1 1"
             />
         </svg>
     );

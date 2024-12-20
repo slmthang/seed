@@ -1,25 +1,83 @@
 'use client';
 
+import { SetStateAction, Dispatch, useState } from 'react';
 // modules (remote)
 // local
-import { MeatBallMenuIcon } from '../components/shared/components/Icons';
+import { FilterIcon, SearchIcon } from '../components/shared/components/Icons';
+import SearchBar from '../components/shared/components/SearchBar';
+import { budgetPlanOptions } from '../lib/definitions/menuOptions/BudgetPlanOptions';
+import { BudgetPlanOptionMenu } from '../components/budget-plans/id/components/BudgetPlanOptionMenu';
 
-export default function MenuBar({ pageName }: { pageName: string }) {
+export default function MenuBar({
+    pageName,
+    searchBarActive,
+    setSearchBarActive,
+    setSearchBarValue
+}: {
+    pageName: string;
+    searchBarActive: boolean;
+    setSearchBarActive: Dispatch<SetStateAction<boolean>>;
+    setSearchBarValue: Dispatch<SetStateAction<string>>;
+}) {
+    const [optionsActive, setOptionsActive] = useState<boolean>(false);
+
+    const [budgetPlanOptions, setBudgetPlanOptions] =
+        useState<budgetPlanOptions>({
+            groupBy: 'item',
+            sortBy: 'amount',
+            orderBy: 'desc'
+        });
+
+    // search input handler
+    const searchInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const element = event.target as HTMLInputElement;
+        const value = element.value;
+
+        setSearchBarValue(value);
+    };
+
     return (
-        <nav
-            className={
-                'z-30 flex justify-between items-center w-screen h-[3rem] bg-light-surface-2 sticky top-[0px] left-[0px] px-4'
-            }
-        >
-            <div>
-                <p className="text-xl font-bold text-light-text-2">
-                    {pageName}
-                </p>
-            </div>
+        <div className="w-full transparent">
+            <nav
+                className={
+                    'z-30 flex justify-between items-center w-screen h-[3rem] bg-light-surface-2 sticky top-[0px] left-[0px] px-4 mb-4'
+                }
+            >
+                <div>
+                    <p className="text-2xl font-bold text-light-text-1">
+                        {pageName}
+                    </p>
+                </div>
 
-            <div className="w-6">
-                <MeatBallMenuIcon tailwindClass="size-6 stroke-2 stroke-light-text-2" />
-            </div>
-        </nav>
+                <div className="flex">
+                    <div onClick={() => setSearchBarActive((prev) => !prev)}>
+                        <SearchIcon tailwindClass="size-8 stroke-1 stroke-light-text-1" />
+                    </div>
+                </div>
+            </nav>
+
+            {searchBarActive && (
+                <div className="w-full flex px-4 mb-4">
+                    <div className="w-full">
+                        <SearchBar searchInputHandler={searchInputHandler} />
+                    </div>
+                    <div className="relative ml-[1rem]">
+                        <div
+                            className="w-[3rem] h-[2.5rem] flex justify-center items-center border-[1px] border-light-border rounded-lg mb-2"
+                            onClick={() => setOptionsActive((prev) => !prev)}
+                        >
+                            <FilterIcon tailwindClass="size-7 stroke-light-text-1" />
+                        </div>
+
+                        {optionsActive && (
+                            <BudgetPlanOptionMenu
+                                budgetPlanOptions={budgetPlanOptions}
+                                setBudgetPlanOptions={setBudgetPlanOptions}
+                            />
+                        )}
+                    </div>
+                </div>
+            )}
+        </div>
     );
 }

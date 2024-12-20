@@ -37,7 +37,7 @@ export const BudgetPlanFormField: React.FC<BudgetPlanFormFieldProps> = ({
             type={type}
             {...register(name, { valueAsNumber })}
             className={clsx(
-                'inputDarkModeOverride w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[1px] border-light-border text-light-text-2 text-sm placeholder-light-text-3 focus:outline-none focus:border-indigo-500',
+                'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[2px] border-light-border text-light-text-2 text-sm placeholder-light-text-3 focus:outline-none focus:border-indigo-500',
                 { 'border-light-error focus:border-light-error': error }
             )}
         />
@@ -104,7 +104,7 @@ export default function BudgetPlanForm({
                     />
                 </div>
 
-                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-light-button-color text-center text-white">
+                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-indigo-500 text-center text-white">
                     Add
                 </button>
             </form>

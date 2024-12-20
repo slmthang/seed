@@ -8,6 +8,7 @@
         "start": "next start",
         "test": "jest",
         "lint": "eslint .",
+        "lint:fix": "eslint --fix .",
         "prt": "exec prettier . --write",
         "dbg": "npx drizzle-kit generate",
         "dbm": "npx drizzle-kit migrate"
