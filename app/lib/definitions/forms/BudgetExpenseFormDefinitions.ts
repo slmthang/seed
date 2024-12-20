@@ -6,7 +6,7 @@ import {
     UseFormSetValue
 } from 'react-hook-form';
 import { z, ZodType } from 'zod'; // Add new import
-import { categories } from '../../categories/type';
+import { categories } from '../categories/CategoriesDefinitions';
 
 /****************************** BudgetExpenseForm ******************************/
 
@@ -33,7 +33,6 @@ export type BudgetExpenseFormFields =
 export type BudgetExpenseFormFieldProps = {
     label?: string;
     type: string;
-    placeholder?: string;
     name: BudgetExpenseFormFields;
     value?: string;
     register: UseFormRegister<BudgetExpenseFormData>;
@@ -42,6 +41,7 @@ export type BudgetExpenseFormFieldProps = {
 
 // Category Field Prop Type
 export type BudgetExpenseFormCategoryFieldProp = {
+    label: string;
     categories: categories[];
     register: UseFormRegister<BudgetExpenseFormData>;
     error: FieldError | undefined;
@@ -61,7 +61,7 @@ export const BudgetExpenseFormSchema: ZodType<BudgetExpenseFormData> = z.object(
         amount: z
             .string()
             .min(1, { message: 'Amount is required.' })
-            .regex(/^\d*\.?\d*$/, 'Numbers only. Ex: 99.00 or 99'),
+            .regex(/^\d*\.?\d*$/, 'Numbers only. Example: 40.00 or 40'),
         category: z.string().min(1, { message: 'Category is required.' })
     }
 );

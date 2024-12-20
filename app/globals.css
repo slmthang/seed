@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .inputDarkModeOverride {
+        &:-webkit-autofill {
+            box-shadow: 0 0 0 30px #1c1c1d inset;
+            -webkit-text-fill-color: #aeaeae;
+        }
+
+        &:-webkit-autofill:hover {
+            box-shadow: 0 0 0 30px #1c1c1d inset;
+            -webkit-text-fill-color: #aeaeae;
+        }
+
+        &:-webkit-autofill:focus {
+            box-shadow: 0 0 0 30px #1c1c1d inset;
+            -webkit-text-fill-color: #aeaeae;
+        }
+
+        &:-webkit-autofill:active {
+            box-shadow: 0 0 0 30px #1c1c1d inset;
+            -webkit-text-fill-color: #aeaeae;
+        }
+    }
+}
+
 :root {
     --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 214, 219, 220;

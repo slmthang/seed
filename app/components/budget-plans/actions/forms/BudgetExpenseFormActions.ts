@@ -2,9 +2,10 @@
 'use server';
 
 // remote
-import { BudgetExpenseFormData } from '@/app/lib/definitions/forms/BudgetExpenseForm/types';
+import { BudgetExpenseFormData } from '@/app/lib/definitions/forms/BudgetExpenseFormDefinitions';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { currentUser } from '@clerk/nextjs/server';
 
 // local
 import {
@@ -22,6 +23,8 @@ import { validateMoneyInput } from '@/app/lib/utils';
  */
 
 export async function AddNewBudgetExpense(formData: BudgetExpenseFormData) {
+    const user = await currentUser(); // getUserInfo
+
     // add item
     const id = await createBudgetPlanExpense({
         budgetPlanId: Number(formData.budgetPlanId),
@@ -33,6 +36,7 @@ export async function AddNewBudgetExpense(formData: BudgetExpenseFormData) {
     // update the budget plan with new expense
     await updateExpenseOfBudgetPlan(
         +formData.budgetPlanId,
+        user?.id as string,
         validateMoneyInput(formData.expense),
         validateMoneyInput(formData.amount),
         'add'
@@ -40,6 +44,7 @@ export async function AddNewBudgetExpense(formData: BudgetExpenseFormData) {
     // update the budget plan with new balance
     await updateBalanceOfBudgetPlan(
         +formData.budgetPlanId,
+        user?.id as string,
         validateMoneyInput(formData.balance),
         validateMoneyInput(formData.amount),
         'subtract'

@@ -2,7 +2,7 @@
 'use server';
 
 // remote
-import { BudgetPlanFormData } from '@/app/lib/definitions/forms/BudgetPlanForm/types';
+import { BudgetPlanFormData } from '@/app/lib/definitions/forms/BudgetPlanFormDefinitions';
 import { currentUser } from '@clerk/nextjs/server';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
@@ -21,7 +21,7 @@ export async function AddNewBudgetPlan(formData: BudgetPlanFormData) {
     const user = await currentUser();
 
     const id = await createBudgetPlan({
-        userId: user?.id + '',
+        userId: String(user?.id),
         budgetPlanName: formData.budgetPlanName,
         budget: validateMoneyInput(formData.budgetAmount),
         expense: validateMoneyInput('0.00'),

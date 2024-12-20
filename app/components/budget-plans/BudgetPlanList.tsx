@@ -8,11 +8,11 @@
 import { useState } from 'react';
 
 // local
-import BudgetPlanCard from '@/app/_features/budget-plans/components/BudgetPlanCard';
-import { AddButtonIcon } from '@/app/_features/shared/components/Icons';
-import AddBudgetPlanForm from '@/app/_features/budget-plans/components/BudgetPlanForm';
-import EmptyBudgetPlansCard from '@/app/_features/budget-plans/components/EmptyBudgetPlansCard';
-import { SelectBudgetPlan } from '@/app/lib/definitions/db/types';
+import BudgetPlanCard from '@/app/components/budget-plans/components/BudgetPlanCard';
+import { AddButtonIcon } from '@/app/components/shared/components/Icons';
+import AddBudgetPlanForm from '@/app/components/budget-plans/components/BudgetPlanForm';
+import EmptyBudgetPlansCard from '@/app/components/budget-plans/components/EmptyBudgetPlansCard';
+import { SelectBudgetPlan } from '@/app/lib/definitions/db/DataBaseDefinitions';
 
 /* ########################################### BudgetPlanList ########################################### */
 

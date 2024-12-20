@@ -2,7 +2,7 @@ export default function BudgetPlanEmptyExpenses() {
     return (
         <div
             className={
-                'w-full h-[8rem] flex flex-col rounded-2xl justify-center items-center bg-dark-surface-1 border-[1px] border-dark-border'
+                'w-full h-[8rem] flex flex-col rounded-2xl justify-center items-center bg-light-surface-1 border-[1px] border-light-border'
             }
         >
             <h1 className="text-xl">EMPTY</h1>

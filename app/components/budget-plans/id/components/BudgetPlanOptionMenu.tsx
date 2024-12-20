@@ -1,11 +1,10 @@
-import DropDownOption from '@/app/_features/shared/components/DropDownOption';
-import { Dispatch, SetStateAction } from 'react';
-import { budgetPlanOptions } from '@/app/lib/definitions/menuOptions/types';
+import DropDownOption from '@/app/components/shared/components/DropDownOption';
 import {
-    SortByIcon,
     OrderByIcon,
-    GroupByIcon
-} from '@/app/_features/shared/components/Icons';
+    SortByIcon
+} from '@/app/components/shared/components/Icons';
+import { budgetPlanOptions } from '@/app/lib/definitions/menuOptions/BudgetPlanOptions';
+import { Dispatch, SetStateAction } from 'react';
 
 export function BudgetPlanOptionMenu({
     budgetPlanOptions,
@@ -15,7 +14,7 @@ export function BudgetPlanOptionMenu({
     setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptions>>;
 }) {
     return (
-        <div className="absolute flex flex-col right-0 min-w-[12rem] z-10 bg-dark-surface-1 rounded-xl gap-y-2 p-3 shadow-sm shadow-dark-border">
+        <div className="absolute flex flex-col right-0 min-w-[12rem] z-10 bg-light-surface-1 rounded-xl gap-y-2 p-3 border-[1px] border-light-border shadow shadow-light-border">
             <DropDownOption
                 optionName="Sort By"
                 OptionIcon={SortByIcon}
@@ -29,14 +28,6 @@ export function BudgetPlanOptionMenu({
                 OptionIcon={OrderByIcon}
                 optionType="orderBy"
                 optionValues={['asc', 'desc']}
-                options={budgetPlanOptions}
-                setOptions={setBudgetPlanOptions}
-            />
-            <DropDownOption
-                optionName="Group By"
-                OptionIcon={GroupByIcon}
-                optionType="groupBy"
-                optionValues={['item', 'category']}
                 options={budgetPlanOptions}
                 setOptions={setBudgetPlanOptions}
             />

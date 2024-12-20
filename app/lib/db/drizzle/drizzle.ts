@@ -4,7 +4,7 @@ import postgres from 'postgres';
 import 'dotenv/config';
 
 // DB STUFF
-import { eq } from 'drizzle-orm';
+import { eq, and } from 'drizzle-orm';
 import { calculateMoney } from '../../utils';
 
 const connectionString = process.env.DATABASE_URL!;
@@ -20,7 +20,7 @@ import {
     SelectbudgetPlanExpense,
     InsertbudgetPlanExpense,
     InsertUser
-} from '../../definitions/db/types';
+} from '../../definitions/db/DataBaseDefinitions';
 import {
     budgetPlanExpensesTable,
     budgetPlansTable,
@@ -94,34 +94,41 @@ export async function validateUser(user: InsertUser) {
 /**
  * Fetch a list of budget plans by user id.
  *
- * @param id { number } - user id
+ * @param userId { number } - user id
  * @returns { Promise<SelectBudgetPlan[]> } a promise with a list of budget plans
  *
  */
-export async function getBudgetPlanListByUserId(
-    id: string
+export async function getBudgetPlanList(
+    userId: string
 ): Promise<SelectBudgetPlan[]> {
     return db
         .select()
         .from(budgetPlansTable)
-        .where(eq(budgetPlansTable.userId, id));
+        .where(eq(budgetPlansTable.userId, userId));
 }
 
 /**
  * Fetch a specific budget plan by using its id.
  *
- * @param id { number } - budget plan id
+ * @param budgetPlanId { number } - budget plan id
+ * @param userId
  * @returns { Promise<SelectBudgetPlan> } a promise with a budget plan object
  *
  */
-export async function getBudgetPlanByItsId(
-    id: number
+export async function getBudgetPlan(
+    budgetPlanId: number,
+    userId: string
 ): Promise<SelectBudgetPlan> {
     try {
         const budgetPlanArray = await db
             .select()
             .from(budgetPlansTable)
-            .where(eq(budgetPlansTable.id, id));
+            .where(
+                and(
+                    eq(budgetPlansTable.id, budgetPlanId),
+                    eq(budgetPlansTable.userId, userId)
+                )
+            );
 
         return budgetPlanArray[0];
     } catch (err) {
@@ -149,6 +156,7 @@ export async function createBudgetPlan(
 // update budget plan by id and columns
 export async function updateExpenseOfBudgetPlan(
     budgetPlanId: SelectBudgetPlan['id'],
+    userId: string,
     expense: string,
     newExpense: string,
     method: 'add' | 'subtract'
@@ -159,7 +167,12 @@ export async function updateExpenseOfBudgetPlan(
         const updateBudgetPlan = await db
             .update(budgetPlansTable)
             .set({ expense: newTotalExpense })
-            .where(eq(budgetPlansTable.id, budgetPlanId))
+            .where(
+                and(
+                    eq(budgetPlansTable.id, budgetPlanId),
+                    eq(budgetPlansTable.userId, userId)
+                )
+            )
             .returning({ id: budgetPlansTable.id })
             .then((data) => data[0]);
 
@@ -172,6 +185,7 @@ export async function updateExpenseOfBudgetPlan(
 // update budget plan by id and columns
 export async function updateBalanceOfBudgetPlan(
     budgetPlanId: SelectBudgetPlan['id'],
+    userId: string,
     balance: string,
     newExpense: string,
     method: 'subtract'
@@ -182,7 +196,12 @@ export async function updateBalanceOfBudgetPlan(
         const updateBudgetPlan = await db
             .update(budgetPlansTable)
             .set({ balance: newTotalBalance })
-            .where(eq(budgetPlansTable.id, budgetPlanId))
+            .where(
+                and(
+                    eq(budgetPlansTable.id, budgetPlanId),
+                    eq(budgetPlansTable.userId, userId)
+                )
+            )
             .returning({ id: budgetPlansTable.id })
             .then((data) => data[0]);
 
@@ -195,13 +214,19 @@ export async function updateBalanceOfBudgetPlan(
 // update budget plan by id and columns
 export async function updateBudgetOfBudgetPlan(
     budgetPlanId: SelectBudgetPlan['id'],
+    userId: string,
     newBudgetAmount: string
 ): Promise<string> {
     try {
         const updateBudgetPlan = await db
             .update(budgetPlansTable)
             .set({ budget: newBudgetAmount })
-            .where(eq(budgetPlansTable.id, budgetPlanId))
+            .where(
+                and(
+                    eq(budgetPlansTable.id, budgetPlanId),
+                    eq(budgetPlansTable.userId, userId)
+                )
+            )
             .returning({ id: budgetPlansTable.id })
             .then((data) => data[0]);
 
@@ -214,18 +239,36 @@ export async function updateBudgetOfBudgetPlan(
 /**
  * Fetch a specific list of expenses by using a budget plan id.
  *
- * @param id { number } - budget plan id
+ * @param budgetPlanId { number } - budget plan id
+ * @param userId
  * @returns { Promise<SelectbudgetPlanExpenses[]> } a promise with a list of expenses
  *
  */
-export async function getExpenseListByBudgetPlanId(
-    id: number
+export async function getBudgetPlanExpenseList(
+    budgetPlanId: number,
+    userId: string
 ): Promise<SelectbudgetPlanExpense[]> {
     try {
         return db
-            .select()
+            .select({
+                id: budgetPlanExpensesTable.id,
+                budgetPlanId: budgetPlanExpensesTable.budgetPlanId,
+                createdAt: budgetPlanExpensesTable.createdAt,
+                item: budgetPlanExpensesTable.item,
+                amount: budgetPlanExpensesTable.amount,
+                category: budgetPlanExpensesTable.category
+            })
             .from(budgetPlanExpensesTable)
-            .where(eq(budgetPlanExpensesTable.budgetPlanId, id));
+            .innerJoin(
+                budgetPlansTable,
+                and(
+                    eq(
+                        budgetPlanExpensesTable.budgetPlanId,
+                        budgetPlansTable.id
+                    )
+                )
+            )
+            .where(eq(budgetPlansTable.userId, userId));
     } catch (err) {
         throw new Error('Fail to fetch expense list.');
     }

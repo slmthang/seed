@@ -9,14 +9,14 @@ import { useState } from 'react';
 import { VictoryPie } from 'victory';
 
 // local
-import { budgetPlanOptions } from '@/app/lib/definitions/menuOptions/types';
+import { budgetPlanOptions } from '@/app/lib/definitions/menuOptions/BudgetPlanOptions';
 
 import {
     ChevronDownIcon,
     ChevronRightIcon,
     SquareIcon
-} from '@/app/_features/shared/components/Icons';
-import { categorizedExpense } from '@/app/lib/definitions/categories/type';
+} from '@/app/components/shared/components/Icons';
+import { categorizedExpense } from '@/app/lib/definitions/categories/CategoriesDefinitions';
 import {
     categorizeBudgetExpenseList,
     sortBudgetPlanExpenseList,
@@ -25,7 +25,7 @@ import {
     toPieChartData
 } from '@/app/lib/utils';
 
-import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/types';
+import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/DataBaseDefinitions';
 
 function BudgetPlanStatsChart({
     expenseListData

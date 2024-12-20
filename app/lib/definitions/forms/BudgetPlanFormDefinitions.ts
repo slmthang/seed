@@ -14,7 +14,6 @@ export type BudgetPlanFormFields = 'budgetPlanName' | 'budgetAmount';
 export type BudgetPlanFormFieldProps = {
     label?: string;
     type: string;
-    placeholder?: string;
     name: BudgetPlanFormFields;
     actualValue?: string;
     register: UseFormRegister<BudgetPlanFormData>;
@@ -29,5 +28,10 @@ export const BudgetPlanFormSchema: ZodType<BudgetPlanFormData> = z.object({
         .max(120, {
             message: 'Name must be not be longer than 120 characters.'
         }),
-    budgetAmount: z.string().min(1, { message: 'Amount is required.' })
+    budgetAmount: z
+        .string()
+        .min(1, { message: 'Amount is required.' })
+        .regex(new RegExp(/^[0-9]*(\.[0-9]*)?$/), {
+            message: 'Numbers only. Example: 40.00 or 40 '
+        })
 });

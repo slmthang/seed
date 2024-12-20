@@ -1,4 +1,4 @@
-import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/types';
+import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/DataBaseDefinitions';
 import { categorizeBudgetExpenseList, toPieChartData } from '@/app/lib/utils';
 import { VictoryPie } from 'victory';
 
@@ -11,7 +11,7 @@ export default function BudgetPlanChart({
         categorizeBudgetExpenseList(expenseListData);
 
     return (
-        <div className="w-full bg-dark-surface-0 border-[1px] border-dark-border rounded-xl">
+        <div className="w-full bg-light-surface-1 border-[1px] border-light-border rounded-xl">
             <div className="w-full h-[12rem] my-[2rem]">
                 <VictoryPie
                     style={{
@@ -20,7 +20,7 @@ export default function BudgetPlanChart({
                         },
                         labels: {
                             fontSize: 20,
-                            fill: '#dadada',
+                            fill: '#434343',
                             padding: 20
                         }
                     }}

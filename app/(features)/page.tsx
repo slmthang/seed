@@ -1,7 +1,7 @@
 /* ########################################### Modules ########################################### */
 
 // local
-import Overview from '@/app/_features/Overview';
+import Overview from '@/app/components/Overview';
 
 /* ########################################### OverviewPage ########################################### */
 

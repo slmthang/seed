@@ -5,7 +5,7 @@ import {
     FacebookIcon,
     GoogleIcon,
     TikTokIcon
-} from '@/app/_features/shared/components/Icons';
+} from '@/app/components/shared/components/Icons';
 import * as Clerk from '@clerk/elements/common';
 import * as SignUp from '@clerk/elements/sign-up';
 import Link from 'next/link';

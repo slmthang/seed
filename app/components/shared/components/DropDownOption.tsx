@@ -8,7 +8,7 @@ import {
     orderBy,
     groupBy,
     budgetPlanOptions
-} from '@/app/lib/definitions/menuOptions/types';
+} from '@/app/lib/definitions/menuOptions/BudgetPlanOptions';
 import { ChevronDownIcon, ChevronUpIcon } from './Icons';
 
 // local
@@ -63,7 +63,7 @@ export default function DropDownOption<T extends sortBy | orderBy | groupBy>({
                 onClick={() => setOptionShown((prev) => !prev)}
             >
                 <div className="flex items-center justify-center h-[3rem] w-[2rem] mr-[0.5rem]">
-                    <OptionIcon tailwindClass="size-5" />
+                    <OptionIcon tailwindClass="size-5 stroke-light-text-1" />
                 </div>
                 <div className="flex flex-col items-start justify-center h-[3rem] w-[5rem] ">
                     <h1>{optionName}</h1>
@@ -71,9 +71,9 @@ export default function DropDownOption<T extends sortBy | orderBy | groupBy>({
                 </div>
                 <div className="flex items-center justify-center h-[3rem] w-[2rem]">
                     {optionsShown ? (
-                        <ChevronUpIcon tailwindClass="size-6" />
+                        <ChevronUpIcon tailwindClass="size-6 stroke-light-text-1" />
                     ) : (
-                        <ChevronDownIcon tailwindClass="size-6" />
+                        <ChevronDownIcon tailwindClass="size-6 stroke-light-text-1" />
                     )}
                 </div>
             </div>

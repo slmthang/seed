@@ -7,12 +7,13 @@ import { useForm } from 'react-hook-form';
 
 // local
 import { AddNewBudgetPlan } from '../actions/forms/BudgetPlanFormActions';
-import { CloseButtonIcon } from '@/app/_features/shared/components/Icons';
+import { CloseButtonIcon } from '@/app/components/shared/components/Icons';
 import {
     BudgetPlanFormData,
     BudgetPlanFormFieldProps,
     BudgetPlanFormSchema
-} from '@/app/lib/definitions/forms/BudgetPlanForm/types';
+} from '@/app/lib/definitions/forms/BudgetPlanFormDefinitions';
+import clsx from 'clsx';
 
 /* ########################################### Add Budget Plan Form ########################################### */
 
@@ -20,26 +21,28 @@ import {
 export const BudgetPlanFormField: React.FC<BudgetPlanFormFieldProps> = ({
     label,
     type,
-    placeholder,
     name,
     register,
     error,
     valueAsNumber
 }: BudgetPlanFormFieldProps) => (
     <div className="w-full">
-        {label && (
-            <label htmlFor={name} className="text-sm">
-                {label}
-            </label>
-        )}
+        <label htmlFor={name} className="">
+            {label || ''}
+        </label>
         <input
+            aria-label={label || ''}
+            aria-describedby={'describe-' + name}
+            id={name}
             type={type}
-            placeholder={placeholder}
             {...register(name, { valueAsNumber })}
-            className="w-full h-[2.5rem] rounded-xl pl-4 my-1 rounded-xl bg-dark-surface-1 border-[1px] border-dark-border text-dark-text-2 text-sm placeholder-dark-text-2"
+            className={clsx(
+                'inputDarkModeOverride w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[1px] border-light-border text-light-text-2 text-sm placeholder-light-text-3 focus:outline-none focus:border-indigo-500',
+                { 'border-light-error focus:border-light-error': error }
+            )}
         />
         {error && (
-            <span className="text-sm text-dark-error-text">
+            <span className="pl-1 text-sm text-light-error font-light">
                 {error.message}
             </span>
         )}
@@ -69,36 +72,39 @@ export default function BudgetPlanForm({
         <div className="flex items-center justify-center w-screen h-dvh min-h-dvh overflow-y-scroll pt-[3rem] fixed top-[0px] left-[0px] backdrop-brightness-50 z-20">
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col items-center justify-center w-[90%] p-4 rounded-xl bg-dark-surface-1 border-[2px] border-dark-border gap-y-4 z-30"
+                className="flex flex-col items-center justify-start w-[90%] rounded-xl bg-light-surface-1 border-[1px] border-light-border gap-y-8 z-30 py-8 px-4"
             >
                 <div className="flex justify-center items-center relative w-full">
-                    <h1>Add a new Budget Plan</h1>
+                    <h1 className="text-base font-medium">
+                        Add a new Budget Plan
+                    </h1>
                     <div
                         className="absolute right-0"
                         onClick={() => toggleForm((prev) => !prev)}
                     >
-                        <CloseButtonIcon />
+                        <CloseButtonIcon tailwindClass="stroke-light-text-1" />
                     </div>
                 </div>
 
-                <BudgetPlanFormField
-                    type="text"
-                    label="Budget Plan Name"
-                    placeholder="Budget Plan Name"
-                    name="budgetPlanName"
-                    register={register}
-                    error={errors.budgetPlanName}
-                />
+                <div className="w-full flex flex-col gap-y-4">
+                    <BudgetPlanFormField
+                        type="text"
+                        label="Budget Plan Name"
+                        name="budgetPlanName"
+                        register={register}
+                        error={errors.budgetPlanName}
+                    />
 
-                <BudgetPlanFormField
-                    type="number"
-                    label="Budget Amount"
-                    placeholder="Budget Amount"
-                    name="budgetAmount"
-                    register={register}
-                    error={errors.budgetAmount}
-                />
-                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-dark-button-color text-center">
+                    <BudgetPlanFormField
+                        type="text"
+                        label="Budget Amount"
+                        name="budgetAmount"
+                        register={register}
+                        error={errors.budgetAmount}
+                    />
+                </div>
+
+                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-light-button-color text-center text-white">
                     Add
                 </button>
             </form>

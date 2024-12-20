@@ -16,7 +16,7 @@ export default async function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={'bg-dark-surface-0 text-dark-text-1 text-sm'}>
+            <body className={'bg-light-surface-0 text-light-text-1 text-sm'}>
                 <ClerkProvider
                     appearance={{
                         baseTheme: neobrutalism

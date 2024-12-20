@@ -11,7 +11,7 @@ import {
     SavingsIcon,
     SubscriptionsIcon,
     TrackerIcon
-} from '../_features/shared/components/Icons';
+} from '../components/shared/components/Icons';
 
 function NavBarOption({
     route,
@@ -28,8 +28,8 @@ function NavBarOption({
         <Link href={route}>
             <div
                 className={clsx('w-6', {
-                    'stroke-light': !selected,
-                    'stroke-lightest': selected
+                    'stroke-light-text-4': !selected,
+                    'stroke-light-text-1': selected
                 })}
                 onClick={onClick}
             >
@@ -43,23 +43,23 @@ export default function NavBar() {
     const NavBarOptionsData = [
         {
             path: '/',
-            icon: <HomeIcon tailwindClass="stroke-dark-text-1" />
+            icon: <HomeIcon />
         },
         {
             path: '/budget-plans',
-            icon: <BudgetPlanIcon tailwindClass="stroke-dark-text-1" />
+            icon: <BudgetPlanIcon />
         },
         {
             path: '/subscriptions',
-            icon: <SubscriptionsIcon tailwindClass="stroke-dark-text-1" />
+            icon: <SubscriptionsIcon />
         },
         {
             path: '/tracker',
-            icon: <TrackerIcon tailwindClass="stroke-dark-text-1" />
+            icon: <TrackerIcon />
         },
         {
             path: '/savings',
-            icon: <SavingsIcon tailwindClass="stroke-dark-text-1" />
+            icon: <SavingsIcon />
         }
     ];
 
@@ -87,7 +87,7 @@ export default function NavBar() {
     return (
         <nav
             className={
-                'z-30 flex justify-between items-center absolute bottom-[0px] left-[0px] w-screen h-[3rem] px-4 bg-dark-surface-0'
+                'z-30 flex justify-between items-center absolute bottom-[0px] left-[0px] w-screen h-[3rem] px-4 bg-light-surface-2'
             }
         >
             {optionsToShow}

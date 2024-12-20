@@ -9,16 +9,16 @@ import { Dispatch, SetStateAction, useState } from 'react';
 
 // local
 import { BudgetExpenseForm } from './components/BudgetExpenseForm';
-import BudgetPlanAtGlance from '@/app/_features/budget-plans/id/components/BudgetPlanAtGlance';
-import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/types';
-import { AddButtonIcon } from '@/app/_features/shared/components/Icons';
+import BudgetPlanAtGlance from '@/app/components/budget-plans/id/components/BudgetPlanAtGlance';
+import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/DataBaseDefinitions';
+import { AddButtonIcon } from '@/app/components/shared/components/Icons';
 import BudgetPlanEmptyExpenses from './components/BudgetPlanEmptyExpenses';
 import {
     BudgetPlanExpensesTab,
     BudgetPlanStatsTab
 } from './components/BudgetPlanBreakDown';
 
-import { budgetPlanOptions } from '@/app/lib/definitions/menuOptions/types';
+import { budgetPlanOptions } from '@/app/lib/definitions/menuOptions/BudgetPlanOptions';
 import BudgetPlanChart from './components/BudgetPlanChart';
 import TabsDuo from '../../shared/components/TabsDuo';
 
@@ -61,7 +61,7 @@ function BudgetPlan({
             {/* Budget Plan */}
             <div className="relative w-full h-[calc(100dvh-(6rem))] flex flex-col items-center overflow-y-scroll">
                 <div className="w-full relative flex flex-col items-center  border-dark-border gap-y-[0.75rem] py-[1rem]">
-                    <div className="w-full min-h-full bg-dark-surface-1 border-dark-border border-t-[1px] absolute top-[6rem] -z-10"></div>
+                    {/* <div className="w-full min-h-full rounded-xl bg-light-surface-0 border-light-border border-t-[1px] absolute top-[6rem] -z-20"></div> */}
 
                     <div className="w-full px-4">
                         <BudgetPlanAtGlance

@@ -4,9 +4,13 @@
 import { usePathname } from 'next/navigation';
 // local
 import Link from 'next/link';
-import { BackButtonIcon } from '../_features/shared/components/Icons';
+import { BackButtonIcon } from '../components/shared/components/Icons';
 
-export default function NestedMenuBar({ pageName }: { pageName: string }) {
+export default function BudgetPlanNestedMenuBar({
+    pageName
+}: {
+    pageName: string;
+}) {
     const prevPathArr = usePathname().split('/');
     const prevPath =
         prevPathArr.length >= 3
@@ -16,11 +20,11 @@ export default function NestedMenuBar({ pageName }: { pageName: string }) {
     return (
         <nav
             className={
-                'z-10 flex justify-between items-center w-screen h-[3rem] sticky top-[0px] left-[0px] px-4'
+                'z-30 flex justify-between items-center w-screen h-[3rem] sticky top-[0px] left-[0px] px-4 bg-light-surface-2'
             }
         >
             <Link href={'/' + prevPath}>
-                <BackButtonIcon tailwindClass="size-6 stroke-2" />
+                <BackButtonIcon tailwindClass="size-6 stroke-2 stroke-light-text-1" />
             </Link>
 
             {/* pathname */}

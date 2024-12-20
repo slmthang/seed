@@ -1,30 +1,35 @@
 /* ########################################### Modules ########################################### */
+// remote
+import { currentUser } from '@clerk/nextjs/server';
 
 // local
 import {
-    getBudgetPlanByItsId,
-    getExpenseListByBudgetPlanId
+    getBudgetPlan,
+    getBudgetPlanExpenseList
 } from '@/app/lib/db/drizzle/drizzle';
 import {
     SelectBudgetPlan,
     SelectbudgetPlanExpense
-} from '@/app/lib/definitions/db/types';
-import BudgetPlan from '@/app/_features/budget-plans/id/BudgetPlan';
-import NestedMenuBar from '@/app/dfl/BudgetPlanNestedMenuBar';
+} from '@/app/lib/definitions/db/DataBaseDefinitions';
+import BudgetPlan from '@/app/components/budget-plans/id/BudgetPlan';
+import BudgetPlanNestedMenuBar from '@/app/dfl/BudgetPlanNestedMenuBar';
 
 /* ########################################### Page ########################################### */
 
 export default async function Page({ params }: { params: { id: string } }) {
+    const user = await currentUser();
     const budgetPlanId = params.id;
 
-    const budgetPlanData: SelectBudgetPlan =
-        await getBudgetPlanByItsId(+budgetPlanId);
+    const budgetPlanData: SelectBudgetPlan = await getBudgetPlan(
+        +budgetPlanId,
+        user?.id as string
+    );
     const expenseListData: SelectbudgetPlanExpense[] =
-        await getExpenseListByBudgetPlanId(+budgetPlanId);
+        await getBudgetPlanExpenseList(+budgetPlanId, user?.id as string);
 
     return (
         <div className="w-full min-h-full">
-            <NestedMenuBar pageName={budgetPlanData.budgetPlanName} />
+            <BudgetPlanNestedMenuBar pageName={budgetPlanData.budgetPlanName} />
             <BudgetPlan
                 budgetPlanId={+budgetPlanId}
                 budget={budgetPlanData.budget}

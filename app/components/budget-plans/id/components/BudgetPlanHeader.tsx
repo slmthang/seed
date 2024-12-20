@@ -8,7 +8,7 @@
 import Link from 'next/link';
 
 // local
-import { CloseButtonIcon } from '@/app/_features/shared/components/Icons';
+import { CloseButtonIcon } from '@/app/components/shared/components/Icons';
 
 /* ########################################### BudgetPlanHeader ########################################### */
 

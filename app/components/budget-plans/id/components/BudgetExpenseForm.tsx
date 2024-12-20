@@ -10,17 +10,17 @@ import {
     ChevronDownIcon,
     ChevronUpIcon,
     CloseButtonIcon
-} from '@/app/_features/shared/components/Icons';
+} from '@/app/components/shared/components/Icons';
 import {
     categories,
     categoryList
-} from '@/app/lib/definitions/categories/type';
+} from '@/app/lib/definitions/categories/CategoriesDefinitions';
 import {
     BudgetExpenseFormCategoryFieldProp,
     BudgetExpenseFormData,
     BudgetExpenseFormFieldProps,
     BudgetExpenseFormSchema
-} from '@/app/lib/definitions/forms/BudgetExpenseForm/types';
+} from '@/app/lib/definitions/forms/BudgetExpenseFormDefinitions';
 import { AddNewBudgetExpense } from '../../actions/forms/BudgetExpenseFormActions';
 import clsx from 'clsx';
 
@@ -30,39 +30,62 @@ import clsx from 'clsx';
 const AddExpenseFormField: React.FC<BudgetExpenseFormFieldProps> = ({
     label,
     type,
-    placeholder,
     name,
     value,
     register,
     error
 }: BudgetExpenseFormFieldProps) => (
-    <div className="w-full">
-        {label && (
-            <label htmlFor={name} className="text-sm">
-                {label}
-            </label>
+    <div
+        className={clsx(
+            { 'w-full': type !== 'hidden' },
+            { hidden: type === 'hidden' }
         )}
-        {error && <p className="text-xs text-red-400">{error.message}</p>}
+    >
+        <label htmlFor={name} className="">
+            {label || ''}
+        </label>
+
         {value ? (
             <input
+                id={name}
                 type={type}
-                placeholder={placeholder}
                 {...register(name)}
-                className="w-full h-[2.5rem] rounded-xl pl-4 my-1 rounded-xl bg-dark-surface-1 border-[1px] border-dark-border text-dark-text-2 text-sm placeholder-dark-text-2"
+                className={clsx(
+                    'inputDarkModeOverride w-full rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[1px] border-light-border text-sm  focus:outline-none focus:border-indigo-500',
+                    {
+                        'border-light-error focus:border-light-error text-light-error':
+                            error
+                    },
+                    { 'text-light-text-2': !error }
+                )}
                 value={value}
             />
         ) : (
             <input
+                id={name}
                 type={type}
-                placeholder={placeholder}
                 {...register(name)}
-                className="w-full h-[2.5rem] rounded-xl pl-4 my-1 rounded-xl bg-dark-surface-1 border-[1px] border-dark-border text-dark-text-2 text-sm placeholder-dark-text-2"
+                className={clsx(
+                    'inputDarkModeOverride w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[1px] border-light-border text-sm  focus:outline-none focus:border-indigo-500',
+                    {
+                        'border-light-error focus:border-light-error text-light-error':
+                            error
+                    },
+                    { 'text-light-text-2': !error }
+                )}
             />
+        )}
+
+        {error && (
+            <span className="pl-2 text-xs text-light-error font-light">
+                {error.message}
+            </span>
         )}
     </div>
 );
 
 function CategoryField({
+    label,
     categories,
     register,
     error,
@@ -75,7 +98,7 @@ function CategoryField({
             <div
                 key={category}
                 className={clsx('w-full h-[2rem] px-4 flex items-center ', {
-                    ' bg-dark-surface-3': category === selectedCategory
+                    'bg-blue-700 text-white': category === selectedCategory
                 })}
                 onClick={() => {
                     setValue('category', category);
@@ -90,28 +113,39 @@ function CategoryField({
 
     return (
         <div className="w-full">
-            <label htmlFor="category">Category:</label>
-            {error && <p className="text-xs text-red-400">{error.message}</p>}
             <div
-                className="w-full relative flex justify-center items-center "
+                className="w-full flex flex-col justify-center items-start "
                 onClick={() => setListShown((prev) => !prev)}
             >
-                <input
-                    type={'text'}
-                    placeholder={'Category'}
-                    {...register('category')}
-                    className="w-full h-[2.5rem] rounded-xl pl-4 my-1 rounded-xl bg-dark-surface-1 border-[1px] border-dark-border text-dark-text-2 text-sm placeholder-dark-text-2"
-                    defaultValue={'Housing'}
-                />
-                {listShown ? (
-                    <ChevronUpIcon tailwindClass="absolute right-2" />
-                ) : (
-                    <ChevronDownIcon tailwindClass="absolute right-2" />
-                )}
+                <label htmlFor="category">{label}</label>
+                <div className="w-full flex justify-center items-center relative">
+                    <input
+                        id="category"
+                        type={'text'}
+                        placeholder={'Category'}
+                        {...register('category')}
+                        className={clsx(
+                            'inputDarkModeOverride w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[1px] border-light-border text-light-text-2 text-sm placeholder-light-text-3 focus:outline-none focus:border-blue-700',
+                            {
+                                'border-light-error focus:border-light-error':
+                                    error
+                            }
+                        )}
+                        defaultValue={'Housing'}
+                    />
+                    {listShown ? (
+                        <ChevronUpIcon tailwindClass="absolute right-2" />
+                    ) : (
+                        <ChevronDownIcon tailwindClass="absolute right-2" />
+                    )}
+                </div>
             </div>
+            {error && (
+                <p className="text-xs text-red-400 my-2">{error.message}</p>
+            )}
             <div className="w-full relative text-dark">
                 {listShown && (
-                    <div className="w-full bg-dark-surface-1 border-[1px] border-dark-border divide-y divide-dark-border rounded-xl overflow-hidden">
+                    <div className="w-full bg-light-surface-1 border-[1px] border-light-border divide-y divide-light-border rounded-xl overflow-hidden">
                         {options}
                     </div>
                 )}
@@ -153,15 +187,15 @@ export function BudgetExpenseForm({
         <div className="flex items-center justify-center w-screen h-dvh min-h-dvh overflow-y-scroll pt-[3rem] fixed top-[0px] left-[0px] backdrop-brightness-50 z-30">
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col items-center justify-center w-[90%] p-4 rounded-xl bg-dark-surface-1 border-[2px] border-dark-border gap-y-2 z-40"
+                className="flex flex-col items-center justify-start w-[90%] rounded-xl bg-light-surface-1 border-[1px] border-light-border gap-y-4 z-30 py-8 px-4"
             >
-                <div className="flex justify-center items-center relative w-full">
-                    <h1>Add an Expense</h1>
+                <div className="flex justify-center items-center relative w-full ">
+                    <h1 className="text-base font-medium">Add an Expense</h1>
                     <div
                         className="absolute right-0"
                         onClick={() => toggleForm((prev) => !prev)}
                     >
-                        <CloseButtonIcon />
+                        <CloseButtonIcon tailwindClass="stroke-light-text-1" />
                     </div>
                 </div>
                 <AddExpenseFormField
@@ -189,7 +223,6 @@ export function BudgetExpenseForm({
                     type="text"
                     label="Name"
                     name="item"
-                    placeholder="Name"
                     register={register}
                     error={errors.item}
                 />
@@ -197,12 +230,12 @@ export function BudgetExpenseForm({
                     type="text"
                     label="Amount"
                     name="amount"
-                    placeholder="Amount"
                     register={register}
                     error={errors.amount}
                 />
 
                 <CategoryField
+                    label="Category"
                     setValue={setValue}
                     control={control}
                     categories={categories as categories[]}
@@ -210,7 +243,7 @@ export function BudgetExpenseForm({
                     error={errors.category}
                 />
 
-                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-dark-button-color text-center mt-4 text-dark-text-on-primary">
+                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-light-button-color text-center mt-4 text-white">
                     Add
                 </button>
             </form>

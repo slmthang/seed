@@ -8,11 +8,11 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 
 // local
-import { budgetPlanOptions } from '@/app/lib/definitions/menuOptions/types';
+import { budgetPlanOptions } from '@/app/lib/definitions/menuOptions/BudgetPlanOptions';
 import {
     categories,
     categoryList
-} from '@/app/lib/definitions/categories/type';
+} from '@/app/lib/definitions/categories/CategoriesDefinitions';
 import { BudgetPlanOptionMenu } from './BudgetPlanOptionMenu';
 
 import {
@@ -22,8 +22,8 @@ import {
     FilterIcon,
     SearchIcon,
     SquareIcon
-} from '@/app/_features/shared/components/Icons';
-import { categorizedExpense } from '@/app/lib/definitions/categories/type';
+} from '@/app/components/shared/components/Icons';
+import { categorizedExpense } from '@/app/lib/definitions/categories/CategoriesDefinitions';
 import {
     categorizeBudgetExpenseList,
     sortBudgetPlanExpenseList,
@@ -31,7 +31,7 @@ import {
     splitMoney
 } from '@/app/lib/utils';
 
-import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/types';
+import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/DataBaseDefinitions';
 
 function CategorizedCard({
     categorizedExpenseData,
@@ -66,7 +66,7 @@ function CategorizedCard({
                     className="w-full h-[2.5rem] flex justify-center items-center"
                 >
                     <div className="w-[2rem] h-[2.5rem] flex justify-center items-center"></div>
-                    <div className="w-full h-[2.5rem] flex items-center justify-between border-l-[2px] border-dark-border pl-2">
+                    <div className="w-full h-[2.5rem] flex items-center justify-between border-l-[2px] border-light-border pl-2">
                         <div className="flex items-center">
                             <CircleIcon
                                 tailwindClass={`fa-fw fa-2xs mr-1 text-red-500`}
@@ -90,7 +90,7 @@ function CategorizedCard({
     });
 
     return (
-        <div className="w-full min-h-[3rem] flex flex-col justify-between items-center rounded-xl  py-2 px-4 bg-dark-surface-1 shadow-sm shadow-dark-border">
+        <div className="w-full min-h-[3rem] flex flex-col justify-between items-center rounded-xl  py-2 px-4 bg-light-surface-2 shadow shadow-light-border">
             <div
                 className="w-full h-[3rem] flex justify-center items-center"
                 onClick={() => SetShowMoreActive((prev) => !prev)}
@@ -204,7 +204,7 @@ function ExpenseSearchBar({
                     id="searchExpense"
                     placeholder="Search..."
                     onChange={searchInputHandler}
-                    className="w-full h-full pl-[1rem] pr-[3rem] rounded-xl bg-dark-surface-1 border-[1px] border-dark-border text-dark-text-2 text-sm placeholder-dark-text-2 outline-none"
+                    className="w-full h-full pl-[1rem] pr-[3rem] rounded-xl bg-light-surface-1 border-[1px] border-light-border text-light-text-2 text-sm placeholder-light-text-2 outline-none focus:outline-none focus:border-blue-700"
                 />
             }
         </div>
@@ -242,7 +242,7 @@ function ItemizedCardList({
         return (
             <div
                 key={e.budgetPlanId + i + ''}
-                className="w-full h-[4rem] flex flex-col justify-center items-center rounded-xl px-4 py-2 bg-dark-surface-1 shadow-sm shadow-dark-border"
+                className="w-full h-[4rem] flex flex-col justify-center items-center rounded-xl px-4 py-2 bg-light-surface-2 shadow shadow-light-border"
             >
                 <div className="w-full h-[3rem] flex flex-col">
                     <div className="w-full h-[3rem] flex items-center relative justify-center">
@@ -298,7 +298,7 @@ export default function BudgetPlanBreakDown({
     };
 
     return (
-        <div className="w-full min-h-fit rounded-2xl bg-dark-surface-0 border-[1px] border-dark-border flex flex-col justify-center  items-center py-[1rem] px-[1rem] ">
+        <div className="w-full min-h-fit rounded-2xl bg-light-surface-0 border-[1px] border-light-border flex flex-col justify-center  items-center py-[1rem] px-[1rem] ">
             <div className="w-full mb-[1rem]">
                 <div className="w-full flex items-center justify-between">
                     <div onClick={() => setSearchBarActive((prev) => !prev)}>
@@ -367,15 +367,15 @@ export function BudgetPlanExpensesTab({
     };
 
     return (
-        <div className="w-full min-h-fit rounded-2xl bg-dark-surface-0 border-[1px] border-dark-border flex flex-col justify-center  items-center py-[1rem] px-[1rem] ">
+        <div className="w-full min-h-fit rounded-2xl bg-light-surface-1 border-[1px] border-light-border flex flex-col justify-center  items-center py-[1rem] px-[1rem] ">
             <div className="w-full mb-[1rem]">
                 <div className="w-full flex items-center justify-between">
                     <div onClick={() => setSearchBarActive((prev) => !prev)}>
-                        <SearchIcon tailwindClass="size-7" />
+                        <SearchIcon tailwindClass="size-7 stroke-light-text-1" />
                     </div>
                     <div className="relative">
                         <div onClick={() => setOptionsActive((prev) => !prev)}>
-                            <FilterIcon />
+                            <FilterIcon tailwindClass="size-7 stroke-light-text-1" />
                         </div>
 
                         {optionsActive && (
@@ -429,15 +429,15 @@ export function BudgetPlanStatsTab({
     };
 
     return (
-        <div className="w-full min-h-fit rounded-2xl bg-dark-surface-0 border-[1px] border-dark-border flex flex-col justify-center  items-center py-[1rem] px-[1rem] ">
+        <div className="w-full min-h-fit rounded-2xl bg-light-surface-1 border-[1px] border-light-border flex flex-col justify-center  items-center py-[1rem] px-[1rem] ">
             <div className="w-full mb-[1rem]">
                 <div className="w-full flex items-center justify-between">
                     <div onClick={() => setSearchBarActive((prev) => !prev)}>
-                        <SearchIcon tailwindClass="size-7" />
+                        <SearchIcon tailwindClass="size-7 stroke-light-text-1" />
                     </div>
                     <div className="relative">
                         <div onClick={() => setOptionsActive((prev) => !prev)}>
-                            <FilterIcon />
+                            <FilterIcon tailwindClass="size-7 stroke-light-text-1" />
                         </div>
 
                         {optionsActive && (

@@ -8,10 +8,10 @@
 import { useState } from 'react';
 
 // local
-import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/types';
+import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/DataBaseDefinitions';
 import { sortBudgetPlanExpenseList, splitMoney } from '@/app/lib/utils';
-import { SquareIcon } from '@/app/_features/shared/components/Icons';
-import { budgetPlanOptions } from '@/app/lib/definitions/menuOptions/types';
+import { SquareIcon } from '@/app/components/shared/components/Icons';
+import { budgetPlanOptions } from '@/app/lib/definitions/menuOptions/BudgetPlanOptions';
 
 /* ########################################### BudgetPlanExpenses ########################################### */
 
