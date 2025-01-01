@@ -106,7 +106,7 @@ function BudgetPlan({
 
                 {/* Add Button for Add Expense Form */}
                 <div onClick={() => setFormActive((prev) => !prev)}>
-                    <AddButtonIcon tailwindClass="stroke-indigo-500 text-indigo-500" />
+                    <AddButtonIcon tailwindClass="stroke-dark-surface-1 text-dark-surface-1" />
                 </div>
             </div>
         </>

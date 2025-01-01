@@ -4,7 +4,7 @@
 import { usePathname } from 'next/navigation';
 // local
 import Link from 'next/link';
-import { BackButtonIcon } from '../components/shared/components/Icons';
+import { BackButtonIcon, MeatBallMenuIcon } from '../components/shared/components/Icons';
 
 export default function BudgetPlanNestedMenuBar({
     pageName
@@ -20,7 +20,7 @@ export default function BudgetPlanNestedMenuBar({
     return (
         <nav
             className={
-                'z-30 flex justify-between items-center w-screen h-[3rem] sticky top-[0px] left-[0px] px-4 bg-light-surface-2'
+                'z-30 flex justify-between items-center w-screen h-[3rem] sticky top-[0px] left-[0px] px-4'
             }
         >
             <Link href={'/' + prevPath}>
@@ -30,7 +30,7 @@ export default function BudgetPlanNestedMenuBar({
             {/* pathname */}
             <p className="text-base font-semibold">{pageName}</p>
             {/* filter/options */}
-            <div className="w-6 h-full flex justify-between items-center"></div>
+            <MeatBallMenuIcon tailwindClass='size-8 stroke-2'/>
         </nav>
     );
 }

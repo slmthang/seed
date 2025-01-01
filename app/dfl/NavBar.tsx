@@ -6,10 +6,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import {
-    BudgetPlanIcon,
+    PlanIcon,
     HomeIcon,
-    SavingsIcon,
-    SubscriptionsIcon,
+    SettingIcon,
     TrackerIcon
 } from '../components/shared/components/Icons';
 
@@ -43,23 +42,23 @@ export default function NavBar() {
     const NavBarOptionsData = [
         {
             path: '',
-            icon: <HomeIcon />
+            icon: <HomeIcon tailwindClass='size-8'/>,
+            text: 'Home'
         },
         {
-            path: 'budget-plans',
-            icon: <BudgetPlanIcon />
-        },
-        {
-            path: 'subscriptions',
-            icon: <SubscriptionsIcon />
+            path: 'plans',
+            icon: <PlanIcon tailwindClass='size-8'/>,
+            text: 'Plans'
         },
         {
             path: 'tracker',
-            icon: <TrackerIcon />
+            icon: <TrackerIcon tailwindClass='size-8'/>,
+            text: 'Tracker'
         },
         {
-            path: 'savings',
-            icon: <SavingsIcon />
+            path: 'settings',
+            icon: <SettingIcon tailwindClass='size-8'/>,
+            text: 'Settings'
         }
     ];
 
@@ -90,7 +89,7 @@ export default function NavBar() {
     return (
         <nav
             className={
-                'z-30 flex justify-between items-center absolute bottom-[0px] left-[0px] w-screen h-[3rem] px-4 bg-light-surface-2'
+                'z-30 flex justify-between items-center absolute bottom-[0px] left-[0px] w-screen h-[3rem] px-8 backdrop-blur-md '
             }
         >
             {optionsToShow}

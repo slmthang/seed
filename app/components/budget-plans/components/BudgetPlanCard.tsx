@@ -32,7 +32,7 @@ export default function BudgetPlanCard({
     return (
         <div
             className={
-                'w-full min-h-[12rem] rounded-2xl flex flex-col justify-center items-center border-[1px] border-light-border bg-light-surface-1 shadow-xl shadow-light-border'
+                'w-full min-h-[12rem] rounded-2xl flex flex-col justify-center items-center border-[1px] border-light-border backdrop-blur-md shadow-xl shadow-light-border'
             }
         >
             <div className="w-full min-h-[2rem] px-4 py-2 flex items-center justify-between">
@@ -40,7 +40,7 @@ export default function BudgetPlanCard({
                     <p className="mr-1 text-lg">{budgetPlanName}</p>
                 </div>
                 <div>
-                    <Link href={'/budget-plans/' + budgetPlanId}>
+                    <Link href={'/plans/' + budgetPlanId}>
                         <ChevronRightIcon tailwindClass="size-6 stroke-[0.5]" />
                     </Link>
                 </div>

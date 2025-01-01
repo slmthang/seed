@@ -52,7 +52,7 @@ export default function BudgetPlanList({
         <div className="w-full">
             {formActive && <AddBudgetPlanForm toggleForm={setFormActive} />}
 
-            <div className=" w-full h-[calc(100dvh-(6rem))] overflow-y-scroll px-4 pb-[8rem] relative">
+            <div className=" w-full h-[calc(100dvh)] overflow-y-scroll px-4 pt-[4rem] pb-[8rem] relative">
                 <div className="w-full border-dark gap-y-[1rem] relative flex flex-col  items-center">
                     {budgetPlanListData.length >= 1 ? (
                         BudgetPlanCards
@@ -62,7 +62,7 @@ export default function BudgetPlanList({
                 </div>
 
                 <div onClick={() => setFormActive((prev) => !prev)}>
-                    <AddButtonIcon tailwindClass="stroke-indigo-500 text-indigo-500" />
+                    <AddButtonIcon tailwindClass="stroke-dark-surface-1 text-dark-surface-1" />
                 </div>
             </div>
         </div>

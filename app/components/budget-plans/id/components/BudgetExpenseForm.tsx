@@ -51,12 +51,12 @@ const AddExpenseFormField: React.FC<BudgetExpenseFormFieldProps> = ({
                 type={type}
                 {...register(name)}
                 className={clsx(
-                    'inputDarkModeOverride w-full rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[1px] border-light-border text-sm  focus:outline-none focus:border-indigo-500',
+                    'inputDarkModeOverride w-full rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[1px] border-light-border text-sm  focus:outline-none focus:border-dark-surface-1',
                     {
                         'border-light-error focus:border-light-error text-light-error':
                             error
                     },
-                    { 'text-light-text-2': !error }
+                    { 'text-light-text-1': !error }
                 )}
                 value={value}
             />
@@ -66,12 +66,12 @@ const AddExpenseFormField: React.FC<BudgetExpenseFormFieldProps> = ({
                 type={type}
                 {...register(name)}
                 className={clsx(
-                    'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[2px] border-light-border text-sm  focus:outline-none focus:border-indigo-500',
+                    'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[2px] border-light-border text-sm  focus:outline-none focus:border-dark-surface-1',
                     {
                         'border-light-error focus:border-light-error text-light-error':
                             error
                     },
-                    { 'text-light-text-2': !error }
+                    { 'text-light-text-1': !error }
                 )}
             />
         )}
@@ -125,7 +125,7 @@ function CategoryField({
                         placeholder={'Category'}
                         {...register('category')}
                         className={clsx(
-                            'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[2px] border-light-border text-light-text-2 text-sm placeholder-light-text-3 focus:outline-none focus:border-indigo-500',
+                            'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[2px] border-light-border text-light-text-1 text-sm placeholder-light-text-3 focus:outline-none focus:border-dark-surface-1',
                             {
                                 'border-light-error focus:border-light-error':
                                     error
@@ -190,7 +190,7 @@ export function BudgetExpenseForm({
                 className="flex flex-col items-center justify-start w-[90%] rounded-xl bg-light-surface-1 border-[1px] border-light-border gap-y-4 z-30 py-8 px-4"
             >
                 <div className="flex justify-center items-center relative w-full ">
-                    <h1 className="text-base font-medium">Add an Expense</h1>
+                    <h1 className="text-lg font-medium">Add an Expense</h1>
                     <div
                         className="absolute right-0"
                         onClick={() => toggleForm((prev) => !prev)}
@@ -243,7 +243,7 @@ export function BudgetExpenseForm({
                     error={errors.category}
                 />
 
-                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-indigo-500 text-center mt-4 text-white">
+                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-dark-surface-1 text-center mt-4 text-white">
                     Add
                 </button>
             </form>

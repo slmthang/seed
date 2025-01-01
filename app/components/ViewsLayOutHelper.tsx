@@ -27,8 +27,9 @@ export default function ViewLayOutHelper({
             >
                 {children}
 
-                <NavBar />
             </main>
+
+            <NavBar />
         </>
     );
 }

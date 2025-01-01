@@ -168,7 +168,7 @@ export function MeatBallMenuIcon({
 }
 
 export function HomeIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-inherit', tailwindClass);
+    tailwindClass = twMerge('size-6 stroke-2 stroke-inherit', tailwindClass);
 
     return (
         <svg
@@ -188,12 +188,12 @@ export function HomeIcon({ tailwindClass = '' }: { tailwindClass?: string }) {
     );
 }
 
-export function BudgetPlanIcon({
+export function PlanIcon({
     tailwindClass = ''
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-inherit', tailwindClass);
+    tailwindClass = twMerge('size-6 stroke-2 stroke-inherit', tailwindClass);
 
     return (
         <svg
@@ -243,7 +243,7 @@ export function TrackerIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge('size-6 stroke-1 stroke-inherit', tailwindClass);
+    tailwindClass = twMerge('size-6 stroke-2 stroke-inherit', tailwindClass);
 
     return (
         <svg
@@ -341,7 +341,7 @@ export function SettingIcon({
     tailwindClass?: string;
 }) {
     tailwindClass = twMerge(
-        'size-6 stroke-1 stroke-dark-text-1',
+        'size-6 stroke-2 stroke-inherit',
         tailwindClass
     );
 
