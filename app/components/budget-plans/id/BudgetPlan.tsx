@@ -61,8 +61,6 @@ function BudgetPlan({
             {/* Budget Plan */}
             <div className="relative w-full h-[calc(100dvh-(6rem))] flex flex-col items-center overflow-y-scroll">
                 <div className="w-full relative flex flex-col items-center  border-dark-border gap-y-[0.75rem] py-[1rem]">
-                    {/* <div className="w-full min-h-full rounded-xl bg-light-surface-0 border-light-border border-t-[1px] absolute top-[6rem] -z-20"></div> */}
-
                     <div className="w-full px-4">
                         <BudgetPlanAtGlance
                             budget={budget}

@@ -1,6 +1,8 @@
 export default function SearchBar({
-    searchInputHandler
+    searchBarName, searchBarPlaceholder, searchInputHandler
 }: {
+    searchBarName: string,
+    searchBarPlaceholder: string,
     searchInputHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
     return (
@@ -8,9 +10,9 @@ export default function SearchBar({
             {
                 <input
                     type="text"
-                    name="searchExpense"
-                    id="searchExpense"
-                    placeholder="Search..."
+                    name={searchBarName}
+                    id={searchBarName}
+                    placeholder={searchBarPlaceholder}
                     onChange={searchInputHandler}
                     className="w-full h-full pl-[1rem] pr-[3rem] rounded-xl bg-light-surface-1 border-[1px] border-light-border text-light-text-2 text-sm placeholder-light-text-2 outline-none focus:outline-none focus:border-blue-700"
                 />

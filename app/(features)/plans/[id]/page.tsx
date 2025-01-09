@@ -12,7 +12,7 @@ import {
     SelectbudgetPlanExpense
 } from '@/app/lib/definitions/db/DataBaseDefinitions';
 import BudgetPlan from '@/app/components/budget-plans/id/BudgetPlan';
-import BudgetPlanNestedMenuBar from '@/app/dfl/BudgetPlanNestedMenuBar';
+import BudgetPlanNestedMenuBar from '@/app/components/budget-plans/id/components/BudgetPlanNestedMenuBar';
 
 /* ########################################### Page ########################################### */
 

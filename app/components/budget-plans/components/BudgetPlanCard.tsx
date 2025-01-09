@@ -32,7 +32,7 @@ export default function BudgetPlanCard({
     return (
         <div
             className={
-                'w-full min-h-[12rem] rounded-2xl flex flex-col justify-center items-center border-[1px] border-light-border backdrop-blur-md shadow-xl shadow-light-border'
+                'w-full min-h-[12rem] rounded-2xl flex flex-col justify-center items-center bg-light-surface-2'
             }
         >
             <div className="w-full min-h-[2rem] px-4 py-2 flex items-center justify-between">

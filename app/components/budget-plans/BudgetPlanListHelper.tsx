@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { SelectBudgetPlan } from '@/app/lib/definitions/db/DataBaseDefinitions';
 
 import BudgetPlans from '@/app/components/budget-plans/BudgetPlanList';
-import MenuBar from '@/app/dfl/MenuBar';
+import BudgetPlanListMenuBar from '@/app/components/budget-plans/components/BudgetPlanListMenuBar';
 
 export default function BudgetPlanListHelper({
     budgetPlanListData
@@ -16,7 +16,7 @@ export default function BudgetPlanListHelper({
 
     return (
         <div className="w-full relative min-h-full">
-            <MenuBar
+            <BudgetPlanListMenuBar
                 pageName="Budget Plans"
                 searchBarActive={searchBarActive}
                 setSearchBarActive={setSearchBarActive}

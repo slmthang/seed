@@ -91,7 +91,7 @@ function CategorizedCard({
     });
 
     return (
-        <div className="w-full min-h-[3rem] flex flex-col justify-between items-center rounded-xl  py-2 px-4 bg-light-surface-2 shadow shadow-light-border">
+        <div className="w-full min-h-[3rem] flex flex-col justify-between items-center rounded-xl  py-2 px-4 bg-light-surface-1 shadow shadow-light-border">
             <div
                 className="w-full h-[3rem] flex justify-center items-center"
                 onClick={() => SetShowMoreActive((prev) => !prev)}
@@ -222,7 +222,7 @@ function ItemizedCardList({
         return (
             <div
                 key={e.budgetPlanId + i + ''}
-                className="w-full h-[4rem] flex flex-col justify-center items-center rounded-xl px-4 py-2 bg-light-surface-2 shadow shadow-light-border"
+                className="w-full h-[4rem] flex flex-col justify-center items-center rounded-xl px-4 py-2 bg-light-surface-1 shadow shadow-light-border"
             >
                 <div className="w-full h-[3rem] flex flex-col">
                     <div className="w-full h-[3rem] flex items-center relative justify-center">
@@ -254,77 +254,6 @@ function ItemizedCardList({
     );
 }
 
-export default function BudgetPlanBreakDown({
-    expenseListData,
-    budgetPlanOptions,
-    setBudgetPlanOptions,
-    expense
-}: {
-    expenseListData: SelectbudgetPlanExpense[];
-    budgetPlanOptions: budgetPlanOptions;
-    setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptions>>;
-    expense: string;
-}) {
-    const [searchBarValue, setSearchBarValue] = useState('');
-    const [searchBarActive, setSearchBarActive] = useState<boolean>(false);
-    const [optionsActive, setOptionsActive] = useState<boolean>(false);
-
-    // search input handler
-    const searchInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const element = event.target as HTMLInputElement;
-        const value = element.value;
-
-        setSearchBarValue(value);
-    };
-
-    return (
-        <div className="w-full min-h-fit rounded-2xl bg-light-surface-0 border-[1px] border-light-border flex flex-col justify-center  items-center py-[1rem] px-[1rem] ">
-            <div className="w-full mb-[1rem]">
-                <div className="w-full flex items-center justify-between">
-                    <div onClick={() => setSearchBarActive((prev) => !prev)}>
-                        <SearchIcon tailwindClass="size-7" />
-                    </div>
-                    <div className="relative">
-                        <div onClick={() => setOptionsActive((prev) => !prev)}>
-                            <FilterIcon />
-                        </div>
-
-                        {optionsActive && (
-                            <BudgetPlanOptionMenu
-                                budgetPlanOptions={budgetPlanOptions}
-                                setBudgetPlanOptions={setBudgetPlanOptions}
-                            />
-                        )}
-                    </div>
-                </div>
-            </div>
-
-            <div className="w-full">
-                {searchBarActive && (
-                    <SearchBar searchInputHandler={searchInputHandler} />
-                )}
-            </div>
-
-            <div className="w-full mt-[1rem] overflow-hidden overflow-y-scroll ">
-                {budgetPlanOptions.groupBy === 'item' ? (
-                    <ItemizedCardList
-                        expenseListData={expenseListData}
-                        searchBarValue={searchBarValue}
-                        budgetPlanOptions={budgetPlanOptions}
-                    />
-                ) : (
-                    <CategorizedCardList
-                        expenseListData={expenseListData}
-                        budgetPlanOptions={budgetPlanOptions}
-                        expense={expense}
-                        searchBarValue={searchBarValue}
-                    />
-                )}
-            </div>
-        </div>
-    );
-}
-
 export function BudgetPlanExpensesTab({
     expenseListData,
     budgetPlanOptions,
@@ -352,6 +281,8 @@ export function BudgetPlanExpensesTab({
                     <div className="w-full flex">
                         <div className="w-full">
                             <SearchBar
+                                searchBarName='searchBudgetExpense'
+                                searchBarPlaceholder='Search an expense'
                                 searchInputHandler={searchInputHandler}
                             />
                         </div>
@@ -414,7 +345,7 @@ export function BudgetPlanStatsTab({
             <div className="w-full mb-[1rem]">
                 <div className="w-full flex">
                     <div className="w-full">
-                        <SearchBar searchInputHandler={searchInputHandler} />
+                        <SearchBar searchBarName='searchBudgetPlanStat' searchBarPlaceholder='Search a category' searchInputHandler={searchInputHandler} />
                     </div>
                     <div className="relative ml-[1rem]">
                         <div

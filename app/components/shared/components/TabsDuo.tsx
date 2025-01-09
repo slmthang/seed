@@ -18,7 +18,7 @@ export default function TabsDuo<T extends 'Expenses' | 'Stats'>({
                     className={clsx(
                         'w-[50%] h-full flex justify-center items-center text-base rounded-xl ',
                         {
-                            'bg-light-surface-2 border-[1px] border-light-border':
+                            'bg-light-surface-1 border-[1px] border-light-border':
                                 selectedTab === fields[0]
                         }
                     )}
@@ -30,7 +30,7 @@ export default function TabsDuo<T extends 'Expenses' | 'Stats'>({
                     className={clsx(
                         'w-[50%] h-full flex justify-center items-center text-base rounded-xl',
                         {
-                            'bg-light-surface-2 border-[1px] border-light-border':
+                            'bg-light-surface-1 border-[1px] border-light-border':
                                 selectedTab === fields[1]
                         }
                     )}

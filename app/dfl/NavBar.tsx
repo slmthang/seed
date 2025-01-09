@@ -27,7 +27,7 @@ function NavBarOption({
         <Link href={route}>
             <div
                 className={clsx('w-6', {
-                    'stroke-light-text-4': !selected,
+                    'stroke-light-text-3': !selected,
                     'stroke-light-text-1': selected
                 })}
                 onClick={onClick}
@@ -42,22 +42,22 @@ export default function NavBar() {
     const NavBarOptionsData = [
         {
             path: '',
-            icon: <HomeIcon tailwindClass='size-8'/>,
+            icon: <HomeIcon tailwindClass='size-6 stroke-2'/>,
             text: 'Home'
         },
         {
             path: 'plans',
-            icon: <PlanIcon tailwindClass='size-8'/>,
+            icon: <PlanIcon tailwindClass='size-6 stroke-2'/>,
             text: 'Plans'
         },
         {
             path: 'tracker',
-            icon: <TrackerIcon tailwindClass='size-8'/>,
+            icon: <TrackerIcon tailwindClass='size-6 stroke-2'/>,
             text: 'Tracker'
         },
         {
             path: 'settings',
-            icon: <SettingIcon tailwindClass='size-8'/>,
+            icon: <SettingIcon tailwindClass='size-6 stroke-2'/>,
             text: 'Settings'
         }
     ];
@@ -89,7 +89,7 @@ export default function NavBar() {
     return (
         <nav
             className={
-                'z-30 flex justify-between items-center absolute bottom-[0px] left-[0px] w-screen h-[3rem] px-8 backdrop-blur-md '
+                'z-30 flex justify-between items-center absolute bottom-[0px] left-[0px] w-screen h-[3rem] px-12 bg-light-surface-2 border-t-[1px] border-light-border'
             }
         >
             {optionsToShow}

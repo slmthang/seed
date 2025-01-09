@@ -3,12 +3,12 @@
 import { SetStateAction, Dispatch, useState } from 'react';
 // modules (remote)
 // local
-import { FilterIcon, SearchIcon } from '../components/shared/components/Icons';
-import SearchBar from '../components/shared/components/SearchBar';
-import { budgetPlanOptions } from '../lib/definitions/menuOptions/BudgetPlanOptions';
-import { BudgetPlanOptionMenu } from '../components/budget-plans/id/components/BudgetPlanOptionMenu';
+import { FilterIcon, SearchIcon } from '../../shared/components/Icons';
+import SearchBar from '../../shared/components/SearchBar';
+import { budgetPlanOptions } from '../../../lib/definitions/menuOptions/BudgetPlanOptions';
+import { BudgetPlanOptionMenu } from '../id/components/BudgetPlanOptionMenu';
 
-export default function MenuBar({
+export default function BudgetPlanListMenuBar({
     pageName,
     searchBarActive,
     setSearchBarActive,
@@ -37,7 +37,7 @@ export default function MenuBar({
     };
 
     return (
-        <div className="z-30 w-full flex flex-col min-h-[3rem] fixed top-[0px] left-[0px] px-4 backdrop-blur-md">
+        <div className="z-30 w-full flex flex-col min-h-[3rem] fixed top-[0px] left-[0px] px-4 bg-light-surface-1">
             <nav
                 className={
                     'w-full flex justify-between items-center h-[3rem] '
@@ -59,7 +59,7 @@ export default function MenuBar({
             {searchBarActive && (
                 <div className="w-full flex py-4">
                     <div className="w-full">
-                        <SearchBar searchInputHandler={searchInputHandler} />
+                        <SearchBar searchBarName='searchBudgetPlan' searchBarPlaceholder='Search a budget plan' searchInputHandler={searchInputHandler} />
                     </div>
                     <div className="relative ml-[1rem]">
                         <div

@@ -37,7 +37,7 @@ export const BudgetPlanFormField: React.FC<BudgetPlanFormFieldProps> = ({
             type={type}
             {...register(name, { valueAsNumber })}
             className={clsx(
-                'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[2px] border-light-border text-light-text-1 text-sm placeholder-light-text-3 focus:outline-none focus:border-dark-surface-1',
+                'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[2px] border-light-border text-light-text-1 text-sm placeholder-light-text-2 focus:outline-none focus:border-dark-surface-1',
                 { 'border-light-error focus:border-light-error': error }
             )}
         />
