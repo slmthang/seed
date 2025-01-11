@@ -42,7 +42,7 @@ const AddExpenseFormField: React.FC<BudgetExpenseFormFieldProps> = ({
         )}
     >
         <label htmlFor={name} className="">
-            {label || ''}
+            {label ? label + ':' : ''}
         </label>
 
         {value ? (
@@ -51,7 +51,7 @@ const AddExpenseFormField: React.FC<BudgetExpenseFormFieldProps> = ({
                 type={type}
                 {...register(name)}
                 className={clsx(
-                    'inputDarkModeOverride w-full rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[1px] border-light-border text-sm  focus:outline-none focus:border-dark-surface-1',
+                    'inputDarkModeOverride w-full rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-2 border-[1px] border-light-border text-sm  focus:outline-none focus:border-dark-surface-1',
                     {
                         'border-light-error focus:border-light-error text-light-error':
                             error
@@ -66,7 +66,7 @@ const AddExpenseFormField: React.FC<BudgetExpenseFormFieldProps> = ({
                 type={type}
                 {...register(name)}
                 className={clsx(
-                    'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[2px] border-light-border text-sm  focus:outline-none focus:border-dark-surface-1',
+                    'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-2 border-[2px] border-light-border text-sm  focus:outline-none focus:border-dark-surface-1',
                     {
                         'border-light-error focus:border-light-error text-light-error':
                             error
@@ -117,7 +117,7 @@ function CategoryField({
                 className="w-full flex flex-col justify-center items-start "
                 onClick={() => setListShown((prev) => !prev)}
             >
-                <label htmlFor="category">{label}</label>
+                <label htmlFor="category">{label ? label + ':' : ''}</label>
                 <div className="w-full flex justify-center items-center relative">
                     <input
                         id="category"
@@ -125,7 +125,7 @@ function CategoryField({
                         placeholder={'Category'}
                         {...register('category')}
                         className={clsx(
-                            'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[2px] border-light-border text-light-text-1 text-sm placeholder-light-text-2 focus:outline-none focus:border-dark-surface-1',
+                            'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-2 border-[2px] border-light-border text-light-text-1 text-sm placeholder-light-text-2 focus:outline-none focus:border-dark-surface-1',
                             {
                                 'border-light-error focus:border-light-error':
                                     error
@@ -243,8 +243,8 @@ export function BudgetExpenseForm({
                     error={errors.category}
                 />
 
-                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-dark-surface-1 text-center mt-4 text-white">
-                    Add
+                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-black text-white flex justify-center items-center mt-[1rem]">
+                    <p>Add</p>
                 </button>
             </form>
         </div>

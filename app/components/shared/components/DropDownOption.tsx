@@ -67,7 +67,9 @@ export default function DropDownOption<T extends sortBy | orderBy | groupBy>({
                 </div>
                 <div className="flex flex-col items-start justify-center h-[3rem] w-[5rem] ">
                     <h1>{optionName}</h1>
-                    <p className="text-xs font-thin">{options[optionType]}</p>
+                    <p className="text-xs font-light text-light-text-2">
+                        {options[optionType]}
+                    </p>
                 </div>
                 <div className="flex items-center justify-center h-[3rem] w-[2rem]">
                     {optionsShown ? (

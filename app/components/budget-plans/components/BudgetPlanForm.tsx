@@ -28,7 +28,7 @@ export const BudgetPlanFormField: React.FC<BudgetPlanFormFieldProps> = ({
 }: BudgetPlanFormFieldProps) => (
     <div className="w-full">
         <label htmlFor={name} className="">
-            {label || ''}
+            {label ? label + ':' : ''}
         </label>
         <input
             aria-label={label || ''}
@@ -37,7 +37,7 @@ export const BudgetPlanFormField: React.FC<BudgetPlanFormFieldProps> = ({
             type={type}
             {...register(name, { valueAsNumber })}
             className={clsx(
-                'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-1 border-[2px] border-light-border text-light-text-1 text-sm placeholder-light-text-2 focus:outline-none focus:border-dark-surface-1',
+                'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-2 border-[2px] border-light-border text-light-text-1 text-sm placeholder-light-text-2 focus:outline-none focus:border-dark-surface-1',
                 { 'border-light-error focus:border-light-error': error }
             )}
         />
@@ -72,7 +72,7 @@ export default function BudgetPlanForm({
         <div className="flex items-center justify-center w-screen h-dvh min-h-dvh overflow-y-scroll pt-[3rem] fixed top-[0px] left-[0px] backdrop-brightness-50 z-20">
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col items-center justify-start w-[90%] rounded-xl bg-light-surface-1 border-[1px] border-light-border gap-y-8 z-30 py-8 px-4"
+                className="flex flex-col items-center justify-start w-[90%] rounded-xl bg-light-surface-1 border-[1px] border-light-border gap-y-4 z-30 py-8 px-4"
             >
                 <div className="flex justify-center items-center relative w-full">
                     <h1 className="text-lg font-medium">
@@ -104,8 +104,8 @@ export default function BudgetPlanForm({
                     />
                 </div>
 
-                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-dark-surface-1 text-center text-white">
-                    Add
+                <button className="w-full h-[2.5rem] rounded-xl pl-4 bg-black text-white flex justify-center items-center mt-[1rem]">
+                    <p>Add</p>
                 </button>
             </form>
         </div>

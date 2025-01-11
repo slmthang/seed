@@ -15,7 +15,6 @@ const config: Config = {
             },
 
             colors: {
-
                 // colors
                 'light-surface-0': '#e7e7e7',
                 'light-surface-1': '#F6F9FC',
@@ -25,7 +24,7 @@ const config: Config = {
                 // text colors
                 'light-text-1': '#232323',
                 'light-text-2': '#737373',
-                'light-text-3': '#8a8a8a',
+                'light-text-3': '#a5a5a5',
 
                 // border
                 'light-border': '#e7e7e7'

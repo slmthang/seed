@@ -15,13 +15,12 @@ import {
 } from '@/app/lib/definitions/categories/CategoriesDefinitions';
 import { BudgetPlanOptionMenu } from './BudgetPlanOptionMenu';
 import SearchBar from '@/app/components/shared/components/SearchBar';
-
 import {
+    ArrowUpwardIcon,
     ChevronDownIcon,
     ChevronRightIcon,
     CircleIcon,
     FilterIcon,
-    SearchIcon,
     SquareIcon
 } from '@/app/components/shared/components/Icons';
 import { categorizedExpense } from '@/app/lib/definitions/categories/CategoriesDefinitions';
@@ -66,11 +65,11 @@ function CategorizedCard({
                     key={expenseData.id}
                     className="w-full h-[2.5rem] flex justify-center items-center"
                 >
-                    <div className="w-[2rem] h-[2.5rem] flex justify-center items-center"></div>
-                    <div className="w-full h-[2.5rem] flex items-center justify-between border-l-[2px] border-light-border pl-2">
+                    <div className="w-[2rem] h-[2.5rem] flex justify-center items-center border-r-[1px] mr-2"></div>
+                    <div className="w-full h-[2.5rem] flex items-center justify-between border-b-[1px] border-light-border pl-2">
                         <div className="flex items-center">
                             <CircleIcon
-                                tailwindClass={`fa-fw fa-2xs mr-1 text-red-500`}
+                                tailwindClass={`fa-fw fa-2xs mr-2 text-red-500`}
                             />
                             <p className="inline">{expenseData.item}</p>
                         </div>
@@ -91,12 +90,12 @@ function CategorizedCard({
     });
 
     return (
-        <div className="w-full min-h-[3rem] flex flex-col justify-between items-center rounded-xl  py-2 px-4 bg-light-surface-1 shadow shadow-light-border">
+        <div className="w-full min-h-[3rem] flex flex-col justify-between items-center rounded-xl  p-2 bg-white border-light-border border-[1px] shadow shadow-light-border">
             <div
                 className="w-full h-[3rem] flex justify-center items-center"
                 onClick={() => SetShowMoreActive((prev) => !prev)}
             >
-                <div className="w-[2rem] h-[3rem] flex justify-center items-center">
+                <div className="flex justify-center items-center">
                     {showMoreActive ? (
                         <ChevronDownIcon tailwindClass="size-5" />
                     ) : (
@@ -115,12 +114,7 @@ function CategorizedCard({
                         />
                         <p className="inline">{categorizedExpenseData.name}</p>
                     </div>
-                    <div className="flex h-full items-center justify-center">
-                        <p className="inline font-thin text-xs">
-                            {Math.round(percentage)}%
-                        </p>
-                    </div>
-                    <div className="flex h-full items-center justify-center">
+                    <div className="flex flex-col h-full items-end justify-around">
                         <p className="mt-1">
                             ${categorizedExpenseDataDollars}.
                             <span className="text-xs">
@@ -128,6 +122,9 @@ function CategorizedCard({
                                     ? categorizedExpenseDataCents
                                     : '00'}
                             </span>
+                        </p>
+                        <p className="inline font-thin text-xs">
+                            {Math.round(percentage)}%
                         </p>
                     </div>
                 </div>
@@ -222,23 +219,21 @@ function ItemizedCardList({
         return (
             <div
                 key={e.budgetPlanId + i + ''}
-                className="w-full h-[4rem] flex flex-col justify-center items-center rounded-xl px-4 py-2 bg-light-surface-1 shadow shadow-light-border"
+                className="w-full h-[4rem] flex flex-col justify-center items-center border-[1px] border-light-border rounded-xl p-2 shadow shadow-light-border"
             >
-                <div className="w-full h-[3rem] flex flex-col">
-                    <div className="w-full h-[3rem] flex items-center relative justify-center">
-                        <div className="absolute left-0 flex items-center">
-                            <CircleIcon tailwindClass="fa-fw fa-2xs mr-1 text-red-500" />
-                            <p className="inline">{e.item}</p>
+                <div className="w-full h-full flex items-center relative justify-center ">
+                    <div className="absolute h-full left-2 flex items-center">
+                        <div className="w-[2.5rem] h-[2.5rem] bg-red-100 rounded-full flex justify-center items-center mr-2">
+                            <ArrowUpwardIcon tailwindClass="size-8 stroke-red-500 text-red-500" />
                         </div>
-                        <div className="absolute right-0">
-                            <p className="text-base mt-1">
-                                ${amountDollars}.
-                                <span className="text-xs">{amountCents}</span>
-                            </p>
-                        </div>
+                        <p className="inline">{e.item}</p>
                     </div>
-                    <div className="w-full h-[1rem] flex items-center justify-center relative">
-                        <div className="flex gap-x-2 right-0 absolute flex items-center">
+                    <div className="absolute h-full right-2  flex flex-col justify-around items-end">
+                        <p>
+                            ${amountDollars}.
+                            <span className="text-xs">{amountCents}</span>
+                        </p>
+                        <div className="">
                             <p className="text-xs font-thin">{e.category}</p>
                         </div>
                     </div>
@@ -248,7 +243,7 @@ function ItemizedCardList({
     });
 
     return (
-        <div className="w-full flex flex-col justify-center items-center gap-y-2 ">
+        <div className="w-full flex flex-col justify-center items-center gap-y-2 rounded-xl">
             {cards}
         </div>
     );
@@ -275,20 +270,21 @@ export function BudgetPlanExpensesTab({
     };
 
     return (
-        <div className="w-full min-h-fit rounded-2xl bg-light-surface-1 border-[1px] border-light-border flex flex-col justify-center  items-center py-[1.5rem] px-[1rem] ">
-            <div className="w-full mb-[1rem]">
+        <div className="w-full min-h-fit rounded-2xl bg-white border-[1px] border-light-border flex flex-col justify-center  items-center py-[1.5rem] px-[1rem] ">
+            <div className="w-full">
                 <div className="w-full flex items-center justify-between">
                     <div className="w-full flex">
                         <div className="w-full">
                             <SearchBar
-                                searchBarName='searchBudgetExpense'
-                                searchBarPlaceholder='Search an expense'
+                                searchBarName="searchBudgetExpense"
+                                searchBarPlaceholder="Search an expense"
                                 searchInputHandler={searchInputHandler}
+                                style="bg-white"
                             />
                         </div>
                         <div className="relative ml-[1rem]">
                             <div
-                                className="w-[3rem] h-[2.5rem] flex justify-center items-center border-[1px] border-light-border rounded-lg mb-2"
+                                className="w-[3rem] h-[2.5rem] flex justify-center items-center border-[1px] border-light-border rounded-lg mb-2 bg-white"
                                 onClick={() =>
                                     setOptionsActive((prev) => !prev)
                                 }
@@ -341,11 +337,16 @@ export function BudgetPlanStatsTab({
     };
 
     return (
-        <div className="w-full min-h-fit rounded-2xl bg-light-surface-1 border-[1px] border-light-border flex flex-col justify-center  items-center py-[1.5rem] px-[1rem] ">
-            <div className="w-full mb-[1rem]">
+        <div className="w-full min-h-fit rounded-2xl bg-white border-[1px] border-light-border flex flex-col justify-center  items-center py-[1.5rem] px-[1rem] ">
+            <div className="w-full">
                 <div className="w-full flex">
                     <div className="w-full">
-                        <SearchBar searchBarName='searchBudgetPlanStat' searchBarPlaceholder='Search a category' searchInputHandler={searchInputHandler} />
+                        <SearchBar
+                            style="bg-white"
+                            searchBarName="searchBudgetPlanStat"
+                            searchBarPlaceholder="Search a category"
+                            searchInputHandler={searchInputHandler}
+                        />
                     </div>
                     <div className="relative ml-[1rem]">
                         <div

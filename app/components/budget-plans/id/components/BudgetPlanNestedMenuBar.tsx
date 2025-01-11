@@ -4,7 +4,10 @@
 import { usePathname } from 'next/navigation';
 // local
 import Link from 'next/link';
-import { BackButtonIcon, MeatBallMenuIcon } from '@/app/components/shared/components/Icons';
+import {
+    BackButtonIcon,
+    MeatBallMenuIcon
+} from '@/app/components/shared/components/Icons';
 
 export default function BudgetPlanNestedMenuBar({
     pageName
@@ -30,7 +33,7 @@ export default function BudgetPlanNestedMenuBar({
             {/* pathname */}
             <p className="text-base font-semibold">{pageName}</p>
             {/* filter/options */}
-            <MeatBallMenuIcon tailwindClass='size-8 stroke-2'/>
+            <MeatBallMenuIcon tailwindClass="size-8 stroke-2" />
         </nav>
     );
 }

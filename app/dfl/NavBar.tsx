@@ -42,22 +42,22 @@ export default function NavBar() {
     const NavBarOptionsData = [
         {
             path: '',
-            icon: <HomeIcon tailwindClass='size-6 stroke-2'/>,
+            icon: <HomeIcon tailwindClass="size-6 stroke-2" />,
             text: 'Home'
         },
         {
             path: 'plans',
-            icon: <PlanIcon tailwindClass='size-6 stroke-2'/>,
+            icon: <PlanIcon tailwindClass="size-6 stroke-2" />,
             text: 'Plans'
         },
         {
             path: 'tracker',
-            icon: <TrackerIcon tailwindClass='size-6 stroke-2'/>,
+            icon: <TrackerIcon tailwindClass="size-6 stroke-2" />,
             text: 'Tracker'
         },
         {
             path: 'settings',
-            icon: <SettingIcon tailwindClass='size-6 stroke-2'/>,
+            icon: <SettingIcon tailwindClass="size-6 stroke-2" />,
             text: 'Settings'
         }
     ];

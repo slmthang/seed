@@ -11,7 +11,7 @@ export default function BudgetPlanChart({
         categorizeBudgetExpenseList(expenseListData);
 
     return (
-        <div className="w-full bg-light-surface-1 border-[1px] border-light-border rounded-xl">
+        <div className="w-full border-[1px] border-light-border rounded-xl bg-white">
             <div className="w-full h-[12rem] my-[2rem]">
                 <VictoryPie
                     style={{
