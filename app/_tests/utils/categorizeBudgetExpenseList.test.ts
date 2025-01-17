@@ -1,6 +1,6 @@
 import { categorizeBudgetExpenseList } from '../../lib/utils';
-import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/DataBaseDefinitions';
-import { categorizedExpense } from '@/app/lib/definitions/categories/CategoriesDefinitions';
+import { SelectbudgetPlanExpense } from '@/app/lib/definitions/DataBase';
+import { categorizedExpense } from '@/app/lib/definitions/Categories';
 
 const budgetPlanExpenseListData: SelectbudgetPlanExpense[] = [
     {

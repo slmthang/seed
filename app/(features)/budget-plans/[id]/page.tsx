@@ -10,7 +10,7 @@ import {
 import {
     SelectBudgetPlan,
     SelectbudgetPlanExpense
-} from '@/app/lib/definitions/db/DataBaseDefinitions';
+} from '@/app/lib/definitions/DataBase';
 import BudgetPlan from '@/app/components/budget-plans/id/BudgetPlan';
 import BudgetPlanNestedMenuBar from '@/app/components/budget-plans/id/components/BudgetPlanNestedMenuBar';
 

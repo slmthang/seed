@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { SelectBudgetPlan } from '@/app/lib/definitions/db/DataBaseDefinitions';
+import { SelectBudgetPlan } from '@/app/lib/definitions/DataBase';
 
 import BudgetPlans from '@/app/components/budget-plans/BudgetPlanList';
 import BudgetPlanListMenuBar from '@/app/components/budget-plans/components/BudgetPlanListMenuBar';

@@ -6,13 +6,13 @@ import { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 
 // local
-import { AddNewBudgetPlan } from '../actions/forms/BudgetPlanFormActions';
-import { CloseButtonIcon } from '@/app/components/shared/components/Icons';
+import { AddNewBudgetPlan } from '../../../lib/actions/forms/BudgetPlanFormActions';
+import { CloseButtonIcon } from '@/app/components/shared/Icons';
 import {
     BudgetPlanFormData,
     BudgetPlanFormFieldProps,
     BudgetPlanFormSchema
-} from '@/app/lib/definitions/forms/BudgetPlanFormDefinitions';
+} from '@/app/lib/definitions/BudgetPlanForm';
 import clsx from 'clsx';
 
 /* ########################################### Add Budget Plan Form ########################################### */
@@ -27,7 +27,7 @@ export const BudgetPlanFormField: React.FC<BudgetPlanFormFieldProps> = ({
     valueAsNumber
 }: BudgetPlanFormFieldProps) => (
     <div className="w-full">
-        <label htmlFor={name} className="">
+        <label htmlFor={name} className="font-medium">
             {label ? label + ':' : ''}
         </label>
         <input
@@ -37,7 +37,7 @@ export const BudgetPlanFormField: React.FC<BudgetPlanFormFieldProps> = ({
             type={type}
             {...register(name, { valueAsNumber })}
             className={clsx(
-                'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-2 border-[2px] border-light-border text-light-text-1 text-sm placeholder-light-text-2 focus:outline-none focus:border-dark-surface-1',
+                'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-0 border-[1px] border-light-border text-light-text-1 text-sm placeholder-light-text-2 focus:outline-none focus:border-indigo-700 ',
                 { 'border-light-error focus:border-light-error': error }
             )}
         />
@@ -72,12 +72,10 @@ export default function BudgetPlanForm({
         <div className="flex items-center justify-center w-screen h-dvh min-h-dvh overflow-y-scroll pt-[3rem] fixed top-[0px] left-[0px] backdrop-brightness-50 z-20">
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col items-center justify-start w-[90%] rounded-xl bg-light-surface-1 border-[1px] border-light-border gap-y-4 z-30 py-8 px-4"
+                className="flex flex-col items-center justify-start w-[90%] rounded-xl bg-light-surface-0 border-[1px] border-light-border gap-y-4 z-30 py-8 px-4"
             >
                 <div className="flex justify-center items-center relative w-full">
-                    <h1 className="text-lg font-medium">
-                        Add a new Budget Plan
-                    </h1>
+                    <h1 className="text-lg font-bold">Add a new Budget Plan</h1>
                     <div
                         className="absolute right-0"
                         onClick={() => toggleForm((prev) => !prev)}

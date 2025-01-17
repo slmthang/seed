@@ -2,7 +2,7 @@ import {
     usersTable,
     budgetPlansTable,
     budgetPlanExpensesTable
-} from '../../db/migrations/schema';
+} from '../db/migrations/schema';
 
 // usersTable
 export type SelectUser = typeof usersTable.$inferSelect;

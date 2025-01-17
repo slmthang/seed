@@ -7,7 +7,7 @@ import {
     HelpIcon,
     SettingIcon,
     LogoutIcon
-} from '../components/shared/components/Icons';
+} from './Icons';
 import { Dispatch, SetStateAction } from 'react';
 
 export default function SideNavBar({

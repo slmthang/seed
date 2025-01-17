@@ -1,6 +1,6 @@
 import { toPieChartData } from '../../lib/utils';
-import { PieChartDataType } from '@/app/lib/definitions/charts/PieChartDefintions';
-import { categorizedExpense } from '@/app/lib/definitions/categories/CategoriesDefinitions';
+import { PieChartDataType } from '@/app/lib/definitions/PieChart';
+import { categorizedExpense } from '@/app/lib/definitions/Categories';
 
 const categorizedBudgetExpenseListData: categorizedExpense[] = [
     {

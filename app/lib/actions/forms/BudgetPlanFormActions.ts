@@ -2,7 +2,7 @@
 'use server';
 
 // remote
-import { BudgetPlanFormData } from '@/app/lib/definitions/forms/BudgetPlanFormDefinitions';
+import { BudgetPlanFormData } from '@/app/lib/definitions/BudgetPlanForm';
 import { currentUser } from '@clerk/nextjs/server';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';

@@ -16,10 +16,7 @@ export function ChevronRightIcon({
 }: {
     tailwindClass?: string;
 }) {
-    tailwindClass = twMerge(
-        'size-6 stroke-1 stroke-dark-text-1',
-        tailwindClass
-    );
+    tailwindClass = twMerge('size-6 stroke-1', tailwindClass);
 
     return (
         <svg

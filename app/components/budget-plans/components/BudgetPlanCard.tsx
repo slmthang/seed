@@ -4,10 +4,7 @@
 import Link from 'next/link';
 
 // local
-import {
-    ChevronRightIcon,
-    SquareIcon
-} from '@/app/components/shared/components/Icons';
+import { ChevronRightIcon, SquareIcon } from '@/app/components/shared/Icons';
 import { splitMoney, absoluteNumber, isNegative } from '@/app/lib/utils';
 
 /* ########################################### BudgetPlanCard ########################################### */
@@ -37,11 +34,13 @@ export default function BudgetPlanCard({
         >
             <div className="w-full min-h-[2rem] px-4 py-2 flex items-center justify-between">
                 <div className="flex h-full items-center gap-x-2">
-                    <p className="mr-1 text-lg">{budgetPlanName}</p>
+                    <p className="mr-1 text-lg text-light-text-2">
+                        {budgetPlanName}
+                    </p>
                 </div>
                 <div>
-                    <Link href={'/plans/' + budgetPlanId}>
-                        <ChevronRightIcon tailwindClass="size-6 stroke-[0.5]" />
+                    <Link href={'/budget-plans/' + budgetPlanId}>
+                        <ChevronRightIcon tailwindClass="size-5 stroke-[0.5] text-light-text-2" />
                     </Link>
                 </div>
             </div>

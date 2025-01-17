@@ -7,7 +7,7 @@
 // remote
 
 // local
-import NavBar from '../dfl/NavBar';
+import NavBar from './shared/NavBar';
 
 /* ########################################### ViewLayOutHelper ########################################### */
 

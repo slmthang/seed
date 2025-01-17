@@ -1,4 +1,4 @@
-import { SelectbudgetPlanExpense } from '../../lib/definitions/db/DataBaseDefinitions';
+import { SelectbudgetPlanExpense } from '../../lib/definitions/DataBase';
 import { sortBudgetPlanExpenseList } from '../../lib/utils';
 
 const expenseListData: SelectbudgetPlanExpense[] = [

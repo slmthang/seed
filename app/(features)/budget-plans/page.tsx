@@ -5,7 +5,7 @@ import { currentUser } from '@clerk/nextjs/server';
 
 // local
 import { getBudgetPlanList } from '@/app/lib/db/drizzle/drizzle';
-import { SelectBudgetPlan } from '@/app/lib/definitions/db/DataBaseDefinitions';
+import { SelectBudgetPlan } from '@/app/lib/definitions/DataBase';
 import BudgetPlanListHelper from '@/app/components/budget-plans/BudgetPlanListHelper';
 
 /* ########################################### Page ########################################### */

@@ -6,7 +6,7 @@ import { currentUser } from '@clerk/nextjs/server';
 // local
 import { validateUser } from '../lib/db/drizzle/drizzle';
 import ViewLayOutHelper from '../components/ViewsLayOutHelper';
-import { InsertUser } from '../lib/definitions/db/DataBaseDefinitions';
+import { InsertUser } from '../lib/definitions/DataBase';
 
 /* ########################################### Layout ########################################### */
 

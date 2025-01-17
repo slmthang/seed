@@ -13,12 +13,12 @@ export default function TabsDuo<T extends 'Expenses' | 'Stats'>({
 }) {
     return (
         <div className="w-full">
-            <div className="w-full flex justify-center items-center h-[3rem] rounded-xl bg-light-surface-2 border-light-border border p-[2px]">
+            <div className="w-full flex justify-center items-center h-[3rem] rounded-xl bg-light-surface-2 px-1 py-0.5">
                 <div
                     className={clsx(
                         'w-[50%] h-full flex justify-center items-center text-base rounded-xl',
                         {
-                            'bg-light-surface-2 border-[1px] border-light-border text-light-text-1':
+                            'border border-light-border':
                                 selectedTab === fields[0]
                         },
                         {
@@ -33,7 +33,7 @@ export default function TabsDuo<T extends 'Expenses' | 'Stats'>({
                     className={clsx(
                         'w-[50%] h-full flex justify-center items-center text-base rounded-xl ',
                         {
-                            'bg-light-surface-2 border-[1px] border-light-border text-light-text-1':
+                            'border border-light-border':
                                 selectedTab === fields[1]
                         },
                         {

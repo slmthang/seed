@@ -16,15 +16,15 @@ const config: Config = {
 
             colors: {
                 // colors
-                'light-surface-0': '#e7e7e7',
-                'light-surface-1': '#F6F9FC',
+                'light-surface-0': '#F6F9FC', // F6F9FC
+                'light-surface-1': '#f7f7f7',
                 'light-surface-2': '#fff',
                 'light-error': '#b10000',
 
                 // text colors
                 'light-text-1': '#232323',
-                'light-text-2': '#737373',
-                'light-text-3': '#a5a5a5',
+                'light-text-2': '#656565',
+                'light-text-3': '#989898',
 
                 // border
                 'light-border': '#e7e7e7'

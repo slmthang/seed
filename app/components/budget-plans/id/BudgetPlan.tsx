@@ -10,17 +10,14 @@ import { Dispatch, SetStateAction, useState } from 'react';
 // local
 import { BudgetExpenseForm } from './components/BudgetExpenseForm';
 import BudgetPlanAtGlance from '@/app/components/budget-plans/id/components/BudgetPlanAtGlance';
-import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/DataBaseDefinitions';
-import { AddButtonIcon } from '@/app/components/shared/components/Icons';
+import { SelectbudgetPlanExpense } from '@/app/lib/definitions/DataBase';
+import { AddButtonIcon } from '@/app/components/shared/Icons';
 import BudgetPlanEmptyExpenses from './components/BudgetPlanEmptyExpenses';
-import {
-    BudgetPlanExpensesTab,
-    BudgetPlanStatsTab
-} from './components/BudgetPlanBreakDown';
-
-import { budgetPlanOptions } from '@/app/lib/definitions/menuOptions/BudgetPlanOptions';
+import BudgetPlanExpensesTab from './components/BudgetPlanExpensesTab';
+import BudgetPlanStatsTab from './components/BudgetPlanStatsTab';
+import { budgetPlanOptions } from '@/app/lib/definitions/Options';
 import BudgetPlanChart from './components/BudgetPlanChart';
-import TabsDuo from '../../shared/components/TabsDuo';
+import TabsDuo from '../../shared/TabsDuo';
 
 /* ########################################### Budget Plan ########################################### */
 

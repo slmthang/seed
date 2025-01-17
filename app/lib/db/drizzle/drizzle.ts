@@ -20,7 +20,7 @@ import {
     SelectbudgetPlanExpense,
     InsertbudgetPlanExpense,
     InsertUser
-} from '../../definitions/db/DataBaseDefinitions';
+} from '../../definitions/DataBase';
 import {
     budgetPlanExpensesTable,
     budgetPlansTable,

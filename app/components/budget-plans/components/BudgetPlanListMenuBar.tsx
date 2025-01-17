@@ -3,9 +3,9 @@
 import { SetStateAction, Dispatch, useState } from 'react';
 // modules (remote)
 // local
-import { FilterIcon, SearchIcon } from '../../shared/components/Icons';
-import SearchBar from '../../shared/components/SearchBar';
-import { budgetPlanOptions } from '../../../lib/definitions/menuOptions/BudgetPlanOptions';
+import { FilterIcon, SearchIcon } from '../../shared/Icons';
+import SearchBar from '../../shared/SearchBar';
+import { budgetPlanOptions } from '../../../lib/definitions/Options';
 import { BudgetPlanOptionMenu } from '../id/components/BudgetPlanOptionMenu';
 
 export default function BudgetPlanListMenuBar({
@@ -37,20 +37,16 @@ export default function BudgetPlanListMenuBar({
     };
 
     return (
-        <div className="z-30 w-full flex flex-col min-h-[3rem] fixed top-[0px] left-[0px] px-4 bg-light-surface-1">
+        <div className="z-30 w-full flex flex-col min-h-[3rem] fixed top-[0px] left-[0px] px-4 bg-light-surface-0">
             <nav
                 className={'w-full flex justify-between items-center h-[3rem] '}
             >
-                <div>
-                    <p className="text-2xl font-bold text-light-text-1">
-                        {pageName}
-                    </p>
-                </div>
+                <p className="text-2xl font-bold text-light-text-1">
+                    {pageName}
+                </p>
 
-                <div className="flex">
-                    <div onClick={() => setSearchBarActive((prev) => !prev)}>
-                        <SearchIcon tailwindClass="size-8 stroke-1 stroke-light-text-1" />
-                    </div>
+                <div onClick={() => setSearchBarActive((prev) => !prev)}>
+                    <SearchIcon tailwindClass="size-8 stroke-1 stroke-light-text-1" />
                 </div>
             </nav>
 

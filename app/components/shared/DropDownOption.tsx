@@ -8,7 +8,7 @@ import {
     orderBy,
     groupBy,
     budgetPlanOptions
-} from '@/app/lib/definitions/menuOptions/BudgetPlanOptions';
+} from '@/app/lib/definitions/Options';
 import { ChevronDownIcon, ChevronUpIcon } from './Icons';
 
 // local

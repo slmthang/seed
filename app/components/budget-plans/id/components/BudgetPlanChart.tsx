@@ -1,4 +1,4 @@
-import { SelectbudgetPlanExpense } from '@/app/lib/definitions/db/DataBaseDefinitions';
+import { SelectbudgetPlanExpense } from '@/app/lib/definitions/DataBase';
 import { categorizeBudgetExpenseList, toPieChartData } from '@/app/lib/utils';
 import { VictoryPie } from 'victory';
 

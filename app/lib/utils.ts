@@ -3,18 +3,15 @@
 //     trackerItemsListType, savingsExpenseListType
 // } from "./definitions"
 
-import { orderBy, sortBy } from './definitions/menuOptions/BudgetPlanOptions';
+import { orderBy, sortBy } from './definitions/Options';
 
-import {
-    categories,
-    categoryList
-} from './definitions/categories/CategoriesDefinitions';
+import { categories, categoryList } from './definitions/Categories';
 
-import { categorizedExpense } from './definitions/categories/CategoriesDefinitions';
+import { categorizedExpense } from './definitions/Categories';
 
-import { PieChartDataType } from './definitions/charts/PieChartDefintions';
+import { PieChartDataType } from './definitions/PieChart';
 
-import { SelectbudgetPlanExpense } from './definitions/db/DataBaseDefinitions';
+import { SelectbudgetPlanExpense } from './definitions/DataBase';
 
 // ***************************************** Tested ***************************************** //
 /**

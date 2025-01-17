@@ -6,7 +6,7 @@ import {
     UseFormSetValue
 } from 'react-hook-form';
 import { z, ZodType } from 'zod'; // Add new import
-import { categories } from '../categories/CategoriesDefinitions';
+import { categories } from './Categories';
 
 /****************************** BudgetExpenseForm ******************************/
 

@@ -7,7 +7,7 @@ import Link from 'next/link';
 import {
     BackButtonIcon,
     MeatBallMenuIcon
-} from '@/app/components/shared/components/Icons';
+} from '@/app/components/shared/Icons';
 
 export default function BudgetPlanNestedMenuBar({
     pageName

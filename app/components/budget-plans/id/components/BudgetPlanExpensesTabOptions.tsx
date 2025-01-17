@@ -3,7 +3,7 @@ import { OrderByIcon, SortByIcon } from '@/app/components/shared/Icons';
 import { budgetPlanOptions } from '@/app/lib/definitions/Options';
 import { Dispatch, SetStateAction } from 'react';
 
-export function BudgetPlanOptionMenu({
+export default function BudgetPlanExpensesTabOptions({
     budgetPlanOptions,
     setBudgetPlanOptions
 }: {
