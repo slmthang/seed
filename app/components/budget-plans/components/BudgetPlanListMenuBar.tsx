@@ -57,7 +57,6 @@ export default function BudgetPlanListMenuBar({
                             searchBarName="searchBudgetPlan"
                             searchBarPlaceholder="Search a budget plan"
                             searchInputHandler={searchInputHandler}
-                            style={'bg-white'}
                         />
                     </div>
                     <div className="relative ml-[1rem]">

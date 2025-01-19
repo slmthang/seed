@@ -215,7 +215,6 @@ export default function BudgetPlanStatsTab({
                 <div className="w-full flex">
                     <div className="w-full">
                         <SearchBar
-                            style="bg-white"
                             searchBarName="searchBudgetPlanStat"
                             searchBarPlaceholder="Search a category"
                             searchInputHandler={searchInputHandler}

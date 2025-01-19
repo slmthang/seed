@@ -1,12 +1,12 @@
 import { twMerge } from 'tailwind-merge';
 
 export default function SearchBar({
-    style,
+    styles,
     searchBarName,
     searchBarPlaceholder,
     searchInputHandler
 }: {
-    style?: string;
+    styles?: string;
     searchBarName: string;
     searchBarPlaceholder: string;
     searchInputHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -21,8 +21,8 @@ export default function SearchBar({
                     placeholder={searchBarPlaceholder}
                     onChange={searchInputHandler}
                     className={twMerge(
-                        'w-full h-full pl-[1rem] pr-[3rem] rounded-xl bg-light-surface-0 border-[1px] border-light-border text-light-text-1 text-sm placeholder-light-text-2 outline-none focus:outline-none focus:border-indigo-700',
-                        style
+                        'w-full h-full pl-[1rem] pr-[3rem] rounded-xl bg-light-surface-1 border-[1px] border-light-border text-light-text-1 text-sm placeholder-light-text-2 outline-none focus:outline-none focus:border-indigo-700',
+                        styles
                     )}
                 />
             }

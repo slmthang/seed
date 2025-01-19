@@ -27,7 +27,7 @@ export default function BudgetPlanExpensesTab({
     };
 
     return (
-        <div className="w-full min-h-fit rounded-2xl bg-light-surface-2 flex flex-col justify-center  items-center py-[1.5rem] px-[1rem] ">
+        <div className="w-full min-h-fit rounded-2xl bg-light-surface-2 border-[1px] border-light-border flex flex-col justify-center items-center py-[1.5rem] px-[1rem] ">
             <div className="w-full">
                 <div className="w-full flex items-center justify-between">
                     <div className="w-full flex">
@@ -36,7 +36,6 @@ export default function BudgetPlanExpensesTab({
                                 searchBarName="searchBudgetExpense"
                                 searchBarPlaceholder="Search an expense"
                                 searchInputHandler={searchInputHandler}
-                                style="bg-white"
                             />
                         </div>
                         <div className="relative ml-[1rem]">
