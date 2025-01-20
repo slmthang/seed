@@ -27,7 +27,7 @@ export default function BudgetPlanExpensesTab({
     };
 
     return (
-        <div className="w-full min-h-fit rounded-2xl bg-light-surface-2 border-[1px] border-light-border flex flex-col justify-center items-center py-[1.5rem] px-[1rem] ">
+        <div className="w-full min-h-fit rounded-2xl bg-light-surface-3 border-[1px] border-light-border flex flex-col justify-center items-center py-[1.5rem] px-[1rem] ">
             <div className="w-full">
                 <div className="w-full flex items-center justify-between">
                     <div className="w-full flex">
@@ -59,7 +59,7 @@ export default function BudgetPlanExpensesTab({
                 </div>
             </div>
 
-            <div className="w-full mt-[1rem] overflow-hidden overflow-y-scroll ">
+            <div className="w-full mt-[1rem] overflow-hidden overflow-y-scroll">
                 <ItemizedCardList
                     expenseListData={expenseListData}
                     searchBarValue={searchBarValue}
@@ -101,19 +101,19 @@ function ItemizedCardList({
         return (
             <div
                 key={e.budgetPlanId + i + ''}
-                className="w-full h-[4rem] flex flex-col justify-center items-center border-[1px] border-light-border rounded-xl p-2"
+                className="w-full h-[4rem] flex flex-col justify-center items-center px-1"
             >
                 <div className="w-full h-full flex items-center relative justify-center ">
-                    <div className="absolute h-full left-2 flex items-center">
-                        <div className="w-[2rem] h-[2.5rem] flex justify-center items-center">
-                            <ArrowUpwardIcon tailwindClass="size-5 stroke-red-500 text-red-500" />
+                    <div className="absolute h-full left-0 flex items-center">
+                        <div className="w-[2rem] h-[2.5rem] flex justify-center items-center ">
+                            <ArrowUpwardIcon tailwindClass="size-6 stroke-red-500 text-red-500" />
                         </div>
 
-                        <div className="h-[2.5rem] flex justify-center items-center">
-                            <p className="inline">{e.item}</p>
+                        <div className="h-[2.5rem] flex justify-center items-center ">
+                            <p className="inline text-base">{e.item}</p>
                         </div>
                     </div>
-                    <div className="absolute h-full right-2  flex flex-col justify-around items-end">
+                    <div className="absolute h-full right-0  flex flex-col gap-y-1 justify-center items-end">
                         <p>
                             ${amountDollars}.
                             <span className="text-xs">{amountCents}</span>
@@ -128,7 +128,15 @@ function ItemizedCardList({
     });
 
     return (
-        <div className="w-full flex flex-col justify-center items-center gap-y-2 rounded-xl">
+        <div className="w-full flex flex-col justify-center items-center divide-y-[1px] border-b-[1px]">
+            <div className='w-full h-[2.5rem] flex justify-between items-center px-1'>
+                <p>
+                    Expense
+                </p>
+                <p>
+                    Amount
+                </p>
+            </div>
             {cards}
         </div>
     );

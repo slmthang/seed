@@ -16,9 +16,9 @@ const config: Config = {
 
             colors: {
                 // colors
-                'light-surface-0': '#fafafa', // F6F9FC
-                'light-surface-1': '#efefef',
-                'light-surface-2': '#fff',
+                'light-surface-1': '#f0f0f0',
+                'light-surface-2': '#fafafa',
+                'light-surface-3': '#fff',
                 'light-error': '#b10000',
 
                 // text colors

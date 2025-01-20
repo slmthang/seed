@@ -20,7 +20,7 @@ export default function BudgetPlanAtGlance({
     const [balanceDollars, balanceCents] = splitMoney(balance);
 
     return (
-        <div className="w-full h-[10rem] bg-light-surface-2 border-[1px] border-light-border rounded-2xl flex flex-col justify-center items-center">
+        <div className="w-full h-[10rem] bg-light-surface-3 border-[1px] border-light-border rounded-2xl flex flex-col justify-center items-center">
             <div className="w-full h-[3rem] flex px-6 ">
                 <div className="w-[50%] h-[100%] flex items-center">
                     <SquareIcon tailwindClass="fa-fw fa-2xs text-green-500 mr-1" />

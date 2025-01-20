@@ -84,7 +84,7 @@ export default function NavBar() {
     return (
         <nav
             className={
-                'z-30 flex justify-between items-center absolute bottom-[0px] left-[0px] w-screen h-[3rem] px-12 bg-light-surface-0 border-t-[1px] border-light-border'
+                'z-30 flex justify-between items-center absolute bottom-[0px] left-[0px] w-screen h-[3rem] px-12 bg-light-surface-2 border-t-[1px] border-light-border'
             }
         >
             {optionsToShow}

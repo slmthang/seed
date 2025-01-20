@@ -11,7 +11,7 @@ export function BudgetPlanOptionMenu({
     setBudgetPlanOptions: Dispatch<SetStateAction<budgetPlanOptions>>;
 }) {
     return (
-        <div className="absolute flex flex-col right-0 min-w-[12rem] z-10 bg-light-surface-0 rounded-xl gap-y-2 p-3 bg-white border-[1px] border-light-border shadow shadow-light-border">
+        <div className="absolute flex flex-col right-0 min-w-[12rem] z-10 bg-light-surface-2 rounded-xl gap-y-2 p-3 bg-white border-[1px] border-light-border shadow shadow-light-border">
             <DropDownOption
                 optionName="Sort By"
                 OptionIcon={SortByIcon}

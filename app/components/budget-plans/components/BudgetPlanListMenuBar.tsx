@@ -37,7 +37,7 @@ export default function BudgetPlanListMenuBar({
     };
 
     return (
-        <div className="z-30 w-full flex flex-col min-h-[3rem] fixed top-[0px] left-[0px] px-4 bg-light-surface-0">
+        <div className="z-30 w-full flex flex-col min-h-[3rem] fixed top-[0px] left-[0px] px-4 bg-light-surface-2">
             <nav
                 className={'w-full flex justify-between items-center h-[3rem] '}
             >

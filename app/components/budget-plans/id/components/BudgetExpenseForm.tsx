@@ -48,7 +48,7 @@ const AddExpenseFormField: React.FC<BudgetExpenseFormFieldProps> = ({
                 type={type}
                 {...register(name)}
                 className={clsx(
-                    'inputDarkModeOverride w-full rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-0 border-[1px] border-light-border text-sm  focus:outline-none focus:border-dark-surface-1',
+                    'inputDarkModeOverride w-full rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-2 border-[1px] border-light-border text-sm  focus:outline-none focus:border-dark-surface-1',
                     {
                         'border-light-error focus:border-light-error text-light-error':
                             error
@@ -63,7 +63,7 @@ const AddExpenseFormField: React.FC<BudgetExpenseFormFieldProps> = ({
                 type={type}
                 {...register(name)}
                 className={clsx(
-                    'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-0 border-[1px] border-light-border text-sm  focus:outline-none focus:border-indigo-500',
+                    'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-2 border-[1px] border-light-border text-sm  focus:outline-none focus:border-indigo-500',
                     {
                         'border-light-error focus:border-light-error text-light-error':
                             error
@@ -124,7 +124,7 @@ function CategoryField({
                         placeholder={'Category'}
                         {...register('category')}
                         className={clsx(
-                            'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-0 border-[1px] border-light-border text-light-text-1 text-sm placeholder-light-text-2 focus:outline-none focus:border-indigo-500',
+                            'w-full h-[2.5rem] rounded-xl pl-4 mt-2 mb-1 rounded-xl bg-light-surface-2 border-[1px] border-light-border text-light-text-1 text-sm placeholder-light-text-2 focus:outline-none focus:border-indigo-500',
                             {
                                 'border-light-error focus:border-light-error':
                                     error
@@ -144,7 +144,7 @@ function CategoryField({
             )}
             <div className="w-full relative text-dark">
                 {listShown && (
-                    <div className="w-full bg-light-surface-0 border-[1px] border-light-border divide-y divide-light-border rounded-xl overflow-hidden">
+                    <div className="w-full bg-light-surface-2 border-[1px] border-light-border divide-y divide-light-border rounded-xl overflow-hidden">
                         {options}
                     </div>
                 )}
@@ -186,7 +186,7 @@ export function BudgetExpenseForm({
         <div className="flex items-center justify-center w-screen h-dvh min-h-dvh overflow-y-scroll pt-[3rem] fixed top-[0px] left-[0px] backdrop-brightness-50 z-30">
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col items-center justify-start w-[90%] rounded-xl bg-light-surface-0 border-[1px] border-light-border gap-y-4 z-30 py-8 px-4"
+                className="flex flex-col items-center justify-start w-[90%] rounded-xl bg-light-surface-2 border-[1px] border-light-border gap-y-4 z-30 py-8 px-4"
             >
                 <div className="flex justify-center items-center relative w-full ">
                     <h1 className="text-lg font-bold">Add an Expense</h1>
