@@ -84,7 +84,7 @@ function BudgetPlan({
                                 setBudgetPlanOptions={setBudgetPlanOptions}
                             />
                         ) : (
-                            <>
+                            <div className='w-full bg-light-surface-3 border border-light-border rounded-xl'>
                                 <BudgetPlanChart
                                     expenseListData={expenseListData}
                                 />
@@ -94,14 +94,14 @@ function BudgetPlan({
                                     setBudgetPlanOptions={setBudgetPlanOptions}
                                     expense={expense}
                                 />
-                            </>
+                            </div>
                         )}
                     </div>
                 </div>
 
                 {/* Add Button for Add Expense Form */}
                 <div onClick={() => setFormActive((prev) => !prev)}>
-                    <AddButtonIcon tailwindClass="stroke-dark-surface-1 text-dark-surface-1" />
+                    <AddButtonIcon tailwindClass="" />
                 </div>
             </div>
         </>

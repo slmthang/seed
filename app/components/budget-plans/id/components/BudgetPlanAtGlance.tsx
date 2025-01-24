@@ -29,7 +29,7 @@ export default function BudgetPlanAtGlance({
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
                     <p className="mt-1">
                         ${budgetDollars}.
-                        <span className="text-xs">
+                        <span className="text-xs font-thin">
                             {budgetCents ? budgetCents : '00'}
                         </span>
                     </p>
@@ -43,7 +43,7 @@ export default function BudgetPlanAtGlance({
                 <div className="w-[50%] h-[100%] flex items-center justify-end">
                     <p className="mt-1">
                         ${expenseDollars}.
-                        <span className="text-xs">
+                        <span className="text-xs font-thin">
                             {expenseCents ? expenseCents : '00'}
                         </span>
                     </p>
@@ -60,7 +60,7 @@ export default function BudgetPlanAtGlance({
                             {isNegative(+balanceDollars) && '-'}
                         </span>
                         ${absoluteNumber(+balanceDollars)}.
-                        <span className="text-xs">
+                        <span className="text-xs font-thin">
                             {balanceCents ? balanceCents : '00'}
                         </span>
                     </p>

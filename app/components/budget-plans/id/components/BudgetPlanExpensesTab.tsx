@@ -2,9 +2,10 @@ import { SelectbudgetPlanExpense } from '@/app/lib/definitions/DataBase';
 import { budgetPlanOptions } from '@/app/lib/definitions/Options';
 import { Dispatch, SetStateAction, useState } from 'react';
 import SearchBar from '@/app/components/shared/SearchBar';
-import { FilterIcon, ArrowUpwardIcon } from '@/app/components/shared/Icons';
+import { FilterIcon, ArrowUpwardIcon, SortByIcon } from '@/app/components/shared/Icons';
 import BudgetPlanExpensesTabOptions from './BudgetPlanExpensesTabOptions';
 import { sortBudgetPlanExpenseList, splitMoney } from '@/app/lib/utils';
+import SingleDropDownOption from '@/app/components/shared/SingleDropDownOption';
 
 export default function BudgetPlanExpensesTab({
     expenseListData,
@@ -27,39 +28,9 @@ export default function BudgetPlanExpensesTab({
     };
 
     return (
-        <div className="w-full min-h-fit rounded-2xl bg-light-surface-3 border-[1px] border-light-border flex flex-col justify-center items-center py-[1.5rem] px-[1rem] ">
-            <div className="w-full">
-                <div className="w-full flex items-center justify-between">
-                    <div className="w-full flex">
-                        <div className="w-full">
-                            <SearchBar
-                                searchBarName="searchBudgetExpense"
-                                searchBarPlaceholder="Search an expense"
-                                searchInputHandler={searchInputHandler}
-                            />
-                        </div>
-                        <div className="relative ml-[1rem]">
-                            <div
-                                className="w-[3rem] h-[2.5rem] flex justify-center items-center border-[1px] border-light-border rounded-lg mb-2 bg-white"
-                                onClick={() =>
-                                    setOptionsActive((prev) => !prev)
-                                }
-                            >
-                                <FilterIcon tailwindClass="size-7 stroke-light-text-1" />
-                            </div>
+        <div className="w-full min-h-fit rounded-2xl bg-light-surface-3 border-[1px] border-light-border flex flex-col justify-center items-center p-[1rem] ">
 
-                            {optionsActive && (
-                                <BudgetPlanExpensesTabOptions
-                                    budgetPlanOptions={budgetPlanOptions}
-                                    setBudgetPlanOptions={setBudgetPlanOptions}
-                                />
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="w-full mt-[1rem] overflow-hidden overflow-y-scroll">
+            <div className="w-full overflow-hidden overflow-y-scroll">
                 <ItemizedCardList
                     expenseListData={expenseListData}
                     searchBarValue={searchBarValue}
@@ -110,7 +81,7 @@ function ItemizedCardList({
                         </div>
 
                         <div className="h-[2.5rem] flex justify-center items-center ">
-                            <p className="inline text-base">{e.item}</p>
+                            <p className="inline">{e.item}</p>
                         </div>
                     </div>
                     <div className="absolute h-full right-0  flex flex-col gap-y-1 justify-center items-end">

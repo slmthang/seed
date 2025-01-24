@@ -88,7 +88,7 @@ function BudgetPlanStatsBreakDownCard({
                     className="w-full h-[2.5rem] flex justify-center items-center"
                 >
                     <div className="w-[2rem] h-[2.5rem] flex justify-center items-center"></div>
-                    <div className="w-full h-[2.5rem] flex items-center justify-between border-l-[2px] border-dark-border pl-2">
+                    <div className="w-full h-[2.5rem] flex items-center justify-between border-l-[5px] border-light-border pl-2">
                         <div className="flex items-center">
                             <SquareIcon tailwindClass="fa-fw fa-2xs mr-1 text-red-500" />
                             <p className="inline">{expenseData.item}</p>

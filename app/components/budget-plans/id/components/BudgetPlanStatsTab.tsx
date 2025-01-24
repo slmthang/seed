@@ -54,7 +54,7 @@ function CategorizedCard({
         'desc'
     );
 
-    const expenseListCards = expenseListDataSorted.map((expenseData) => {
+    const expenseListCards = expenseListDataSorted.map((expenseData, index) => {
         if (expenseData.category === categorizedExpenseData.name) {
             const [expenseDataAmountDollars, expenseDataAmountCents] =
                 splitMoney(String(expenseData.amount));
@@ -62,10 +62,10 @@ function CategorizedCard({
             return (
                 <div
                     key={expenseData.id}
-                    className="w-full h-[2.5rem] flex justify-center items-center"
+                    className="w-full h-[3rem] flex justify-center items-center"
                 >
-                    <div className="w-[2rem] h-[2.5rem] flex justify-center items-center border-r-[1px] mr-2"></div>
-                    <div className="w-full h-[2.5rem] flex items-center justify-between border-b-[1px] border-light-border pl-2">
+                    <div className="w-[2rem] h-[3rem] flex justify-center items-center border-r-[1px] mr-2"></div>
+                    <div className="w-full h-[3rem] flex items-center justify-between border-b-[1px] border-light-border pl-1">
                         <div className="flex items-center">
                             <CircleIcon
                                 tailwindClass={`fa-fw fa-2xs mr-2 text-red-500`}
@@ -75,7 +75,7 @@ function CategorizedCard({
                         <div>
                             <p className="mt-1">
                                 ${expenseDataAmountDollars}.
-                                <span className="text-xs">
+                                <span className="text-xs font-thin">
                                     {expenseDataAmountCents
                                         ? expenseDataAmountCents
                                         : '00'}
@@ -89,7 +89,7 @@ function CategorizedCard({
     });
 
     return (
-        <div className="w-full min-h-[3rem] flex flex-col justify-between items-center rounded-xl  p-2 bg-white border-light-border border-[1px] shadow shadow-light-border">
+        <div className="w-full min-h-[3rem] flex flex-col justify-between items-center rounded-xl px-3 py-2 border-light-border border-[1px] ">
             <div
                 className="w-full h-[3rem] flex justify-center items-center"
                 onClick={() => SetShowMoreActive((prev) => !prev)}
@@ -116,7 +116,7 @@ function CategorizedCard({
                     <div className="flex flex-col h-full items-end justify-around">
                         <p className="mt-1">
                             ${categorizedExpenseDataDollars}.
-                            <span className="text-xs">
+                            <span className="text-xs font-thin">
                                 {categorizedExpenseDataCents
                                     ? categorizedExpenseDataCents
                                     : '00'}
@@ -210,8 +210,8 @@ export default function BudgetPlanStatsTab({
     };
 
     return (
-        <div className="w-full min-h-fit rounded-2xl bg-white border-[1px] border-light-border flex flex-col justify-center  items-center py-[1.5rem] px-[1rem] ">
-            <div className="w-full">
+        <div className="w-full min-h-fit flex flex-col justify-center  items-center p-[1rem] ">
+            {/* <div className="w-full">
                 <div className="w-full flex">
                     <div className="w-full">
                         <SearchBar
@@ -236,9 +236,9 @@ export default function BudgetPlanStatsTab({
                         )}
                     </div>
                 </div>
-            </div>
+            </div> */}
 
-            <div className="w-full mt-[1rem] overflow-hidden overflow-y-scroll ">
+            <div className="w-full overflow-hidden overflow-y-scroll ">
                 <CategorizedCardList
                     expenseListData={expenseListData}
                     budgetPlanOptions={budgetPlanOptions}
